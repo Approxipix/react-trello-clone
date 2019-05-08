@@ -2,6 +2,7 @@ import {
   ADD_BOARD,
   ADD_LIST,
   ADD_TASK,
+  DELETE_BOARD,
   MOVE_LIST,
   MOVE_TASK,
 } from "./constants";
@@ -13,6 +14,11 @@ export const addBoard = (fields) => ({
 
 export const addList = (fields) => ({
   type: ADD_LIST,
+  payload: fields
+});
+
+export const deleteBoard = (fields) => ({
+  type: DELETE_BOARD,
   payload: fields
 });
 

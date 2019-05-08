@@ -5,6 +5,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import TaskAdder from './TaskAdder';
 
 const Container = styled.div`
+ 
   display: flex;
   flex-direction: column;
   width: 15rem;
@@ -19,7 +20,8 @@ const Title = styled.h3`
 `;
 
 const TaskList = styled.div`
-  padding: 0 .5rem .5rem;
+  position: relative;
+  padding: 0 .5rem 2.5rem .5rem;
   background-color: ${props => (props.isDraggingOver ? '#c1c1c1' : '#e3e3e3')}
   flex-grow: 1;
 `;
@@ -41,13 +43,6 @@ class InnerList extends Component {
 }
 
 class Column extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-
   render() {
     return (
       <Draggable draggableId={`${this.props.column.listId}`} index={this.props.index}>

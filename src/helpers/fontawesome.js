@@ -5,8 +5,10 @@ import {
 
 import {
   faColumns,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faColumns,
+  faTrash,
 );

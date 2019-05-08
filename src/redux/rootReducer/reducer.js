@@ -3,6 +3,7 @@ import {
   ADD_BOARD,
   ADD_LIST,
   ADD_TASK,
+  DELETE_BOARD,
   MOVE_LIST,
   MOVE_TASK,
 } from "./constants";
@@ -155,6 +156,11 @@ const rootReducer = (state = initialState, action) => {
             return board;
           }
         })
+      };
+    case DELETE_BOARD:
+      return {
+        ...state,
+        boards: state.boards.filter(board => board.boardId !== action.payload)
       };
     case MOVE_LIST:
       const { sourceIndex, destinationIndex, index } = action.payload;

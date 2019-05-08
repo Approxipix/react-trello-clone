@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { addTask } from '../redux/rootReducer/actions';
 
 const Wrapper = styled.div`
+  position: relative;
+  transform: translateY(1rem);
   background-color: #ddd;
   border-radius: .4rem
 `;
@@ -61,11 +63,15 @@ const CancelButton = styled.button`
 `;
 
 const AddButton = styled.button`
+  position: absolute;
+  left: 0;
+  text-align: left;
+  width: 100%;
+  bottom: 0;
+  padding: .6rem .75rem;
   font-size: 1rem; 
   color: #444;
   font-weight: 600;
-  background-color: #ddd;
-  border-radius: .4rem
   transition: background-color .1s;
   cursor: pointer;
   &:hover {

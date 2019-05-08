@@ -5,7 +5,9 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ColumnAdder from './ColumnAdder';
-import { moveList, moveTask } from "../redux/rootReducer/actions";
+import { moveList, moveTask, deleteBoard } from "../redux/rootReducer/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { history } from '../redux/store';
 
 const BoardWrapper = styled.div`
   height: 100%;
@@ -17,6 +19,37 @@ const Container = styled.div`
   display: flex;
   align-items: flex-start;
 `;
+
+const BoardHeader = styled.div`
+  margin-bottom: 1rem;
+  padding: 0 .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Actions = styled.div`
+
+`;
+
+const Button = styled.button`
+  padding: .5rem;
+  cursor: pointer;
+  color: #fff;
+  border-radius: .2rem;
+  transition: background .2s ease-in-out;
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const Title = styled.h1`
+  margin: 0;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+`;
+
 
 class InnerList extends Component {
   render() {
@@ -87,6 +120,20 @@ class Board extends Component {
     });
     return (
       <BoardWrapper>
+        <BoardHeader>
+          <Title>
+            {board.title}
+          </Title>
+          <Actions>
+            <Button onClick={() => {
+              this.props.actions.deleteBoard(+this.props.match.params.id);
+              history.push("/boards")
+            }}>
+              <FontAwesomeIcon icon="trash" />
+              Delete board
+            </Button>
+          </Actions>
+        </BoardHeader>
         <DragDropContext
           onDragEnd={this.onDragEnd}
         >
@@ -125,6 +172,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators({
       moveList: moveList,
       moveTask: moveTask,
+      deleteBoard: deleteBoard,
     }, dispatch)
   };
 }
