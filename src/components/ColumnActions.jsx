@@ -35,7 +35,7 @@ const Button = styled.button`
 `;
 
 const Close = styled.button`
-
+  cursor: pointer;
 `;
 
 const Title = styled.h4`
@@ -86,7 +86,7 @@ class ColumnActions extends Component {
           <Title>
             Lane actions
           </Title>
-          <Close>
+          <Close onClick={() => this.props.closeTooltip()}>
             <FontAwesomeIcon icon="times" />
           </Close>
         </Header>

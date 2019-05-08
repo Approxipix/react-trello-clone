@@ -4,6 +4,7 @@ import {
   ADD_TASK,
   DELETE_BOARD,
   DELETE_LIST,
+  DELETE_TASK,
   MOVE_LIST,
   MOVE_TASK,
 } from "./constants";
@@ -25,6 +26,11 @@ export const deleteBoard = (fields) => ({
 
 export const deleteList = (fields) => ({
   type: DELETE_LIST,
+  payload: fields
+});
+
+export const deleteTask = (fields) => ({
+  type: DELETE_TASK,
   payload: fields
 });
 

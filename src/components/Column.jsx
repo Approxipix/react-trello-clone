@@ -44,7 +44,7 @@ class InnerList extends Component {
     return (
       <>
         {!!this.props.task && this.props.task.map((task, index) =>
-          <Task key={task.taskId} task={task} listIndex={this.props.listIndex} index={index}/>
+          <Task key={task.taskId} task={task} boardIndex={this.props.boardIndex} listIndex={this.props.listIndex} index={index}/>
         )}
         <TaskAdder
           boardIndex={this.props.boardIndex}
@@ -59,7 +59,7 @@ class Column extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpened: true,
+      isOpened: false,
     }
   }
 
