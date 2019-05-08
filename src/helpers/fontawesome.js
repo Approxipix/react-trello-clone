@@ -6,9 +6,13 @@ import {
 import {
   faColumns,
   faTrash,
+  faEllipsisH,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faColumns,
   faTrash,
+  faEllipsisH,
+  faTimes
 );

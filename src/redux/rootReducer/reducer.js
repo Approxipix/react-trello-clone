@@ -1,12 +1,5 @@
 import uuid from "uuid";
-import {
-  ADD_BOARD,
-  ADD_LIST,
-  ADD_TASK,
-  DELETE_BOARD,
-  MOVE_LIST,
-  MOVE_TASK,
-} from "./constants";
+import { ADD_BOARD, ADD_LIST, ADD_TASK, DELETE_BOARD, DELETE_LIST, MOVE_LIST, MOVE_TASK, } from "./constants";
 
 const initialState = {
   boards: [
@@ -161,6 +154,19 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         boards: state.boards.filter(board => board.boardId !== action.payload)
+      };
+    case DELETE_LIST:
+      return {
+        ...state,
+        boards: state.boards.map((board, j) => {
+          if (j === action.payload.index) {
+            let newBoard = board;
+            newBoard.list = newBoard.list.filter(list => list.listId !== action.payload.listId);
+            return newBoard;
+          } else {
+            return board;
+          }
+        })
       };
     case MOVE_LIST:
       const { sourceIndex, destinationIndex, index } = action.payload;

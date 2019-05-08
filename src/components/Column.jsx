@@ -3,9 +3,11 @@ import Task from './Task'
 import styled from 'styled-components'
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import TaskAdder from './TaskAdder';
+import ColumnActions from './ColumnActions';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled.div`
- 
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 15rem;
@@ -16,7 +18,6 @@ const Container = styled.div`
 `;
 
 const Title = styled.h3`
-  padding: .5rem;
 `;
 
 const TaskList = styled.div`
@@ -24,6 +25,18 @@ const TaskList = styled.div`
   padding: 0 .5rem 2.5rem .5rem;
   background-color: ${props => (props.isDraggingOver ? '#c1c1c1' : '#e3e3e3')}
   flex-grow: 1;
+`;
+
+const Header = styled.div`
+  padding: .5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Actions = styled.div`
+  cursor: pointer;
 `;
 
 class InnerList extends Component {
@@ -43,14 +56,35 @@ class InnerList extends Component {
 }
 
 class Column extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpened: true,
+    }
+  }
+
+  closeTooltip = () => {
+    this.setState({
+      isOpened: false,
+    })
+  }
+
   render() {
     return (
       <Draggable draggableId={`${this.props.column.listId}`} index={this.props.index}>
         {(provided) => (
           <Container {...provided.draggableProps} ref={provided.innerRef}>
-            <Title {...provided.dragHandleProps}>
-              {this.props.column.title}
-            </Title>
+            <Header {...provided.dragHandleProps}>
+              <Title>
+                {this.props.column.title}
+              </Title>
+              <Actions onClick={() => this.setState({isOpened: true})}>
+                <FontAwesomeIcon icon="ellipsis-h" />
+              </Actions>
+            </Header>
+            {this.state.isOpened && (
+              <ColumnActions closeTooltip={this.closeTooltip} boardIndex={this.props.boardIndex} columnID={this.props.column.listId}/>
+            )}
             <Droppable
               type={'task'}
               droppableId={`${this.props.column.listId}`}
