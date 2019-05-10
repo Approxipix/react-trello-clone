@@ -5,7 +5,7 @@ import {
   ADD_TASK,
   DELETE_BOARD,
   DELETE_LIST,
-  DELETE_TASK,
+  DELETE_TASK, EDIT_COLUMN,
   EDIT_TASK,
   MOVE_LIST,
   MOVE_TASK,
@@ -245,6 +245,22 @@ const rootReducer = (state = initialState, action) => {
               ...newBoard.list[action.payload.listIndex].task[action.payload.taskId],
               title: action.payload.taskTitle,
               content: action.payload.taskContent
+            };
+            return newBoard;
+          } else {
+            return board;
+          }
+        })
+      };
+    case EDIT_COLUMN:
+      return {
+        ...state,
+        boards: state.boards.map((board, j) => {
+          if (j === action.payload.boardIndex) {
+            let newBoard = board;
+            newBoard.list[action.payload.listIndex] = {
+              ...newBoard.list[action.payload.listIndex],
+              title: action.payload.listTitle,
             };
             return newBoard;
           } else {

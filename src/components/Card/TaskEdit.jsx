@@ -19,7 +19,6 @@ const Input = styled.input`
   font-size: .875rem;
   color: #40424b;
   line-height: 1rem;
-  outline: none;
 `;
 
 const TextArea = styled.textarea`
@@ -33,7 +32,6 @@ const TextArea = styled.textarea`
   color: #40424b;
   line-height: 1rem;
   resize: none;
-  outline: none;
 `;
 
 const Actions = styled.div`

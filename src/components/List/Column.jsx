@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import TaskAdder from '../Card/TaskAdder';
 import ColumnActions from './ColumnActions';
+import ColumnEdit from './ColumnEdit';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 
 const Container = styled.div`
@@ -18,6 +19,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h3`
+  cursor: default;
 `;
 
 const TaskList = styled.div`
@@ -28,7 +30,8 @@ const TaskList = styled.div`
 `;
 
 const Header = styled.div`
-  padding: .5rem;
+  margin-bottom: .5rem;
+  padding: ${props => props.isEditing ? '0 .5rem 0 0' : '.5rem'};
   width: 100%;
   display: flex;
   align-items: center;
@@ -66,6 +69,14 @@ class Column extends Component {
   closeTooltip = () => {
     this.setState({
       isOpened: false,
+      isEditing: false,
+
+    })
+  }
+
+  closeEdit = () => {
+    this.setState({
+      isEditing: false,
     })
   }
 
@@ -74,10 +85,19 @@ class Column extends Component {
       <Draggable draggableId={`${this.props.column.listId}`} index={this.props.index}>
         {(provided) => (
           <Container {...provided.draggableProps} ref={provided.innerRef}>
-            <Header {...provided.dragHandleProps}>
-              <Title>
-                {this.props.column.title}
-              </Title>
+            <Header isEditing={this.state.isEditing} {...provided.dragHandleProps}>
+              {!this.state.isEditing ? (
+                <Title onClick={() => {
+                  this.setState({
+                    isEditing: true,
+                  })
+                }}>
+                  {this.props.column.title}
+                </Title>
+              ) : (
+                <ColumnEdit closeEdit={this.closeEdit} boardIndex={this.props.boardIndex}
+                            listIndex={this.props.listIndex}/>
+              )}
               <Actions onClick={() => this.setState({isOpened: true})}>
                 <FontAwesomeIcon icon="ellipsis-h" />
               </Actions>

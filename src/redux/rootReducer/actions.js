@@ -6,6 +6,7 @@ import {
   DELETE_LIST,
   DELETE_TASK,
   EDIT_TASK,
+  EDIT_COLUMN,
   MOVE_LIST,
   MOVE_TASK,
 } from "./constants";
@@ -52,5 +53,10 @@ export const moveTask = (fields) => ({
 
 export const editTask = (fields) => ({
   type: EDIT_TASK,
+  payload: fields
+});
+
+export const editColumn = (fields) => ({
+  type: EDIT_COLUMN,
   payload: fields
 });
