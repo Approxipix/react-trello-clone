@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
-import logo from '../images/logo.png'
+import logo from '../images/logo.svg'
 import { connect } from "react-redux";
 
 const Wrapper = styled.div`
@@ -48,8 +48,7 @@ const NavTitle = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 6.5rem;
-  height: 4rem;
+  width: 10rem;
 `;
 
 const Actions = styled.div`

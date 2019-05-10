@@ -59,7 +59,7 @@ const AddButton = styled.button`
   padding: .75rem;
   border-radius: .2rem;
   background: rgba(0, 0, 0, 0.1);
-  color: #bdc3c7;
+  color: #c3c3c3;
   font-size: 1rem; 
   text-align: left;
   transition: background-color .1s;
