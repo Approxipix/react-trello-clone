@@ -4,7 +4,6 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import Header from '../components/Header'
 import Board from '../components/Board/Board'
 import Boards from '../pages/Boards'
-import NotFound from '../pages/NotFound'
 
 const MainWrapper = styled.div` 
   display: grid;
@@ -31,10 +30,9 @@ class Routes extends Component {
         </HeaderWrapper>
        <ContentWrapper>
          <Switch>
-           <Route exact path="/" render={ () => <Redirect to="/boards"/>} />
            <Route exact path="/boards" component={Boards}/>
            <Route exact path="/board/:id" component={Board}/>
-           <Route exact component={NotFound} />
+           <Route exact render={ () => <Redirect to="/boards"/>} />
          </Switch>
        </ContentWrapper>
       </MainWrapper>
