@@ -2,34 +2,33 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { editColumn } from '../../redux/rootReducer/actions';
+import { editBoard } from '../../redux/rootReducer/actions';
 
 const Form = styled.form`
   width: 90%;
 `;
 
 const Input = styled.input`
-  padding: .6rem .5rem .5rem;
+  padding: .3rem .5rem;
   width: 100%;
   border: none;
-  font-weight: bold;
+  font-size: 1.3rem;
+  font-weight: 600;
   box-shadow: none;
-  font-size: 1rem;
   color: #40424b;
 `;
 
-class TaskEdit extends Component {
+class BoardEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
-      content: '',
     };
   }
 
   componentDidMount() {
     this.setState({
-      title: this.props.list.title,
+      title: this.props.board.title,
     });
     document.addEventListener('click', this.outerClick);
   }
@@ -40,10 +39,10 @@ class TaskEdit extends Component {
 
   outerClick = (e) => {
     let { target } = e;
-    if (target.id === 'list-edit-form') {
+    if (target.id === 'board-edit-form') {
       return;
     }
-    if (!!target.closest && (target.closest('#list-edit-form'))) {
+    if (!!target.closest && (target.closest('#board-edit-form'))) {
       return;
     }
     this.props.closeEdit();
@@ -62,17 +61,16 @@ class TaskEdit extends Component {
     if (!title)  return;
     const data = {
       boardIndex: this.props.boardIndex,
-      listIndex: this.props.listIndex,
-      listTitle: title,
+      boardTitle: title,
     };
-    this.props.actions.editColumn(data);
+    this.props.actions.editBoard(data);
     this.props.closeEdit()
   };
 
   render = () => {
     const { title } = this.state;
     return (
-      <Form onSubmit={this.handleSubmit} id="list-edit-form">
+      <Form onSubmit={this.handleSubmit} id="board-edit-form">
         <Input
           autoFocus
           type="text"
@@ -88,17 +86,17 @@ class TaskEdit extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    list: state.rootReducer.boards[ownProps.boardIndex].list[ownProps.listIndex],
+    board: state.rootReducer.boards[ownProps.boardIndex],
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      editColumn: editColumn,
+      editBoard: editBoard,
     }, dispatch)
   };
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(BoardEdit);

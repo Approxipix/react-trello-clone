@@ -5,6 +5,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ColumnAdder from '../List/ColumnAdder';
+import BoardEdit from '../Board/BoardEdit';
 import { moveList, moveTask, deleteBoard } from "../../redux/rootReducer/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 import { history } from '../../redux/store';
@@ -38,6 +39,7 @@ const Button = styled.button`
   color: #fff;
   border-radius: .2rem;
   transition: background .2s ease-in-out;
+  white-space: nowrap;
   &:hover {
     background: rgba(0, 0, 0, 0.2);
   }
@@ -45,6 +47,8 @@ const Button = styled.button`
 
 const Title = styled.h1`
   margin: 0;
+  padding: .3rem .5rem;
+
   color: #fff;
   font-size: 1.3rem;
   font-weight: 600;
@@ -72,6 +76,19 @@ class InnerList extends Component {
 }
 
 class Board extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isEditing: false,
+    }
+  }
+
+  closeEdit = () => {
+    this.setState({
+      isEditing: false,
+    })
+  }
+
   onDragEnd = (result) => {
     const { destination, source, draggableId, type } = result;
     if (!destination) return;
@@ -112,6 +129,7 @@ class Board extends Component {
   };
 
   render() {
+    const { isEditing } = this.state;
     const { boards } = this.props;
     let boardIndex;
     const board = boards.find((board, index) => {
@@ -121,9 +139,17 @@ class Board extends Component {
     return (
       <BoardWrapper>
         <BoardHeader>
-          <Title>
-            {board.title}
-          </Title>
+          {!isEditing ? (
+            <Title onClick={() => {
+              this.setState({
+                isEditing: true,
+              })
+            }}>
+              {board.title}
+            </Title>
+          ) : (
+            <BoardEdit boardIndex={boardIndex} closeEdit={this.closeEdit}/>
+          )}
           <Actions>
             <Button onClick={() => {
               this.props.actions.deleteBoard(+this.props.match.params.id);

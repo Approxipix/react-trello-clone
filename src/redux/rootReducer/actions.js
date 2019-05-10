@@ -5,6 +5,7 @@ import {
   DELETE_BOARD,
   DELETE_LIST,
   DELETE_TASK,
+  EDIT_BOARD,
   EDIT_TASK,
   EDIT_COLUMN,
   MOVE_LIST,
@@ -48,6 +49,11 @@ export const addTask = (fields) => ({
 
 export const moveTask = (fields) => ({
   type: MOVE_TASK,
+  payload: fields
+});
+
+export const editBoard = (fields) => ({
+  type: EDIT_BOARD,
   payload: fields
 });
 
