@@ -6,6 +6,7 @@ import {
   DELETE_BOARD,
   DELETE_LIST,
   DELETE_TASK,
+  EDIT_TASK,
   MOVE_LIST,
   MOVE_TASK,
 } from "./constants";
@@ -228,6 +229,23 @@ const rootReducer = (state = initialState, action) => {
             const task = board.list[listIndex].task[sourceeIndex];
             board.list[listIndex].task.splice(sourceeIndex, 1);
             board.list[desditnIndex].task.splice(destinationnIndex, 0, task);
+            return newBoard;
+          } else {
+            return board;
+          }
+        })
+      };
+    case EDIT_TASK:
+      return {
+        ...state,
+        boards: state.boards.map((board, j) => {
+          if (j === action.payload.boardIndex) {
+            let newBoard = board;
+            newBoard.list[action.payload.listIndex].task[action.payload.taskId] = {
+              ...newBoard.list[action.payload.listIndex].task[action.payload.taskId],
+              title: action.payload.taskTitle,
+              content: action.payload.taskContent
+            };
             return newBoard;
           } else {
             return board;

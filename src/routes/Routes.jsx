@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Header from '../components/Header'
-import Board from '../components/Board'
+import Board from '../components/Board/Board'
 import Boards from '../pages/Boards'
 import NotFound from '../pages/NotFound'
 

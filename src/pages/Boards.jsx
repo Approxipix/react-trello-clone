@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import BoardAdder from '../components/BoardAdder';
+import BoardAdder from '../components/Board/BoardAdder';
 
 const Wrapper = styled.div`
   padding: 1.5rem;

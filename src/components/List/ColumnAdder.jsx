@@ -2,13 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { addTask } from '../redux/rootReducer/actions';
+import { addList } from '../../redux/rootReducer/actions';
 
 const Wrapper = styled.div`
-  position: relative;
-  transform: translateY(1rem);
-  background-color: #ddd;
-  border-radius: .4rem
+  width: 15rem;
+  margin: 0 .5rem;
+  padding: .6rem;
+  background-color: #e3e3e3;
+  border-radius: .2rem
+`;
+
+const Title = styled.h4`
+  margin-bottom: .5rem;
 `;
 
 const Input = styled.input`
@@ -21,20 +26,6 @@ const Input = styled.input`
   font-size: 1rem;
   color: #40424b;
   line-height: 1rem;
-  outline: none;
-`;
-
-const TextArea = styled.textarea`
-  width: 100%;
-  margin-bottom: .5rem;
-  padding: .6rem;
-  border: 1px solid #bdc3c7;
-  border-radius: 3px;
-  box-shadow: none;
-  font-size: 1rem;
-  color: #40424b;
-  line-height: 1rem;
-  resize: none;
   outline: none;
 `;
 
@@ -63,29 +54,27 @@ const CancelButton = styled.button`
 `;
 
 const AddButton = styled.button`
-  position: absolute;
-  left: 0;
-  text-align: left;
-  width: 100%;
-  bottom: 0;
-  padding: .6rem .75rem;
+  width: 15rem;
+  margin: 0 .5rem;
+  padding: .75rem;
+  border-radius: .2rem;
+  background: rgba(0, 0, 0, 0.1);
+  color: #bdc3c7;
   font-size: 1rem; 
-  color: #444;
-  font-weight: 600;
+  text-align: left;
   transition: background-color .1s;
   cursor: pointer;
   &:hover {
-    background-color: #ccc;
+    background: rgba(0, 0, 0, 0.2);
   }
 `;
 
-class TaskAdder extends Component {
+class BoardAdder extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpened: false,
       title: '',
-      content: '',
     };
   }
 
@@ -99,75 +88,69 @@ class TaskAdder extends Component {
 
   outerClick = (e) => {
     let { target } = e;
-    if (target.id === 'card-add-btn' || target.id === 'card-add-form') {
+    if (target.id === 'column-add-btn' || target.id === 'column-add-form') {
       return;
     }
-    if (!!target.closest && (target.closest('#card-add-form'))) {
+    if (!!target.closest && (target.closest('#column-add-form'))) {
       return;
     }
     this.setState({ isOpened: false });
   };
 
-  handleChange = (key, value) => {
+  handleChange = event => {
     this.setState({
-      ...this.state,
-      [key]: value,
+      title: event.target.value
     });
+  };
+
+  handleKeyDown = event => {
+    if (event.keyCode === 27) {
+      this.setState({
+        isOpened: false
+      });
+    }
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    const { title, content } = this.state;
-    if (!title || !content)  return;
-    const data = {
-      boardIndex: this.props.boardIndex,
-      listIndex: this.props.listIndex,
-      taskTitle: title,
-      taskContent: content,
-    };
-    this.props.actions.addTask(data);
+    const { title } = this.state;
+    if (!title) return;
+    this.props.actions.addList({boardsIndex: this.props.boardIndex, listTitle: title});
     this.setState({
       isOpened: false,
-      title: '',
-      content: '',
+      title: ''
     });
   };
 
   toggleOpened = () => {
     this.setState({
-      isOpened: !this.state.isOpened,
-      title: '',
-      content: '',
+      isOpened: !this.state.isOpened
     })
   };
 
   render = () => {
-    const { isOpened, title, content } = this.state;
+    const { isOpened, title } = this.state;
     return isOpened ? (
       <Wrapper>
-        <form onSubmit={this.handleSubmit} id="card-add-form">
+        <Title>
+          New Column
+        </Title>
+        <form onSubmit={this.handleSubmit} id="column-add-form">
           <Input
             autoFocus
             type="text"
-            placeholder="Board name"
+            placeholder="Column name"
             value={title}
-            onChange={(e) => this.handleChange('title', e.target.value)}
-            spellCheck={false}
-          />
-          <TextArea
-            type="text"
-            placeholder="Content"
-            value={content}
-            rows="4"
-            onChange={(e) => this.handleChange('content', e.target.value)}
+            onKeyDown={this.handleKeyDown}
+            onChange={this.handleChange}
             spellCheck={false}
           />
           <Actions>
             <CreateButton
               type="submit"
-              disabled={!title || !content}
+              disabled={title === ""}
             >
-              Create card
+              Save list
             </CreateButton>
             or
             <CancelButton
@@ -180,10 +163,10 @@ class TaskAdder extends Component {
       </Wrapper>
     ) : (
       <AddButton
-        id={'card-add-btn'}
+        id={'column-add-btn'}
         onClick={() => this.toggleOpened()}
       >
-        Add a new card...
+        Add a new column...
       </AddButton>
     );
   };
@@ -192,10 +175,10 @@ class TaskAdder extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      addTask: addTask,
+      addList: addList,
     }, dispatch)
   };
 }
 
 
-export default connect(null, mapDispatchToProps)(TaskAdder);
+export default connect(null, mapDispatchToProps)(BoardAdder);

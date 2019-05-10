@@ -1,10 +1,10 @@
 import React, { Component, PureComponent } from 'react';
-import Task from './Task'
+import Task from '../Card/Task'
 import styled from 'styled-components'
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import TaskAdder from './TaskAdder';
+import TaskAdder from '../Card/TaskAdder';
 import ColumnActions from './ColumnActions';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 
 const Container = styled.div`
   position: relative;

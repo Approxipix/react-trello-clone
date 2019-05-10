@@ -1,13 +1,13 @@
 import React, { Component, PureComponent } from 'react';
-import Column from './Column'
+import Column from '../List/Column'
 import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ColumnAdder from './ColumnAdder';
-import { moveList, moveTask, deleteBoard } from "../redux/rootReducer/actions";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { history } from '../redux/store';
+import ColumnAdder from '../List/ColumnAdder';
+import { moveList, moveTask, deleteBoard } from "../../redux/rootReducer/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
+import { history } from '../../redux/store';
 
 const BoardWrapper = styled.div`
   height: 100%;

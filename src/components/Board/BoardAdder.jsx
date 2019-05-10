@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { addBoard } from '../redux/rootReducer/actions';
+import { addBoard } from '../../redux/rootReducer/actions';
 
 const Wrapper = styled.div`
   padding: .6rem;

@@ -6,3 +6,4 @@ export const DELETE_LIST = 'DELETE_LIST';
 export const DELETE_TASK = 'DELETE_TASK';
 export const MOVE_LIST = 'MOVE_LIST';
 export const MOVE_TASK = 'MOVE_TASK';
+export const EDIT_TASK = 'EDIT_TASK';

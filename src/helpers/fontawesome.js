@@ -8,11 +8,13 @@ import {
   faTrash,
   faEllipsisH,
   faTimes,
+  faPencilAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faColumns,
   faTrash,
   faEllipsisH,
-  faTimes
+  faTimes,
+  faPencilAlt
 );
