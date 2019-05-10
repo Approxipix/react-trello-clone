@@ -25,11 +25,11 @@ const BoardItem = styled.li`
   flex-direction: column;
   padding: .6rem;
   width: 100%;
-  background-color: #2e7eaf;
+  background-color: ${props => props.color};
   border-radius: .4rem
   transition: background-color .1s;
   &:hover {
-    background-color: #0a6796;
+    box-shadow: inset 0px 0px 0px 100px rgba(0, 0, 0, .1);
   }
 `;
 
@@ -69,7 +69,7 @@ class Boards extends Component {
         <BoardList>
           {boards.map(board => (
             <NavLink key={board.boardId} to={`/board/${board.boardId}`}>
-              <BoardItem>
+              <BoardItem color={board.color}>
                 <BoardTitle>
                   {board.title}
                 </BoardTitle>

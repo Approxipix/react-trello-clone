@@ -10,6 +10,7 @@ import {
   EDIT_COLUMN,
   MOVE_LIST,
   MOVE_TASK,
+  EDIT_COLOR,
 } from "./constants";
 
 export const addBoard = (fields) => ({
@@ -64,5 +65,10 @@ export const editTask = (fields) => ({
 
 export const editColumn = (fields) => ({
   type: EDIT_COLUMN,
+  payload: fields
+});
+
+export const editColor = (fields) => ({
+  type: EDIT_COLOR,
   payload: fields
 });

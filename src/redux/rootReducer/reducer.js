@@ -5,7 +5,7 @@ import {
   ADD_TASK,
   DELETE_BOARD,
   DELETE_LIST,
-  DELETE_TASK, EDIT_BOARD, EDIT_COLUMN,
+  DELETE_TASK, EDIT_BOARD, EDIT_COLOR, EDIT_COLUMN,
   EDIT_TASK,
   MOVE_LIST,
   MOVE_TASK,
@@ -16,6 +16,7 @@ const initialState = {
     {
       boardId: 0,
       title: 'Bloa',
+      color: '#2E7EAF',
       list: [
         {
           listId: uuid.v4(),
@@ -70,6 +71,7 @@ const initialState = {
     {
       boardId: 1,
       title: 'Fu',
+      color: '#00603d',
       list: [
         {
           listId: uuid.v4(),
@@ -277,6 +279,22 @@ const rootReducer = (state = initialState, action) => {
             newBoard = {
               ...newBoard,
               title: action.payload.boardTitle,
+            };
+            return newBoard;
+          } else {
+            return board;
+          }
+        })
+      };
+    case EDIT_COLOR:
+      return {
+        ...state,
+        boards: state.boards.map((board, j) => {
+          if (j === action.payload.boardIndex) {
+            let newBoard = board;
+            newBoard = {
+              ...newBoard,
+              color: action.payload.color,
             };
             return newBoard;
           } else {

@@ -3,13 +3,15 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 import logo from '../images/logo.png'
+import { connect } from "react-redux";
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1.5rem;
-  background-color: #296D94;
+  background-color: ${props => props.color};
+  box-shadow: inset 0px 0px 0px 40px rgba(0, 0, 0, .3)
 `;
 
 const Nav = styled.nav`
@@ -55,8 +57,14 @@ const Actions = styled.div`
 
 class Header extends Component {
   render() {
+    const { boards } = this.props;
+    let boardIndex;
+    const board = boards.find((board, index) => {
+      boardIndex = index;
+      return board.boardId === 0;
+    });
     return (
-      <Wrapper>
+      <Wrapper color={board.color}>
         <Nav>
           <NavList>
             <NavLink to="/boards">
@@ -78,4 +86,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+function mapStateToProps(state) {
+  return {
+    boards: state.rootReducer.boards,
+  }
+}
+
+export default connect(mapStateToProps)(Header);

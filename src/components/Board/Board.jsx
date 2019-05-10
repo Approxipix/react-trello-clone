@@ -5,6 +5,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ColumnAdder from '../List/ColumnAdder';
+import ColorPicker from '../ColorPicker';
 import BoardEdit from '../Board/BoardEdit';
 import { moveList, moveTask, deleteBoard } from "../../redux/rootReducer/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
@@ -13,7 +14,8 @@ import { history } from '../../redux/store';
 const BoardWrapper = styled.div`
   height: 100%;
   padding: 1rem 1.5rem;
-  background-color: #2E7EAF;
+  background-color: ${props => props.color};
+  transition: background-color .2s ease-in;
 `;
 
 const Container = styled.div`
@@ -30,10 +32,15 @@ const BoardHeader = styled.div`
 `;
 
 const Actions = styled.div`
-
+  display: flex;
+  align-items: center;
+  &:not(:last-child) {
+    border-right: 1px solid red;
+  }
 `;
 
 const Button = styled.button`
+  margin: 0.5rem;
   padding: .5rem;
   cursor: pointer;
   color: #fff;
@@ -48,10 +55,15 @@ const Button = styled.button`
 const Title = styled.h1`
   margin: 0;
   padding: .3rem .5rem;
-
   color: #fff;
   font-size: 1.3rem;
   font-weight: 600;
+`;
+
+const VerticalLine = styled.div`
+  background-color: #d6d6d6;
+  width: 1px;
+  height: 1.3rem;
 `;
 
 
@@ -137,7 +149,7 @@ class Board extends Component {
       return board.boardId === +this.props.match.params.id
     });
     return (
-      <BoardWrapper>
+      <BoardWrapper color={board.color}>
         <BoardHeader>
           {!isEditing ? (
             <Title onClick={() => {
@@ -151,12 +163,14 @@ class Board extends Component {
             <BoardEdit boardIndex={boardIndex} closeEdit={this.closeEdit}/>
           )}
           <Actions>
+            <ColorPicker boardIndex={boardIndex}/>
+            <VerticalLine />
             <Button onClick={() => {
               this.props.actions.deleteBoard(+this.props.match.params.id);
               history.push("/boards")
             }}>
               <FontAwesomeIcon icon="trash" />
-              Delete board
+              &nbsp;Delete board
             </Button>
           </Actions>
         </BoardHeader>

@@ -9,3 +9,4 @@ export const MOVE_TASK = 'MOVE_TASK';
 export const EDIT_BOARD = 'EDIT_BOARD';
 export const EDIT_TASK = 'EDIT_TASK';
 export const EDIT_COLUMN = 'EDIT_COLUMN';
+export const EDIT_COLOR = 'EDIT_COLOR';
