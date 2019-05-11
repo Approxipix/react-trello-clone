@@ -34,7 +34,6 @@ const Button = styled.button`
 const Container = styled.div`
   position: relative;
   padding: ${props => !props.isEditing && '.5rem'};
-  margin-bottom: .5rem;
   border: ${props => !props.isEditing ? '1px solid lightgrey' : 'none'};
   border-radius: 2px;
 
@@ -48,6 +47,9 @@ const Container = styled.div`
   &:hover ${Button} {
     visibility: visible;
   }   
+  &:not(:last-child) {
+    margin-bottom: .5rem;
+  }
 `;
 
 

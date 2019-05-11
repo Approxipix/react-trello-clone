@@ -19,6 +19,30 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
     }
   }
+  ::-webkit-scrollbar:vertical {
+    width: .5rem;
+    height: .5rem;
+  }
+  ::-webkit-scrollbar {
+    width: .65rem;
+    height: .65rem;
+  }
+  ::-webkit-scrollbar-track:vertical {
+    background: rgba(9,30,66,.12);
+    border-radius: .3rem;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(0,0,0,.15);
+    border-radius: .3rem;
+  }
+  ::-webkit-scrollbar-thumb:vertical {
+    background: rgba(9,30,66,.18);
+    border-radius: .3rem;
+  }
+   ::-webkit-scrollbar-thumb {
+    background: rgba(223, 225, 230, .5);
+    border-radius: .3rem;
+  }
   h1,h2,h3,h4,h5,h6,p {
     margin: 0;
   }

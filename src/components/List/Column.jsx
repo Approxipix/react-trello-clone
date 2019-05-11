@@ -15,7 +15,11 @@ const Container = styled.div`
   margin: 0 .5rem;
   border: 1px solid lightgrey;
   border-radius: .2rem;
-  background-color: #e3e3e3;
+  background-color: #dfe1e6;
+  
+  flex-shrink: 0;
+  max-height: 83vh;
+  padding-bottom: 3rem;
 `;
 
 const Title = styled.h3`
@@ -24,9 +28,11 @@ const Title = styled.h3`
 
 const TaskList = styled.div`
   position: relative;
-  padding: 0 .5rem 2.5rem .5rem;
-  background-color: ${props => (props.isDraggingOver ? '#c1c1c1' : '#e3e3e3')}
+  padding: 0 .5rem;
+  background-color: ${props => (props.isDraggingOver ? '#c1c1c1' : '#dfe1e6')}
   flex-grow: 1;
+  
+  overflow: auto;
 `;
 
 const Header = styled.div`
@@ -49,10 +55,6 @@ class InnerList extends Component {
         {!!this.props.task && this.props.task.map((task, index) =>
           <Task key={task.taskId} task={task} boardIndex={this.props.boardIndex} listIndex={this.props.listIndex} index={index}/>
         )}
-        <TaskAdder
-          boardIndex={this.props.boardIndex}
-          listIndex={this.props.listIndex}
-        />
       </>
     )
   }
@@ -121,6 +123,10 @@ class Column extends Component {
                 </TaskList>
               )}
             </Droppable>
+            <TaskAdder
+              boardIndex={this.props.boardIndex}
+              listIndex={this.props.listIndex}
+            />
           </Container>
         )}
       </Draggable>

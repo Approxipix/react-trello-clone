@@ -13,7 +13,7 @@ import { history } from '../../redux/store';
 
 const BoardWrapper = styled.div`
   height: 100%;
-  padding: 1rem 1.5rem;
+  padding-top: 1rem;
   background-color: ${props => props.color};
   transition: background-color .2s ease-in;
 `;
@@ -21,11 +21,16 @@ const BoardWrapper = styled.div`
 const Container = styled.div`
   display: flex;
   align-items: flex-start;
+  flex-shrink: 0;
+  
+  max-width: 100vw;
+    overflow: auto;
+    padding: 0 1rem 1rem;
 `;
 
 const BoardHeader = styled.div`
   margin-bottom: 1rem;
-  padding: 0 .5rem;
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
