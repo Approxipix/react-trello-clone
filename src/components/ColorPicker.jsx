@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 import { connect } from "react-redux";
-import { editColor } from "../redux/rootReducer/actions";
+import { editColor } from "../redux/boardReducer/actions";
 
 const Container = styled.div`
   position: relative;
@@ -52,10 +52,10 @@ class ColorPicker extends Component {
   }
 
   // handleSelection = color => {
-  //   const { dispatch, boardId, boardColor } = this.props;
+  //   const { dispatch, _id, boardColor } = this.props;
   //   // Dispatch update only if selected color is not the same as current board color.
   //   if (color !== boardColor) {
-  //     dispatch({ type: "CHANGE_BOARD_COLOR", payload: { boardId, color } });
+  //     dispatch({ type: "CHANGE_BOARD_COLOR", payload: { _id, color } });
   //   }
   // };
 

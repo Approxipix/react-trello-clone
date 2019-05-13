@@ -19,6 +19,9 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
     }
   }
+  .scroll-disabled {
+    overflow-y: hidden;
+  }
   ::-webkit-scrollbar:vertical {
     width: .5rem;
     height: .5rem;

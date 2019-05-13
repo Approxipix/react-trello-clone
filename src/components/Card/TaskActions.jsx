@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { deleteTask } from '../../redux/rootReducer/actions';
+import { deleteTask } from '../../redux/boardReducer/actions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 
 const Wrapper = styled.div`

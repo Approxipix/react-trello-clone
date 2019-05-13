@@ -1,15 +1,15 @@
 import React, { Component, PureComponent } from 'react';
-import Column from '../List/Column'
+import Column from '../components/List/Column'
 import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ColumnAdder from '../List/ColumnAdder';
-import ColorPicker from '../ColorPicker';
-import BoardEdit from '../Board/BoardEdit';
-import { moveList, moveTask, deleteBoard } from "../../redux/rootReducer/actions";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
-import { history } from '../../redux/store';
+import ColumnAdder from '../components/List/ColumnAdder';
+import ColorPicker from '../components/ColorPicker';
+import BoardEdit from '../components/Board/BoardEdit';
+import { moveList, moveTask, deleteBoard, setCurrentBoardIndex } from "../redux/boardReducer/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { history } from '../redux/store';
 
 const BoardWrapper = styled.div`
   height: 100%;
@@ -100,6 +100,14 @@ class Board extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.actions.setCurrentBoardIndex(this.props.match.params.id)
+  }
+
+  componentWillUnmount() {
+    this.props.actions.setCurrentBoardIndex(null)
+  }
+
   closeEdit = () => {
     this.setState({
       isEditing: false,
@@ -117,7 +125,7 @@ class Board extends Component {
     if (type === 'column') {
       let boardIndex;
       this.props.boards.forEach((board, index) => {
-        if (board.boardId === +this.props.match.params.id) {
+        if (board._id === +this.props.match.params.id) {
           boardIndex = index;
         }
       });
@@ -131,7 +139,7 @@ class Board extends Component {
     if (type === 'task') {
       let boardIndex;
       this.props.boards.forEach((board, index) => {
-        if (board.boardId === +this.props.match.params.id) {
+        if (board._id === +this.props.match.params.id) {
           boardIndex = index;
         }
       });
@@ -147,12 +155,9 @@ class Board extends Component {
 
   render() {
     const { isEditing } = this.state;
-    const { boards } = this.props;
-    let boardIndex;
-    const board = boards.find((board, index) => {
-      boardIndex = index;
-      return board.boardId === +this.props.match.params.id
-    });
+    const { board } = this.props;
+    let boardIndex = this.props.match.params.id;
+    if (!board) return null;
     return (
       <BoardWrapper color={board.color}>
         <BoardHeader>
@@ -171,7 +176,7 @@ class Board extends Component {
             <ColorPicker boardIndex={boardIndex}/>
             <VerticalLine />
             <Button onClick={() => {
-              this.props.actions.deleteBoard(+this.props.match.params.id);
+              this.props.actions.deleteBoard({ _id: board._id });
               history.push("/boards")
             }}>
               <FontAwesomeIcon icon="trash" />
@@ -207,8 +212,10 @@ class Board extends Component {
 }
 
 function mapStateToProps(state) {
+  const { rootReducer } = state;
   return {
-    boards: state.rootReducer.boards,
+    board: rootReducer.boards[rootReducer.currentBoardIndex],
+    boards: rootReducer.boards,
   }
 }
 
@@ -217,6 +224,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators({
       moveList: moveList,
       moveTask: moveTask,
+      setCurrentBoardIndex: setCurrentBoardIndex,
       deleteBoard: deleteBoard,
     }, dispatch)
   };

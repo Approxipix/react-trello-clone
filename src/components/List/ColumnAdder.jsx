@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { addList } from '../../redux/rootReducer/actions';
+import { addList } from '../../redux/boardReducer/actions';
 
 const Wrapper = styled.div`
   width: 15rem;

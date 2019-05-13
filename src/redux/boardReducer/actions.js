@@ -1,8 +1,11 @@
 import {
+  SET_CURRENT_BOARD_INDEX,
+
   ADD_BOARD,
+  DELETE_BOARD,
+
   ADD_LIST,
   ADD_TASK,
-  DELETE_BOARD,
   DELETE_LIST,
   DELETE_TASK,
   EDIT_BOARD,
@@ -13,10 +16,18 @@ import {
   EDIT_COLOR,
 } from "./constants";
 
+export const setCurrentBoardIndex = (fields) => ({
+  type: SET_CURRENT_BOARD_INDEX,
+  payload: fields
+});
+
 export const addBoard = (fields) => ({
   type: ADD_BOARD,
   payload: fields
 });
+
+
+
 
 export const addList = (fields) => ({
   type: ADD_LIST,

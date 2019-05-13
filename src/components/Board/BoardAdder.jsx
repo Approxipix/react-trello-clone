@@ -1,55 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { addBoard } from '../../redux/rootReducer/actions';
-
-const Wrapper = styled.div`
-  padding: .6rem;
-  background-color: #ddd;
-  border-radius: .4rem
-`;
-
-const Title = styled.h4`
-  margin-bottom: .5rem;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  margin-bottom: .5rem;
-  padding: .6rem;
-  border: 1px solid #bdc3c7;
-  border-radius: 3px;
-  box-shadow: none;
-  font-size: 1rem;
-  color: #40424b;
-  line-height: 1rem;
-  outline: none;
-`;
-
-const Actions = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: .9rem;
-`;
-
-const CreateButton = styled.button`
-  border: 1px solid #bdc3c7;
-  padding: .5rem;
-  margin-right: .3rem;
-  border-radius: 3px;
-  box-shadow: none;
-  color: #40424b;
-  cursor: pointer;
-`;
-
-const CancelButton = styled.button`
-  margin-left: .3rem;
-  padding: 0;
-  font-size: inherit;
-  color: #3498db;
-  cursor: pointer;
-`;
+import { addBoard } from '../../redux/boardReducer/actions';
+import styled from 'styled-components'
+import { Input, SubmitButton, CancelButton } from '../BaseComponent';
+import ClickOutside from '../ClickOutside'
 
 const AddButton = styled.button`
   font-size: 1rem; 
@@ -64,6 +19,23 @@ const AddButton = styled.button`
   }
 `;
 
+const Wrapper = styled.div`
+  height: 100%;
+  padding: .6rem;
+  background-color: #ddd;
+  border-radius: .4rem
+`;
+
+const Title = styled.h2`
+  margin-bottom: .5rem;
+  font-size: 1rem;
+`;
+
+const Actions = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 class BoardAdder extends Component {
   constructor(props) {
     super(props);
@@ -73,48 +45,18 @@ class BoardAdder extends Component {
     };
   }
 
-  componentDidMount() {
-    document.addEventListener('click', this.outerClick);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.outerClick);
-  }
-
-  outerClick = (e) => {
-    let { target } = e;
-    if (target.id === 'board-add-btn' || target.id === 'board-add-form') {
-      return;
-    }
-    if (!!target.closest && (target.closest('#board-add-form'))) {
-      return;
-    }
-    this.setState({ isOpened: false });
-  };
-
-  handleChange = event => {
+  handleChange = (e) => {
     this.setState({
-      title: event.target.value
+      title: e.target.value
     });
   };
 
-  handleKeyDown = event => {
-    if (event.keyCode === 27) {
+  handleKeyDown = (e) => {
+    if (e.keyCode === 27) {
       this.setState({
         isOpened: false
       });
     }
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    const { title } = this.state;
-    if (!title) return;
-    this.props.actions.addBoard({boardTitle: title});
-    this.setState({
-      isOpened: false,
-      title: ''
-    });
   };
 
   toggleOpened = () => {
@@ -123,45 +65,57 @@ class BoardAdder extends Component {
     })
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { title } = this.state;
+    if (!title) return;
+    this.props.actions.addBoard({ title: title });
+    this.setState({
+      isOpened: false,
+      title: ''
+    });
+  };
+
   render = () => {
     const { isOpened, title } = this.state;
     return isOpened ? (
-      <Wrapper>
-        <Title>
-          New Board
-        </Title>
-        <form onSubmit={this.handleSubmit} id="board-add-form">
-          <Input
-            autoFocus
-            type="text"
-            placeholder="Board name"
-            value={title}
-            onKeyDown={this.handleKeyDown}
-            onChange={this.handleChange}
-            spellCheck={false}
-          />
-          <Actions>
-            <CreateButton
-              type="submit"
-              disabled={title === ""}
-            >
-              Create board
-            </CreateButton>
-            or
-            <CancelButton
-              onClick={() => this.toggleOpened()}
-            >
-              cancel
-            </CancelButton>
-          </Actions>
-        </form>
-      </Wrapper>
+      <ClickOutside toggleOpened={this.toggleOpened}>
+        <Wrapper>
+          <Title>
+            New Board
+          </Title>
+          <form onSubmit={this.handleSubmit} id="board-add-form">
+            <Input
+              autoFocus
+              type="text"
+              placeholder="Add board title"
+              value={title}
+              onKeyDown={this.handleKeyDown}
+              onChange={this.handleChange}
+              spellCheck={false}
+            />
+            <Actions>
+              <SubmitButton
+                type="submit"
+                disabled={title === ""}
+              >
+                Create board
+              </SubmitButton>
+              or
+              <CancelButton
+                onClick={() => this.toggleOpened()}
+              >
+                cancel
+              </CancelButton>
+            </Actions>
+          </form>
+        </Wrapper>
+      </ClickOutside>
     ) : (
       <AddButton
-        id={'board-add-btn'}
         onClick={() => this.toggleOpened()}
       >
-        Add a new board...
+        Create new board...
       </AddButton>
     );
   };

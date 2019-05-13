@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { editColumn } from '../../redux/rootReducer/actions';
+import { editColumn } from '../../redux/boardReducer/actions';
 
 const Form = styled.form`
   width: 90%;

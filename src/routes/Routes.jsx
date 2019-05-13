@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import Header from '../components/Header'
-import Board from '../components/Board/Board'
+import Header from '../components/Header/Header'
+import Board from '../pages/Board'
 import Boards from '../pages/Boards'
 
 const MainWrapper = styled.div` 

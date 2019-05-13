@@ -2,6 +2,7 @@ import uuid from "uuid";
 import data from '../../data'
 import {
   ADD_BOARD,
+  SET_CURRENT_BOARD_INDEX,
   ADD_LIST,
   ADD_TASK,
   DELETE_BOARD,
@@ -12,28 +13,24 @@ import {
   MOVE_TASK,
 } from "./constants";
 
+import Bh from '../../helpers/BoardHelper'
+
 const initialState = data;
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_BOARD:
-      const { boardTitle } = action.payload;
-      const { boards } = state;
-      let boardId = 0;
-      if (boards.length !== 0 ) {
-        boardId = boards[boards.length - 1].boardId + 1
-      }
+      return Bh.addBoard(state, action.payload);
+    case DELETE_BOARD:
+      return Bh.deleteBoard(state, action.payload);
       return {
         ...state,
-        boards: [
-          ...state.boards,
-          {
-            boardId: boardId,
-            title: boardTitle,
-            list: [],
-          }
-        ]
+        boards: state.boards.filter(board => board._id !== action.payload)
       };
+    case SET_CURRENT_BOARD_INDEX:
+      return Bh.serCurrentBoardIndex(state, action.payload);
+
+
     case ADD_LIST:
       const { boardsIndex, listTitle,} = action.payload;
       return {
@@ -69,11 +66,6 @@ const rootReducer = (state = initialState, action) => {
             return board;
           }
         })
-      };
-    case DELETE_BOARD:
-      return {
-        ...state,
-        boards: state.boards.filter(board => board.boardId !== action.payload)
       };
     case DELETE_LIST:
       return {

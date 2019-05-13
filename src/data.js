@@ -1,10 +1,11 @@
 import uuid from "uuid";
 
 const data = {
+  currentBoardIndex: null,
   boards: [
     {
-      boardId: 0,
-      title: 'Bloa',
+      _id: uuid.v4(),
+      title: 'ToDo',
       color: '#2E7EAF',
       list: [
         {
@@ -58,8 +59,8 @@ const data = {
       ],
     },
     {
-      boardId: 1,
-      title: 'Fu',
+      _id: uuid.v4(),
+      title: 'Test Board',
       color: '#00603d',
       list: [
         {

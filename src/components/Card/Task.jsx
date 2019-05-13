@@ -4,7 +4,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { deleteTask } from '../../redux/rootReducer/actions';
+import { deleteTask } from '../../redux/boardReducer/actions';
 import TaskActions from "./TaskActions";
 import TaskEdit from "./TaskEdit";
 
