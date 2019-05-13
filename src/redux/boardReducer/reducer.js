@@ -1,13 +1,17 @@
 import uuid from "uuid";
 import data from '../../data'
 import {
-  ADD_BOARD,
   SET_CURRENT_BOARD_INDEX,
+
+  ADD_BOARD,
+  EDIT_BOARD_TITLE,
+  EDIT_BOARD_COLOR,
+  DELETE_BOARD,
+
   ADD_LIST,
   ADD_TASK,
-  DELETE_BOARD,
   DELETE_LIST,
-  DELETE_TASK, EDIT_BOARD, EDIT_COLOR, EDIT_COLUMN,
+  DELETE_TASK, EDIT_COLUMN,
   EDIT_TASK,
   MOVE_LIST,
   MOVE_TASK,
@@ -19,16 +23,17 @@ const initialState = data;
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_BOARD:
-      return Bh.addBoard(state, action.payload);
-    case DELETE_BOARD:
-      return Bh.deleteBoard(state, action.payload);
-      return {
-        ...state,
-        boards: state.boards.filter(board => board._id !== action.payload)
-      };
     case SET_CURRENT_BOARD_INDEX:
       return Bh.serCurrentBoardIndex(state, action.payload);
+
+    case ADD_BOARD:
+      return Bh.addBoard(state, action.payload);
+    case EDIT_BOARD_TITLE:
+      return Bh.editBoardTitle(state, action.payload);
+    case EDIT_BOARD_COLOR:
+      return Bh.editBoardColor(state, action.payload);
+    case DELETE_BOARD:
+      return Bh.deleteBoard(state, action.payload);
 
 
     case ADD_LIST:
@@ -163,38 +168,6 @@ const rootReducer = (state = initialState, action) => {
             newBoard.list[action.payload.listIndex] = {
               ...newBoard.list[action.payload.listIndex],
               title: action.payload.listTitle,
-            };
-            return newBoard;
-          } else {
-            return board;
-          }
-        })
-      };
-    case EDIT_BOARD:
-      return {
-        ...state,
-        boards: state.boards.map((board, j) => {
-          if (j === action.payload.boardIndex) {
-            let newBoard = board;
-            newBoard = {
-              ...newBoard,
-              title: action.payload.boardTitle,
-            };
-            return newBoard;
-          } else {
-            return board;
-          }
-        })
-      };
-    case EDIT_COLOR:
-      return {
-        ...state,
-        boards: state.boards.map((board, j) => {
-          if (j === action.payload.boardIndex) {
-            let newBoard = board;
-            newBoard = {
-              ...newBoard,
-              color: action.payload.color,
             };
             return newBoard;
           } else {

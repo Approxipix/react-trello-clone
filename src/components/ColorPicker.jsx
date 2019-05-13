@@ -1,38 +1,47 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { editBoardColor } from '../redux/boardReducer/actions';
 import styled from 'styled-components'
+import ClickOutside from './ClickOutside'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
-import { connect } from "react-redux";
-import { editColor } from "../redux/boardReducer/actions";
 
 const Container = styled.div`
   position: relative;
 `;
+
 const Button = styled.button`
-  padding: .5rem;
   margin: 0.5rem;
-  cursor: pointer;
+  padding: .5rem;
   color: #fff;
   border-radius: .2rem;
   transition: background .2s ease-in-out;
-  white-space: nowrap;
+  cursor: pointer;
   &:hover {
     background: rgba(0, 0, 0, 0.2);
   }
 `;
+
 const Menu = styled.ul`
   position: absolute;
   top: 90%;
   display: flex;
+  flex-direction: column;
   width: 100%;
   padding: .3rem;
   background-color: #fff;
-  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 8px;
+  z-index: 10;
 `;
+
 const MenuItem = styled.li`
-  background-color: ${props => props.value};
-  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  height: 2rem;
+  background-color: ${props => props.value};
+  color: #fff;
   cursor: pointer;
   &:not(:last-child) {
     margin-bottom: .3rem;
@@ -47,57 +56,60 @@ class ColorPicker extends Component {
     super(props);
     this.state = {
       isOpened: false,
-      color: ['#2E7EAF', '#00603d', '#D29034', "#89609D"]
+      colors: ['#2E7EAF', '#00603d', '#D29034', "#89609D"]
     }
   }
 
-  // handleSelection = color => {
-  //   const { dispatch, _id, boardColor } = this.props;
-  //   // Dispatch update only if selected color is not the same as current board color.
-  //   if (color !== boardColor) {
-  //     dispatch({ type: "CHANGE_BOARD_COLOR", payload: { _id, color } });
-  //   }
-  // };
+  toggleOpened = () => {
+    this.setState({
+      isOpened: !this.state.isOpened
+    })
+  };
 
   render() {
-    const { isOpened } = this.state;
+    const { board } = this.props;
+    const { colors, isOpened } = this.state;
     return (
       <Container>
-        <Button onClick={() => this.setState({isOpened: true})}>
+        <Button onClick={() => this.toggleOpened()}>
           &nbsp;Color &nbsp;&#9662;
         </Button>
         {!!isOpened && (
-          <Menu className="color-picker-menu">
-            {this.state.color.map(color => (
-              <MenuItem
-                value={color}
-                key={color}
-                onClick={() => {
-                  this.props.actions.editColor({color: color, boardIndex:this.props.boardIndex});
-                  this.setState({isOpened: false})
-                }}
-              >
-                {/*{color === boardColor && <FaCheck />}*/}
-              </MenuItem>
-            ))}
-          </Menu>
+          <ClickOutside toggleOpened={this.toggleOpened}>
+            <Menu className="color-picker-menu">
+              {colors.map(color => (
+                <MenuItem
+                  value={color}
+                  key={color}
+                  onClick={() => {
+                    this.props.actions.editBoardColor({ color: color });
+                    this.setState({isOpened: false})
+                  }}
+                >
+                  {board.color === color && (
+                    <FontAwesomeIcon icon="check" />
+                  )}
+                </MenuItem>
+              ))}
+            </Menu>
+          </ClickOutside>
         )}
       </Container>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-
+function mapStateToProps(state) {
+  const { rootReducer } = state;
   return {
-
-  };
-};
+    board: rootReducer.boards[rootReducer.currentBoardIndex],
+  }
+}
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      editColor: editColor,
+      editBoardColor: editBoardColor,
     }, dispatch)
   };
 }

@@ -9,6 +9,7 @@ import {
   faEllipsisH,
   faTimes,
   faPencilAlt,
+  faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -16,5 +17,6 @@ library.add(
   faTrash,
   faEllipsisH,
   faTimes,
-  faPencilAlt
+  faPencilAlt,
+  faCheck
 );

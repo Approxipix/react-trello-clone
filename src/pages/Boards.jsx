@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import { connect } from 'react-redux';
+import styled from 'styled-components'
 import { NavLink } from 'react-router-dom';
 import BoardAdder from '../components/Board/BoardAdder';
 
@@ -16,7 +16,7 @@ const Title = styled.h1`
 
 const BoardList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  grid-template-columns: repeat(4, minmax(13rem, 1fr));
   grid-auto-rows: 1fr;
   grid-gap: 1rem;
 `;

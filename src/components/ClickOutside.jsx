@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import styled from 'styled-components'
+
+const Wrapper = styled.div``;
 
 class ClickOutside extends Component {
   componentDidMount() {
@@ -19,9 +22,9 @@ class ClickOutside extends Component {
 
   render() {
     return (
-      <div className="click-outside-wrapper">
+      <Wrapper className="click-outside-wrapper">
         {this.props.children}
-      </div>
+      </Wrapper>
     )
   };
 }

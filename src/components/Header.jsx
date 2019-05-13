@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../images/logo.svg'
-import { connect } from "react-redux";
 
 const Wrapper = styled.div`
   display: flex;
