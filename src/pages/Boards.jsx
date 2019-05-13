@@ -10,31 +10,29 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   margin-bottom: 1rem;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
 `;
 
 const BoardList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  grid-auto-rows: 1fr;
   grid-gap: 1rem;
 `;
 
 const BoardItem = styled.li`
-  display: inline-flex;
-  flex-direction: column;
   padding: .6rem;
-  width: 100%;
   background-color: ${props => props.color};
   border-radius: .4rem
-  transition: background-color .1s;
   &:hover {
     box-shadow: inset 0px 0px 0px 100px rgba(0, 0, 0, .1);
   }
 `;
 
-const BoardTitle = styled.div`
-  margin-bottom: .3rem;
+const BoardTitle = styled.h2`
+  margin-bottom: .5rem;
+  font-size: 1rem;
   color: white;
   font-weight: 700;
   text-decoration: none;
@@ -43,19 +41,19 @@ const BoardTitle = styled.div`
 
 const BoardScheme = styled.div`
   display: flex;
-  height: 100px;
-  margin-right: 10px;
+  height: 6.25rem;
+  margin-right: .3rem;
+  overflow: hidden;
 `;
 
 const BoardSchemeList = styled.div`
   display: inline-block;
-  box-sizing: border-box;
-  width: 24px;
-  height: 100%;
+  flex-shrink: 0;
+  height: ${props => props.height}px;
+  width: 1.5rem;
   margin-right: 6px;
   border-radius: 3px;
   background: rgba(255, 255, 255, 0.25);
-  height: ${props => props.height}px;
 `;
 
 class Boards extends Component {
@@ -67,8 +65,8 @@ class Boards extends Component {
           My Boards
         </Title>
         <BoardList>
-          {boards.map(board => (
-            <NavLink key={board.boardId} to={`/board/${board.boardId}`}>
+          {boards.map((board, index) => (
+            <NavLink key={index} to={`/board/${index}`}>
               <BoardItem color={board.color}>
                 <BoardTitle>
                   {board.title}
@@ -77,7 +75,7 @@ class Boards extends Component {
                   {board.list.map(list => (
                     <BoardSchemeList
                       key={list.listId}
-                      height={Math.min((list.task.length + 1) * 18, 1000)}
+                      height={Math.min((list.task.length + 1) * 10, 100)}
                     />
                   ))}
                 </BoardScheme>
