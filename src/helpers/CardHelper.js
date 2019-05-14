@@ -19,12 +19,11 @@ class Card {
     };
   }
 
-  static editCard(state, payload) {
+  static editCardTitle(state, payload) {
     const { boards, currentBoardIndex } = state;
-    const { cardTitle, cardDescription, cardIndex, listIndex } = payload;
+    const { cardTitle, cardIndex, listIndex } = payload;
     const currentBoard = boards[currentBoardIndex];
     currentBoard.lists[listIndex].cards[cardIndex].title = cardTitle;
-    currentBoard.lists[listIndex].cards[cardIndex].description = cardDescription;
     return {
       ...state,
       boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })

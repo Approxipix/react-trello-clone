@@ -10,6 +10,8 @@ import {
   faTimes,
   faPencilAlt,
   faCheck,
+  faWindowMaximize,
+  faAlignLeft,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -18,5 +20,7 @@ library.add(
   faEllipsisH,
   faTimes,
   faPencilAlt,
-  faCheck
+  faCheck,
+  faWindowMaximize,
+  faAlignLeft,
 );

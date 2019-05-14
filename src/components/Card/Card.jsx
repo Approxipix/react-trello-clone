@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { deleteCard } from '../../redux/boardReducer/actions';
+import { setCurrentBoardIndex, deleteCard } from '../../redux/boardReducer/actions';
+import CardModal from "./CardModal";
 
 const Title = styled.h4`
   padding-bottom: .5rem;
@@ -30,14 +31,10 @@ const Button = styled.button`
 
 const Container = styled.div`
   position: relative;
-  padding: ${props => !props.isEditing && '.5rem'};
-  border: ${props => !props.isEditing ? '1px solid lightgrey' : 'none'};
+  padding: .5rem;
+  border: 1px solid lightgrey;
   border-radius: 2px;
-
-  background-color: ${props =>
-  !props.isEditing
-    ? 'white'
-    : 'transparent'};  
+  background-color: white;  
   &:hover {
     background-color: #ededed;
   }   
@@ -55,32 +52,46 @@ class Card extends Component {
     super(props);
     this.state = {
       isOpened: false,
-      isEditing: false,
     }
   }
 
+  toggleModal = () => {
+    this.setState({
+      isOpened: !this.state.isOpened
+    })
+  };
+
   render() {
-    const { isEditing } = this.state;
-    const { card, cardIndex } = this.props;
+    const { isOpened } = this.state;
+    const { card, cardIndex, listIndex } = this.props;
     if (!card) return null;
     return (
-      <Draggable
-        index={cardIndex}
-        draggableId={`${card._cardId}`}
-      >
-        {(provided, snapshot) => (
-          <Container
-            isEditing={isEditing}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            isDragging={snapshot.isDragging}
-          >
-            <Title>{card.title}</Title>
-            <Description>{card.description}</Description>
-          </Container>
+      <>
+        <Draggable
+          index={cardIndex}
+          draggableId={`${card._cardId}`}
+        >
+          {(provided, snapshot) => (
+            <Container
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              isDragging={snapshot.isDragging}
+              onClick={() => this.toggleModal()}
+            >
+              <Title>{card.title}</Title>
+              <Description>{card.description}</Description>
+            </Container>
+          )}
+        </Draggable>
+        {!isOpened && (
+          <CardModal
+            listIndex={listIndex}
+            cardIndex={cardIndex}
+            toggleModal={this.toggleModal}
+          />
         )}
-      </Draggable>
+      </>
     )
   }
 }
@@ -98,6 +109,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
+      setCurrentBoardIndex: setCurrentBoardIndex,
       deleteCard: deleteCard,
     }, dispatch)
   };

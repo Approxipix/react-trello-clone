@@ -1,7 +1,6 @@
 import data from '../../data'
 import {
   SET_CURRENT_BOARD_INDEX,
-
   ADD_BOARD,
   EDIT_BOARD_TITLE,
   EDIT_BOARD_COLOR,
@@ -13,7 +12,7 @@ import {
   DELETE_LIST,
 
   ADD_CARD,
-  EDIT_CARD,
+  EDIT_CARD_TITLE,
   MOVE_CARD,
   DELETE_CARD,
 } from "./constants";
@@ -28,7 +27,6 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CURRENT_BOARD_INDEX:
       return Bh.serCurrentBoardIndex(state, action.payload);
-
     case ADD_BOARD:
       return Bh.addBoard(state, action.payload);
     case EDIT_BOARD_TITLE:
@@ -49,8 +47,8 @@ const rootReducer = (state = initialState, action) => {
 
     case ADD_CARD:
       return Ch.addCard(state, action.payload);
-    case EDIT_CARD:
-      return Ch.editCard(state, action.payload);
+    case EDIT_CARD_TITLE:
+      return Ch.editCardTitle(state, action.payload);
     case MOVE_CARD:
       return Ch.moveCard(state, action.payload);
     case DELETE_CARD:

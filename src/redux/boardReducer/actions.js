@@ -1,6 +1,5 @@
 import {
   SET_CURRENT_BOARD_INDEX,
-
   ADD_BOARD,
   EDIT_BOARD_TITLE,
   EDIT_BOARD_COLOR,
@@ -12,7 +11,7 @@ import {
   DELETE_LIST,
 
   ADD_CARD,
-  EDIT_CARD,
+  EDIT_CARD_TITLE,
   MOVE_CARD,
   DELETE_CARD,
 } from "./constants";
@@ -67,8 +66,8 @@ export const addCard = (fields) => ({
   payload: fields
 });
 
-export const editCard = (fields) => ({
-  type: EDIT_CARD,
+export const editCardTitle = (fields) => ({
+  type: EDIT_CARD_TITLE,
   payload: fields
 });
 
