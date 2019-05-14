@@ -11,7 +11,7 @@ const Title = styled.h4`
   border-bottom: 1px solid #e3e3e3
 `;
 
-const Content = styled.p`
+const Description = styled.p`
   color: #4c4c4c;
   font-size: .75rem;
 `;
@@ -77,7 +77,7 @@ class Card extends Component {
             isDragging={snapshot.isDragging}
           >
             <Title>{card.title}</Title>
-            <Content>{card.content}</Content>
+            <Description>{card.description}</Description>
           </Container>
         )}
       </Draggable>
@@ -89,9 +89,9 @@ function mapStateToProps(state, ownProps) {
   const { rootReducer } = state;
   const board = rootReducer.boards[rootReducer.currentBoardIndex];
   const list = board.lists[ownProps.listIndex];
+  const card = list.cards[ownProps.cardIndex];
   return {
-    board: board,
-    card: list.cards[ownProps.cardIndex]
+    card: card,
   }
 }
 

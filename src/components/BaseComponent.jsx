@@ -13,6 +13,20 @@ export const Input = styled.input`
   outline: none;
 `;
 
+export const TextArea = styled.textarea`
+  width: 100%;
+  margin-bottom: .5rem;
+  padding: .6rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 3px;
+  box-shadow: none;
+  font-size: .8rem;
+  color: #40424b;
+  line-height: 1rem;
+  resize: none;
+  outline: none;
+`;
+
 export const SubmitButton = styled.button`
   margin-right: .3rem;
   padding: .5rem;

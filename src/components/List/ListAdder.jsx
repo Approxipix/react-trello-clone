@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
 import { addList } from '../../redux/boardReducer/actions';
+import { Input, SubmitButton, CancelButton } from '../BaseComponent';
+import ClickOutside from "../ClickOutside";
 
 const Wrapper = styled.div`
-  width: 15rem;
+  width: 16rem;
   margin: 0 .5rem;
   padding: .6rem;
   background-color: #e3e3e3;
@@ -16,18 +18,8 @@ const Title = styled.h4`
   margin-bottom: .5rem;
 `;
 
-const Input = styled.input`
-  width: 100%;
-  margin-bottom: .5rem;
-  padding: .6rem;
-  border: 1px solid #bdc3c7;
-  border-radius: 3px;
-  box-shadow: none;
-  font-size: 1rem;
-  color: #40424b;
-  line-height: 1rem;
-  outline: none;
-`;
+const Form = styled.form``;
+
 
 const Actions = styled.div`
   display: flex;
@@ -35,26 +27,8 @@ const Actions = styled.div`
   font-size: .9rem;
 `;
 
-const CreateButton = styled.button`
-  border: 1px solid #bdc3c7;
-  padding: .5rem;
-  margin-right: .3rem;
-  border-radius: 3px;
-  box-shadow: none;
-  color: #40424b;
-  cursor: pointer;
-`;
-
-const CancelButton = styled.button`
-  margin-left: .3rem;
-  padding: 0;
-  font-size: inherit;
-  color: #3498db;
-  cursor: pointer;
-`;
-
 const AddButton = styled.button`
-  width: 15rem;
+  width: 16rem;
   margin: 0 .5rem;
   padding: .75rem;
   border-radius: .2rem;
@@ -78,25 +52,6 @@ class BoardAdder extends Component {
     };
   }
 
-  componentDidMount() {
-    document.addEventListener('click', this.outerClick);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.outerClick);
-  }
-
-  outerClick = (e) => {
-    let { target } = e;
-    if (target.id === 'column-add-btn' || target.id === 'column-add-form') {
-      return;
-    }
-    if (!!target.closest && (target.closest('#column-add-form'))) {
-      return;
-    }
-    this.setState({ isOpened: false });
-  };
-
   handleChange = event => {
     this.setState({
       title: event.target.value
@@ -111,6 +66,12 @@ class BoardAdder extends Component {
     }
   };
 
+  toggleOpened = () => {
+    this.setState({
+      isOpened: !this.state.isOpened
+    })
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     const { title } = this.state;
@@ -118,57 +79,42 @@ class BoardAdder extends Component {
     this.props.actions.addList({
       listTitle: title
     });
-    this.setState({
-      isOpened: false,
-      title: ''
-    });
-  };
-
-  toggleOpened = () => {
-    this.setState({
-      isOpened: !this.state.isOpened
-    })
+    this.toggleOpened();
   };
 
   render = () => {
     const { isOpened, title } = this.state;
     return isOpened ? (
-      <Wrapper>
-        <Title>
-          New Column
-        </Title>
-        <form onSubmit={this.handleSubmit} id="column-add-form">
-          <Input
-            autoFocus
-            type="text"
-            placeholder="Column name"
-            value={title}
-            onKeyDown={this.handleKeyDown}
-            onChange={this.handleChange}
-            spellCheck={false}
-          />
-          <Actions>
-            <CreateButton
-              type="submit"
-              disabled={title === ""}
-            >
-              Save list
-            </CreateButton>
-            or
-            <CancelButton
-              onClick={() => this.toggleOpened()}
-            >
-              cancel
-            </CancelButton>
-          </Actions>
-        </form>
-      </Wrapper>
+      <ClickOutside toggleOpened={this.toggleOpened}>
+        <Wrapper>
+          <Title>
+            New Column
+          </Title>
+          <Form id="column-add-form" onSubmit={this.handleSubmit}>
+            <Input
+              autoFocus
+              type="text"
+              placeholder="Enter a list title..."
+              value={title}
+              onKeyDown={this.handleKeyDown}
+              onChange={this.handleChange}
+              spellCheck={false}
+            />
+            <Actions>
+              <SubmitButton type="submit" disabled={title === ""}>
+                Add list
+              </SubmitButton>
+              or
+              <CancelButton onClick={() => this.toggleOpened()}>
+                cancel
+              </CancelButton>
+            </Actions>
+          </Form>
+        </Wrapper>
+      </ClickOutside>
     ) : (
-      <AddButton
-        id={'column-add-btn'}
-        onClick={() => this.toggleOpened()}
-      >
-        Add a new column...
+      <AddButton onClick={() => this.toggleOpened()}>
+        + Add another list
       </AddButton>
     );
   };

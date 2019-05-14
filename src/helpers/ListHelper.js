@@ -5,11 +5,14 @@ class List {
     const { boards, currentBoardIndex } = state;
     const { listTitle } = payload;
     const currentBoard = boards[currentBoardIndex];
-    currentBoard.lists.push({
-      _listId: uuid.v4(),
-      title: listTitle,
-      cards: []
-    });
+    currentBoard.lists = [
+      ...currentBoard.lists,
+      {
+        _listId: uuid.v4(),
+        title: listTitle,
+        cards: []
+      }
+    ];
     return {
       ...state,
       boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })

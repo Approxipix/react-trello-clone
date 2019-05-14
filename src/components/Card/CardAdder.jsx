@@ -3,73 +3,28 @@ import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
 import { addCard } from '../../redux/boardReducer/actions';
+import { Input, TextArea, SubmitButton, CancelButton } from '../BaseComponent';
+import ClickOutside from "../ClickOutside";
 
 const Wrapper = styled.div`
   position: relative;
-  transform: translateY(1rem);
+  padding: .75rem .5rem;
   background-color: #ddd;
   border-radius: .4rem
-`;
-
-const Input = styled.input`
-  width: 100%;
-  margin-bottom: .5rem;
-  padding: .5rem;
-  border: 1px solid #bdc3c7;
-  border-radius: 3px;
-  box-shadow: none;
-  font-weight: bold;
-  font-size: .875rem;
-  color: #40424b;
-  line-height: 1rem;
-  outline: none;
-`;
-
-const TextArea = styled.textarea`
-  width: 100%;
-  margin-bottom: .5rem;
-  padding: .5rem;
-  border: 1px solid #bdc3c7;
-  border-radius: 3px;
-  box-shadow: none;
-  font-size: .75rem;
-  color: #40424b;
-  line-height: 1rem;
-  resize: none;
-  outline: none;
 `;
 
 const Actions = styled.div`
   display: flex;
   align-items: center;
-  font-size: .9rem;
 `;
 
-const CreateButton = styled.button`
-  border: 1px solid #bdc3c7;
-  padding: .5rem;
-  margin-right: .3rem;
-  border-radius: 3px;
-  box-shadow: none;
-  color: #40424b;
-  cursor: pointer;
-`;
-
-const CancelButton = styled.button`
-  margin-left: .3rem;
-  padding: 0;
-  font-size: inherit;
-  color: #3498db;
-  cursor: pointer;
-`;
+const Form = styled.form``;
 
 const AddButton = styled.button`
-  position: absolute;
-  left: 0;
   text-align: left;
   width: 100%;
-  bottom: 0;
-  padding: .6rem .75rem;
+  margin-top: .5rem;
+  padding: .75rem;
   font-size: 1rem; 
   color: #444;
   font-weight: 600;
@@ -86,27 +41,16 @@ class CardAdder extends Component {
     this.state = {
       isOpened: false,
       title: '',
-      content: '',
+      description: '',
     };
   }
 
-  componentDidMount() {
-    document.addEventListener('click', this.outerClick);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.outerClick);
-  }
-
-  outerClick = (e) => {
-    let { target } = e;
-    if (target.id === 'card-add-btn' || target.id === 'card-add-form') {
-      return;
-    }
-    if (!!target.closest && (target.closest('#card-add-form'))) {
-      return;
-    }
-    this.setState({ isOpened: false });
+  toggleOpened = () => {
+    this.setState({
+      isOpened: !this.state.isOpened,
+      title: '',
+      description: '',
+    })
   };
 
   handleChange = (key, value) => {
@@ -118,71 +62,53 @@ class CardAdder extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { title, content } = this.state;
-    if (!title || !content)  return;
+    const { title, description } = this.state;
+    if (!title || !description)  return;
     this.props.actions.addCard({
       listIndex: this.props.listIndex,
       cardTitle: title,
-      cardContent: content,
+      cardDescription: description,
     });
-    this.setState({
-      isOpened: false,
-      title: '',
-      content: '',
-    });
-  };
-
-  toggleOpened = () => {
-    this.setState({
-      isOpened: !this.state.isOpened,
-      title: '',
-      content: '',
-    })
+    this.toggleOpened()
   };
 
   render = () => {
-    const { isOpened, title, content } = this.state;
+    const { isOpened, title, description } = this.state;
     return isOpened ? (
-      <Wrapper>
-        <form onSubmit={this.handleSubmit} id="card-add-form">
-          <Input
-            autoFocus
-            type="text"
-            placeholder="Board name"
-            value={title}
-            onChange={(e) => this.handleChange('title', e.target.value)}
-            spellCheck={false}
-          />
-          <TextArea
-            type="text"
-            placeholder="Content"
-            value={content}
-            rows="4"
-            onChange={(e) => this.handleChange('content', e.target.value)}
-            spellCheck={false}
-          />
-          <Actions>
-            <CreateButton
-              type="submit"
-              disabled={!title || !content}
-            >
-              Create card
-            </CreateButton>
-            or
-            <CancelButton
-              onClick={() => this.toggleOpened()}
-            >
-              cancel
-            </CancelButton>
-          </Actions>
-        </form>
-      </Wrapper>
+      <ClickOutside toggleOpened={this.toggleOpened}>
+        <Wrapper>
+          <Form id="card-add-form" onSubmit={this.handleSubmit}>
+            <Input
+              autoFocus
+              type="text"
+              placeholder="Enter a card title..."
+              value={title}
+              onChange={(e) => this.handleChange('title', e.target.value)}
+              spellCheck={false}
+            />
+            <TextArea
+              type="text"
+              placeholder="Enter a card description..."
+              value={description}
+              rows="4"
+              onChange={(e) => this.handleChange('description', e.target.value)}
+              spellCheck={false}
+            />
+            <Actions>
+              <SubmitButton type="submit" disabled={!title || !description}>
+                Create card
+              </SubmitButton>
+              or
+              <CancelButton onClick={() => this.toggleOpened()}>
+                cancel
+              </CancelButton>
+            </Actions>
+          </Form>
+        </Wrapper>
+      </ClickOutside>
     ) : (
-      <AddButton
-        id={'card-add-btn'}
-        onClick={() => this.toggleOpened()}
-      >
-        Add a new card...
+      <AddButton onClick={() => this.toggleOpened()}>
+        + Add a card
       </AddButton>
     );
   };

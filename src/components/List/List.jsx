@@ -1,25 +1,24 @@
 import React, { Component, PureComponent } from 'react';
-import Card from '../Card/Card'
+import { connect } from "react-redux/es/alternate-renderers";
 import styled from 'styled-components'
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import CardAdder from '../Card/CardAdder';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 import ListActions from './ListActions';
 import ListEdit from './ListEdit';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
+import CardAdder from '../Card/CardAdder';
+import Card from '../Card/Card'
 
 const Container = styled.div`
   position: relative;
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
-  width: 15rem;
+  max-height: 83vh;
+  width: 16rem;
   margin: 0 .5rem;
   border: 1px solid lightgrey;
   border-radius: .2rem;
   background-color: #dfe1e6;
-  
-  flex-shrink: 0;
-  max-height: 83vh;
-  padding-bottom: 3rem;
 `;
 
 const Title = styled.h3`
@@ -55,7 +54,11 @@ class InnerList extends Component {
     return (
       <>
         {cards.map((card, index) =>
-          <Card key={index} listIndex={listIndex} cardIndex={index}/>
+          <Card
+            key={index}
+            listIndex={listIndex}
+            cardIndex={index}
+          />
         )}
       </>
     )
@@ -84,8 +87,9 @@ class List extends Component {
   };
 
   render() {
-    const { list, listIndex } = this.props;
+    const { list, listIndex, cards } = this.props;
     const { isOpened, isEditing } = this.state;
+    if (!list) return null;
     return (
       <Draggable
         index={listIndex}
@@ -132,7 +136,7 @@ class List extends Component {
                 >
                   <InnerList
                     listIndex={listIndex}
-                    cards={list.cards}
+                    cards={cards}
                   />
                   {provided.placeholder}
                 </CardLIst>
@@ -146,4 +150,15 @@ class List extends Component {
   }
 }
 
-export default List;
+function mapStateToProps(state, ownProps) {
+  const { rootReducer } = state;
+  const board = rootReducer.boards[rootReducer.currentBoardIndex];
+  const list = !!board && board.lists[ownProps.listIndex];
+  const cards = !!list && list.cards;
+  return {
+    list: list,
+    cards: cards,
+  }
+}
+
+export default connect(mapStateToProps)(List);

@@ -24,7 +24,6 @@ class ListEdit extends Component {
     super(props);
     this.state = {
       title: props.list.title || '',
-      content: '',
     };
   }
 

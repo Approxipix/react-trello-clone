@@ -3,13 +3,16 @@ import uuid from "uuid";
 class Card {
   static addCard(state, payload) {
     const { boards, currentBoardIndex } = state;
-    const { cardTitle, cardContent, listIndex } = payload;
+    const { cardTitle, cardDescription, listIndex } = payload;
     const currentBoard = boards[currentBoardIndex];
-    currentBoard.lists[listIndex].cards.push({
-      _cardId: uuid.v4(),
-      title: cardTitle,
-      content: cardContent,
-    });
+    currentBoard.lists[listIndex].cards = [
+      ...currentBoard.lists[listIndex].cards,
+      {
+        _cardId: uuid.v4(),
+        title: cardTitle,
+        description: cardDescription,
+      }
+    ];
     return {
       ...state,
       boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
@@ -18,10 +21,10 @@ class Card {
 
   static editCard(state, payload) {
     const { boards, currentBoardIndex } = state;
-    const { cardTitle, cardContent, cardIndex, listIndex } = payload;
+    const { cardTitle, cardDescription, cardIndex, listIndex } = payload;
     const currentBoard = boards[currentBoardIndex];
     currentBoard.lists[listIndex].cards[cardIndex].title = cardTitle;
-    currentBoard.lists[listIndex].cards[cardIndex].content = cardContent;
+    currentBoard.lists[listIndex].cards[cardIndex].description = cardDescription;
     return {
       ...state,
       boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
