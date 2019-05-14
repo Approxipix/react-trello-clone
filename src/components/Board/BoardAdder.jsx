@@ -41,13 +41,13 @@ class BoardAdder extends Component {
     super(props);
     this.state = {
       isOpened: false,
-      title: '',
+      boardTitle: '',
     };
   }
 
   handleChange = (e) => {
     this.setState({
-      title: e.target.value
+      boardTitle: e.target.value
     });
   };
 
@@ -61,50 +61,45 @@ class BoardAdder extends Component {
 
   toggleOpened = () => {
     this.setState({
-      isOpened: !this.state.isOpened
+      isOpened: !this.state.isOpened,
+      boardTitle: '',
     })
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { title } = this.state;
-    if (!title) return;
-    this.props.actions.addBoard({ title: title });
-    this.setState({
-      isOpened: false,
-      title: ''
+    const { boardTitle } = this.state;
+    if (!boardTitle) return;
+    this.props.actions.addBoard({
+      boardTitle: boardTitle
     });
+    this.toggleOpened();
   };
 
   render = () => {
-    const { isOpened, title } = this.state;
+    const { isOpened, boardTitle } = this.state;
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Wrapper>
           <Title>
             New Board
           </Title>
-          <form onSubmit={this.handleSubmit} id="board-add-form">
+          <form id="board-add-form" onSubmit={this.handleSubmit}>
             <Input
               autoFocus
               type="text"
               placeholder="Add board title"
-              value={title}
+              value={boardTitle}
               onKeyDown={this.handleKeyDown}
               onChange={this.handleChange}
               spellCheck={false}
             />
             <Actions>
-              <SubmitButton
-                type="submit"
-                disabled={title === ""}
-              >
+              <SubmitButton type="submit" disabled={boardTitle === ""}>
                 Create board
               </SubmitButton>
               or
-              <CancelButton
-                onClick={() => this.toggleOpened()}
-              >
+              <CancelButton onClick={() => this.toggleOpened()}>
                 cancel
               </CancelButton>
             </Actions>
@@ -112,9 +107,7 @@ class BoardAdder extends Component {
         </Wrapper>
       </ClickOutside>
     ) : (
-      <AddButton
-        onClick={() => this.toggleOpened()}
-      >
+      <AddButton onClick={() => this.toggleOpened()}>
         Create new board...
       </AddButton>
     );

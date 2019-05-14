@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editBoardColor } from '../redux/boardReducer/actions';
 import styled from 'styled-components'
-import ClickOutside from './ClickOutside'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
+import ClickOutside from './ClickOutside'
 
 const Container = styled.div`
   position: relative;
@@ -60,6 +60,13 @@ class ColorPicker extends Component {
     }
   }
 
+  editBoardColor = (color) => {
+    this.props.actions.editBoardColor({
+      boardColor: color
+    });
+    this.setState({isOpened: false})
+  };
+
   toggleOpened = () => {
     this.setState({
       isOpened: !this.state.isOpened
@@ -76,15 +83,12 @@ class ColorPicker extends Component {
         </Button>
         {!!isOpened && (
           <ClickOutside toggleOpened={this.toggleOpened}>
-            <Menu className="color-picker-menu">
-              {colors.map(color => (
+            <Menu>
+              {colors.map((color, index) => (
                 <MenuItem
+                  key={index}
                   value={color}
-                  key={color}
-                  onClick={() => {
-                    this.props.actions.editBoardColor({ color: color });
-                    this.setState({isOpened: false})
-                  }}
+                  onClick={() => this.editBoardColor(color)}
                 >
                   {board.color === color && (
                     <FontAwesomeIcon icon="check" />

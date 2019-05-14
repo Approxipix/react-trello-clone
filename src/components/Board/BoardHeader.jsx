@@ -61,7 +61,7 @@ class BoardHeader extends Component {
 
   deleteBoard = () => {
     const { board, actions } = this.props;
-    actions.deleteBoard({ _id: board._id });
+    actions.deleteBoard({ _boardId: board._boardId });
     history.push('/boards')
   };
 

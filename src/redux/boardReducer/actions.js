@@ -7,13 +7,14 @@ import {
   DELETE_BOARD,
 
   ADD_LIST,
-  ADD_TASK,
-  DELETE_LIST,
-  DELETE_TASK,
-  EDIT_TASK,
-  EDIT_COLUMN,
+  EDIT_LIST_TITLE,
   MOVE_LIST,
-  MOVE_TASK,
+  DELETE_LIST,
+
+  ADD_CARD,
+  EDIT_CARD,
+  MOVE_CARD,
+  DELETE_CARD,
 } from "./constants";
 
 export const setCurrentBoardIndex = (fields) => ({
@@ -41,22 +42,13 @@ export const deleteBoard = (fields) => ({
   payload: fields
 });
 
-
-
-
-
 export const addList = (fields) => ({
   type: ADD_LIST,
   payload: fields
 });
 
-export const deleteList = (fields) => ({
-  type: DELETE_LIST,
-  payload: fields
-});
-
-export const deleteTask = (fields) => ({
-  type: DELETE_TASK,
+export const editListTitle = (fields) => ({
+  type: EDIT_LIST_TITLE,
   payload: fields
 });
 
@@ -65,22 +57,29 @@ export const moveList = (fields) => ({
   payload: fields
 });
 
-export const addTask = (fields) => ({
-  type: ADD_TASK,
+export const deleteList = (fields) => ({
+  type: DELETE_LIST,
   payload: fields
 });
 
-export const moveTask = (fields) => ({
-  type: MOVE_TASK,
+export const addCard = (fields) => ({
+  type: ADD_CARD,
   payload: fields
 });
 
-export const editTask = (fields) => ({
-  type: EDIT_TASK,
+export const editCard = (fields) => ({
+  type: EDIT_CARD,
   payload: fields
 });
 
-export const editColumn = (fields) => ({
-  type: EDIT_COLUMN,
+export const moveCard = (fields) => ({
+  type: MOVE_CARD,
   payload: fields
 });
+
+export const deleteCard = (fields) => ({
+  type: DELETE_CARD,
+  payload: fields
+});
+
+

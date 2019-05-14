@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
 import { deleteList } from '../../redux/boardReducer/actions';
+import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 
 const Wrapper = styled.div`
@@ -52,46 +52,28 @@ const Header = styled.div`
 `;
 
 
-class ColumnActions extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpened: false,
-    };
-  }
-
-  componentDidMount() {
-    document.addEventListener('click', this.outerClick);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.outerClick);
-  }
-
-  outerClick = (e) => {
-    let { target } = e;
-    if (target.id === 'column-actions') {
-      return;
-    }
-    if (!!target.closest && (target.closest('#column-actions'))) {
-      return;
-    }
-    this.props.closeTooltip();
+class ListActions extends Component {
+  deleteList = () => {
+    const { listId, actions } = this.props;
+    actions.deleteList({
+      _listId: listId
+    });
+    this.props.toggleOpened();
   };
 
   render = () => {
     return (
-      <Wrapper id="column-actions">
+      <Wrapper>
         <Header>
           <Title>
             Lane actions
           </Title>
-          <Close onClick={() => this.props.closeTooltip()}>
+          <Close onClick={() => this.props.toggleOpened()}>
             <FontAwesomeIcon icon="times" />
           </Close>
         </Header>
         <Action>
-          <Button onClick={() => this.props.actions.deleteList({listId: this.props.columnID, index: this.props.boardIndex})}>
+          <Button onClick={() => this.deleteList()}>
             Delete
           </Button>
         </Action>
@@ -109,4 +91,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(null, mapDispatchToProps)(ColumnActions);
+export default connect(null, mapDispatchToProps)(ListActions);

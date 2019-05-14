@@ -9,43 +9,48 @@ class Board {
   }
 
   static addBoard(state, payload) {
-    const { title } = payload;
+    const { boardTitle } = payload;
     return {
       ...state,
       boards: [
         ...state.boards,
         {
-          _id: uuid.v4(),
-          title: title,
+          _boardId: uuid.v4(),
+          title: boardTitle,
           color: '#2E7EAF',
-          list: [],
+          lists: [],
         }
       ]
     }
   }
 
   static editBoardTitle(state, payload) {
-    let newBoardsState = state.boards;
-    newBoardsState[state.currentBoardIndex].title = payload.title;
+    const { boards, currentBoardIndex } = state;
+    const { boardTitle } = payload;
+    let currentBoard = boards[currentBoardIndex];
+    currentBoard.title = boardTitle;
     return {
       ...state,
-      boards: newBoardsState
+      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
     };
   }
 
   static editBoardColor(state, payload) {
-    let newBoardsState = state.boards;
-    newBoardsState[state.currentBoardIndex].color = payload.color;
+    const { boards, currentBoardIndex } = state;
+    const { boardColor } = payload;
+    let currentBoard = boards[currentBoardIndex];
+    currentBoard.color = boardColor;
     return {
       ...state,
-      boards: newBoardsState.map(item => item)
+      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
     };
   }
 
   static deleteBoard(state, payload) {
+    const { _boardId } = payload;
     return {
       ...state,
-      boards: state.boards.filter(board => board._id !== payload._id)
+      boards: state.boards.filter(board => board._boardId !== _boardId)
     }
   }
 }

@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   padding: 0 1.5rem;
   background-color: ${props => props.color};
   box-shadow: inset 0px 0px 0px 40px rgba(0, 0, 0, .3);
+  transition: background-color .2s ease-in-out;
 `;
 
 const Nav = styled.nav``;
@@ -30,9 +31,10 @@ const NavItem = styled.li`
   color: rgba(255, 255, 255, 0.8);
   border-radius: 3px;
   background-color: rgba(255, 255, 255, 0.2);
-  transition: color .2s ease-in-out;
+  transition: all .2s ease-in-out;
   &:hover {
     color: #fff;
+    background-color: rgba(255, 255, 255, 0.25);
   }
 `;
 
@@ -55,9 +57,9 @@ const Actions = styled.div``;
 
 class Header extends Component {
   render() {
-    const { color } = this.props;
+    const { boardColor } = this.props;
     return (
-      <Wrapper color={color}>
+      <Wrapper color={boardColor}>
         <Nav>
           {NavigationItems.map((item, index) => {
             if (window.location.pathname === item.path) return null;
@@ -88,7 +90,8 @@ function mapStateToProps(state) {
   const { rootReducer } = state;
   const board = rootReducer.boards[rootReducer.currentBoardIndex];
   return {
-    color: !!board ? board.color : '#2E7EAF'
+    board: board,
+    boardColor: !!board ? board.color : '#2E7EAF'
   }
 }
 

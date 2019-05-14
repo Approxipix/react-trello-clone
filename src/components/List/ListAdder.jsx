@@ -115,7 +115,9 @@ class BoardAdder extends Component {
     event.preventDefault();
     const { title } = this.state;
     if (!title) return;
-    this.props.actions.addList({boardsIndex: this.props.boardIndex, listTitle: title});
+    this.props.actions.addList({
+      listTitle: title
+    });
     this.setState({
       isOpened: false,
       title: ''

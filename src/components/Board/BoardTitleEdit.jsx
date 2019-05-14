@@ -38,7 +38,9 @@ class BoardTitleEdit extends Component {
     e.preventDefault();
     const { title } = this.state;
     if (!title)  return;
-    this.props.actions.editBoardTitle({ title: title });
+    this.props.actions.editBoardTitle({
+      boardTitle: title
+    });
     this.props.toggleEditing()
   };
 

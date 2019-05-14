@@ -72,10 +72,10 @@ class Boards extends Component {
                   {board.title}
                 </BoardTitle>
                 <BoardScheme>
-                  {board.list.map(list => (
+                  {board.lists.map((list, index) => (
                     <BoardSchemeList
-                      key={list.listId}
-                      height={Math.min((list.task.length + 1) * 10, 100)}
+                      key={index}
+                      height={Math.min((list.cards.length + 1) * 10, 100)}
                     />
                   ))}
                 </BoardScheme>

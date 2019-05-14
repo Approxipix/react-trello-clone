@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { editTask } from '../../redux/boardReducer/actions';
+import { addCard } from '../../redux/boardReducer/actions';
 
 const Wrapper = styled.div`
   position: relative;
+  transform: translateY(1rem);
+  background-color: #ddd;
+  border-radius: .4rem
 `;
 
 const Input = styled.input`
@@ -14,11 +17,12 @@ const Input = styled.input`
   padding: .5rem;
   border: 1px solid #bdc3c7;
   border-radius: 3px;
-  font-weight: bold;
   box-shadow: none;
+  font-weight: bold;
   font-size: .875rem;
   color: #40424b;
   line-height: 1rem;
+  outline: none;
 `;
 
 const TextArea = styled.textarea`
@@ -32,6 +36,7 @@ const TextArea = styled.textarea`
   color: #40424b;
   line-height: 1rem;
   resize: none;
+  outline: none;
 `;
 
 const Actions = styled.div`
@@ -58,20 +63,34 @@ const CancelButton = styled.button`
   cursor: pointer;
 `;
 
-class TaskEdit extends Component {
+const AddButton = styled.button`
+  position: absolute;
+  left: 0;
+  text-align: left;
+  width: 100%;
+  bottom: 0;
+  padding: .6rem .75rem;
+  font-size: 1rem; 
+  color: #444;
+  font-weight: 600;
+  transition: background-color .1s;
+  cursor: pointer;
+  &:hover {
+    background-color: #ccc;
+  }
+`;
+
+class CardAdder extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isOpened: false,
       title: '',
       content: '',
     };
   }
 
   componentDidMount() {
-    this.setState({
-      title: this.props.task.title,
-      content: this.props.task.content,
-    });
     document.addEventListener('click', this.outerClick);
   }
 
@@ -81,13 +100,13 @@ class TaskEdit extends Component {
 
   outerClick = (e) => {
     let { target } = e;
-    if (target.id === 'card-edit-form') {
+    if (target.id === 'card-add-btn' || target.id === 'card-add-form') {
       return;
     }
-    if (!!target.closest && (target.closest('#card-edit-form'))) {
+    if (!!target.closest && (target.closest('#card-add-form'))) {
       return;
     }
-    this.props.closeEdit();
+    this.setState({ isOpened: false });
   };
 
   handleChange = (key, value) => {
@@ -101,22 +120,31 @@ class TaskEdit extends Component {
     event.preventDefault();
     const { title, content } = this.state;
     if (!title || !content)  return;
-    const data = {
-      boardIndex: this.props.boardIndex,
+    this.props.actions.addCard({
       listIndex: this.props.listIndex,
-      taskTitle: title,
-      taskContent: content,
-      taskId: this.props.taskId
-    };
-    this.props.actions.editTask(data);
-    this.props.closeEdit()
+      cardTitle: title,
+      cardContent: content,
+    });
+    this.setState({
+      isOpened: false,
+      title: '',
+      content: '',
+    });
+  };
+
+  toggleOpened = () => {
+    this.setState({
+      isOpened: !this.state.isOpened,
+      title: '',
+      content: '',
+    })
   };
 
   render = () => {
-    const { title, content } = this.state;
-    return (
+    const { isOpened, title, content } = this.state;
+    return isOpened ? (
       <Wrapper>
-        <form onSubmit={this.handleSubmit} id="card-edit-form">
+        <form onSubmit={this.handleSubmit} id="card-add-form">
           <Input
             autoFocus
             type="text"
@@ -138,34 +166,35 @@ class TaskEdit extends Component {
               type="submit"
               disabled={!title || !content}
             >
-              Edit card
+              Create card
             </CreateButton>
             or
             <CancelButton
-              onClick={() => this.props.closeEdit()}
+              onClick={() => this.toggleOpened()}
             >
               cancel
             </CancelButton>
           </Actions>
         </form>
       </Wrapper>
+    ) : (
+      <AddButton
+        id={'card-add-btn'}
+        onClick={() => this.toggleOpened()}
+      >
+        Add a new card...
+      </AddButton>
     );
   };
-}
-
-function mapStateToProps(state, ownProps) {
-  return {
-    task: state.rootReducer.boards[ownProps.boardIndex].list[ownProps.listIndex].task[ownProps.taskId],
-  }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      editTask: editTask,
+      addCard: addCard,
     }, dispatch)
   };
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskEdit);
+export default connect(null, mapDispatchToProps)(CardAdder);

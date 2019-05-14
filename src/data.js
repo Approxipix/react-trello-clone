@@ -4,53 +4,109 @@ const data = {
   currentBoardIndex: null,
   boards: [
     {
-      _id: uuid.v4(),
+      _boardId: uuid.v4(),
       title: 'ToDo',
       color: '#2E7EAF',
-      list: [
+      lists: [
         {
-          listId: uuid.v4(),
+          _listId: uuid.v4(),
           title: 'A',
-          task: [
+          cards: [
             {
-              taskId: uuid.v4(),
-              title: 'A Test 1',
-              content: 'dadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasddadasd asd asd asdasd',
-            },
-            {
-              taskId: uuid.v4(),
+              _cardId: uuid.v4(),
               title: 'A Test 2',
               content: 'A2',
             },
             {
-              taskId: uuid.v4(),
+              _cardId: uuid.v4(),
+              title: 'A Test 2',
+              content: 'A2',
+            },
+            {
+              _cardId: uuid.v4(),
+              title: 'A Test 2',
+              content: 'A2',
+            },
+            {
+              _cardId: uuid.v4(),
+              title: 'A Test 2',
+              content: 'A2',
+            },
+            {
+              _cardId: uuid.v4(),
+              title: 'A Test 2',
+              content: 'A2',
+            },
+            {
+              _cardId: uuid.v4(),
+              title: 'A Test 2',
+              content: 'A2',
+            },
+            {
+              _cardId: uuid.v4(),
+              title: 'A Test 2',
+              content: 'A2',
+            },
+
+            {
+              _cardId: uuid.v4(),
+              title: 'A Test 2',
+              content: 'A2',
+            },
+            {
+              _cardId: uuid.v4(),
+              title: 'A Test 2',
+              content: 'A2',
+            },
+            {
+              _cardId: uuid.v4(),
+              title: 'A Test 2',
+              content: 'A2',
+            },
+            {
+              _cardId: uuid.v4(),
+              title: 'A Test 2',
+              content: 'A2',
+            },
+            {
+              _cardId: uuid.v4(),
+              title: 'A Test 2',
+              content: 'A2',
+            },
+            {
+              _cardId: uuid.v4(),
+              title: 'A Test 2',
+              content: 'A2',
+            },
+            {
+              _cardId: uuid.v4(),
               title: 'A Test 3',
               content: 'A3',
             }
           ],
         },
         {
-          listId: uuid.v4(),
+          _listId: uuid.v4(),
           title: 'B',
-          task: [
+          cards: [
             {
-              taskId: uuid.v4(),
+              _cardId: uuid.v4(),
               title: 'B Test 1',
               content: 'B1',
             },
           ],
         },
         {
-          listId: uuid.v4(),
+          _listId: uuid.v4(),
           title: 'C',
-          task: [
+          cards: [
             {
-              taskId: uuid.v4(),
+              _cardId: uuid.v4(),
               title: 'C Test 1',
               content: 'C1',
             },
             {
-              taskId: uuid.v4(),
+              cardId: uuid.v4(),
               title: 'C Test 2',
               content: 'C2',
             },
@@ -59,32 +115,32 @@ const data = {
       ],
     },
     {
-      _id: uuid.v4(),
+      _boardId: uuid.v4(),
       title: 'Test Board',
       color: '#00603d',
-      list: [
+      lists: [
         {
-          listId: uuid.v4(),
+          _listId: uuid.v4(),
           title: 'A',
-          task: [
+          cards: [
             {
-              taskId: uuid.v4(),
+              _cardId: uuid.v4(),
               title: 'A Test 1',
               content: 'A1',
             },
           ],
         },
         {
-          listId: uuid.v4(),
+          _listId: uuid.v4(),
           title: 'B',
-          task: [
+          cards: [
             {
-              taskId: uuid.v4(),
+              _cardId: uuid.v4(),
               title: 'B Test 1',
               content: 'B1',
             },
             {
-              taskId: uuid.v4(),
+              _cardId: uuid.v4(),
               title: 'B Test 1',
               content: 'B1',
             },
