@@ -13,6 +13,7 @@ import {
 
   ADD_CARD,
   EDIT_CARD_TITLE,
+  EDIT_CARD_DESCRIPTION,
   MOVE_CARD,
   DELETE_CARD,
 } from "./constants";
@@ -49,6 +50,8 @@ const rootReducer = (state = initialState, action) => {
       return Ch.addCard(state, action.payload);
     case EDIT_CARD_TITLE:
       return Ch.editCardTitle(state, action.payload);
+    case EDIT_CARD_DESCRIPTION:
+      return Ch.editCardDescription(state, action.payload);
     case MOVE_CARD:
       return Ch.moveCard(state, action.payload);
     case DELETE_CARD:

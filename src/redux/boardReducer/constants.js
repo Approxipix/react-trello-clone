@@ -11,5 +11,6 @@ export const DELETE_LIST = 'DELETE_LIST';
 
 export const ADD_CARD = 'ADD_CARD';
 export const EDIT_CARD_TITLE = 'EDIT_CARD_TITLE';
+export const EDIT_CARD_DESCRIPTION = 'EDIT_CARD_DESCRIPTION';
 export const MOVE_CARD = 'MOVE_CARD';
 export const DELETE_CARD = 'DELETE_CARD';

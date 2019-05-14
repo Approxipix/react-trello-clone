@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CardTitleEdit from './CardTitleEdit';
+import CardDescEdit from './CardDescEdit';
 
 const Backdrop = styled.div`
   position: fixed;
@@ -28,6 +29,15 @@ const Container = styled.div`
   transform: translate(-50%, -50%);
 `;
 
+const CloseButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.3rem;
+  z-index: 110;
+  cursor: pointer;
+`;
+
 const Wrapper = styled.div`
   position: relative;
   margin-bottom: 1rem;
@@ -43,9 +53,8 @@ const Title = styled.h4`
 const Icon = styled.div`
   position: absolute;
   left: 0;
-  top: 50%;
+  top: .6rem;
   font-size: 1rem;
-  transform: translateY(-50%);
 `;
 
 
@@ -72,7 +81,7 @@ const ButtonIcon = styled.h4`
 `;
 
 const Description = styled.p`
-
+  padding: .3rem .5rem;
 `;
 
 const Close = styled.button`
@@ -94,12 +103,19 @@ class CardModal extends Component {
     super(props);
     this.state = {
       isTitleEditing: false,
+      isDescEditing: false,
     }
   }
 
   toggleIsTitleEditing = () => {
     this.setState({
       isTitleEditing: !this.state.isTitleEditing
+    })
+  };
+
+  toggleIsDescEditing = () => {
+    this.setState({
+      isDescEditing: !this.state.isDescEditing
     })
   };
 
@@ -114,12 +130,15 @@ class CardModal extends Component {
 
   render() {
     const { card, cardIndex, listIndex } = this.props;
-    const { isTitleEditing } = this.state;
+    const { isTitleEditing, isDescEditing } = this.state;
     if (!card) return null;
     return (
       <Backdrop>
         <Close onClick={() => this.props.toggleModal()} />
         <Container onClick={(e) => e.preventDefault()}>
+          <CloseButton onClick={() => this.props.toggleModal()}>
+            <FontAwesomeIcon icon="times" />
+          </CloseButton>
           <Wrapper>
             {!isTitleEditing ? (
               <Title onClick={() => this.toggleIsTitleEditing()}>
@@ -137,23 +156,26 @@ class CardModal extends Component {
               <FontAwesomeIcon icon="window-maximize" />
             </Icon>
           </Wrapper>
-          <Col>
-            <Wrapper>
-              <Title>
+          <Wrapper>
+            <Title>
+              Description
+            </Title>
+            {!isDescEditing ? (
+              <Description onClick={() => this.toggleIsDescEditing()}>
                 {card.description}
-              </Title>
-              <Icon>
-                <FontAwesomeIcon icon="align-left" />
-              </Icon>
-            </Wrapper>
-          </Col>
-          <Col>
-            <Actions>
-              <SubTitle>
-                Add to cards
-              </SubTitle>
-              <Button>
-                <ButtonIcon>
+              </Description>
+            ) : (
+              <CardDescEdit
+                card={card}
+                cardIndex={cardIndex}
+                listIndex={listIndex}
+                toggleIsDescEditing={this.toggleIsDescEditing}
+              />
+            )}
+            <Icon>
+              <FontAwesomeIcon icon="align-left" />
+            </Icon>
+          </Wrapper>
 
                 </ButtonIcon>
               </Button>

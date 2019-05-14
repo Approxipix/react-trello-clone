@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import ClickOutside from '../ClickOutside';
 
 const Form = styled.form`
-  width: 25rem;
+  width: 90%;
 `;
 
 const Input = styled.input`
@@ -51,7 +51,7 @@ class CardTitleEdit extends Component {
     const { title } = this.state;
     return (
       <ClickOutside toggleOpened={this.props.toggleIsTitleEditing}>
-        <Form onSubmit={this.handleSubmit} id="card-edit-form">
+        <Form onSubmit={this.handleSubmit} id="card-edit-title-form">
           <Input
             autoFocus
             type="text"
@@ -73,6 +73,5 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
   };
 }
-
 
 export default connect(null, mapDispatchToProps)(CardTitleEdit);

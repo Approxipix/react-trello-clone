@@ -12,6 +12,7 @@ import {
 
   ADD_CARD,
   EDIT_CARD_TITLE,
+  EDIT_CARD_DESCRIPTION,
   MOVE_CARD,
   DELETE_CARD,
 } from "./constants";
@@ -68,6 +69,11 @@ export const addCard = (fields) => ({
 
 export const editCardTitle = (fields) => ({
   type: EDIT_CARD_TITLE,
+  payload: fields
+});
+
+export const editCardDescription = (fields) => ({
+  type: EDIT_CARD_DESCRIPTION,
   payload: fields
 });
 

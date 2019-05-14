@@ -30,6 +30,17 @@ class Card {
     };
   }
 
+  static editCardDescription(state, payload) {
+    const { boards, currentBoardIndex } = state;
+    const { cardDescription, cardIndex, listIndex } = payload;
+    const currentBoard = boards[currentBoardIndex];
+    currentBoard.lists[listIndex].cards[cardIndex].description = cardDescription;
+    return {
+      ...state,
+      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+    };
+  }
+
   static moveCard(state, payload) {
     const { boards, currentBoardIndex } = state;
     const { sourceIndex, destinationIndex, sourceListIndex, destinationListIndex } = payload;
