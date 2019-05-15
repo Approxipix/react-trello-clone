@@ -12,6 +12,8 @@ import {
   faCheck,
   faWindowMaximize,
   faAlignLeft,
+  faTag,
+  faCheckSquare,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -23,4 +25,6 @@ library.add(
   faCheck,
   faWindowMaximize,
   faAlignLeft,
+  faTag,
+  faCheckSquare,
 );

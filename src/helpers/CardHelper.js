@@ -1,6 +1,13 @@
 import uuid from "uuid";
 
 class Card {
+  static serCurrentCardIndex(state, payload) {
+    return {
+      ...state,
+      currentCardIndex: payload
+    }
+  }
+
   static addCard(state, payload) {
     const { boards, currentBoardIndex } = state;
     const { cardTitle, cardDescription, listIndex } = payload;
@@ -13,6 +20,29 @@ class Card {
         description: cardDescription,
       }
     ];
+    return {
+      ...state,
+      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+    };
+  }
+
+  static addLabelToCard(state, payload) {
+    const { boards, currentBoardIndex } = state;
+    const { cardIndex, listIndex, cardLabel } = payload;
+    const currentBoard = boards[currentBoardIndex];
+    const isLabelExist = currentBoard.lists[listIndex].cards[cardIndex].cardLabels.some(label => {
+      return label._labelId === cardLabel._labelId
+    });
+    if (isLabelExist) {
+      currentBoard.lists[listIndex].cards[cardIndex].cardLabels = currentBoard.lists[listIndex].cards[cardIndex].cardLabels.filter(label => {
+        return label._labelId !== cardLabel._labelId
+      })
+    } else {
+      currentBoard.lists[listIndex].cards[cardIndex].cardLabels = [
+        ...currentBoard.lists[listIndex].cards[cardIndex].cardLabels,
+        cardLabel
+      ];
+    }
     return {
       ...state,
       boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })

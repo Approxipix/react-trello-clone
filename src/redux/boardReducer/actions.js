@@ -1,5 +1,7 @@
 import {
   SET_CURRENT_BOARD_INDEX,
+  SET_CURRENT_CARD_INDEX,
+
   ADD_BOARD,
   EDIT_BOARD_TITLE,
   EDIT_BOARD_COLOR,
@@ -11,6 +13,7 @@ import {
   DELETE_LIST,
 
   ADD_CARD,
+  ADD_LABEL_TO_CARD,
   EDIT_CARD_TITLE,
   EDIT_CARD_DESCRIPTION,
   MOVE_CARD,
@@ -19,6 +22,11 @@ import {
 
 export const setCurrentBoardIndex = (fields) => ({
   type: SET_CURRENT_BOARD_INDEX,
+  payload: fields
+});
+
+export const setCurrentCardIndex = (fields) => ({
+  type: SET_CURRENT_CARD_INDEX,
   payload: fields
 });
 
@@ -64,6 +72,11 @@ export const deleteList = (fields) => ({
 
 export const addCard = (fields) => ({
   type: ADD_CARD,
+  payload: fields
+});
+
+export const addLabelToCard = (fields) => ({
+  type: ADD_LABEL_TO_CARD,
   payload: fields
 });
 

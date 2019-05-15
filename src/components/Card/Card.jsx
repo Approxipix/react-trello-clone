@@ -84,7 +84,7 @@ class Card extends Component {
             </Container>
           )}
         </Draggable>
-        {!isOpened && (
+        {isOpened && (
           <CardModal
             listIndex={listIndex}
             cardIndex={cardIndex}

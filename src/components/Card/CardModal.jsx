@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CardTitleEdit from './CardTitleEdit';
 import CardDescEdit from './CardDescEdit';
+import CardActionsMenu from "./CardActionsMenu";
 
 const Backdrop = styled.div`
   position: fixed;
@@ -45,6 +46,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h4`
+  margin-bottom: .5rem;
   padding: .3rem .5rem;
   font-size: 1.5rem;
   font-weight: 600;
@@ -58,27 +60,29 @@ const Icon = styled.div`
 `;
 
 
+const Row = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 1rem;
+`;
+
 const Col = styled.div`
 
 `;
 
-
-
-const SubTitle = styled.h4`
-
+const LabelList = styled.ul`
+  display: flex;
 `;
 
-const Actions = styled.h4`
-
+const LabelItem = styled.li`
+  height: 2rem;
+  width: 2rem;
+  margin-right: .5rem;
+  background-color: ${props => props.value};
+  cursor: pointer;
+  border-radius: .2rem;
 `;
 
-const Button = styled.h4`
-
-`;
-
-const ButtonIcon = styled.h4`
-
-`;
 
 const Description = styled.p`
   padding: .3rem .5rem;
@@ -156,31 +160,48 @@ class CardModal extends Component {
               <FontAwesomeIcon icon="window-maximize" />
             </Icon>
           </Wrapper>
-          <Wrapper>
-            <Title>
-              Description
-            </Title>
-            {!isDescEditing ? (
-              <Description onClick={() => this.toggleIsDescEditing()}>
-                {card.description}
-              </Description>
-            ) : (
-              <CardDescEdit
-                card={card}
-                cardIndex={cardIndex}
-                listIndex={listIndex}
-                toggleIsDescEditing={this.toggleIsDescEditing}
-              />
-            )}
-            <Icon>
-              <FontAwesomeIcon icon="align-left" />
-            </Icon>
-          </Wrapper>
-
-                </ButtonIcon>
-              </Button>
-            </Actions>
-          </Col>
+          <Row>
+            <Col>
+              <Wrapper>
+                <Title>
+                  Description
+                </Title>
+                {!isDescEditing ? (
+                  <Description onClick={() => this.toggleIsDescEditing()}>
+                    {card.description}
+                  </Description>
+                ) : (
+                  <CardDescEdit
+                    card={card}
+                    cardIndex={cardIndex}
+                    listIndex={listIndex}
+                    toggleIsDescEditing={this.toggleIsDescEditing}
+                  />
+                )}
+                <Icon>
+                  <FontAwesomeIcon icon="align-left" />
+                </Icon>
+              </Wrapper>
+              {card.cardLabels.length !== 0 && (
+                <Wrapper>
+                  <Title>
+                    Label
+                  </Title>
+                  <LabelList>
+                    {this.props.labels.map((label, index) => (
+                      <LabelItem key={index} value={label.color}/>
+                    ))}
+                  </LabelList>
+                  <Icon>
+                    <FontAwesomeIcon icon="tag" />
+                  </Icon>
+                </Wrapper>
+              )}
+            </Col>
+            <Col>
+              <CardActionsMenu cardIndex={cardIndex} listIndex={listIndex}/>
+            </Col>
+          </Row>
         </Container>
       </Backdrop>
     )
@@ -190,14 +211,14 @@ class CardModal extends Component {
 function mapStateToProps(state, ownProps) {
   const { rootReducer } = state;
   const board = rootReducer.boards[rootReducer.currentBoardIndex];
-  const list = board.lists[1];
-  // const list = board.lists[ownProps.listIndex];
-  const card = list.cards[1];
-  // const card = list.cards[ownProps.cardIndex];
+  const list = board.lists[ownProps.listIndex];
+  const card = list.cards[ownProps.cardIndex];
+  const label = card.cardLabels;
   return {
     board: board,
     list: list,
     card: card,
+    labels: label
   }
 }
 
