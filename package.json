@@ -8,6 +8,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "connected-react-router": "^6.4.0",
     "history": "^4.9.0",
+    "normalizr": "^3.3.0",
     "react": "^16.8.3",
     "react-beautiful-dnd": "^10.0.4",
     "react-dom": "^16.8.3",
