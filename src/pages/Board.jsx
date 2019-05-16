@@ -88,7 +88,7 @@ class Board extends Component {
         <DragDropContext onDragEnd={this.handleDragEnd}>
           <Droppable
             type='column'
-            droppableId='all-columns'
+            droppableId={board._boardId}
             direction='horizontal'
           >
             {(provided) => (

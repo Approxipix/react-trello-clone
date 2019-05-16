@@ -18,6 +18,8 @@ class Card {
         _cardId: uuid.v4(),
         title: cardTitle,
         description: cardDescription,
+        cardLabels: [],
+        checkLists: [],
       }
     ];
     return {
@@ -30,19 +32,17 @@ class Card {
     const { boards, currentBoardIndex } = state;
     const { cardIndex, listIndex, cardLabel } = payload;
     const currentBoard = boards[currentBoardIndex];
-    const isLabelExist = currentBoard.lists[listIndex].cards[cardIndex].cardLabels.some(label => {
-      return label._labelId === cardLabel._labelId
-    });
+    let labels = currentBoard.lists[listIndex].cards[cardIndex].cardLabels;
+    const isLabelExist = labels.some(label => label._labelId === cardLabel._labelId);
     if (isLabelExist) {
-      currentBoard.lists[listIndex].cards[cardIndex].cardLabels = currentBoard.lists[listIndex].cards[cardIndex].cardLabels.filter(label => {
-        return label._labelId !== cardLabel._labelId
-      })
+      labels = labels.filter(label =>  label._labelId !== cardLabel._labelId)
     } else {
-      currentBoard.lists[listIndex].cards[cardIndex].cardLabels = [
-        ...currentBoard.lists[listIndex].cards[cardIndex].cardLabels,
+      labels = [
+        ...labels,
         cardLabel
       ];
     }
+    currentBoard.lists[listIndex].cards[cardIndex].cardLabels = labels;
     return {
       ...state,
       boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })

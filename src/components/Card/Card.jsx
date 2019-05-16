@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { setCurrentBoardIndex, deleteCard } from '../../redux/boardReducer/actions';
 import CardModal from "./CardModal";
+import { NavLink } from 'react-router-dom';
 
 const Title = styled.h4`
   padding-bottom: .5rem;
@@ -41,9 +42,7 @@ const Container = styled.div`
   &:hover ${Button} {
     visibility: visible;
   }   
-  &:not(:last-child) {
-    margin-bottom: .5rem;
-  }
+   margin-bottom: .5rem;
 `;
 
 
@@ -63,7 +62,7 @@ class Card extends Component {
 
   render() {
     const { isOpened } = this.state;
-    const { card, cardIndex, listIndex } = this.props;
+    const { currentBoardIndex, card, cardIndex, listIndex, isDraggingOver} = this.props;
     if (!card) return null;
     return (
       <>
@@ -72,16 +71,20 @@ class Card extends Component {
           draggableId={`${card._cardId}`}
         >
           {(provided, snapshot) => (
-            <Container
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-              ref={provided.innerRef}
-              isDragging={snapshot.isDragging}
-              onClick={() => this.toggleModal()}
-            >
-              <Title>{card.title}</Title>
-              <Description>{card.description}</Description>
-            </Container>
+            <>
+              <NavLink to={`/board/${currentBoardIndex}/card/${cardIndex}`}>asd</NavLink>
+              <Container
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                ref={provided.innerRef}
+                isDragging={snapshot.isDragging}
+                onClick={() => this.toggleModal()}
+              >
+                <Title>{card.title}</Title>
+                <Description>{card.description}</Description>
+              </Container>
+              {isDraggingOver && provided.placeholder}
+            </>
           )}
         </Draggable>
         {isOpened && (
@@ -103,6 +106,7 @@ function mapStateToProps(state, ownProps) {
   const card = list.cards[ownProps.cardIndex];
   return {
     card: card,
+    currentBoardIndex: rootReducer.currentBoardIndex
   }
 }
 

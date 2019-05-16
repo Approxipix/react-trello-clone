@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { addCard } from '../../redux/boardReducer/actions';
+import { addCheckListItem } from '../../redux/boardReducer/actions';
 import { Input, TextArea, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside";
 
@@ -23,6 +23,7 @@ const Form = styled.form``;
 const AddButton = styled.button`
   text-align: left;
   width: 100%;
+  margin-top: .5rem;
   padding: .75rem;
   font-size: 1rem; 
   color: #444;
@@ -34,13 +35,12 @@ const AddButton = styled.button`
   }
 `;
 
-class CardAdder extends Component {
+class AddCheckListItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpened: false,
       title: '',
-      description: '',
     };
   }
 
@@ -48,7 +48,6 @@ class CardAdder extends Component {
     this.setState({
       isOpened: !this.state.isOpened,
       title: '',
-      description: '',
     })
   };
 
@@ -61,22 +60,23 @@ class CardAdder extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { title, description } = this.state;
-    if (!title || !description)  return;
-    this.props.actions.addCard({
+    const { title } = this.state;
+    if (!title)  return;
+    this.props.actions.addCheckListItem({
       listIndex: this.props.listIndex,
-      cardTitle: title,
-      cardDescription: description,
+      cardIndex: this.props.cardIndex,
+      checkListIndex: this.props.checkListIndex,
+      checkListTitle: title,
     });
     this.toggleOpened()
   };
 
   render = () => {
-    const { isOpened, title, description } = this.state;
+    const { isOpened, title } = this.state;
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Wrapper>
-          <Form id="card-add-form" onSubmit={this.handleSubmit}>
+          <Form id="card-add-form">
             <Input
               autoFocus
               type="text"
@@ -85,17 +85,9 @@ class CardAdder extends Component {
               onChange={(e) => this.handleChange('title', e.target.value)}
               spellCheck={false}
             />
-            <TextArea
-              type="text"
-              placeholder="Enter a card description..."
-              value={description}
-              rows="4"
-              onChange={(e) => this.handleChange('description', e.target.value)}
-              spellCheck={false}
-            />
             <Actions>
-              <SubmitButton type="submit" disabled={!title || !description}>
-                Create card
+              <SubmitButton onClick={(e) => this.handleSubmit(e)} disabled={!title}>
+                Save
               </SubmitButton>
               or
               <CancelButton onClick={() => this.toggleOpened()}>
@@ -107,7 +99,7 @@ class CardAdder extends Component {
       </ClickOutside>
     ) : (
       <AddButton onClick={() => this.toggleOpened()}>
-        + Add a card
+        + Add a item
       </AddButton>
     );
   };
@@ -116,10 +108,10 @@ class CardAdder extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      addCard: addCard,
+      addCheckListItem: addCheckListItem,
     }, dispatch)
   };
 }
 
 
-export default connect(null, mapDispatchToProps)(CardAdder);
+export default connect(null, mapDispatchToProps)(AddCheckListItem);

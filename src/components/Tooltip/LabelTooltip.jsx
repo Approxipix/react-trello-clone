@@ -38,6 +38,7 @@ const LabelList = styled.ul`
 `;
 
 const LabelItem = styled.li`
+  position: relative;
   height: 2rem;
   width: 100%;
   margin-bottom: .5rem;
@@ -49,23 +50,16 @@ const LabelItem = styled.li`
   } 
 `;
 
+const LabelIcon = styled.div`
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 1rem;
+  transform: translate(-50%, -50%);
+`;
+
 class LabelTooltip extends Component {
-  componentDidMount() {
-    document.addEventListener('click', this.outerClick);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.outerClick);
-  }
-
-  outerClick = (e) => {
-    let { target } = e;
-    if (!!target.closest && (target.closest('.click-outside-wrapper'))) {
-      return;
-    }
-    this.props.toggleLabelTooltip();
-  };
-
   render() {
     return (
       <ClickOutside toggleOpened={this.props.toggleLabelTooltip}>
@@ -80,7 +74,13 @@ class LabelTooltip extends Component {
           </Header>
           <LabelList>
             {this.props.labels.map((label, index) => (
-              <LabelItem key={index} value={label.color} onClick={() => this.props.handelAddLabel(label)}/>
+              <LabelItem key={index} value={label.color} onClick={() => this.props.handelAddLabel(label)}>
+                {this.props.cardLabels.some(cardLabel => cardLabel._labelId === label._labelId) && (
+                  <LabelIcon>
+                    <FontAwesomeIcon icon="check" />
+                  </LabelIcon>
+                )}
+              </LabelItem>
             ))}
           </LabelList>
         </Wrapper>
@@ -89,9 +89,15 @@ class LabelTooltip extends Component {
   };
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
+  const { rootReducer } = state;
+  const board = rootReducer.boards[rootReducer.currentBoardIndex];
+  const list = board.lists[ownProps.listIndex];
+  const card = list.cards[ownProps.cardIndex];
+  const label = card.cardLabels;
   return {
-    labels: state.rootReducer.labels
+    labels: state.rootReducer.labels,
+    cardLabels: label
   }
 }
 

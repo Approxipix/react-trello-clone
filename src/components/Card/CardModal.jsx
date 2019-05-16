@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CardTitleEdit from './CardTitleEdit';
 import CardDescEdit from './CardDescEdit';
 import CardActionsMenu from "./CardActionsMenu";
+import CheckList from "../CheckList/CheckList";
 
 const Backdrop = styled.div`
   position: fixed;
@@ -197,9 +198,19 @@ class CardModal extends Component {
                   </Icon>
                 </Wrapper>
               )}
+              {this.props.checkLists.length !== 0 && (
+                <Wrapper>
+                  <Icon>
+                    <FontAwesomeIcon icon="tag" />
+                  </Icon>
+                  {this.props.checkLists.map((item, index) => (
+                    <CheckList key={index} checkBoxIndex={index} cardIndex={cardIndex} listIndex={listIndex}/>
+                  ))}
+                </Wrapper>
+              )}
             </Col>
             <Col>
-              <CardActionsMenu cardIndex={cardIndex} listIndex={listIndex}/>
+              <CardActionsMenu card={card} cardIndex={cardIndex} listIndex={listIndex}/>
             </Col>
           </Row>
         </Container>
@@ -214,11 +225,13 @@ function mapStateToProps(state, ownProps) {
   const list = board.lists[ownProps.listIndex];
   const card = list.cards[ownProps.cardIndex];
   const label = card.cardLabels;
+  const checkLists = card.checkLists;
   return {
     board: board,
     list: list,
     card: card,
-    labels: label
+    labels: label,
+    checkLists: checkLists
   }
 }
 

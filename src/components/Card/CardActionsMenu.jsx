@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { addLabelToCard } from '../../redux/boardReducer/actions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LabelTooltip from '../Tooltip/LabelTooltip';
+import CheckListTooltip from '../Tooltip/CheckListTooltip';
 
 const Wrapper = styled.div`
   position: relative;
@@ -54,12 +55,19 @@ class CardActionsMenu extends Component {
     super(props);
     this.state = {
       isLabelTooltipOpened: false,
+      isCheckListTooltipOpened: false,
     }
   }
 
   toggleLabelTooltip = () => {
     this.setState({
       isLabelTooltipOpened: !this.state.isLabelTooltipOpened
+    })
+  };
+
+  toggleCheckListTooltip = () => {
+    this.setState({
+      isCheckListTooltipOpened: !this.state.isCheckListTooltipOpened
     })
   };
 
@@ -72,7 +80,7 @@ class CardActionsMenu extends Component {
   };
 
   render() {
-    const { isLabelTooltipOpened } = this.state;
+    const { isLabelTooltipOpened, isCheckListTooltipOpened } = this.state;
     return (
       <Wrapper>
         <Title>
@@ -88,17 +96,28 @@ class CardActionsMenu extends Component {
             </Button>
             {isLabelTooltipOpened && (
               <LabelTooltip
+                cardIndex={this.props.cardIndex}
+                listIndex={this.props.listIndex}
                 handelAddLabel={this.handelAddLabel}
                 toggleLabelTooltip={this.toggleLabelTooltip}
               />
             )}
           </ButtonWrapper>
-          <Button>
-            <ButtonIcon>
-              <FontAwesomeIcon icon="check-square" />
-            </ButtonIcon>
-            CheckList
-          </Button>
+          <ButtonWrapper>
+            <Button onClick={() => this.toggleCheckListTooltip()}>
+              <ButtonIcon>
+                <FontAwesomeIcon icon="check-square" />
+              </ButtonIcon>
+              CheckList
+            </Button>
+            {isCheckListTooltipOpened && (
+              <CheckListTooltip
+                cardIndex={this.props.cardIndex}
+                listIndex={this.props.listIndex}
+                toggleCheckListTooltip={this.toggleCheckListTooltip}
+              />
+            )}
+          </ButtonWrapper>
         </Actions>
       </Wrapper>
     )

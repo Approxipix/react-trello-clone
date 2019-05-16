@@ -1,12 +1,12 @@
 import React, { Component, PureComponent } from 'react';
 import { connect } from "react-redux/es/alternate-renderers";
 import styled from 'styled-components'
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 import ListActions from './ListActions';
 import ListEdit from './ListEdit';
 import CardAdder from '../Card/CardAdder';
-import Card from '../Card/Card'
+import Cards from './Cards'
 
 const Container = styled.div`
   position: relative;
@@ -25,14 +25,11 @@ const Title = styled.h3`
   cursor: default;
 `;
 
-const CardLIst = styled.div`
-  position: relative;
-  padding: 0 .5rem;
-  background-color: ${props => (props.isDraggingOver ? '#c1c1c1' : '#dfe1e6')}
-  flex-grow: 1;
-  
-  overflow: auto;
+const CardsWrap = styled.div`
+  margin: 3px;
 `;
+
+
 
 const Header = styled.div`
   margin-bottom: .5rem;
@@ -47,23 +44,6 @@ const Actions = styled.div`
   cursor: pointer;
 `;
 
-class InnerList extends Component {
-  render() {
-    const { cards, listIndex } = this.props;
-    if (!cards) return null;
-    return (
-      <>
-        {cards.map((card, index) =>
-          <Card
-            key={index}
-            listIndex={listIndex}
-            cardIndex={index}
-          />
-        )}
-      </>
-    )
-  }
-}
 
 class List extends Component {
   constructor(props) {
@@ -87,63 +67,52 @@ class List extends Component {
   };
 
   render() {
-    const { list, listIndex, cards } = this.props;
+    const { list, listIndex } = this.props;
     const { isOpened, isEditing } = this.state;
     if (!list) return null;
     return (
       <Draggable
         index={listIndex}
         draggableId={`${list._listId}`}
+        disableInteractiveElementBlocking
       >
         {(provided) => (
-          <Container
-            {...provided.draggableProps}
-            ref={provided.innerRef}
-          >
-            <Header
-              {...provided.dragHandleProps}
-              isEditing={isEditing}
+          <>
+            <Container
+              {...provided.draggableProps}
+              ref={provided.innerRef}
             >
-              {!isEditing ? (
-                <Title onClick={() => this.toggleEditing()}>
-                  {list.title}
-                </Title>
-              ) : (
-                <ListEdit
-                  toggleEditing={this.toggleEditing}
-                  listIndex={listIndex}
+              <Header
+                {...provided.dragHandleProps}
+                isEditing={isEditing}
+              >
+                {!isEditing ? (
+                  <Title onClick={() => this.toggleEditing()}>
+                    {list.title}
+                  </Title>
+                ) : (
+                  <ListEdit
+                    toggleEditing={this.toggleEditing}
+                    listIndex={listIndex}
+                  />
+                )}
+                <Actions onClick={() => this.toggleOpened()}>
+                  <FontAwesomeIcon icon="ellipsis-h" />
+                </Actions>
+              </Header>
+              {isOpened && (
+                <ListActions
+                  toggleOpened={this.toggleOpened}
+                  listId={list._listId}
                 />
               )}
-              <Actions onClick={() => this.toggleOpened()}>
-                <FontAwesomeIcon icon="ellipsis-h" />
-              </Actions>
-            </Header>
-            {isOpened && (
-              <ListActions
-                toggleOpened={this.toggleOpened}
-                listId={list._listId}
-              />
-            )}
-            <Droppable
-              type={'task'}
-              droppableId={`${listIndex}`}
-            >
-              {(provided, snapshot) => (
-                <CardLIst
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                  isDraggingOver={snapshot.isDraggingOver}
-                >
-                  <InnerList
-                    listIndex={listIndex}
-                    cards={cards}
-                  />
-                  {provided.placeholder}
-                </CardLIst>
-              )}
-            </Droppable>
-            <CardAdder listIndex={listIndex} />
-          </Container>
+              <CardsWrap>
+                <Cards listIndex={listIndex}/>
+              </CardsWrap>
+              <CardAdder listIndex={listIndex} />
+            </Container>
+            {provided.placeholder}
+          </>
         )}
       </Draggable>
     )
@@ -154,10 +123,8 @@ function mapStateToProps(state, ownProps) {
   const { rootReducer } = state;
   const board = rootReducer.boards[rootReducer.currentBoardIndex];
   const list = !!board && board.lists[ownProps.listIndex];
-  const cards = !!list && list.cards;
   return {
     list: list,
-    cards: cards,
   }
 }
 
