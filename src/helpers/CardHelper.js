@@ -1,88 +1,114 @@
 import uuid from "uuid";
 
 class Card {
-  static serCurrentCardIndex(state, payload) {
-    return {
-      ...state,
-      currentCardIndex: payload
-    }
-  }
-
   static addCard(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { cardTitle, cardDescription, listIndex } = payload;
-    const currentBoard = boards[currentBoardIndex];
-    currentBoard.lists[listIndex].cards = [
-      ...currentBoard.lists[listIndex].cards,
-      {
-        _cardId: uuid.v4(),
-        title: cardTitle,
-        description: cardDescription,
-        cardLabels: [],
-        checkLists: [],
-      }
-    ];
+    const { cardTitle, listId } = payload;
+    const newCardId = uuid.v4();
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
-    };
+      lists: {
+        ...state.lists,
+        [listId]: {
+          ...state.lists[listId],
+          cards: state.lists[listId].cards.concat(newCardId)
+        },
+      },
+      cards: {
+        ...state.cards,
+        [newCardId]: {
+          _cardId: newCardId,
+          title: cardTitle,
+          description: '',
+          cardLabels: [],
+          checkLists: [],
+        }
+      }
+    }
   }
 
   static addLabelToCard(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { cardIndex, listIndex, cardLabel } = payload;
-    const currentBoard = boards[currentBoardIndex];
-    let labels = currentBoard.lists[listIndex].cards[cardIndex].cardLabels;
-    const isLabelExist = labels.some(label => label._labelId === cardLabel._labelId);
+    const { cardId, cardLabel} = payload;
+    const isLabelExist = state.cards[cardId].cardLabels.some(label => {
+      return label._labelId === cardLabel._labelId
+    });
+    let newCardLabel = [...state.cards[cardId].cardLabels];
     if (isLabelExist) {
-      labels = labels.filter(label =>  label._labelId !== cardLabel._labelId)
+      newCardLabel = newCardLabel.filter(label => label._labelId !== cardLabel._labelId);
     } else {
-      labels = [
-        ...labels,
-        cardLabel
-      ];
+      newCardLabel = newCardLabel.concat(cardLabel);
     }
-    currentBoard.lists[listIndex].cards[cardIndex].cardLabels = labels;
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
-    };
+      cards: {
+        ...state.cards,
+        [cardId]: {
+          ...state.cards[cardId],
+          cardLabels: newCardLabel,
+        }
+      }
+    }
   }
 
   static editCardTitle(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { cardTitle, cardIndex, listIndex } = payload;
-    const currentBoard = boards[currentBoardIndex];
-    currentBoard.lists[listIndex].cards[cardIndex].title = cardTitle;
+    const { cardTitle, cardId } = payload;
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+      cards: {
+        ...state.cards,
+        [cardId]: {
+          ...state.cards[cardId],
+          title: cardTitle
+        }
+      }
     };
   }
 
-  static editCardDescription(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { cardDescription, cardIndex, listIndex } = payload;
-    const currentBoard = boards[currentBoardIndex];
-    currentBoard.lists[listIndex].cards[cardIndex].description = cardDescription;
+  static editCardDesc(state, payload) {
+    const { cardDescription, cardId } = payload;
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+      cards: {
+        ...state.cards,
+        [cardId]: {
+          ...state.cards[cardId],
+          description: cardDescription
+        }
+      }
     };
   }
 
   static moveCard(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { sourceIndex, destinationIndex, sourceListIndex, destinationListIndex } = payload;
-    const currentBoard = boards[currentBoardIndex];
-    let sourceList = currentBoard.lists[sourceListIndex];
-    let destinationList = currentBoard.lists[destinationListIndex];
-    let sourceTask = sourceList.cards[sourceIndex];
-    sourceList.cards.splice(sourceIndex, 1);
-    destinationList.cards.splice(destinationIndex, 0, sourceTask);
+    const {
+      sourceIndex,
+      destinationIndex,
+      sourceListIndex,
+      destinationListIndex
+    } = payload;
+    // Move within the same list
+    if (sourceListIndex === destinationListIndex) {
+      const newCards = Array.from(state.lists[sourceListIndex].cards);
+      const [removedCard] = newCards.splice(sourceIndex, 1);
+      newCards.splice(destinationIndex, 0, removedCard);
+      return {
+        ...state,
+        lists: {
+          ...state.lists,
+          [sourceListIndex]: { ...state.lists[sourceListIndex], cards: newCards }
+        }
+      };
+    }
+    // Move card from one list to another
+    const sourceCards = Array.from(state.lists[sourceListIndex].cards);
+    const [removedCard] = sourceCards.splice(sourceIndex, 1);
+    const destinationCards = Array.from(state.lists[destinationListIndex].cards);
+    destinationCards.splice(destinationIndex, 0, removedCard);
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+      lists: {
+        ...state.lists,
+        [sourceListIndex]: { ...state.lists[sourceListIndex], cards: sourceCards },
+        [destinationListIndex]: { ...state.lists[destinationListIndex], cards: destinationCards }
+      }
     };
   }
 

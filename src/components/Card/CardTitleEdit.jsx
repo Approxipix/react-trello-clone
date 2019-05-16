@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editCardTitle } from '../../redux/boardReducer/actions';
+import { editCardTitle } from '../../redux/rootReducer/actions';
 import styled from 'styled-components'
 import ClickOutside from '../ClickOutside';
 
@@ -23,7 +23,7 @@ class CardTitleEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: props.card.title || '',
+      title: props.cardTitle || '',
     };
   }
 
@@ -37,12 +37,11 @@ class CardTitleEdit extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { title } = this.state;
-    const { cardIndex, listIndex } = this.props;
+    const { cardId } = this.props;
     if (!title)  return;
     this.props.actions.editCardTitle({
       cardTitle: title,
-      cardIndex: cardIndex,
-      listIndex: listIndex,
+      cardId: cardId,
     });
     this.props.toggleIsTitleEditing()
   };

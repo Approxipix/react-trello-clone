@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
-import { deleteBoard } from "../../redux/boardReducer/actions";
-import { history } from "../../redux/store";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BoardTitleEdit from "./BoardTitleEdit";
 import ColorPicker from "../ColorPicker";
+import BoardDeleter from "./BoardDeleter";
 
 const Header = styled.div`
   margin-bottom: 1rem;
@@ -21,19 +18,6 @@ const Actions = styled.div`
   align-items: center;
   &:not(:last-child) {
     border-right: 1px solid red;
-  }
-`;
-
-const Button = styled.button`
-  margin: 0.5rem;
-  padding: .5rem;
-  cursor: pointer;
-  color: #fff;
-  border-radius: .2rem;
-  transition: background .2s ease-in-out;
-  white-space: nowrap;
-  &:hover {
-    background: rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -55,61 +39,53 @@ class BoardHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isEditing: false,
+      editTitle: false,
     }
   }
 
-  deleteBoard = () => {
-    const { board, actions } = this.props;
-    actions.deleteBoard({ _boardId: board._boardId });
-    history.push('/boards')
-  };
-
-  toggleEditing = () => {
+  toggleEditTitle = () => {
     this.setState({
-      isEditing: !this.state.isEditing,
+      editTitle: !this.state.editTitle,
     })
   };
 
   render() {
-    const { isEditing } = this.state;
     const { board } = this.props;
+    const { editTitle } = this.state;
     return (
       <Header>
-        {!isEditing ? (
-          <Title onClick={() => this.toggleEditing()}>
+        {!editTitle ? (
+          <Title onClick={() => this.toggleEditTitle()}>
             {board.title}
           </Title>
         ) : (
-          <BoardTitleEdit toggleEditing={this.toggleEditing}/>
+          <BoardTitleEdit
+            boardId={board._boardId}
+            boardTitle={board.title}
+            toggleEditTitle={this.toggleEditTitle}
+          />
         )}
         <Actions>
-          <ColorPicker />
+          <ColorPicker
+            boardId={board._boardId}
+            boardColor={board.color}
+          />
           <VerticalLine />
-          <Button onClick={() => this.deleteBoard()}>
-            <FontAwesomeIcon icon="trash" />
-            &nbsp;Delete board
-          </Button>
+          <BoardDeleter
+            boardId={board._boardId}
+          />
         </Actions>
       </Header>
     )
   }
 }
 
-function mapStateToProps(state) {
-  const { rootReducer } = state;
+function mapStateToProps(state, ownProps) {
   return {
-    board: rootReducer.boards[rootReducer.currentBoardIndex],
+    board: state.rootReducer.boards[ownProps.boardId],
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({
-      deleteBoard: deleteBoard,
-    }, dispatch)
-  };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(BoardHeader);
+export default connect(mapStateToProps)(BoardHeader);
 

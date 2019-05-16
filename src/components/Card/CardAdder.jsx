@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { addCard } from '../../redux/boardReducer/actions';
-import { Input, TextArea, SubmitButton, CancelButton } from '../BaseComponent';
+import { addCard } from '../../redux/rootReducer/actions';
+import { Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside";
 
 const Wrapper = styled.div`
@@ -40,7 +40,6 @@ class CardAdder extends Component {
     this.state = {
       isOpened: false,
       title: '',
-      description: '',
     };
   }
 
@@ -48,7 +47,6 @@ class CardAdder extends Component {
     this.setState({
       isOpened: !this.state.isOpened,
       title: '',
-      description: '',
     })
   };
 
@@ -61,18 +59,17 @@ class CardAdder extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { title, description } = this.state;
-    if (!title || !description)  return;
+    const { title } = this.state;
+    if (!title)  return;
     this.props.actions.addCard({
-      listIndex: this.props.listIndex,
+      listId: this.props.listId,
       cardTitle: title,
-      cardDescription: description,
     });
     this.toggleOpened()
   };
 
   render = () => {
-    const { isOpened, title, description } = this.state;
+    const { isOpened, title } = this.state;
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Wrapper>
@@ -85,16 +82,8 @@ class CardAdder extends Component {
               onChange={(e) => this.handleChange('title', e.target.value)}
               spellCheck={false}
             />
-            <TextArea
-              type="text"
-              placeholder="Enter a card description..."
-              value={description}
-              rows="4"
-              onChange={(e) => this.handleChange('description', e.target.value)}
-              spellCheck={false}
-            />
             <Actions>
-              <SubmitButton type="submit" disabled={!title || !description}>
+              <SubmitButton type="submit" disabled={!title}>
                 Create card
               </SubmitButton>
               or

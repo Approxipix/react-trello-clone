@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { addList } from '../../redux/boardReducer/actions';
+import { addList } from '../../redux/rootReducer/actions';
 import { Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside";
 
@@ -77,6 +77,8 @@ class BoardAdder extends Component {
     const { title } = this.state;
     if (!title) return;
     this.props.actions.addList({
+      boardId: this.props.boardId,
+      listId: this.props.listId,
       listTitle: title
     });
     this.toggleOpened();

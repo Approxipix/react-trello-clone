@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { deleteList } from '../../redux/boardReducer/actions';
+import { deleteList } from '../../redux/rootReducer/actions';
 import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 
@@ -54,9 +54,10 @@ const Header = styled.div`
 
 class ListActions extends Component {
   deleteList = () => {
-    const { listId, actions } = this.props;
-    actions.deleteList({
-      _listId: listId
+    const { listId, boardId } = this.props;
+    this.props.actions.deleteList({
+      boardId: boardId,
+      listId: listId,
     });
     this.props.toggleOpened();
   };

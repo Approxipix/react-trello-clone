@@ -1,7 +1,7 @@
-import data from '../../data'
+import boards from '../../data'
 import fetchBoardData from '../../helpers/fetchBoardData'
 import {
-  SET_CURRENT_BOARD_INDEX,
+  SET_CURRENT_BOARD_ID,
   SET_CURRENT_CARD_INDEX,
 
   ADD_BOARD,
@@ -25,7 +25,7 @@ import {
   ADD_CHECKLIST_ITEM,
   UPDATE_CHECKLIST_ITEM,
   DELETE_CHECKLIST,
-  DELETE_CHECKLIST_ITEM, UPDATE_CHECKLIST_TITLE,
+  DELETE_CHECKLIST_ITEM, UPDATE_CHECKLIST_TITLE, EDIT_CARD_DESC,
 } from "./constants";
 
 import Bh from '../../helpers/BoardHelper'
@@ -33,14 +33,43 @@ import Lh from '../../helpers/ListHelper'
 import Ch from '../../helpers/CardHelper'
 import CLh from '../../helpers/CheckListHelper'
 
-const initialState = data;
+const initialState = {
+  currentBoardID: null,
+  currentCardId: null,
+  labels: [
+    {
+      _labelId: 0,
+      color: '#61BC4F',
+    },
+    {
+      _labelId: 1,
+      color: '#F2D600',
+    },
+    {
+      _labelId: 2,
+      color: '#FF9F1A',
+    },
+    {
+      _labelId: 3,
+      color: '#EB5A46',
+    },
+    {
+      _labelId: 4,
+      color: '#C376E0',
+    },
+    {
+      _labelId: 5,
+      color: '#0078BF',
+    }
+  ],
+  colors: ['#2E7EAF', '#00603d', '#D29034', "#89609D"],
+  ...fetchBoardData(boards)
+};
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_CURRENT_BOARD_INDEX:
-      return Bh.serCurrentBoardIndex(state, action.payload);
-    case SET_CURRENT_CARD_INDEX:
-      return Ch.serCurrentCardIndex(state, action.payload);
+    case SET_CURRENT_BOARD_ID:
+      return Bh.serCurrentBoardID(state, action.payload);
 
     case ADD_BOARD:
       return Bh.addBoard(state, action.payload);
@@ -66,10 +95,19 @@ const rootReducer = (state = initialState, action) => {
       return Ch.addLabelToCard(state, action.payload);
     case EDIT_CARD_TITLE:
       return Ch.editCardTitle(state, action.payload);
-    case EDIT_CARD_DESCRIPTION:
-      return Ch.editCardDescription(state, action.payload);
+    case EDIT_CARD_DESC:
+      return Ch.editCardDesc(state, action.payload);
     case MOVE_CARD:
       return Ch.moveCard(state, action.payload);
+
+
+
+
+
+
+
+
+
     case DELETE_CARD:
       return Ch.deleteCard(state, action.payload);
 

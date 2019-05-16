@@ -1,6 +1,5 @@
 import {
-  SET_CURRENT_BOARD_INDEX,
-  SET_CURRENT_CARD_INDEX,
+  SET_CURRENT_BOARD_ID,
 
   ADD_BOARD,
   EDIT_BOARD_TITLE,
@@ -24,16 +23,11 @@ import {
   UPDATE_CHECKLIST_ITEM,
   DELETE_CHECKLIST,
   UPDATE_CHECKLIST_TITLE,
-  DELETE_CHECKLIST_ITEM,
+  DELETE_CHECKLIST_ITEM, EDIT_CARD_DESC,
 } from "./constants";
 
-export const setCurrentBoardIndex = (fields) => ({
-  type: SET_CURRENT_BOARD_INDEX,
-  payload: fields
-});
-
-export const setCurrentCardIndex = (fields) => ({
-  type: SET_CURRENT_CARD_INDEX,
+export const setCurrentBoardID = (fields) => ({
+  type: SET_CURRENT_BOARD_ID,
   payload: fields
 });
 
@@ -42,13 +36,13 @@ export const addBoard = (fields) => ({
   payload: fields
 });
 
-export const editBoardTitle = (fields) => ({
-  type: EDIT_BOARD_TITLE,
+export const editBoardColor = (fields) => ({
+  type: EDIT_BOARD_COLOR,
   payload: fields
 });
 
-export const editBoardColor = (fields) => ({
-  type: EDIT_BOARD_COLOR,
+export const editBoardTitle = (fields) => ({
+  type: EDIT_BOARD_TITLE,
   payload: fields
 });
 
@@ -91,6 +85,29 @@ export const editCardTitle = (fields) => ({
   type: EDIT_CARD_TITLE,
   payload: fields
 });
+
+export const editCardDesc = (fields) => ({
+  type: EDIT_CARD_DESC,
+  payload: fields
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const editCardDescription = (fields) => ({
   type: EDIT_CARD_DESCRIPTION,

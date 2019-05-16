@@ -3,10 +3,14 @@ import styled from 'styled-components';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CardTitleEdit from './CardTitleEdit';
-import CardDescEdit from './CardDescEdit';
-import CardActionsMenu from "./CardActionsMenu";
-import CheckList from "../CheckList/CheckList";
+import CardActionsMenu from "../components/Card/CardActionsMenu";
+import CheckList from "../components/CheckList/CheckList";
+import CardTitle from "../components/Card/CardTitle";
+import CardDescription from "../components/Card/CardDescription";
+import CardLabel from "../components/Card/CardLabel";
+
+import { history } from "../redux/store";
+
 
 const Backdrop = styled.div`
   position: fixed;
@@ -71,23 +75,6 @@ const Col = styled.div`
 
 `;
 
-const LabelList = styled.ul`
-  display: flex;
-`;
-
-const LabelItem = styled.li`
-  height: 2rem;
-  width: 2rem;
-  margin-right: .5rem;
-  background-color: ${props => props.value};
-  cursor: pointer;
-  border-radius: .2rem;
-`;
-
-
-const Description = styled.p`
-  padding: .3rem .5rem;
-`;
 
 const Close = styled.button`
   display: block;
@@ -124,39 +111,21 @@ class CardModal extends Component {
     })
   };
 
-  componentDidMount() {
-    document.documentElement.classList.add('scroll-disabled');
-  }
-
-  componentWillUnmount() {
-    document.documentElement.classList.remove('scroll-disabled');
-  }
 
 
   render() {
     const { card, cardIndex, listIndex } = this.props;
     const { isTitleEditing, isDescEditing } = this.state;
-    if (!card) return null;
+    const boardUrl = `/b/${this.props.match.params}`;
     return (
       <Backdrop>
-        <Close onClick={() => this.props.toggleModal()} />
+        <Close onClick={() => history.push(boardUrl)} />
         <Container onClick={(e) => e.preventDefault()}>
-          <CloseButton onClick={() => this.props.toggleModal()}>
+          <CloseButton onClick={() => history.push(boardUrl)}>
             <FontAwesomeIcon icon="times" />
           </CloseButton>
           <Wrapper>
-            {!isTitleEditing ? (
-              <Title onClick={() => this.toggleIsTitleEditing()}>
-                {card.title}
-              </Title>
-            ) : (
-              <CardTitleEdit
-                card={card}
-                cardIndex={cardIndex}
-                listIndex={listIndex}
-                toggleIsTitleEditing={this.toggleIsTitleEditing}
-              />
-            )}
+            <CardTitle cardId={card._cardId} cardTitle={card.title}/>
             <Icon>
               <FontAwesomeIcon icon="window-maximize" />
             </Icon>
@@ -167,18 +136,7 @@ class CardModal extends Component {
                 <Title>
                   Description
                 </Title>
-                {!isDescEditing ? (
-                  <Description onClick={() => this.toggleIsDescEditing()}>
-                    {card.description}
-                  </Description>
-                ) : (
-                  <CardDescEdit
-                    card={card}
-                    cardIndex={cardIndex}
-                    listIndex={listIndex}
-                    toggleIsDescEditing={this.toggleIsDescEditing}
-                  />
-                )}
+                <CardDescription  cardId={card._cardId} cardDescription={card.description}/>
                 <Icon>
                   <FontAwesomeIcon icon="align-left" />
                 </Icon>
@@ -188,29 +146,25 @@ class CardModal extends Component {
                   <Title>
                     Label
                   </Title>
-                  <LabelList>
-                    {this.props.labels.map((label, index) => (
-                      <LabelItem key={index} value={label.color}/>
-                    ))}
-                  </LabelList>
+                  <CardLabel  cardId={card._cardId} cardLabels={card.cardLabels}/>
                   <Icon>
                     <FontAwesomeIcon icon="tag" />
                   </Icon>
                 </Wrapper>
               )}
-              {this.props.checkLists.length !== 0 && (
-                <Wrapper>
-                  <Icon>
-                    <FontAwesomeIcon icon="tag" />
-                  </Icon>
-                  {this.props.checkLists.map((item, index) => (
-                    <CheckList key={index} checkBoxIndex={index} cardIndex={cardIndex} listIndex={listIndex}/>
-                  ))}
-                </Wrapper>
-              )}
+              {/*{this.props.checkLists.length !== 0 && (*/}
+              {/*  <Wrapper>*/}
+              {/*    <Icon>*/}
+              {/*      <FontAwesomeIcon icon="tag" />*/}
+              {/*    </Icon>*/}
+              {/*    {this.props.checkLists.map((item, index) => (*/}
+              {/*      <CheckList key={index} checkBoxIndex={index} cardIndex={cardIndex} listIndex={listIndex}/>*/}
+              {/*    ))}*/}
+              {/*  </Wrapper>*/}
+              {/*)}*/}
             </Col>
             <Col>
-              <CardActionsMenu card={card} cardIndex={cardIndex} listIndex={listIndex}/>
+              <CardActionsMenu card={card} />
             </Col>
           </Row>
         </Container>
@@ -220,20 +174,11 @@ class CardModal extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { rootReducer } = state;
-  const board = rootReducer.boards[rootReducer.currentBoardIndex];
-  const list = board.lists[ownProps.listIndex];
-  const card = list.cards[ownProps.cardIndex];
-  const label = card.cardLabels;
-  const checkLists = card.checkLists;
   return {
-    board: board,
-    list: list,
-    card: card,
-    labels: label,
-    checkLists: checkLists
+    card: state.rootReducer.cards[ownProps.match.params.cardId],
   }
 }
+
 
 function mapDispatchToProps(dispatch) {
   return {

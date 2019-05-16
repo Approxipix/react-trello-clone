@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import Header from '../components/Header/Header'
 import Board from '../pages/Board'
 import Boards from '../pages/Boards'
+import CardModal from "../pages/CardModal";
 
 const MainWrapper = styled.div` 
   display: grid;
@@ -29,11 +30,14 @@ class Routes extends Component {
           <Header />
         </HeaderWrapper>
        <ContentWrapper>
-         <Switch>
-           <Route exact path="/boards" component={Boards}/>
-           <Route exact path="/board/:id" component={Board}/>
-           <Route exact render={ () => <Redirect to="/boards"/>} />
-         </Switch>
+         {/*<Switch>*/}
+         {/*  <Route exact path="/boards" component={Boards}/>*/}
+         {/*  <Route exact path="/b/:boardId" component={Board}/>*/}
+         {/*  <Route exact render={ () => <Redirect to="/boards"/>} />*/}
+         {/*</Switch>*/}
+         <Route exact path="/boards" component={Boards}/>
+         <Route path="/b/:boardId" component={Board}/>
+         <Route exact path={`/b/:boardId/c/:cardId`} component={CardModal}/>
        </ContentWrapper>
       </MainWrapper>
     )

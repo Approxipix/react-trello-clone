@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateCheckListItem, deleteCheckListItem } from '../../redux/boardReducer/actions';
+import { updateCheckListItem, deleteCheckListItem } from '../../redux/rootReducer/actions';
 import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CheckBox } from '../BaseComponent';

@@ -5,7 +5,7 @@ import ClickOutside from "../ClickOutside";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { CancelButton, Input, SubmitButton } from "../BaseComponent";
-import { addCheckList } from "../../redux/boardReducer/actions";
+import { addCheckList } from "../../redux/rootReducer/actions";
 
 const Wrapper = styled.div`
   position: absolute;

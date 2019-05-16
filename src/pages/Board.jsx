@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { moveList, moveCard, setCurrentBoardIndex } from "../redux/boardReducer/actions";
+import { moveList, moveCard, setCurrentBoardID } from "../redux/rootReducer/actions";
 import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import BoardHeader from '../components/Board/BoardHeader'
@@ -27,14 +27,15 @@ const Container = styled.div`
 
 class InnerList extends Component {
   render() {
-    const { lists } = this.props;
-    if (!lists) return null;
+    const { listsId, boardId } = this.props;
     return (
       <>
-        {lists.map((list, index) => (
+        {listsId.map((listId, index) => (
           <List
             key={index}
-            listIndex={index}
+            index={index}
+            boardId={boardId}
+            listId={listId}
           />
         ))}
       </>
@@ -44,13 +45,12 @@ class InnerList extends Component {
 
 class Board extends Component {
   componentDidMount() {
-    const { actions, match } = this.props;
-    actions.setCurrentBoardIndex(match.params.id)
+    const boardId = this.props.match.params.boardId;
+    this.props.actions.setCurrentBoardID(boardId)
   }
 
   componentWillUnmount() {
-    const { actions } = this.props;
-    actions.setCurrentBoardIndex(null)
+    this.props.actions.setCurrentBoardID(null)
   }
 
   handleDragEnd = (result) => {
@@ -64,6 +64,7 @@ class Board extends Component {
 
     if (type === 'column') {
       actions.moveList({
+        boardId: this.props.board._boardId,
         sourceIndex: source.index,
         destinationIndex: destination.index,
       });
@@ -80,11 +81,11 @@ class Board extends Component {
   };
 
   render() {
-    const { board, boardColor, lists } = this.props;
+    const { board } = this.props;
     if (!board) return null;
     return (
-      <BoardWrapper color={boardColor}>
-        <BoardHeader />
+      <BoardWrapper color={board.color}>
+        <BoardHeader boardId={board._boardId}/>
         <DragDropContext onDragEnd={this.handleDragEnd}>
           <Droppable
             type='column'
@@ -96,9 +97,14 @@ class Board extends Component {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                <InnerList lists={lists} />
+                <InnerList
+                  boardId={board._boardId}
+                  listsId={board.lists}
+                />
                 {provided.placeholder}
-                <ListAdder />
+                <ListAdder
+                  boardId={board._boardId}
+                />
               </Container>
             )}
           </Droppable>
@@ -109,20 +115,15 @@ class Board extends Component {
 }
 
 function mapStateToProps(state) {
-  const { rootReducer } = state;
-  const board = rootReducer.boards[rootReducer.currentBoardIndex];
-  const lists = !!board && board.lists;
   return {
-    board: board,
-    lists: lists,
-    boardColor: !!board ? board.color : '#2E7EAF'
+    board: state.rootReducer.boards[state.rootReducer.currentBoardID],
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      setCurrentBoardIndex: setCurrentBoardIndex,
+      setCurrentBoardID: setCurrentBoardID,
       moveList: moveList,
       moveCard: moveCard,
     }, dispatch)

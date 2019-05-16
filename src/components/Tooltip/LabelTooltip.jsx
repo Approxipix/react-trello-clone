@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 import ClickOutside from "../ClickOutside";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 const Wrapper = styled.div`
@@ -89,15 +88,9 @@ class LabelTooltip extends Component {
   };
 }
 
-function mapStateToProps(state, ownProps) {
-  const { rootReducer } = state;
-  const board = rootReducer.boards[rootReducer.currentBoardIndex];
-  const list = board.lists[ownProps.listIndex];
-  const card = list.cards[ownProps.cardIndex];
-  const label = card.cardLabels;
+function mapStateToProps(state) {
   return {
     labels: state.rootReducer.labels,
-    cardLabels: label
   }
 }
 

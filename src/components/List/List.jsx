@@ -2,11 +2,9 @@ import React, { Component, PureComponent } from 'react';
 import { connect } from "react-redux/es/alternate-renderers";
 import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
-import ListActions from './ListActions';
-import ListEdit from './ListEdit';
 import CardAdder from '../Card/CardAdder';
 import Cards from './Cards'
+import ListHeader from './ListHeader'
 
 const Container = styled.div`
   position: relative;
@@ -31,48 +29,12 @@ const CardsWrap = styled.div`
 
 
 
-const Header = styled.div`
-  margin-bottom: .5rem;
-  padding: ${props => props.isEditing ? '0 .5rem 0 0' : '.5rem'};
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Actions = styled.div`
-  cursor: pointer;
-`;
-
-
 class List extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpened: false,
-      isEditing: false,
-    }
-  }
-
-  toggleEditing = () => {
-    this.setState({
-      isEditing: !this.state.isEditing
-    })
-  };
-
-  toggleOpened = () => {
-    this.setState({
-      isOpened: !this.state.isOpened
-    })
-  };
-
   render() {
-    const { list, listIndex } = this.props;
-    const { isOpened, isEditing } = this.state;
-    if (!list) return null;
+    const {  list, boardId, index } = this.props;
     return (
       <Draggable
-        index={listIndex}
+        index={index}
         draggableId={`${list._listId}`}
         disableInteractiveElementBlocking
       >
@@ -82,34 +44,20 @@ class List extends Component {
               {...provided.draggableProps}
               ref={provided.innerRef}
             >
-              <Header
-                {...provided.dragHandleProps}
-                isEditing={isEditing}
-              >
-                {!isEditing ? (
-                  <Title onClick={() => this.toggleEditing()}>
-                    {list.title}
-                  </Title>
-                ) : (
-                  <ListEdit
-                    toggleEditing={this.toggleEditing}
-                    listIndex={listIndex}
-                  />
-                )}
-                <Actions onClick={() => this.toggleOpened()}>
-                  <FontAwesomeIcon icon="ellipsis-h" />
-                </Actions>
-              </Header>
-              {isOpened && (
-                <ListActions
-                  toggleOpened={this.toggleOpened}
-                  listId={list._listId}
-                />
-              )}
+              <ListHeader
+                dragHandleProps={provided.dragHandleProps}
+                boardId={boardId}
+                listId={list._listId}
+                listTitle={list.title}
+              />
+
               <CardsWrap>
-                <Cards listIndex={listIndex}/>
+                <Cards
+                  listId={list._listId}
+                  cardsId={list.cards}
+                />
               </CardsWrap>
-              <CardAdder listIndex={listIndex} />
+              <CardAdder listId={list._listId} />
             </Container>
             {provided.placeholder}
           </>
@@ -120,11 +68,8 @@ class List extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { rootReducer } = state;
-  const board = rootReducer.boards[rootReducer.currentBoardIndex];
-  const list = !!board && board.lists[ownProps.listIndex];
   return {
-    list: list,
+    list: state.rootReducer.lists[ownProps.listId],
   }
 }
 

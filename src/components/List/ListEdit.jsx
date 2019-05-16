@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { editListTitle } from '../../redux/boardReducer/actions';
+import { editListTitle } from '../../redux/rootReducer/actions';
 import ClickOutside from "../ClickOutside";
 
 const Form = styled.form`
@@ -23,7 +23,7 @@ class ListEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: props.list.title || '',
+      title: props.listTitle || '',
     };
   }
 
@@ -37,11 +37,11 @@ class ListEdit extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { title } = this.state;
-    const { actions, listIndex } = this.props;
+    const { listId } = this.props;
     if (!title)  return;
-    actions.editListTitle({
+    this.props.actions.editListTitle({
       listTitle: title,
-      listIndex: listIndex
+      listId: listId
     });
     this.props.toggleEditing()
   };
@@ -65,15 +65,6 @@ class ListEdit extends Component {
   };
 }
 
-function mapStateToProps(state, ownProps) {
-  const { rootReducer } = state;
-  const board = rootReducer.boards[rootReducer.currentBoardIndex];
-  return {
-    board: board,
-    list: board.lists[ownProps.listIndex]
-  }
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
@@ -83,4 +74,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListEdit);
+export default connect(null, mapDispatchToProps)(ListEdit);

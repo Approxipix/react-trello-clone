@@ -1,56 +1,64 @@
 import uuid from "uuid";
 
 class Board {
-  static serCurrentBoardIndex(state, payload) {
+  static serCurrentBoardID(state, payload) {
     return {
       ...state,
-      currentBoardIndex: payload
+      currentBoardID: payload
     }
   }
 
   static addBoard(state, payload) {
     const { boardTitle } = payload;
+    const newBoardId = uuid.v4();
     return {
       ...state,
-      boards: [
+      boards: {
         ...state.boards,
-        {
-          _boardId: uuid.v4(),
+        [newBoardId]: {
+          _boardId: newBoardId,
           title: boardTitle,
-          color: '#2E7EAF',
+          color: state.colors[0],
           lists: [],
         }
-      ]
+      }
     }
   }
 
   static editBoardTitle(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { boardTitle } = payload;
-    let currentBoard = boards[currentBoardIndex];
-    currentBoard.title = boardTitle;
+    const { boardId, boardTitle } = payload;
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+      boards: {
+        ...state.boards,
+        [boardId]: {
+          ...state.boards[boardId],
+          title: boardTitle
+        }
+      }
     };
   }
 
   static editBoardColor(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { boardColor } = payload;
-    let currentBoard = boards[currentBoardIndex];
-    currentBoard.color = boardColor;
+    const { boardId, boardColor } = payload;
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+      boards: {
+        ...state.boards,
+        [boardId]: {
+          ...state.boards[boardId],
+          color: boardColor
+        }
+      }
     };
   }
 
   static deleteBoard(state, payload) {
-    const { _boardId } = payload;
+    const { boardId } = payload;
+    const { [boardId]: deletedBoard, ...restOfBoards } = state.boards;
     return {
       ...state,
-      boards: state.boards.filter(board => board._boardId !== _boardId)
+      boards: restOfBoards
     }
   }
 }

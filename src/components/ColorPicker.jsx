@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editBoardColor } from '../redux/boardReducer/actions';
+import { editBoardColor } from '../redux/rootReducer/actions';
 import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 import ClickOutside from './ClickOutside'
@@ -56,12 +56,12 @@ class ColorPicker extends Component {
     super(props);
     this.state = {
       isOpened: false,
-      colors: ['#2E7EAF', '#00603d', '#D29034', "#89609D"]
     }
   }
 
   editBoardColor = (color) => {
     this.props.actions.editBoardColor({
+      boardId: this.props.boardId,
       boardColor: color
     });
     this.setState({isOpened: false})
@@ -74,8 +74,8 @@ class ColorPicker extends Component {
   };
 
   render() {
-    const { board } = this.props;
-    const { colors, isOpened } = this.state;
+    const { boardColor, colors } = this.props;
+    const { isOpened } = this.state;
     return (
       <Container>
         <Button onClick={() => this.toggleOpened()}>
@@ -90,7 +90,7 @@ class ColorPicker extends Component {
                   value={color}
                   onClick={() => this.editBoardColor(color)}
                 >
-                  {board.color === color && (
+                  {boardColor === color && (
                     <FontAwesomeIcon icon="check" />
                   )}
                 </MenuItem>
@@ -104,9 +104,8 @@ class ColorPicker extends Component {
 }
 
 function mapStateToProps(state) {
-  const { rootReducer } = state;
   return {
-    board: rootReducer.boards[rootReducer.currentBoardIndex],
+    colors: state.rootReducer.colors,
   }
 }
 

@@ -19,16 +19,17 @@ const CardLIst = styled.div`
 
 class InnerList extends Component {
   render() {
-    const { cards, listIndex } = this.props;
-    if (!cards) return null;
+    const { cardsId, listId } = this.props;
     return (
       <>
-        {cards.map((card, index) =>
+        {cardsId.map((cardId, index) =>
           <Card
             isDraggingOver={this.props.isDraggingOver}
+
             key={index}
-            listIndex={listIndex}
-            cardIndex={index}
+            index={index}
+            listId={listId}
+            cardId={cardId}
           />
         )}
       </>
@@ -38,11 +39,11 @@ class InnerList extends Component {
 
 class Cards extends Component {
   render() {
-    const { listIndex, cards } = this.props;
+    const { listId, cardsId } = this.props;
     return (
       <Droppable
         type={'task'}
-        droppableId={`${listIndex}`}
+        droppableId={`${listId}`}
       >
         {(provided, { isDraggingOver }) => (
           <CardLIst
@@ -52,16 +53,10 @@ class Cards extends Component {
           >
             <InnerList
               isDraggingOver={isDraggingOver}
-              listIndex={listIndex}
-              cards={cards}
+              listId={listId}
+              cardsId={cardsId}
             />
             {provided.placeholder}
-            {/*<div*/}
-            {/*  style={{ float: "left", clear: "both" }}*/}
-            {/*  ref={el => {*/}
-            {/*    this.listEnd = el;*/}
-            {/*  }}*/}
-            {/*/>*/}
           </CardLIst>
         )}
       </Droppable>
@@ -69,15 +64,5 @@ class Cards extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const { rootReducer } = state;
-  const board = rootReducer.boards[rootReducer.currentBoardIndex];
-  const list = !!board && board.lists[ownProps.listIndex];
-  const cards = !!list && list.cards;
-  return {
-    list: list,
-    cards: cards,
-  }
-}
 
-export default connect(mapStateToProps)(Cards);
+export default Cards;

@@ -58,7 +58,7 @@ const BoardSchemeList = styled.div`
 
 class Boards extends Component {
   render() {
-    const { boards } = this.props;
+    const { boards, lists } = this.props;
     return (
       <Wrapper>
         <Title>
@@ -66,18 +66,21 @@ class Boards extends Component {
         </Title>
         <BoardList>
           {boards.map((board, index) => (
-            <NavLink key={index} to={`/board/${index}`}>
+            <NavLink key={index} to={`/b/${board._boardId}`}>
               <BoardItem color={board.color}>
                 <BoardTitle>
                   {board.title}
                 </BoardTitle>
                 <BoardScheme>
-                  {board.lists.map((list, index) => (
-                    <BoardSchemeList
-                      key={index}
-                      height={Math.min((list.cards.length + 1) * 10, 100)}
-                    />
-                  ))}
+                  {board.lists.map((listId, index) => {
+                    const list = lists.find(list => list._listId === listId);
+                    return (
+                      <BoardSchemeList
+                        key={index}
+                        height={Math.min((list.cards.length + 1) * 10, 100)}
+                      />
+                    )
+                  })}
                 </BoardScheme>
               </BoardItem>
             </NavLink>
@@ -90,8 +93,11 @@ class Boards extends Component {
 }
 
 function mapStateToProps(state) {
+  const boardsObject = state.rootReducer.boards;
+  const listsObject = state.rootReducer.lists;
   return {
-    boards: state.rootReducer.boards,
+    boards: Object.keys(boardsObject).map(key => boardsObject[key]),
+    lists: Object.keys(listsObject).map(key => listsObject[key])
   }
 }
 

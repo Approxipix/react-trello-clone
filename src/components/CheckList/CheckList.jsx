@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { deleteCheckList } from '../../redux/boardReducer/actions';
+import { deleteCheckList } from '../../redux/rootReducer/actions';
 import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CheckListItem from './CheckListItem'
@@ -86,8 +86,8 @@ class CheckList extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { rootReducer } = state;
-  const board = rootReducer.boards[rootReducer.currentBoardIndex];
+  const { boardReducer } = state;
+  const board = boardReducer.boards[boardReducer.currentBoardIndex];
   const list = board.lists[ownProps.listIndex];
   const card = list.cards[ownProps.cardIndex];
   const items = card.checkLists[ownProps.checkBoxIndex].items;

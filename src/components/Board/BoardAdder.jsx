@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addBoard } from '../../redux/boardReducer/actions';
+import { addBoard } from '../../redux/rootReducer/actions';
 import styled from 'styled-components'
 import { Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from '../ClickOutside'

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { addCheckListItem } from '../../redux/boardReducer/actions';
+import { addCheckListItem } from '../../redux/rootReducer/actions';
 import { Input, TextArea, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside";
 

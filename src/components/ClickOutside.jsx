@@ -15,7 +15,7 @@ class ClickOutside extends Component {
   outerClick = (e) => {
     let { target } = e;
     if (!!target.closest && (target.closest('.click-outside-wrapper'))) {
-      return;
+      return null;
     }
     this.props.toggleOpened();
   };

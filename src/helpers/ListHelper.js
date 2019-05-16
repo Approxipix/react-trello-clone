@@ -2,55 +2,72 @@ import uuid from "uuid";
 
 class List {
   static addList(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { listTitle } = payload;
-    const currentBoard = boards[currentBoardIndex];
-    currentBoard.lists = [
-      ...currentBoard.lists,
-      {
-        _listId: uuid.v4(),
-        title: listTitle,
-        cards: []
-      }
-    ];
+    const { listTitle, boardId } = payload;
+    const newListId = uuid.v4();
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
-    };
+      boards: {
+        ...state.boards,
+        [boardId]: {
+          ...state.boards[boardId],
+          lists: state.boards[boardId].lists.concat(newListId)
+        }
+      },
+      lists: {
+        ...state.lists,
+        [newListId]: {
+          _listId: newListId,
+          title: listTitle,
+          cards: []
+        }
+      }
+    }
   }
 
   static editListTitle(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { listIndex, listTitle } = payload;
-    const currentBoard = boards[currentBoardIndex];
-    currentBoard.lists[listIndex].title = listTitle;
+    const { listTitle, listId } = payload;
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+      lists: {
+        ...state.lists,
+        [listId]: {
+          ...state.lists[listId],
+          title: listTitle,
+        }
+      }
     };
   }
 
   static moveList(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { sourceIndex, destinationIndex } = payload;
-    const currentBoard = boards[currentBoardIndex];
-    let sourceList = currentBoard.lists[sourceIndex];
-    currentBoard.lists.splice(sourceIndex, 1);
-    currentBoard.lists.splice(destinationIndex, 0, sourceList);
+    const { boardId, sourceIndex, destinationIndex } = payload;
+    const newLists = Array.from(state.boards[boardId].lists);
+    const [removedList] = newLists.splice(sourceIndex, 1);
+    newLists.splice(destinationIndex, 0, removedList);
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+      boards: {
+        ...state.boards,
+        [boardId]: {
+          ...state.boards[boardId],
+          lists: newLists
+        }
+      }
     };
   }
 
   static deleteList(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { _listId } = payload;
-    const currentBoard = boards[currentBoardIndex];
-    currentBoard.lists = currentBoard.lists.filter(list => list._listId !== _listId);
+    const { boardId, listId } = payload;
+    const { [listId]: deletedList, ...restOfLists } = state.lists;
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+      boards: {
+        ...state.boards,
+        [boardId]: {
+          ...state.boards[boardId],
+          lists: state.boards[boardId].lists.filter(listId => listId !== deletedList._listId)
+        }
+      },
+      lists: restOfLists
     };
   }
 }

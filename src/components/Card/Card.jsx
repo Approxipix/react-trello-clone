@@ -2,20 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
-import { setCurrentBoardIndex, deleteCard } from '../../redux/boardReducer/actions';
-import CardModal from "./CardModal";
 import { NavLink } from 'react-router-dom';
 
 const Title = styled.h4`
-  padding-bottom: .5rem;
-  margin-bottom: .5rem;
-  border-bottom: 1px solid #e3e3e3
-`;
-
-const Description = styled.p`
-  color: #4c4c4c;
-  font-size: .75rem;
+    padding: .5rem;
+    color: #40424b;
 `;
 
 const Button = styled.button`
@@ -32,7 +23,6 @@ const Button = styled.button`
 
 const Container = styled.div`
   position: relative;
-  padding: .5rem;
   border: 1px solid lightgrey;
   border-radius: 2px;
   background-color: white;  
@@ -45,79 +35,61 @@ const Container = styled.div`
    margin-bottom: .5rem;
 `;
 
+const CardLabelList = styled.div`
+  display: flex;
+  padding: .5rem;
+`;
+
+const CardLabelListItem = styled.div`
+  height: .5rem;
+  width: 1rem;
+  border-radius: 1rem;
+  margin-right: .2rem;
+  background-color: ${props => props.value};
+`;
 
 class Card extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpened: false,
-    }
-  }
-
-  toggleModal = () => {
-    this.setState({
-      isOpened: !this.state.isOpened
-    })
-  };
-
   render() {
-    const { isOpened } = this.state;
-    const { currentBoardIndex, card, cardIndex, listIndex, isDraggingOver} = this.props;
-    if (!card) return null;
+    const { currentBoardID, card, index, isDraggingOver} = this.props;
     return (
-      <>
-        <Draggable
-          index={cardIndex}
-          draggableId={`${card._cardId}`}
-        >
-          {(provided, snapshot) => (
-            <>
-              <NavLink to={`/board/${currentBoardIndex}/card/${cardIndex}`}>asd</NavLink>
-              <Container
-                {...provided.draggableProps}
-                {...provided.dragHandleProps}
-                ref={provided.innerRef}
-                isDragging={snapshot.isDragging}
-                onClick={() => this.toggleModal()}
-              >
+      <Draggable
+        index={index}
+        draggableId={`${card._cardId}`}
+      >
+        {(provided, snapshot) => (
+          <>
+            <Container
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              isDragging={snapshot.isDragging}
+            >
+              <NavLink to={`/b/${currentBoardID}/c/${card._cardId}`}>
                 <Title>{card.title}</Title>
-                <Description>{card.description}</Description>
-              </Container>
-              {isDraggingOver && provided.placeholder}
-            </>
-          )}
-        </Draggable>
-        {isOpened && (
-          <CardModal
-            listIndex={listIndex}
-            cardIndex={cardIndex}
-            toggleModal={this.toggleModal}
-          />
+                {!!card.description && 'desc'}
+                {!!card.cardLabels && (
+                  <CardLabelList>
+                    {card.cardLabels.map(((label, index) => (
+                      <CardLabelListItem key={index} value={label.color}/>
+                    )))}
+                  </CardLabelList>
+                )}
+              </NavLink>
+            </Container>
+            {isDraggingOver && provided.placeholder}
+          </>
         )}
-      </>
+      </Draggable>
     )
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  const { rootReducer } = state;
-  const board = rootReducer.boards[rootReducer.currentBoardIndex];
-  const list = board.lists[ownProps.listIndex];
-  const card = list.cards[ownProps.cardIndex];
   return {
-    card: card,
-    currentBoardIndex: rootReducer.currentBoardIndex
+    currentBoardID: state.rootReducer.currentBoardID,
+    card: state.rootReducer.cards[ownProps.cardId],
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({
-      setCurrentBoardIndex: setCurrentBoardIndex,
-      deleteCard: deleteCard,
-    }, dispatch)
-  };
-}
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default connect(mapStateToProps)(Card);
