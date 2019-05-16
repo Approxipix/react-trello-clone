@@ -15,7 +15,13 @@ const boards = [
             title: 'Board - 1 List - 1 Card - 1',
             description: '',
             cardLabels: [],
-            checkLists: [],
+            checkLists: [
+              {
+                _checkListId: uuid.v4(),
+                title: 'Check list',
+                items: []
+              }
+            ],
           },
           {
             _cardId: uuid.v4(),
@@ -56,30 +62,30 @@ const boards = [
     ],
   },
   {
-    _boardId: 'Board2',
+    _boardId: uuid.v4(),
     title: 'Board - 2',
     color: '#2E7EAF',
     lists: [
       {
-        _listId: 'Board2List1',
+        _listId: uuid.v4(),
         title: 'Board - 2 List - 1',
         cards: [
           {
-            _cardId: 'Board2List1Card1',
+            _cardId: uuid.v4(),
             title: 'Board - 2 List - 1 Card - 1',
             description: '',
             cardLabels: [],
             checkLists: [],
           },
           {
-            _cardId: 'Board2List1Card2',
+            _cardId: uuid.v4(),
             title: 'Board - 2 List - 1 Card - 2',
             description: '',
             cardLabels: [],
             checkLists: [],
           },
           {
-            _cardId: 'Board2List1Card3',
+            _cardId: uuid.v4(),
             title: 'Board - 2 List - 1 Card - 3',
             description: '',
             cardLabels: [],
