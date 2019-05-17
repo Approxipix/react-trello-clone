@@ -5,7 +5,8 @@ import { NavLink } from 'react-router-dom';
 import BoardAdder from '../components/Board/BoardAdder';
 
 const Wrapper = styled.div`
-  padding: 1.5rem;
+  height: 100%;
+  padding: 1rem 1.5rem;
 `;
 
 const Title = styled.h1`
@@ -16,7 +17,7 @@ const Title = styled.h1`
 
 const BoardList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(4, minmax(13rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   grid-auto-rows: 1fr;
   grid-gap: 1rem;
 `;
@@ -24,9 +25,9 @@ const BoardList = styled.ul`
 const BoardItem = styled.li`
   padding: .6rem;
   background-color: ${props => props.color};
-  border-radius: .4rem
+  border-radius: .4rem;
   &:hover {
-    box-shadow: inset 0px 0px 0px 100px rgba(0, 0, 0, .1);
+    box-shadow: inset 0px 0px 0px 20rem rgba(0, 0, 0, .1);
   }
 `;
 
@@ -49,10 +50,10 @@ const BoardScheme = styled.div`
 const BoardSchemeList = styled.div`
   display: inline-block;
   flex-shrink: 0;
-  height: ${props => props.height}px;
   width: 1.5rem;
-  margin-right: 6px;
-  border-radius: 3px;
+  height: ${props => props.height}px;
+  margin-right: .4rem;
+  border-radius: .2rem;
   background: rgba(255, 255, 255, 0.25);
 `;
 

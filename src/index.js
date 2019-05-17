@@ -60,7 +60,8 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
   a {
-  text-decoration: none;
+    text-decoration: none;
+  }
 `;
 
 class App extends Component {

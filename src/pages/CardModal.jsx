@@ -8,19 +8,10 @@ import CheckList from "../components/CheckList/CheckList";
 import CardTitle from "../components/Card/CardTitle";
 import CardDescription from "../components/Card/CardDescription";
 import CardLabel from "../components/Card/CardLabel";
+import {Backdrop, CloseBackdrop} from '../components/BaseComponent'
 
 import { history } from "../redux/store";
 
-
-const Backdrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 100;
-`;
 
 const Container = styled.div`
   position: absolute;
@@ -76,20 +67,6 @@ const Col = styled.div`
 `;
 
 
-const Close = styled.button`
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  background: transparent;
-  border: none;
-  outline: none;
-`;
-
-
 class CardModal extends Component {
   constructor(props) {
     super(props);
@@ -119,7 +96,7 @@ class CardModal extends Component {
     const boardUrl = `/b/${this.props.match.params}`;
     return (
       <Backdrop>
-        <Close onClick={() => history.push(boardUrl)} />
+        <CloseBackdrop onClick={() => history.push(boardUrl)} />
         <Container onClick={(e) => e.preventDefault()}>
           <CloseButton onClick={() => history.push(boardUrl)}>
             <FontAwesomeIcon icon="times" />

@@ -57,12 +57,12 @@ const Actions = styled.div``;
 
 class Header extends Component {
   render() {
-    const { boardColor } = this.props;
+    const { boardColor, location } = this.props;
     return (
       <Wrapper color={boardColor}>
         <Nav>
           {NavigationItems.map((item, index) => {
-            if (window.location.pathname === item.path) return null;
+            if (location === item.path) return null;
             return (
               <NavList key={index}>
                 <NavLink to={item.path}>
@@ -89,7 +89,8 @@ class Header extends Component {
 function mapStateToProps(state) {
   const board = state.boardReducer[state.rootReducer.currentBoardID];
   return {
-    boardColor: !!board ? board.color : state.rootReducer.colors[0]
+    boardColor: !!board ? board.color : state.rootReducer.colors[0],
+    location: window.location.pathname,
   }
 }
 

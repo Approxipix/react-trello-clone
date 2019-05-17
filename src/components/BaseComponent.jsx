@@ -7,9 +7,33 @@ export const Input = styled.input`
   font-size: 1rem;
   color: #40424b;
   line-height: 1rem;
+  background-color: ${props => props.color};
   border: 1px solid #bdc3c7;
   border-radius: .2rem;
   box-shadow: none;
+  outline: none;
+`;
+
+export const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+`;
+
+export const CloseBackdrop = styled.button`
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: transparent;
+  border: none;
   outline: none;
 `;
 
