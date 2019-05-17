@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addBoard } from '../../redux/rootReducer/actions';
+import { addBoard } from '../../redux/boardReducer/actions';
 import styled from 'styled-components'
 import { Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from '../ClickOutside'
@@ -71,9 +71,13 @@ class BoardAdder extends Component {
     const { boardTitle } = this.state;
     if (!boardTitle) return;
     this.props.actions.addBoard({
-      boardTitle: boardTitle
+      boardTitle: boardTitle,
+      boardColor: this.props.colors[0]
     });
-    this.toggleOpened();
+    this.setState({
+      boardTitle: '',
+    });
+    this.textInput.focus();
   };
 
   render = () => {
@@ -87,6 +91,7 @@ class BoardAdder extends Component {
           <form id="board-add-form" onSubmit={this.handleSubmit}>
             <Input
               autoFocus
+              ref={(input) => { this.textInput = input; }}
               type="text"
               placeholder="Add board title"
               value={boardTitle}
@@ -114,6 +119,12 @@ class BoardAdder extends Component {
   };
 }
 
+function mapStateToProps(state, ownProps) {
+  return {
+    colors: state.rootReducer.colors,
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
@@ -123,4 +134,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(null, mapDispatchToProps)(BoardAdder);
+export default connect(mapStateToProps, mapDispatchToProps)(BoardAdder);

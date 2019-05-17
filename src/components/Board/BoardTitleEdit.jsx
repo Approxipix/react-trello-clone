@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editBoardTitle } from '../../redux/rootReducer/actions';
+import { editBoardTitle } from '../../redux/boardReducer/actions';
 import styled from 'styled-components'
 import ClickOutside from '../ClickOutside';
 

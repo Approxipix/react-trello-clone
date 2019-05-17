@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { addList } from '../../redux/rootReducer/actions';
+import { addList } from '../../redux/listReducer/actions';
 import { Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside";
+import uuid from "uuid";
 
 const Wrapper = styled.div`
   width: 16rem;
@@ -43,7 +44,7 @@ const AddButton = styled.button`
   }
 `;
 
-class BoardAdder extends Component {
+class ListAdder extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,7 +69,8 @@ class BoardAdder extends Component {
 
   toggleOpened = () => {
     this.setState({
-      isOpened: !this.state.isOpened
+      isOpened: !this.state.isOpened,
+      title: '',
     })
   };
 
@@ -79,9 +81,12 @@ class BoardAdder extends Component {
     this.props.actions.addList({
       boardId: this.props.boardId,
       listId: this.props.listId,
-      listTitle: title
+      listTitle: title,
+      newListId: uuid.v4(),
     });
-    this.toggleOpened();
+    this.setState({
+      title: ''
+    })
   };
 
   render = () => {
@@ -131,4 +136,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(null, mapDispatchToProps)(BoardAdder);
+export default connect(null, mapDispatchToProps)(ListAdder);

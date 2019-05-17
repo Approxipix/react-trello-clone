@@ -93,8 +93,8 @@ class Boards extends Component {
 }
 
 function mapStateToProps(state) {
-  const boardsObject = state.rootReducer.boards;
-  const listsObject = state.rootReducer.lists;
+  const boardsObject = state.boardReducer;
+  const listsObject = state.listReducer;
   return {
     boards: Object.keys(boardsObject).map(key => boardsObject[key]),
     lists: Object.keys(listsObject).map(key => listsObject[key])

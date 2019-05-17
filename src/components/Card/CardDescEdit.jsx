@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editCardDescription } from '../../redux/rootReducer/actions';
+import { editCardDescription } from '../../redux/cardReducer/actions';
 import styled from 'styled-components'
 import { TextArea, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from '../ClickOutside';

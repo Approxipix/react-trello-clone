@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { moveList, moveCard, setCurrentBoardID } from "../redux/rootReducer/actions";
+import { setCurrentBoardID } from "../redux/rootReducer/actions";
+import { moveList } from "../redux/boardReducer/actions";
+import { moveCard } from "../redux/listReducer/actions";
 import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import BoardHeader from '../components/Board/BoardHeader'
@@ -116,7 +118,7 @@ class Board extends Component {
 
 function mapStateToProps(state) {
   return {
-    board: state.rootReducer.boards[state.rootReducer.currentBoardID],
+    board: state.boardReducer[state.rootReducer.currentBoardID],
   }
 }
 

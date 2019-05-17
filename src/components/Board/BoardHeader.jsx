@@ -82,7 +82,7 @@ class BoardHeader extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    board: state.rootReducer.boards[ownProps.boardId],
+    board: state.boardReducer[ownProps.boardId],
   }
 }
 

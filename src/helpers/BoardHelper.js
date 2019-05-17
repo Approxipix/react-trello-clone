@@ -1,40 +1,48 @@
 import uuid from "uuid";
-
 class Board {
-  static serCurrentBoardID(state, payload) {
-    return {
-      ...state,
-      currentBoardID: payload
-    }
-  }
-
   static addBoard(state, payload) {
-    const { boardTitle } = payload;
+    const { boardTitle, boardColor } = payload;
     const newBoardId = uuid.v4();
     return {
       ...state,
-      boards: {
-        ...state.boards,
-        [newBoardId]: {
-          _boardId: newBoardId,
-          title: boardTitle,
-          color: state.colors[0],
-          lists: [],
-        }
+      [newBoardId]: {
+        _boardId: newBoardId,
+        title: boardTitle,
+        color: boardColor,
+        lists: [],
       }
     }
+  }
+
+  static addListToBoard(state, payload) {
+    const { boardId, newListId } = payload;
+    return {
+      ...state,
+      [boardId]: {
+        ...state[boardId],
+        lists: state[boardId].lists.concat(newListId)
+      }
+    }
+  }
+
+  static deleteListFromBoard(state, payload) {
+    const { boardId, listId: deleteListId } = payload;
+    return {
+      ...state,
+      [boardId]: {
+        ...state[boardId],
+        lists: state[boardId].lists.filter(listId => listId !== deleteListId)
+      },
+    };
   }
 
   static editBoardTitle(state, payload) {
     const { boardId, boardTitle } = payload;
     return {
       ...state,
-      boards: {
-        ...state.boards,
-        [boardId]: {
-          ...state.boards[boardId],
-          title: boardTitle
-        }
+      [boardId]: {
+        ...state[boardId],
+        title: boardTitle
       }
     };
   }
@@ -43,23 +51,31 @@ class Board {
     const { boardId, boardColor } = payload;
     return {
       ...state,
-      boards: {
-        ...state.boards,
-        [boardId]: {
-          ...state.boards[boardId],
-          color: boardColor
-        }
+      [boardId]: {
+        ...state[boardId],
+        color: boardColor
       }
     };
   }
 
   static deleteBoard(state, payload) {
     const { boardId } = payload;
-    const { [boardId]: deletedBoard, ...restOfBoards } = state.boards;
+    const { [boardId]: deletedBoard, ...restOfBoards } = state;
+    return restOfBoards;
+  }
+
+  static moveList(state, payload) {
+    const { boardId, sourceIndex, destinationIndex } = payload;
+    const newLists = Array.from(state[boardId].lists);
+    const [removedList] = newLists.splice(sourceIndex, 1);
+    newLists.splice(destinationIndex, 0, removedList);
     return {
       ...state,
-      boards: restOfBoards
-    }
+      [boardId]: {
+        ...state[boardId],
+        lists: newLists
+      }
+    };
   }
 }
 

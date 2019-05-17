@@ -1,29 +1,4 @@
 export const SET_CURRENT_BOARD_ID = 'SET_CURRENT_BOARD_ID';
-export const ADD_BOARD = 'ADD_BOARD';
-export const EDIT_BOARD_TITLE = 'EDIT_BOARD_TITLE';
-export const EDIT_BOARD_COLOR = 'EDIT_BOARD_COLOR';
-export const DELETE_BOARD = 'DELETE_BOARD';
-
-export const ADD_LIST = 'ADD_LIST';
-export const EDIT_LIST_TITLE = 'EDIT_LIST_TITLE';
-export const MOVE_LIST = 'MOVE_LIST';
-export const DELETE_LIST = 'DELETE_LIST';
-
-export const ADD_CARD = 'ADD_CARD';
-export const ADD_LABEL_TO_CARD = 'ADD_LABEL_TO_CARD';
-export const EDIT_CARD_TITLE = 'EDIT_CARD_TITLE';
-export const EDIT_CARD_DESC = 'EDIT_CARD_DESC';
-
-
-
-
-export const SET_CURRENT_CARD_INDEX = 'SET_CURRENT_CARD_INDEX';
-
-
-
-export const EDIT_CARD_DESCRIPTION = 'EDIT_CARD_DESCRIPTION';
-export const MOVE_CARD = 'MOVE_CARD';
-export const DELETE_CARD = 'DELETE_CARD';
 
 export const ADD_CHECKLIST = 'ADD_CHECKLIST';
 export const ADD_CHECKLIST_ITEM = 'ADD_CHECKLIST_ITEM';

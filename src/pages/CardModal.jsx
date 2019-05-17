@@ -175,7 +175,7 @@ class CardModal extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    card: state.rootReducer.cards[ownProps.match.params.cardId],
+    card: state.cardReducer.cards[ownProps.match.params.cardId],
   }
 }
 

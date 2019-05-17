@@ -87,7 +87,7 @@ class Card extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     currentBoardID: state.rootReducer.currentBoardID,
-    card: state.rootReducer.cards[ownProps.cardId],
+    card: state.cardReducer[ownProps.cardId],
   }
 }
 

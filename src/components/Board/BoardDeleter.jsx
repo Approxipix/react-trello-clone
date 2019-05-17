@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { deleteBoard } from "../../redux/rootReducer/actions";
+import { deleteBoard } from "../../redux/boardReducer/actions";
 import { history } from "../../redux/store";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

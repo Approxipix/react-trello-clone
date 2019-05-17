@@ -87,7 +87,7 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
-  const board = state.rootReducer.boards[state.rootReducer.currentBoardID];
+  const board = state.boardReducer[state.rootReducer.currentBoardID];
   return {
     boardColor: !!board ? board.color : state.rootReducer.colors[0]
   }

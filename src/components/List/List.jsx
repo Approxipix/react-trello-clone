@@ -69,7 +69,7 @@ class List extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    list: state.rootReducer.lists[ownProps.listId],
+    list: state.listReducer[ownProps.listId],
   }
 }
 

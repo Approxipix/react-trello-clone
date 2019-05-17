@@ -3,6 +3,9 @@ import { createBrowserHistory } from 'history'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 
 import rootReducer from '../rootReducer/reducer';
+import boardReducer from '../boardReducer/reducer';
+import listReducer from '../listReducer/reducer';
+import cardReducer from '../cardReducer/reducer';
 
 // Create a history of your choosing (we're using a browser history in this case)
 export const history = createBrowserHistory();
@@ -16,6 +19,9 @@ export const store = createStore(
   combineReducers({
     router: connectRouter(history),
     rootReducer,
+    boardReducer,
+    listReducer,
+    cardReducer,
   }),
   applyMiddleware(middleware)
 );

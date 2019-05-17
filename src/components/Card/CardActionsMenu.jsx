@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { addLabelToCard } from '../../redux/rootReducer/actions';
+import { addLabelToCard } from '../../redux/cardReducer/actions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LabelTooltip from '../Tooltip/LabelTooltip';
 import CheckListTooltip from '../Tooltip/CheckListTooltip';

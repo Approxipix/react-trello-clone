@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { addCard } from '../../redux/rootReducer/actions';
+import { addCard } from '../../redux/cardReducer/actions';
 import { Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside";
+import uuid from "uuid";
 
 const Wrapper = styled.div`
   position: relative;
@@ -64,8 +65,11 @@ class CardAdder extends Component {
     this.props.actions.addCard({
       listId: this.props.listId,
       cardTitle: title,
+      newCardId: uuid.v4(),
     });
-    this.toggleOpened()
+    this.setState({
+      title: '',
+    })
   };
 
   render = () => {

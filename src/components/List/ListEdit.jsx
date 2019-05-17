@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { editListTitle } from '../../redux/rootReducer/actions';
+import { editListTitle } from '../../redux/listReducer/actions';
 import ClickOutside from "../ClickOutside";
 
 const Form = styled.form`
