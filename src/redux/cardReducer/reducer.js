@@ -9,6 +9,7 @@ import {
 } from "./constants";
 
 import Ch from '../../helpers/CardHelper'
+import { ADD_CHECKLIST, DELETE_CHECKLIST } from "../checkListReducer/constants";
 
 const initialState = fetchBoardData(boards).cards;
 
@@ -16,6 +17,10 @@ const cardReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_CARD:
       return Ch.addCard(state, action.payload);
+    case ADD_CHECKLIST:
+      return Ch.addCheckListToCard(state, action.payload);
+    case DELETE_CHECKLIST:
+      return Ch.deleteCheckListFromCard(state, action.payload);
     case ADD_LABEL_TO_CARD:
       return Ch.addLabelToCard(state, action.payload);
     case EDIT_CARD_TITLE:

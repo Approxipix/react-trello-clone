@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { CancelButton, Input, SubmitButton } from "../BaseComponent";
 import { addCheckList } from "../../redux/rootReducer/actions";
+import uuid from "uuid";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -63,8 +64,8 @@ class CheckListTooltip extends Component {
     if (!title)  return;
     this.props.actions.addCheckList({
       checkListTitle: title,
-      cardIndex: this.props.cardIndex,
-      listIndex: this.props.listIndex,
+      cardId: this.props.cardId,
+      checkListId: uuid.v4()
     });
     this.props.toggleCheckListTooltip()
   };
@@ -108,18 +109,6 @@ class CheckListTooltip extends Component {
   };
 }
 
-function mapStateToProps(state, ownProps) {
-  const { rootReducer } = state;
-  const board = rootReducer.boards[rootReducer.currentBoardIndex];
-  const list = board.lists[ownProps.listIndex];
-  const card = list.cards[ownProps.cardIndex];
-  const label = card.cardLabels;
-  return {
-    labels: state.rootReducer.labels,
-    cardLabels: label
-  }
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
@@ -128,4 +117,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CheckListTooltip);
+export default connect(null, mapDispatchToProps)(CheckListTooltip);

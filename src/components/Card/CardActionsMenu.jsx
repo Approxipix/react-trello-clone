@@ -103,21 +103,20 @@ class CardActionsMenu extends Component {
               />
             )}
           </ButtonWrapper>
-          {/*<ButtonWrapper>*/}
-          {/*  <Button onClick={() => this.toggleCheckListTooltip()}>*/}
-          {/*    <ButtonIcon>*/}
-          {/*      <FontAwesomeIcon icon="check-square" />*/}
-          {/*    </ButtonIcon>*/}
-          {/*    CheckList*/}
-          {/*  </Button>*/}
-          {/*  {isCheckListTooltipOpened && (*/}
-          {/*    <CheckListTooltip*/}
-          {/*      cardIndex={this.props.cardIndex}*/}
-          {/*      listIndex={this.props.listIndex}*/}
-          {/*      toggleCheckListTooltip={this.toggleCheckListTooltip}*/}
-          {/*    />*/}
-          {/*  )}*/}
-          {/*</ButtonWrapper>*/}
+          <ButtonWrapper>
+            <Button onClick={() => this.toggleCheckListTooltip()}>
+              <ButtonIcon>
+                <FontAwesomeIcon icon="check-square" />
+              </ButtonIcon>
+              CheckList
+            </Button>
+            {isCheckListTooltipOpened && (
+              <CheckListTooltip
+                cardId={card._cardId}
+                toggleCheckListTooltip={this.toggleCheckListTooltip}
+              />
+            )}
+          </ButtonWrapper>
         </Actions>
       </Wrapper>
     )

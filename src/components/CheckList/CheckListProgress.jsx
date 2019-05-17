@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-// import { editBoardColor } from '../redux/rootReducer/actions';
 import styled from 'styled-components'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Progres = styled.div`
   position: relative;
@@ -28,7 +24,9 @@ const ProgresBar = styled.div`
 
 class CheckListProgress extends Component {
   render() {
-    const { allIrems, doneItems } = this.props;
+    const { items } = this.props;
+    const allIrems = items.length;
+    const doneItems = items.filter(item => !!item.status).length;
     let width = 0;
     if (!!allIrems) {
       width = (doneItems * 100) / allIrems;
@@ -44,26 +42,5 @@ class CheckListProgress extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const { rootReducer } = state;
-  const board = rootReducer.boards[rootReducer.currentBoardIndex];
-  const list = board.lists[ownProps.listIndex];
-  const card = list.cards[ownProps.cardIndex];
-  const items = card.checkLists[ownProps.checkBoxIndex].items;
-  const allIrems = items.length;
-  const doneItems = items.filter(item => !!item.status).length;
-  return {
-    allIrems: allIrems,
-    doneItems: doneItems
-  }
-}
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({
-
-    }, dispatch)
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CheckListProgress);
+export default CheckListProgress;

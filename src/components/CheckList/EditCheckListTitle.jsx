@@ -23,7 +23,7 @@ class EditCheckListTitle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: props.checkList.title || '',
+      title: props.checkListTitle || '',
     };
   }
 
@@ -40,10 +40,8 @@ class EditCheckListTitle extends Component {
     const { actions } = this.props;
     if (!title)  return;
     actions.editCheckListTitle({
-      cardIndex: this.props.cardIndex,
-      listIndex: this.props.listIndex,
-      checkBoxIndex: this.props.checkBoxIndex,
-      title: title,
+      checkListId: this.props.checkListId,
+      checkListTitle: title,
     });
     this.props.toggleEditing()
   };
@@ -67,18 +65,6 @@ class EditCheckListTitle extends Component {
   };
 }
 
-function mapStateToProps(state, ownProps) {
-  const { rootReducer } = state;
-  const board = rootReducer.boards[rootReducer.currentBoardIndex];
-  const list = board.lists[ownProps.listIndex];
-  const card = list.cards[ownProps.cardIndex];
-  const checkList = card.checkLists[ownProps.checkBoxIndex];
-  return {
-
-    checkList: checkList
-  }
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
@@ -88,4 +74,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditCheckListTitle);
+export default connect(null, mapDispatchToProps)(EditCheckListTitle);

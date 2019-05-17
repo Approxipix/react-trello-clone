@@ -6,6 +6,7 @@ import rootReducer from '../rootReducer/reducer';
 import boardReducer from '../boardReducer/reducer';
 import listReducer from '../listReducer/reducer';
 import cardReducer from '../cardReducer/reducer';
+import checkListReducer from '../checkListReducer/reducer';
 
 // Create a history of your choosing (we're using a browser history in this case)
 export const history = createBrowserHistory();
@@ -22,6 +23,7 @@ export const store = createStore(
     boardReducer,
     listReducer,
     cardReducer,
+    checkListReducer,
   }),
   applyMiddleware(middleware)
 );

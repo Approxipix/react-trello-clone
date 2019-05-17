@@ -13,12 +13,35 @@ class Card {
     }
   }
 
+  static addCheckListToCard(state, payload) {
+    const { cardId, checkListId } = payload;
+    return {
+      ...state,
+      [cardId]: {
+        ...state[cardId],
+        checkLists: [...state[cardId].checkLists.concat(checkListId)],
+      }
+    }
+  }
+
+  static deleteCheckListFromCard(state, payload) {
+    const { cardId, checkListId } = payload;
+    return {
+      ...state,
+      [cardId]: {
+        ...state[cardId],
+        checkLists: state[cardId].checkLists.filter(listId => listId !== checkListId),
+      }
+    }
+  }
+
+
   static addLabelToCard(state, payload) {
     const { cardId, cardLabel} = payload;
-    const isLabelExist = state.cards[cardId].cardLabels.some(label => {
+    const isLabelExist = state[cardId].cardLabels.some(label => {
       return label._labelId === cardLabel._labelId
     });
-    let newCardLabel = [...state.cards[cardId].cardLabels];
+    let newCardLabel = [...state[cardId].cardLabels];
     if (isLabelExist) {
       newCardLabel = newCardLabel.filter(label => label._labelId !== cardLabel._labelId);
     } else {

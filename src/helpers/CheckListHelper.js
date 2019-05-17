@@ -1,92 +1,76 @@
 class CheckList {
   static addCheckList(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { checkListTitle, cardIndex, listIndex,} = payload;
-    const currentBoard = boards[currentBoardIndex];
-    let checkLists = currentBoard.lists[listIndex].cards[cardIndex].checkLists;
-    checkLists = [
-      ...checkLists,
-      {
+    const { checkListId, checkListTitle,} = payload;
+    return {
+      ...state,
+      [checkListId]: {
+        _checkListId: checkListId,
         title: checkListTitle,
         items: []
       }
-    ];
-    currentBoard.lists[listIndex].cards[cardIndex].checkLists = checkLists;
-    return {
-      ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
-    };
+    }
   }
 
-  static addCheckListItem(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const { checkListTitle, cardIndex, listIndex, checkListIndex} = payload;
-    const currentBoard = boards[currentBoardIndex];
-    let checkLists = currentBoard.lists[listIndex].cards[cardIndex].checkLists[checkListIndex].items;
-    checkLists = [
-      ...checkLists,
-      {
-        status: false,
-        description: checkListTitle,
-      }
-    ];
-    currentBoard.lists[listIndex].cards[cardIndex].checkLists[checkListIndex].items = checkLists;
+  static editCheckListTitle(state, payload) {
+    const {checkListId, checkListTitle} = payload;
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+      [checkListId]: {
+        ...state[checkListId],
+        title: checkListTitle,
+      }
+    }
+  }
+
+  static deleteCheckList(state, payload) {
+    const { checkListId } = payload;
+    const { [checkListId]: deletedList, ...restOfLists } = state;
+    return restOfLists;
+  }
+
+
+  static addCheckListItem(state, payload) {
+    const { checkListTitle, checkListId} = payload;
+    return {
+      ...state,
+      [checkListId]: {
+        ...state[checkListId],
+        items: [...state[checkListId].items.concat({
+          status: false,
+          description: checkListTitle,
+        })],
+      }
     };
   }
 
   static updateCheckListItem(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const {status, checkBoxItemIndex, cardIndex, listIndex, checkBoxIndex} = payload;
-    const currentBoard = boards[currentBoardIndex];
-    let checkListsItems = currentBoard.lists[listIndex].cards[cardIndex].checkLists[checkBoxIndex].items[checkBoxItemIndex];
-    checkListsItems.status = status;
-    currentBoard.lists[listIndex].cards[cardIndex].checkLists[checkBoxIndex].items[checkBoxItemIndex] = checkListsItems;
+    const { status, checkListId, checkListItemIndex} = payload;
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
-    };
-  }
-
-  static editCheckListTitle(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const {title, cardIndex, listIndex, checkBoxIndex} = payload;
-    const currentBoard = boards[currentBoardIndex];
-    let checkListsItems = currentBoard.lists[listIndex].cards[cardIndex].checkLists[checkBoxIndex];
-    checkListsItems.title = title;
-    currentBoard.lists[listIndex].cards[cardIndex].checkLists[checkBoxIndex] = checkListsItems;
-    return {
-      ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
-    };
-  }
-
-  static deleteCheckList(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const {cardIndex, listIndex, checkBoxIndex} = payload;
-    const currentBoard = boards[currentBoardIndex];
-    let checkLists = currentBoard.lists[listIndex].cards[cardIndex].checkLists;
-    checkLists = checkLists.filter((item, index) => index !== checkBoxIndex);
-    currentBoard.lists[listIndex].cards[cardIndex].checkLists = checkLists;
-    return {
-      ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+      [checkListId]: {
+        ...state[checkListId],
+        items: state[checkListId].items.map((item, index) => {
+          if (index === checkListItemIndex) {
+            return {
+              ...state[checkListId].items[checkListItemIndex],
+              status: status
+            }
+          } else {
+            return item
+          }
+        })
+      }
     };
   }
 
   static deleteCheckListItem(state, payload) {
-    const { boards, currentBoardIndex } = state;
-    const {checkBoxItemIndex, cardIndex, listIndex, checkBoxIndex} = payload;
-    const currentBoard = boards[currentBoardIndex];
-    let checkLists = currentBoard.lists[listIndex].cards[cardIndex].checkLists[checkBoxIndex].items;
-    checkLists = checkLists.filter((item, index) => index !== checkBoxItemIndex);
-    currentBoard.lists[listIndex].cards[cardIndex].checkLists[checkBoxIndex].items = checkLists;
-
+    const {checkListId, checkListItemIndex } = payload;
     return {
       ...state,
-      boards: Object.assign([], boards, { [currentBoardIndex]: currentBoard })
+      [checkListId]: {
+        ...state[checkListId],
+        items: state[checkListId].items.filter((item, index) => index !== checkListItemIndex)
+      }
     };
   }
 }

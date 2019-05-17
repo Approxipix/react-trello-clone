@@ -56,28 +56,44 @@ const Button = styled.button`
 
 
 class CheckListItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: props.status || '',
+      desc: props.desc || '',
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.desc !== this.props.desc) {
+      this.setState({ desc: nextProps.desc });
+    }
+    if (nextProps.status !== this.props.status) {
+      this.setState({ status: nextProps.status });
+    }
+  }
 
   handleDelete = () => {
     this.props.actions.deleteCheckListItem({
-      cardIndex: this.props.cardIndex,
-      checkBoxItemIndex: this.props.checkBoxItemIndex,
-      listIndex: this.props.listIndex,
-      checkBoxIndex: this.props.checkBoxIndex,
+      checkListId: this.props.checkListId,
+      checkListItemIndex: this.props.index,
     })
   };
 
   handleStatus = () => {
-    this.props.actions.updateCheckListItem({
-      cardIndex: this.props.cardIndex,
-      checkBoxItemIndex: this.props.checkBoxItemIndex,
-      listIndex: this.props.listIndex,
-      checkBoxIndex: this.props.checkBoxIndex,
-      status: !this.props.status,
+    this.setState({
+      status: !this.state.status
+    }, () => {
+      this.props.actions.updateCheckListItem({
+        checkListId: this.props.checkListId,
+        checkListItemIndex: this.props.index,
+        status: this.state.status,
+      })
     })
   };
 
   render() {
-    const { status, description } = this.props;
+    const { desc, status } = this.state;
     if (this.props.hide && status) return null;
     return (
       <Item>
@@ -94,7 +110,7 @@ class CheckListItem extends Component {
             onChange={() => this.handleStatus()}
             checked={status}
           />
-          <Text status={status}>{description}</Text>
+          <Text status={status}>{desc}</Text>
         </Desc>
         <Button type="button"
                 onClick={() => this.handleDelete()}
@@ -106,23 +122,6 @@ class CheckListItem extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const { rootReducer } = state;
-  const board = rootReducer.boards[rootReducer.currentBoardIndex];
-  const list = board.lists[ownProps.listIndex];
-  const card = list.cards[ownProps.cardIndex];
-  const items = card.checkLists[ownProps.checkBoxIndex].items[ownProps.checkBoxItemIndex];
-  const status = card.checkLists[ownProps.checkBoxIndex].items[ownProps.checkBoxItemIndex].status;
-  const description = card.checkLists[ownProps.checkBoxIndex].items[ownProps.checkBoxItemIndex].description;
-
-  return {
-    items: items,
-    status: status,
-    description: description
-  }
-
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
@@ -132,4 +131,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CheckListItem);
+export default connect(null, mapDispatchToProps)(CheckListItem);

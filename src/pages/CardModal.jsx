@@ -152,16 +152,16 @@ class CardModal extends Component {
                   </Icon>
                 </Wrapper>
               )}
-              {/*{this.props.checkLists.length !== 0 && (*/}
-              {/*  <Wrapper>*/}
-              {/*    <Icon>*/}
-              {/*      <FontAwesomeIcon icon="tag" />*/}
-              {/*    </Icon>*/}
-              {/*    {this.props.checkLists.map((item, index) => (*/}
-              {/*      <CheckList key={index} checkBoxIndex={index} cardIndex={cardIndex} listIndex={listIndex}/>*/}
-              {/*    ))}*/}
-              {/*  </Wrapper>*/}
-              {/*)}*/}
+              {card.checkLists.length !== 0 && (
+                <Wrapper>
+                  <Icon>
+                    <FontAwesomeIcon icon="tag" />
+                  </Icon>
+                  {card.checkLists.map((chekList, index) => (
+                    <CheckList key={index} cardId={card._cardId} chekListId={chekList}/>
+                  ))}
+                </Wrapper>
+              )}
             </Col>
             <Col>
               <CardActionsMenu card={card} />
@@ -175,7 +175,7 @@ class CardModal extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    card: state.cardReducer.cards[ownProps.match.params.cardId],
+    card: state.cardReducer[ownProps.match.params.cardId],
   }
 }
 

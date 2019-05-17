@@ -63,9 +63,7 @@ class AddCheckListItem extends Component {
     const { title } = this.state;
     if (!title)  return;
     this.props.actions.addCheckListItem({
-      listIndex: this.props.listIndex,
-      cardIndex: this.props.cardIndex,
-      checkListIndex: this.props.checkListIndex,
+      checkListId: this.props.checkListId,
       checkListTitle: title,
     });
     this.toggleOpened()

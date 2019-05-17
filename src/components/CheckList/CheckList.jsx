@@ -33,11 +33,10 @@ class CheckList extends Component {
 
   delete = () => {
     this.props.actions.deleteCheckList({
-      cardIndex: this.props.cardIndex,
-      listIndex: this.props.listIndex,
-      checkBoxIndex: this.props.checkBoxIndex,
+      cardId: this.props.cardId,
+      checkListId: this.props.checkList._checkListId,
     })
-  }
+  };
 
   hide = () => {
     this.setState({
@@ -52,7 +51,8 @@ class CheckList extends Component {
   };
 
   render() {
-    const { items, checkList, listIndex,  cardIndex, checkBoxIndex, doneItems} = this.props;
+    const { checkList, cardId} = this.props;
+    const doneItems = checkList.items.filter(items => !!items.status).length;
     return (
       <Container>
         {!this.state.isEditing ? (
@@ -60,7 +60,10 @@ class CheckList extends Component {
             {checkList.title}
           </Title>
         ) : (
-          <EditCheckListTitle toggleEditing={this.toggleEditing} checkBoxIndex={checkBoxIndex} cardIndex={cardIndex} listIndex={listIndex}/>
+          <EditCheckListTitle
+            checkListTitle={checkList.title}
+            toggleEditing={this.toggleEditing}
+            checkListId={checkList._checkListId}/>
         )}
         <Button onClick={() => this.delete()}>
           delete
@@ -75,31 +78,28 @@ class CheckList extends Component {
             )}
           </Button>
         )}
-        <CheckListProgress checkBoxIndex={checkBoxIndex} cardIndex={cardIndex} listIndex={listIndex}/>
-        {!!items && items.map((item, index) => (
-         <CheckListItem hide={this.state.hide} key={index} item={item} checkBoxItemIndex={index} checkBoxIndex={checkBoxIndex} cardIndex={cardIndex} listIndex={listIndex}/>
+
+        <CheckListProgress items={checkList.items}/>
+
+        {checkList.items.map((item, index) => (
+         <CheckListItem
+           hide={this.state.hide}
+           key={index}
+           status={item.status}
+           desc={item.description}
+           index={index}
+           checkListId={checkList._checkListId}
+         />
         ))}
-        <AddCheckListItem checkListIndex={checkBoxIndex} cardIndex={cardIndex} listIndex={listIndex}/>
+        <AddCheckListItem checkListId={checkList._checkListId} />
       </Container>
     );
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  const { boardReducer } = state;
-  const board = boardReducer.boards[boardReducer.currentBoardIndex];
-  const list = board.lists[ownProps.listIndex];
-  const card = list.cards[ownProps.cardIndex];
-  const items = card.checkLists[ownProps.checkBoxIndex].items;
-  const checkList = card.checkLists[ownProps.checkBoxIndex];
-  const doneItems = items.filter(item => !!item.status).length;
   return {
-    board: board,
-    list: list,
-    card: card,
-    items: items,
-    checkList: checkList,
-    doneItems: doneItems
+    checkList: state.checkListReducer[ownProps.chekListId],
   }
 }
 
