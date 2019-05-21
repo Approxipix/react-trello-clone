@@ -1,62 +1,59 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { history } from "../../redux/store";
 import { bindActionCreators } from 'redux';
 import { addBoard } from '../../redux/boardReducer/actions';
-import styled from 'styled-components'
-import { Backdrop, Input, SubmitButton, CancelButton, CloseBackdrop } from '../BaseComponent';
+import uuid from "uuid";
+import { Actions, Input, SubmitButton, CancelButton } from '../BaseComponent';
+import ClickOutside from "../ClickOutside";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from 'styled-components'
 
 const AddButton = styled.button`
   font-size: 1rem; 
-  color: #444;
+  color: #172b4d;
   font-weight: 600;
-  background-color: #ddd;
+  background-color: #dadde3;
   border-radius: .4rem
-  transition: background-color .1s;
+  transition: background-color .2s ease-in;
   cursor: pointer;
   &:hover {
-    background-color: #ccc;
+    background-color: #c8cace;
   }
 `;
 
 const Container = styled.div`
-  position: absolute;
-  display: flex;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  height: 100%;
+  padding: 1rem .6rem;
+  background-color: #dadde3;
+  border-radius: .4rem
 `;
 
-const Actions = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Form = styled.div`
-  margin-right: 1rem;
-  
-`;
-
-const InputWrappe = styled.div`
-  padding: 1rem;
-  border-radius: .2rem;
-  background-color: ${props => props.color};
-  margin-bottom: 1rem;
-`;
-
-
+const Form = styled.div``;
 
 const ColorPicker = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-gap: 1rem;
+  display: flex;
+  padding: .25rem 0;
+  margin: .5rem 0;
 `;
+
 const ColorPickerItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 1.5rem;
   height: 1.5rem;
+  font-size: .7rem;
+  color: #fff;
   background-color: ${props => props.color};
-  border-radius: .2rem;
+  border-radius: .4rem;
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-right: .5rem;
+  }
+  &:hover {
+    box-shadow: inset 0 0 0 10rem rgba(0, 0, 0, .1)
+  }
 `;
 
 class BoardAdder extends Component {
@@ -69,9 +66,10 @@ class BoardAdder extends Component {
     };
   }
 
-  handleChange = (e) => {
+  handleChange = (key, value) => {
     this.setState({
-      boardTitle: e.target.value
+      ...this.state,
+      [key]: value,
     });
   };
 
@@ -94,36 +92,42 @@ class BoardAdder extends Component {
     e.preventDefault();
     const { boardTitle } = this.state;
     if (!boardTitle) return;
+    const boardId = uuid.v4();
     this.props.actions.addBoard({
       boardTitle: boardTitle,
-      boardColor: this.state.boardColor
+      boardColor: this.state.boardColor,
+      boardId: boardId,
     });
-    this.setState({
-      boardTitle: '',
-    });
-    this.textInput.focus();
+    history.push(`/b/${boardId}`)
   };
 
   render = () => {
-    const { isOpened, boardTitle } = this.state;
+    const { colors } = this.props;
+    const { isOpened, boardTitle, boardColor } = this.state;
     return isOpened ? (
-      <Backdrop>
-        <CloseBackdrop onClick={() => this.toggleOpened()} />
-        <Container>
-          <Form id="board-add-form" onSubmit={this.handleSubmit}>
-            <InputWrappe color={this.state.boardColor}>
-              <Input
-                color={'rgba(225, 225, 225, .5)'}
-                autoFocus
-                ref={(input) => { this.textInput = input; }}
-                type="text"
-                placeholder="Add board title"
-                value={boardTitle}
-                onKeyDown={this.handleKeyDown}
-                onChange={this.handleChange}
-                spellCheck={false}
-              />
-            </InputWrappe>
+      <ClickOutside toggleOpened={this.toggleOpened}>
+        <Container color={boardColor}>
+          <Form onSubmit={this.handleSubmit}>
+            <Input
+              autoFocus
+              type="text"
+              placeholder="Add board title"
+              value={boardTitle}
+              onKeyDown={this.handleKeyDown}
+              onChange={(e) => this.handleChange('boardTitle', e.target.value)}
+              spellCheck={false}
+            />
+            <ColorPicker>
+              {colors.map((color, index) => (
+                <ColorPickerItem
+                  key={index}
+                  color={color}
+                  onClick={() => this.handleChange('boardColor', color)}
+                >
+                  {boardColor === color && <FontAwesomeIcon icon="check"/>}
+                </ColorPickerItem>
+              ))}
+            </ColorPicker>
             <Actions>
               <SubmitButton onClick={(e) => this.handleSubmit(e)} disabled={boardTitle === ""}>
                 Create board
@@ -133,17 +137,8 @@ class BoardAdder extends Component {
               </CancelButton>
             </Actions>
           </Form>
-          <ColorPicker>
-            {this.props.colors.map((item, index) => (
-              <ColorPickerItem color={item} key={index} onClick={() => this.setState({boardColor: item})}>
-                {this.state.boardColor === item && (
-                  <FontAwesomeIcon icon="check" />
-                )}
-              </ColorPickerItem>
-            ))}
-          </ColorPicker>
         </Container>
-      </Backdrop>
+      </ClickOutside>
     ) : (
       <AddButton onClick={() => this.toggleOpened()}>
         Create new board...
@@ -152,7 +147,7 @@ class BoardAdder extends Component {
   };
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     colors: state.rootReducer.colors,
   }
@@ -165,6 +160,5 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
   };
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoardAdder);

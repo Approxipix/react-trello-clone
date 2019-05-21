@@ -27,7 +27,7 @@ const NavItem = styled.li`
   display: flex;
   align-items: center;
   margin-right: .5rem
-  padding: .3rem .5rem
+  padding: .2rem .5rem
   color: rgba(255, 255, 255, 0.8);
   border-radius: 3px;
   background-color: rgba(255, 255, 255, 0.2);
@@ -40,7 +40,7 @@ const NavItem = styled.li`
 
 const NavIcon = styled.i`
   margin-right: .3rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
 `;
 
 const NavTitle = styled.div`

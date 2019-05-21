@@ -1,17 +1,12 @@
-import React, { Component, PureComponent } from 'react';
-import styled from 'styled-components'
+import React, { Component } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 import ListActions from './ListActions';
-import ListEdit from './ListEdit';
-
-const Title = styled.h3`
-  width: 100%;
-  cursor: default;
-`;
+import ListTitle from './ListTitle/ListTitle';
+import styled from 'styled-components'
 
 const Header = styled.div`
-  margin-bottom: .5rem;
-  padding: ${props => props.isEditing ? '0 .5rem 0 0' : '.5rem'};
+  margin-bottom: .4rem;
+  padding: .5rem .7rem 0rem .5rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -28,15 +23,8 @@ class ListHeader extends Component {
     super(props);
     this.state = {
       isOpened: false,
-      isEditing: false,
     }
   }
-
-  toggleEditing = () => {
-    this.setState({
-      isEditing: !this.state.isEditing
-    })
-  };
 
   toggleOpened = () => {
     this.setState({
@@ -46,25 +34,15 @@ class ListHeader extends Component {
 
   render() {
     const { dragHandleProps, listId, listTitle, boardId } = this.props;
-    const { isOpened, isEditing } = this.state;
+    const { isOpened } = this.state;
     return (
       <>
-        <Header
-          isEditing={isEditing}
-        >
-          {!isEditing ? (
-            <Title
-              {...dragHandleProps}
-              onClick={() => this.toggleEditing()}>
-              {listTitle}
-            </Title>
-          ) : (
-            <ListEdit
-              toggleEditing={this.toggleEditing}
-              listId={listId}
-              listTitle={listTitle}
-            />
-          )}
+        <Header>
+          <ListTitle
+            dragHandleProps={dragHandleProps}
+            listId={listId}
+            listTitle={listTitle}
+          />
           <Actions onClick={() => this.toggleOpened()}>
             <FontAwesomeIcon icon="ellipsis-h" />
           </Actions>
@@ -79,15 +57,6 @@ class ListHeader extends Component {
       </>
     )
   }
-}
-
-function mapStateToProps(state, ownProps) {
-  // const { rootReducer } = state;
-  // const board = rootReducer.boards[ownProps.boardId];
-  // const list = !!board && board.lists[ownProps.listIndex];
-  // return {
-  //   list: list,
-  // }
 }
 
 export default ListHeader;

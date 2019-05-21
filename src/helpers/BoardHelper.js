@@ -1,12 +1,10 @@
-import uuid from "uuid";
 class Board {
   static addBoard(state, payload) {
-    const { boardTitle, boardColor } = payload;
-    const newBoardId = uuid.v4();
+    const { boardId, boardTitle, boardColor } = payload;
     return {
       ...state,
-      [newBoardId]: {
-        _boardId: newBoardId,
+      [boardId]: {
+        _boardId: boardId,
         title: boardTitle,
         color: boardColor,
         lists: [],

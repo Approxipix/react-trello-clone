@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { toggleSidebar } from '../../redux/rootReducer/actions';
+import BoardTitle from './BoardTitle/BoardTitle';
 import styled from "styled-components";
-import BoardTitleEdit from "./BoardTitleEdit";
-import ColorPicker from "../ColorPicker";
-import BoardDeleter from "./BoardDeleter";
 
 const Header = styled.div`
   margin-bottom: 1rem;
@@ -13,79 +13,43 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
-const Actions = styled.div`
-  display: flex;
-  align-items: center;
-  &:not(:last-child) {
-    border-right: 1px solid red;
-  }
-`;
-
-const Title = styled.h1`
-  margin: 0;
-  padding: .3rem .5rem;
-  font-size: 1.3rem;
+const Button = styled.button`
+  margin: 0.5rem;
+  padding: .5rem .75rem;
+  font-size: 1rem;
   color: #fff;
-  font-weight: 600;
-`;
-
-const VerticalLine = styled.div`
-  width: 1px;
-  height: 1.3rem;
-  background-color: #d6d6d6;
+  white-space: nowrap;
+  border-radius: .2rem;
+  transition: background .2s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
 `;
 
 class BoardHeader extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editTitle: false,
-    }
-  }
-
-  toggleEditTitle = () => {
-    this.setState({
-      editTitle: !this.state.editTitle,
-    })
+  toggleSidebar = () => {
+    this.props.actions.toggleSidebar()
   };
 
   render() {
-    const { board } = this.props;
-    const { editTitle } = this.state;
     return (
       <Header>
-        {!editTitle ? (
-          <Title onClick={() => this.toggleEditTitle()}>
-            {board.title}
-          </Title>
-        ) : (
-          <BoardTitleEdit
-            boardId={board._boardId}
-            boardTitle={board.title}
-            toggleEditTitle={this.toggleEditTitle}
-          />
-        )}
-        <Actions>
-          <ColorPicker
-            boardId={board._boardId}
-            boardColor={board.color}
-          />
-          <VerticalLine />
-          <BoardDeleter
-            boardId={board._boardId}
-          />
-        </Actions>
+        <BoardTitle />
+        <Button onClick={() => this.toggleSidebar()}>
+          Show menu
+        </Button>
       </Header>
     )
   }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapDispatchToProps(dispatch) {
   return {
-    board: state.boardReducer[ownProps.boardId],
-  }
+    actions: bindActionCreators({
+      toggleSidebar: toggleSidebar,
+    }, dispatch)
+  };
 }
 
-
-export default connect(mapStateToProps)(BoardHeader);
-
+export default connect(null, mapDispatchToProps)(BoardHeader);

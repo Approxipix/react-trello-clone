@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editBoardTitle } from '../../redux/boardReducer/actions';
+import { editBoardTitle } from '../../../redux/boardReducer/actions';
+import ClickOutside from '../../ClickOutside';
+import { Input, } from '../../BaseComponent';
 import styled from 'styled-components'
-import ClickOutside from '../ClickOutside';
 
 const Form = styled.form`
-  width: 25rem;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: .3rem .5rem;
-  font-size: 1.3rem;
-  color: #40424b;
-  font-weight: 600;
-  border: none;
-  box-shadow: none;
+  max-width: calc(100vw - 12rem);
 `;
 
 class BoardTitleEdit extends Component {
@@ -27,10 +18,9 @@ class BoardTitleEdit extends Component {
     };
   }
 
-  handleChange = (key, value) => {
+  handleChange = (value) => {
     this.setState({
-      ...this.state,
-      [key]: value,
+      title: value,
     });
   };
 
@@ -47,15 +37,21 @@ class BoardTitleEdit extends Component {
 
   render() {
     const { title } = this.state;
+    let inputWidth = (title.length + 1) * 13;
     return (
       <ClickOutside toggleOpened={this.props.toggleEditTitle}>
-        <Form onSubmit={this.handleSubmit} id="board-edit-form">
+        <Form onSubmit={this.handleSubmit}>
           <Input
-            autoFocus
             type="text"
-            placeholder="Edit board title"
+            size={'1.3rem'}
+            weight={'600'}
+            width={inputWidth + 'px'}
             value={title}
-            onChange={(e) => this.handleChange('title', e.target.value)}
+            placeholder="Edit board title"
+            onChange={(e) => this.handleChange(e.target.value)}
+            onBlur={this.handleSubmit}
+            onKeyPress={(e) => inputWidth = ((e.target.value.length + 1) * 13)}
+            autoFocus
             spellCheck={false}
           />
         </Form>

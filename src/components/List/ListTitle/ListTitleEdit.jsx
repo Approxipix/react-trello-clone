@@ -2,24 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { editListTitle } from '../../redux/listReducer/actions';
-import ClickOutside from "../ClickOutside";
+import { editListTitle } from '../../../redux/listReducer/actions';
+import { Input, } from '../../BaseComponent';
+import ClickOutside from "../../ClickOutside";
 
 const Form = styled.form`
   width: 90%;
 `;
 
-const Input = styled.input`
-  padding: .6rem .5rem .5rem;
-  width: 100%;
-  border: none;
-  font-weight: bold;
-  box-shadow: none;
-  font-size: 1rem;
-  color: #40424b;
-`;
-
-class ListEdit extends Component {
+class ListTitleEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,15 +18,14 @@ class ListEdit extends Component {
     };
   }
 
-  handleChange = (key, value) => {
+  handleChange = ( value) => {
     this.setState({
-      ...this.state,
-      [key]: value,
+      title: value,
     });
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
+  handleSubmit = (e) => {
+    e.preventDefault();
     const { title } = this.state;
     const { listId } = this.props;
     if (!title)  return;
@@ -50,14 +40,17 @@ class ListEdit extends Component {
     const { title } = this.state;
     return (
       <ClickOutside toggleOpened={this.props.toggleEditing}>
-        <Form id="list-edit-form" onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
           <Input
-            autoFocus
             type="text"
-            placeholder="Enter list title..."
+            padding=".3rem .5rem"
+            weight="600"
             value={title}
-            onChange={(e) => this.handleChange('title', e.target.value)}
+            placeholder="Enter list title..."
+            onChange={(e) => this.handleChange(e.target.value)}
+            onBlur={this.handleSubmit}
             spellCheck={false}
+            autoFocus
           />
         </Form>
       </ClickOutside>
@@ -73,5 +66,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-
-export default connect(null, mapDispatchToProps)(ListEdit);
+export default connect(null, mapDispatchToProps)(ListTitleEdit);

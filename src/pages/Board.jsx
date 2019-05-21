@@ -14,7 +14,7 @@ import styled from 'styled-components';
 const BoardWrapper = styled.div`
   position: relative;
   height: 100%;
-  padding-top: 1rem;
+  padding-top: .5rem;
   background-color: ${props => props.color};
   transition: background-color .2s ease-in-out;
 `;
