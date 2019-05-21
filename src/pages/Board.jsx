@@ -4,13 +4,15 @@ import { bindActionCreators } from 'redux';
 import { setCurrentBoardID } from "../redux/rootReducer/actions";
 import { moveList } from "../redux/boardReducer/actions";
 import { moveCard } from "../redux/listReducer/actions";
-import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import Sidebar from '../components/Sidebar/Sidebar'
 import BoardHeader from '../components/Board/BoardHeader'
 import ListAdder from '../components/List/ListAdder';
 import List from '../components/List/List'
+import styled from 'styled-components';
 
 const BoardWrapper = styled.div`
+  position: relative;
   height: 100%;
   padding-top: 1rem;
   background-color: ${props => props.color};
@@ -31,16 +33,14 @@ class InnerList extends Component {
   render() {
     const { listsId, boardId } = this.props;
     return (
-      <>
-        {listsId.map((listId, index) => (
-          <List
-            key={index}
-            index={index}
-            boardId={boardId}
-            listId={listId}
-          />
-        ))}
-      </>
+      listsId.map((listId, index) => (
+        <List
+          key={index}
+          index={index}
+          boardId={boardId}
+          listId={listId}
+        />
+      ))
     )
   }
 }
@@ -56,7 +56,6 @@ class Board extends Component {
   }
 
   handleDragEnd = (result) => {
-    const { actions } = this.props;
     const { destination, source, type } = result;
     if (!destination) return;
     if (
@@ -65,7 +64,7 @@ class Board extends Component {
     ) return;
 
     if (type === 'column') {
-      actions.moveList({
+      this.props.actions.moveList({
         boardId: this.props.board._boardId,
         sourceIndex: source.index,
         destinationIndex: destination.index,
@@ -73,7 +72,7 @@ class Board extends Component {
     }
 
     if (type === 'task') {
-      actions.moveCard({
+      this.props.actions.moveCard({
         sourceIndex: source.index,
         sourceListIndex: source.droppableId,
         destinationIndex: destination.index,
@@ -87,7 +86,7 @@ class Board extends Component {
     if (!board) return null;
     return (
       <BoardWrapper color={board.color}>
-        <BoardHeader boardId={board._boardId}/>
+        <BoardHeader boardId={board._boardId} />
         <DragDropContext onDragEnd={this.handleDragEnd}>
           <Droppable
             type='column'
@@ -99,18 +98,14 @@ class Board extends Component {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                <InnerList
-                  boardId={board._boardId}
-                  listsId={board.lists}
-                />
+                <InnerList boardId={board._boardId} listsId={board.lists} />
                 {provided.placeholder}
-                <ListAdder
-                  boardId={board._boardId}
-                />
+                <ListAdder boardId={board._boardId} />
               </Container>
             )}
           </Droppable>
         </DragDropContext>
+        <Sidebar />
       </BoardWrapper>
     )
   }
@@ -119,6 +114,7 @@ class Board extends Component {
 function mapStateToProps(state) {
   return {
     board: state.boardReducer[state.rootReducer.currentBoardID],
+    isSidebarOpened: state.rootReducer.isSidebarOpened,
   }
 }
 

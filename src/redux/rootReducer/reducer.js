@@ -1,19 +1,11 @@
 import {
   SET_CURRENT_BOARD_ID,
-
-  ADD_CHECKLIST,
-  ADD_CHECKLIST_ITEM,
-  UPDATE_CHECKLIST_ITEM,
-  DELETE_CHECKLIST,
-  DELETE_CHECKLIST_ITEM,
-  UPDATE_CHECKLIST_TITLE,
+  TOGGLE_SIDEBAR,
 } from "./constants";
-
-
-import CLh from '../../helpers/CheckListHelper'
 
 const initialState = {
   currentBoardID: null,
+  isSidebarOpened: false,
   labels: [
     {
       _labelId: 0,
@@ -40,7 +32,7 @@ const initialState = {
       color: '#0078BF',
     }
   ],
-  colors: ['#2E7EAF', '#00603d', '#D29034', "#89609D"],
+  colors: ['#2E7EAF', '#00603d', '#D29034', '#89609D', '#CD5A91'],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -50,21 +42,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         currentBoardID: action.payload
       };
-
-
-    case ADD_CHECKLIST:
-      return CLh.addCheckList(state, action.payload);
-    case ADD_CHECKLIST_ITEM:
-      return CLh.addCheckListItem(state, action.payload);
-    case UPDATE_CHECKLIST_ITEM:
-      return CLh.updateCheckListItem(state, action.payload);
-    case DELETE_CHECKLIST:
-      return CLh.deleteCheckList(state, action.payload);
-    case DELETE_CHECKLIST_ITEM:
-      return CLh.deleteCheckListItem(state, action.payload);
-    case UPDATE_CHECKLIST_TITLE:
-      return CLh.editCheckListTitle(state, action.payload);
-
+    case TOGGLE_SIDEBAR:
+      return {
+        ...state,
+        isSidebarOpened: action.payload !== undefined
+          ? action.payload
+          : !state.isSidebarOpened,
+      };
     default:
       return state;
   }

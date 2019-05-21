@@ -53,6 +53,7 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     outline: none;
     background-color: transparent;
+    cursor: pointer;
   }
   ul {
     margin: 0;

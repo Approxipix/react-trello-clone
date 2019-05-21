@@ -14,6 +14,8 @@ import {
   faAlignLeft,
   faTag,
   faCheckSquare,
+  faChevronLeft,
+  faFillDrip,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -27,4 +29,6 @@ library.add(
   faAlignLeft,
   faTag,
   faCheckSquare,
+  faChevronLeft,
+  faFillDrip,
 );

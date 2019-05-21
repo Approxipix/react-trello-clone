@@ -27,7 +27,7 @@ const BoardItem = styled.li`
   background-color: ${props => props.color};
   border-radius: .4rem;
   &:hover {
-    box-shadow: inset 0px 0px 0px 20rem rgba(0, 0, 0, .1);
+    box-shadow: inset 0 0 0 10rem rgba(0, 0, 0, .1);
   }
 `;
 
@@ -36,8 +36,9 @@ const BoardTitle = styled.h2`
   font-size: 1rem;
   color: white;
   font-weight: 700;
-  text-decoration: none;
-  overflow-wrap: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const BoardScheme = styled.div`

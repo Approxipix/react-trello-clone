@@ -12,6 +12,7 @@ const MainWrapper = styled.div`
   grid-template-rows: auto 1fr;
   grid-template-areas: 'header' 'main';
   min-height: 100vh;
+  overflow: hidden;
 `;
 
 const HeaderWrapper = styled.div`
