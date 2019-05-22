@@ -5,11 +5,13 @@ const Wrapper = styled.div``;
 
 class ClickOutside extends Component {
   componentDidMount() {
-    document.addEventListener('click', this.outerClick);
+    const { action } = this.props;
+    document.addEventListener(!!action ? action : 'click', this.outerClick);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.outerClick);
+    const { action } = this.props;
+    document.removeEventListener(!!action ? action : 'click', this.outerClick);
   }
 
   outerClick = (e) => {

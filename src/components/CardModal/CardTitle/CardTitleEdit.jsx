@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editCardTitle } from '../../redux/cardReducer/actions';
+import { editCardTitle } from '../../../redux/cardReducer/actions';
+import ClickOutside from '../../ClickOutside';
+import { Input, TextArea, } from '../../BaseComponent';
 import styled from 'styled-components'
-import ClickOutside from '../ClickOutside';
 
 const Form = styled.form`
-  width: 90%;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: .3rem .5rem;
-  font-size: 1.5rem;
-  color: #40424b;
-  font-weight: 600;
-  border: none;
-  box-shadow: none;
+  width: calc(100% - 2rem);
 `;
 
 class CardTitleEdit extends Component {
@@ -27,11 +18,16 @@ class CardTitleEdit extends Component {
     };
   }
 
-  handleChange = (key, value) => {
+  handleChange = (value) => {
     this.setState({
-      ...this.state,
-      [key]: value,
+      title: value,
     });
+  };
+
+  handleKeyDown = (e) => {
+    if (e.keyCode === 27) {
+      this.props.toggleEditTitle();
+    }
   };
 
   handleSubmit = (e) => {
@@ -43,21 +39,27 @@ class CardTitleEdit extends Component {
       cardTitle: title,
       cardId: cardId,
     });
-    this.props.toggleIsTitleEditing()
+    this.props.toggleEditTitle()
   };
 
   render() {
     const { title } = this.state;
     return (
-      <ClickOutside toggleOpened={this.props.toggleIsTitleEditing}>
-        <Form onSubmit={this.handleSubmit} id="card-edit-title-form">
+      <ClickOutside toggleOpened={this.props.toggleEditTitle}>
+        <Form onSubmit={this.handleSubmit}>
           <Input
-            autoFocus
             type="text"
-            placeholder="Edit card title"
+            margin="0"
+            padding=".3rem .5rem"
+            size="1.4rem"
+            weight="600"
             value={title}
-            onChange={(e) => this.handleChange('title', e.target.value)}
+            placeholder="Edit card title"
+            onKeyDown={this.handleKeyDown}
+            onChange={(e) => this.handleChange(e.target.value)}
+            onBlur={this.handleSubmit}
             spellCheck={false}
+            autoFocus
           />
         </Form>
       </ClickOutside>

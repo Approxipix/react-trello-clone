@@ -29,12 +29,10 @@ const Container = styled.div`
   border-radius: .4rem
 `;
 
-const Form = styled.div``;
-
 const ColorPicker = styled.div`
   display: flex;
   padding: .25rem 0;
-  margin: .5rem 0;
+  margin-bottom: .5rem;
 `;
 
 const ColorPickerItem = styled.div`
@@ -56,7 +54,7 @@ const ColorPickerItem = styled.div`
   }
 `;
 
-class BoardAdder extends Component {
+class BoardAdd extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -107,7 +105,7 @@ class BoardAdder extends Component {
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Container color={boardColor}>
-          <Form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <Input
               autoFocus
               type="text"
@@ -129,14 +127,14 @@ class BoardAdder extends Component {
               ))}
             </ColorPicker>
             <Actions>
-              <SubmitButton onClick={(e) => this.handleSubmit(e)} disabled={boardTitle === ""}>
+              <SubmitButton type={'submit'} disabled={boardTitle === ""}>
                 Create board
               </SubmitButton>
               <CancelButton onClick={() => this.toggleOpened()}>
                 <FontAwesomeIcon icon="times" />
               </CancelButton>
             </Actions>
-          </Form>
+          </form>
         </Container>
       </ClickOutside>
     ) : (
@@ -161,4 +159,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BoardAdder);
+export default connect(mapStateToProps, mapDispatchToProps)(BoardAdd);

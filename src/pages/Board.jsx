@@ -7,7 +7,7 @@ import { moveCard } from "../redux/listReducer/actions";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Sidebar from '../components/Sidebar/Sidebar'
 import BoardHeader from '../components/Board/BoardHeader'
-import ListAdder from '../components/List/ListAdder';
+import ListAdd from '../components/List/ListAdd';
 import List from '../components/List/List'
 import styled from 'styled-components';
 
@@ -16,7 +16,7 @@ const BoardWrapper = styled.div`
   height: 100%;
   padding-top: .5rem;
   background-color: ${props => props.color};
-  transition: background-color .2s ease-in-out;
+  transition: background-color .2s ease-in;
 `;
 
 const Container = styled.div`
@@ -100,7 +100,7 @@ class Board extends Component {
               >
                 <InnerList boardId={board._boardId} listsId={board.lists} />
                 {provided.placeholder}
-                <ListAdder boardId={board._boardId} />
+                <ListAdd boardId={board._boardId} />
               </Container>
             )}
           </Droppable>

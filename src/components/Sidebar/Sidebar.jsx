@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { toggleSidebar } from '../../redux/rootReducer/actions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Navigation from './Navigation'
-import ChangeBackground from './ChangeBackground'
-import DeleteBoard from './DeleteBoard'
+import SidebarNavigation from './SidebarNavigation'
+import BoardBackgroundEdit from '../Board/BoardBackgroundEdit'
+import BoardDelete from '../Board/BoardDelete'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   background-color: #F4F5F7;
   box-shadow: 0 .75rem 1.5rem -.375rem rgba(9,30,66,.25);
   transform: ${props => props.isOpened ? 'translateX(-100%)' : 'none'};
-  transition: transform .4s ease-in-out;
+  transition: transform .3s ease-in-out;
 `;
 
 const Header = styled.div`
@@ -34,8 +34,12 @@ const Title = styled.h3`
 `;
 
 const Button = styled.button`
-  color: #40424b;
+  color: #6b778c;
   font-size: 1rem;
+  transition: color .1s ease-in;
+  &:hover {
+    color: #42526e;
+  }
 `;
 
 const Body = styled.div`
@@ -66,12 +70,12 @@ class Sidebar extends Component {
     const { board } = this.props;
     const { sidebarView } = this.state;
     switch (sidebarView) {
-      case ('ChangeBackground'):
-        return <ChangeBackground boardId={board._boardId} boardColor={board.color}/>;
-      case ('DeleteBoard'):
-        return <DeleteBoard boardId={board._boardId}/>;
+      case ('BoardBackgroundEdit'):
+        return <BoardBackgroundEdit boardId={board._boardId} boardColor={board.color}/>;
+      case ('BoardDelete'):
+        return <BoardDelete boardId={board._boardId}/>;
       default:
-        return <Navigation changeView={this.changeView}/>;
+        return <SidebarNavigation changeView={this.changeView}/>;
     }
   };
 

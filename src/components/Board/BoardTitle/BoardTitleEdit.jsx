@@ -24,6 +24,12 @@ class BoardTitleEdit extends Component {
     });
   };
 
+  handleKeyDown = (e) => {
+    if (e.keyCode === 27) {
+      this.props.toggleEditTitle()
+    }
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
     const { title } = this.state;
@@ -45,9 +51,11 @@ class BoardTitleEdit extends Component {
             type="text"
             size={'1.3rem'}
             weight={'600'}
+            margin="0"
             width={inputWidth + 'px'}
             value={title}
             placeholder="Edit board title"
+            onKeyDown={this.handleKeyDown}
             onChange={(e) => this.handleChange(e.target.value)}
             onBlur={this.handleSubmit}
             onKeyPress={(e) => inputWidth = ((e.target.value.length + 1) * 13)}

@@ -3,48 +3,39 @@ import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
 import { addList } from '../../redux/listReducer/actions';
-import { Input, SubmitButton, CancelButton } from '../BaseComponent';
+import { Actions, Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside";
 import uuid from "uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Wrapper = styled.div`
+  flex-shrink:0;
   width: 16rem;
   margin: 0 .5rem;
+`;
+
+const Form = styled.form`
   padding: .6rem;
   background-color: #e3e3e3;
   border-radius: .2rem
 `;
 
-const Title = styled.h4`
-  margin-bottom: .5rem;
-`;
-
-const Form = styled.form``;
-
-
-const Actions = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: .9rem;
-`;
-
 const AddButton = styled.button`
-  width: 16rem;
-  margin: 0 .5rem;
-  padding: .75rem;
-  border-radius: .2rem;
-  background: rgba(0, 0, 0, 0.1);
-  color: #c3c3c3;
+  width: 100%;
+  padding: .6rem;
   font-size: 1rem; 
+  color: #fff;
   text-align: left;
-  transition: background-color .1s;
+  border-radius: .2rem;
+  background-color: rgba(0, 0, 0, .12);
+  transition: background-color .2s ease-in;
   cursor: pointer;
   &:hover {
     background: rgba(0, 0, 0, 0.2);
   }
 `;
 
-class ListAdder extends Component {
+class ListAdd extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,20 +44,6 @@ class ListAdder extends Component {
     };
   }
 
-  handleChange = event => {
-    this.setState({
-      title: event.target.value
-    });
-  };
-
-  handleKeyDown = event => {
-    if (event.keyCode === 27) {
-      this.setState({
-        isOpened: false
-      });
-    }
-  };
-
   toggleOpened = () => {
     this.setState({
       isOpened: !this.state.isOpened,
@@ -74,8 +51,21 @@ class ListAdder extends Component {
     })
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
+  handleChange = (e) => {
+    this.setState({
+      title: e.target.value
+    });
+  };
+
+  handleKeyDown = (e) => {
+    if (e.keyCode === 27) {
+      this.toggleOpened();
+    }
+  };
+
+
+  handleSubmit = (e) => {
+    e.preventDefault();
     const { title } = this.state;
     if (!title) return;
     this.props.actions.addList({
@@ -86,7 +76,7 @@ class ListAdder extends Component {
     });
     this.setState({
       title: ''
-    })
+    }, () => this.input.focus())
   };
 
   render = () => {
@@ -94,35 +84,34 @@ class ListAdder extends Component {
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Wrapper>
-          <Title>
-            New Column
-          </Title>
           <Form id="column-add-form" onSubmit={this.handleSubmit}>
             <Input
-              autoFocus
               type="text"
-              placeholder="Enter a list title..."
               value={title}
+              placeholder="Enter a list title..."
+              ref={(e) => { this.input = e }}
               onKeyDown={this.handleKeyDown}
               onChange={this.handleChange}
               spellCheck={false}
+              autoFocus
             />
             <Actions>
               <SubmitButton type="submit" disabled={title === ""}>
                 Add list
               </SubmitButton>
-              or
               <CancelButton onClick={() => this.toggleOpened()}>
-                cancel
+                <FontAwesomeIcon icon="times" />
               </CancelButton>
             </Actions>
           </Form>
         </Wrapper>
       </ClickOutside>
     ) : (
-      <AddButton onClick={() => this.toggleOpened()}>
-        + Add another list
-      </AddButton>
+      <Wrapper>
+        <AddButton onClick={() => this.toggleOpened()}>
+          + Add another list
+        </AddButton>
+      </Wrapper>
     );
   };
 }
@@ -135,5 +124,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-
-export default connect(null, mapDispatchToProps)(ListAdder);
+export default connect(null, mapDispatchToProps)(ListAdd);

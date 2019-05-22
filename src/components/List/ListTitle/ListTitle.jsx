@@ -16,30 +16,30 @@ class ListHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isEditing: false,
+      editTitle: false,
     }
   }
 
-  toggleEditing = () => {
+  toggleEditTitle = () => {
     this.setState({
-      isEditing: !this.state.isEditing
+      editTitle: !this.state.editTitle
     })
   };
 
   render() {
     const { dragHandleProps, listId, listTitle } = this.props;
-    const { isEditing } = this.state;
+    const { editTitle } = this.state;
     return (
-      !isEditing ? (
+      !editTitle ? (
         <Title
           {...dragHandleProps}
-          onClick={() => this.toggleEditing()}
+          onClick={() => this.toggleEditTitle()}
         >
           {listTitle}
         </Title>
       ) : (
         <ListTitleEdit
-          toggleEditing={this.toggleEditing}
+          toggleEditTitle={this.toggleEditTitle}
           listId={listId}
           listTitle={listTitle}
         />

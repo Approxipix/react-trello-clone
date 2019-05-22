@@ -50,7 +50,7 @@ const ButtonIcon = styled.div`
   margin-right: .5rem;
 `;
 
-class CardActionsMenu extends Component {
+class CardActions extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -138,4 +138,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardActionsMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(CardActions);

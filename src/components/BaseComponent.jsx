@@ -9,11 +9,14 @@ export const Text = styled.p`
 export const Input = styled.input`
   max-width: 100%;
   width: ${props => props.width ? props.width : '100%'};
+  margin: ${props => props.margin ? props.margin : '0 0 .5rem 0'};
   padding: ${props => props.padding ? props.padding : '.5rem'};
+  font-family: 'Roboto', sans-serif;
   font-size: ${props => props.size ? props.size : '1rem'};
   color: #40424b;
   font-weight: ${props => props.weight ? props.weight : 'normal'};
   line-height: 1rem;
+  letter-spacing: .5px;
   background-color: #fff;
   border: 0;
   border-radius: .2rem;
@@ -21,15 +24,19 @@ export const Input = styled.input`
 `;
 
 export const TextArea = styled.textarea`
+  max-width: 100%;
   width: ${props => props.width ? props.width : '100%'};
-  margin-bottom: .5rem;
-  padding: .5rem;
-  border: 0;
-  border-radius: .2rem;
-  box-shadow: 0 1px 0 rgba(9,30,66,.25);
+  margin: ${props => props.margin ? props.margin : '0 0 .5rem 0'};
+  padding: ${props => props.padding ? props.padding : '.5rem'};
+  font-family: 'Roboto', sans-serif;
   font-size: ${props => props.size ? props.size : '1rem'};
   color: #40424b;
   line-height: 1rem;
+  letter-spacing: .5px;
+  background-color: #fff;
+  border: 0;
+  border-radius: .2rem;
+  box-shadow: 0 1px 0 rgba(9,30,66,.25);
   resize: none;
 `;
 
@@ -57,7 +64,7 @@ export const SubmitButton = styled.button`
   };
   border-radius: .2rem;
   cursor: pointer;
-  transition: background-color .1s ease-in;
+  transition: background-color .2s ease-in;
   &:hover {
     background-color: ${props =>
       props.color === 'danger'
@@ -85,29 +92,6 @@ export const CancelButton = styled.button`
 
 
 
-
-export const Backdrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 100;
-`;
-
-export const CloseBackdrop = styled.button`
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  background: transparent;
-  border: none;
-  outline: none;
-`;
 
 
 

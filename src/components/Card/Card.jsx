@@ -1,52 +1,54 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { Draggable } from 'react-beautiful-dnd';
 import { connect } from "react-redux";
+import { Draggable } from 'react-beautiful-dnd';
 import { NavLink } from 'react-router-dom';
-
-const Title = styled.h4`
-    padding: .5rem;
-    color: #40424b;
-`;
-
-const Button = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
-  visibility: hidden;
-  padding: .5rem;
-  font-size: .75rem;
-  color: #444;
-  cursor: pointer;
-  transition: transform .2s ease-in;
-`;
+import styled from 'styled-components';
 
 const Container = styled.div`
   position: relative;
-  border: 1px solid lightgrey;
-  border-radius: 2px;
-  background-color: white;  
+  padding: .5rem;
+  border-radius: .2rem;
+  background-color: #fff;
+  box-shadow: 0 1px 0 rgba(9,30,66,.25);  
+  transition: background-color .2s ease-in;
   &:hover {
-    background-color: #ededed;
-  }   
-  &:hover ${Button} {
-    visibility: visible;
-  }   
-   margin-bottom: .5rem;
+    background-color: #f4f5f7;
+  }  
+  margin-bottom: .5rem;
+`;
+
+const Title = styled.h3`
+  font-size: .875rem;
+  color: #40424b;
+  font-weight: normal;
 `;
 
 const CardLabelList = styled.div`
   display: flex;
-  padding: .5rem;
+  margin-bottom: .3rem;
 `;
 
 const CardLabelListItem = styled.div`
   height: .5rem;
-  width: 1rem;
+  width: 2.5rem;
   border-radius: 1rem;
   margin-right: .2rem;
   background-color: ${props => props.value};
 `;
+
+class CardLabels extends Component {
+  render() {
+    const { cardLabels } = this.props;
+    if (cardLabels.length === 0) return null;
+    return  (
+      <CardLabelList>
+        {cardLabels.map(((label, index) => (
+          <CardLabelListItem key={index} value={label.color}/>
+        )))}
+      </CardLabelList>
+    )
+  }
+}
 
 class Card extends Component {
   render() {
@@ -65,15 +67,8 @@ class Card extends Component {
               isDragging={snapshot.isDragging}
             >
               <NavLink to={`/b/${currentBoardID}/c/${card._cardId}`}>
+                <CardLabels cardLabels={card.cardLabels} />
                 <Title>{card.title}</Title>
-                {!!card.description && 'desc'}
-                {!!card.cardLabels && (
-                  <CardLabelList>
-                    {card.cardLabels.map(((label, index) => (
-                      <CardLabelListItem key={index} value={label.color}/>
-                    )))}
-                  </CardLabelList>
-                )}
               </NavLink>
             </Container>
             {isDraggingOver && provided.placeholder}
@@ -90,6 +85,5 @@ function mapStateToProps(state, ownProps) {
     card: state.cardReducer[ownProps.cardId],
   }
 }
-
 
 export default connect(mapStateToProps)(Card);

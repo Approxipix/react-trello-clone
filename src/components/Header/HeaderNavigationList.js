@@ -1,4 +1,4 @@
-const NavigationItems = [
+const HeaderNavigationList = [
   {
     title: 'Boards',
     path: '/boards',
@@ -6,4 +6,4 @@ const NavigationItems = [
   },
 ];
 
-export default NavigationItems
+export default HeaderNavigationList

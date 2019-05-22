@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editBoardColor } from '../../redux/boardReducer/actions';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -36,7 +36,7 @@ const Button = styled.button`
   }
 `;
 
-class ChangeBackground extends Component {
+class BoardBackgroundEdit extends Component {
   editBoardColor = (color) => {
     this.props.actions.editBoardColor({
       boardId: this.props.boardId,
@@ -79,4 +79,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChangeBackground);
+export default connect(mapStateToProps, mapDispatchToProps)(BoardBackgroundEdit);

@@ -1,60 +1,90 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CardActionsMenu from "../components/Card/CardActionsMenu";
+import CardActionsMenu from "../components/CardModal/CardActions";
 import CheckList from "../components/CheckList/CheckList";
-import CardTitle from "../components/Card/CardTitle";
-import CardDescription from "../components/Card/CardDescription";
-import CardLabel from "../components/Card/CardLabel";
-import {Backdrop, CloseBackdrop} from '../components/BaseComponent'
-
+import CardTitle from "../components/CardModal/CardTitle/CardTitle";
+import CardDescription from "../components/CardModal/CardDescription/CardDescription";
+import CardLabel from "../components/CardModal/CardLabel";
 import { history } from "../redux/store";
 
+const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+`;
 
-const Container = styled.div`
+const CloseBackdrop = styled.button`
+  display: block;
   position: absolute;
-  top: 50%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+`;
+
+const Wrapper = styled.div`
+  position: absolute;
+  top: 5rem;
   left: 50%;
-  width: 640px;
-  max-width: 100%;
+  max-width: 45rem;
+  width: 100%;
   max-height: calc(100% - 8rem);
   padding: 1rem;
   border-radius: .2rem;
-  background-color: #fff;
-  transform: translate(-50%, -50%);
+  background-color: #f4f5f7;
+  transform: translateX(-50%);
 `;
 
 const CloseButton = styled.button`
   position: absolute;
   top: 1rem;
   right: 1rem;
+  color: #6b778c;
   font-size: 1.3rem;
+  transition: color .1s ease-in;
   z-index: 110;
-  cursor: pointer;
+  &:hover {
+    color: #42526e;
+  }
 `;
 
-const Wrapper = styled.div`
+const Container = styled.div`
   position: relative;
-  margin-bottom: 1rem;
-  padding-left: 1.8rem;
 `;
 
-const Title = styled.h4`
+const Header = styled.div`
+  position: relative;
   margin-bottom: .5rem;
+  padding-left: calc(2rem - .5rem);
+`;
+
+const Body = styled.div`
+  padding-left: 2rem;
+`;
+
+const Title = styled.h3`
   padding: .3rem .5rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
 `;
 
 const Icon = styled.div`
   position: absolute;
   left: 0;
-  top: .6rem;
+  top: 50%;
   font-size: 1rem;
+  transform: translateY(-50%);
 `;
-
 
 const Row = styled.div`
   display: grid;
@@ -66,85 +96,91 @@ const Col = styled.div`
 
 `;
 
+class TitleContainer extends Component {
+  render() {
+    const { card } = this.props;
+    return (
+      <Container>
+        <Header>
+          <Icon>
+            <FontAwesomeIcon icon="window-maximize" />
+          </Icon>
+          <CardTitle
+            cardId={card._cardId}
+            cardTitle={card.title}
+          />
+        </Header>
+      </Container>
+    )
+  }
+}
+
+class DescriptionContainer extends Component {
+  render() {
+    const { card } = this.props;
+    return (
+      <Container>
+        <Header>
+          <Icon>
+            <FontAwesomeIcon icon="align-left" />
+          </Icon>
+          <Title>
+            Description
+          </Title>
+        </Header>
+        <Body>
+          <CardDescription
+            cardId={card._cardId}
+            cardDescription={card.description}
+          />
+        </Body>
+      </Container>
+    )
+  }
+}
 
 class CardModal extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isTitleEditing: false,
-      isDescEditing: false,
-    }
-  }
-
-  toggleIsTitleEditing = () => {
-    this.setState({
-      isTitleEditing: !this.state.isTitleEditing
-    })
-  };
-
-  toggleIsDescEditing = () => {
-    this.setState({
-      isDescEditing: !this.state.isDescEditing
-    })
-  };
-
-
-
   render() {
-    const { card, cardIndex, listIndex } = this.props;
-    const { isTitleEditing, isDescEditing } = this.state;
+    const { card } = this.props;
     const boardUrl = `/b/${this.props.match.params}`;
     return (
       <Backdrop>
         <CloseBackdrop onClick={() => history.push(boardUrl)} />
-        <Container onClick={(e) => e.preventDefault()}>
+        <Wrapper onClick={(e) => e.preventDefault()}>
           <CloseButton onClick={() => history.push(boardUrl)}>
             <FontAwesomeIcon icon="times" />
           </CloseButton>
-          <Wrapper>
-            <CardTitle cardId={card._cardId} cardTitle={card.title}/>
-            <Icon>
-              <FontAwesomeIcon icon="window-maximize" />
-            </Icon>
-          </Wrapper>
+          <TitleContainer card={card}/>
           <Row>
             <Col>
-              <Wrapper>
-                <Title>
-                  Description
-                </Title>
-                <CardDescription  cardId={card._cardId} cardDescription={card.description}/>
-                <Icon>
-                  <FontAwesomeIcon icon="align-left" />
-                </Icon>
-              </Wrapper>
-              {card.cardLabels.length !== 0 && (
-                <Wrapper>
-                  <Title>
-                    Label
-                  </Title>
-                  <CardLabel  cardId={card._cardId} cardLabels={card.cardLabels}/>
-                  <Icon>
-                    <FontAwesomeIcon icon="tag" />
-                  </Icon>
-                </Wrapper>
-              )}
-              {card.checkLists.length !== 0 && (
-                <Wrapper>
-                  <Icon>
-                    <FontAwesomeIcon icon="tag" />
-                  </Icon>
-                  {card.checkLists.map((chekList, index) => (
-                    <CheckList key={index} cardId={card._cardId} chekListId={chekList}/>
-                  ))}
-                </Wrapper>
-              )}
+              <DescriptionContainer card={card}/>
+              {/*{card.cardLabels.length !== 0 && (*/}
+              {/*  <Container>*/}
+              {/*    <Title>*/}
+              {/*      Label*/}
+              {/*    </Title>*/}
+              {/*    <CardLabel  cardId={card._cardId} cardLabels={card.cardLabels}/>*/}
+              {/*    <Icon>*/}
+              {/*      <FontAwesomeIcon icon="tag" />*/}
+              {/*    </Icon>*/}
+              {/*  </Container>*/}
+              {/*)}*/}
+              {/*{card.checkLists.length !== 0 && (*/}
+              {/*  <Container>*/}
+              {/*    <Icon>*/}
+              {/*      <FontAwesomeIcon icon="tag" />*/}
+              {/*    </Icon>*/}
+              {/*    {card.checkLists.map((chekList, index) => (*/}
+              {/*      <CheckList key={index} cardId={card._cardId} chekListId={chekList}/>*/}
+              {/*    ))}*/}
+              {/*  </Container>*/}
+              {/*)}*/}
             </Col>
             <Col>
               <CardActionsMenu card={card} />
             </Col>
           </Row>
-        </Container>
+        </Wrapper>
       </Backdrop>
     )
   }
@@ -156,14 +192,4 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({
-
-    }, dispatch)
-  };
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(CardModal);
+export default connect(mapStateToProps)(CardModal);

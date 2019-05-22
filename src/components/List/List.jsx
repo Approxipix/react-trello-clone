@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux/es/alternate-renderers";
 import { Draggable } from 'react-beautiful-dnd';
 import ListHeader from './ListHeader'
-import CardAdder from '../Card/CardAdder';
+import CardAdd from '../Card/CardAdd';
 import ListCards from './ListCards'
 import styled from 'styled-components'
 
@@ -40,7 +40,7 @@ class List extends Component {
                 listTitle={list.title}
               />
               <ListCards listId={list._listId} cardsId={list.cards} />
-              <CardAdder listId={list._listId} />
+              <CardAdd listId={list._listId} />
             </Container>
             {provided.placeholder}
           </>

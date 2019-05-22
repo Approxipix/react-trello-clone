@@ -12,9 +12,10 @@ import { store, history } from './redux/store/index';
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     color: #40424b;
+    letter-spacing: .5px; 
     * {
       box-sizing: border-box;
     }
@@ -61,7 +62,11 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
   a {
+    color: #172b4d;
     text-decoration: none;
+    &:hover {
+      color: #091e42;
+    }
   }
 `;
 
@@ -79,5 +84,4 @@ class App extends Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
 serviceWorker.unregister();

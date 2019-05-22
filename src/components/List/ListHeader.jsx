@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
-import ListActions from './ListActions';
+import ListActions from './ListActions/ListActions';
 import ListTitle from './ListTitle/ListTitle';
 import styled from 'styled-components'
 
 const Header = styled.div`
-  margin-bottom: .4rem;
   padding: .5rem .7rem 0rem .5rem;
   width: 100%;
   display: flex;

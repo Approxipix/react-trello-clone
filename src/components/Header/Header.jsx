@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
-import NavigationItems from './NavigationItems';
+import HeaderNavigationList from './HeaderNavigationList';
 import logo from '../../images/logo.svg'
 
 const Wrapper = styled.div`
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   padding: 0 1.5rem;
   background-color: ${props => props.color};
   box-shadow: inset 0px 0px 0px 40px rgba(0, 0, 0, .3);
-  transition: background-color .2s ease-in-out;
+  transition: background-color .2s ease-in;
 `;
 
 const Nav = styled.nav``;
@@ -31,7 +31,7 @@ const NavItem = styled.li`
   color: rgba(255, 255, 255, 0.8);
   border-radius: 3px;
   background-color: rgba(255, 255, 255, 0.2);
-  transition: all .2s ease-in-out;
+  transition: all .2s ease-in;
   &:hover {
     color: #fff;
     background-color: rgba(255, 255, 255, 0.25);
@@ -61,7 +61,7 @@ class Header extends Component {
     return (
       <Wrapper color={boardColor}>
         <Nav>
-          {NavigationItems.map((item, index) => {
+          {HeaderNavigationList.map((item, index) => {
             if (location === item.path) return null;
             return (
               <NavList key={index}>

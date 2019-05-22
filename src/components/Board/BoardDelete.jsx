@@ -10,7 +10,7 @@ const Container = styled.div`
   position: relative;
 `;
 
-class DeleteBoard extends Component {
+class BoardDelete extends Component {
   deleteBoard = () => {
     this.props.actions.deleteBoard({
       boardId: this.props.boardId
@@ -44,4 +44,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(DeleteBoard);
+export default connect(null, mapDispatchToProps)(BoardDelete);

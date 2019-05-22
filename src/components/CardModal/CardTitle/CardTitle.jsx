@@ -1,48 +1,48 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import CardTitleEdit from './CardTitleEdit';
+import styled from 'styled-components';
 
-const Title = styled.h4`
+const Title = styled.h2`
   margin-bottom: .5rem;
   padding: .3rem .5rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 class CardTitle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isTitleEditing: false,
+      editTitle: false,
     }
   }
 
-  toggleIsTitleEditing = () => {
+  toggleEditTitle = () => {
     this.setState({
-      isTitleEditing: !this.state.isTitleEditing
+      editTitle: !this.state.editTitle
     })
   };
 
   render() {
     const { cardId, cardTitle } = this.props;
-    const { isTitleEditing } = this.state;
-
-    if (isTitleEditing) {
-      return (
+    const { editTitle } = this.state;
+    return (
+      !editTitle ? (
+        <Title onClick={() => this.toggleEditTitle()}>
+          {cardTitle}
+        </Title>
+      ) : (
         <CardTitleEdit
           cardId={cardId}
           cardTitle={cardTitle}
-          toggleIsTitleEditing={this.toggleIsTitleEditing}
+          toggleEditTitle={this.toggleEditTitle}
         />
       )
-    }
-    return (
-      <Title onClick={() => this.toggleIsTitleEditing()}>
-        {cardTitle}
-      </Title>
     )
   }
 }
-
 
 export default CardTitle;

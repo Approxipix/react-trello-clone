@@ -20,10 +20,10 @@ const Button = styled.button`
   color: #fff;
   white-space: nowrap;
   border-radius: .2rem;
-  transition: background .2s ease-in-out;
+  transition: background-color .2s ease-in;
   cursor: pointer;
   &:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
   }
 `;
 

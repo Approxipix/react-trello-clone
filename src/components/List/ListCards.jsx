@@ -6,8 +6,7 @@ import Card from '../Card/Card'
 const CardLIst = styled.div`
   min-height: 4rem;
   position: relative;
-  padding: 0 .5rem;
-  background-color: ${props => (props.isDraggingOver ? '#c1c1c1' : '#dfe1e6')}
+  padding: .5rem .5rem 0;
   flex-grow: 1;
   overflow: auto;
 `;

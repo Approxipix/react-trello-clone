@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom';
-import BoardAdder from '../components/Board/BoardAdder';
+import BoardAdd from '../components/Board/BoardAdd';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -87,7 +87,7 @@ class Boards extends Component {
               </BoardItem>
             </NavLink>
           ))}
-          <BoardAdder />
+          <BoardAdd />
         </BoardList>
       </Wrapper>
     )

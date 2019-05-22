@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SidebarNavigationList from './SidebarNavigationList'
 import styled from 'styled-components'
 
 const Title = styled.h3`
@@ -24,7 +25,6 @@ const Link = styled.a`
   display: flex;
   align-items: center;
   font-size: .875rem;
-  color: #172b4d;
   font-weight: 700;
 `;
 
@@ -33,7 +33,7 @@ const Icon = styled.i`
   color: #42526e;
 `;
 
-class Navigation extends Component {
+class SidebarNavigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,32 +48,9 @@ class Navigation extends Component {
   };
 
   render() {
-    const navigationItem = [
-      {
-        title: 'Change Background',
-        component: 'ChangeBackground',
-        icon: 'fill-drip',
-      },
-      // {
-      //   title: '!= Search Cards',
-      //   component: '',
-      //   icon: '',
-      // },
-      // {
-      //   title: '!= Copy Board',
-      //   component: '',
-      //   icon: '',
-      // },
-      {
-        title: 'Delete Board',
-        component: 'DeleteBoard',
-        icon: 'trash',
-      },
-    ];
-
     return (
       <List>
-        {navigationItem.map((item, index) => (
+        {SidebarNavigationList.map((item, index) => (
           <Item key={index} >
             <Link onClick={(e) => this.changeView(e, item)}>
               <Icon>
@@ -90,4 +67,4 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+export default SidebarNavigation;
