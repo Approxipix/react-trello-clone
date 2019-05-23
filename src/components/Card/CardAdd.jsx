@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import uuid from "uuid";
 
 const Wrapper = styled.div`
-  padding: 0 .5rem .5rem;
+  padding: .5rem;
 `;
 
 const AddButton = styled.button`
@@ -32,9 +32,6 @@ class CardAdder extends Component {
     this.state = {
       isOpened: false,
       title: '',
-      rows: 3,
-      minRows: 2,
-      maxRows: 8,
     };
   }
 
@@ -42,7 +39,6 @@ class CardAdder extends Component {
     this.setState({
       isOpened: !this.state.isOpened,
       title: '',
-      rows: 3,
     })
   };
 
@@ -53,24 +49,8 @@ class CardAdder extends Component {
   };
 
   handleChange = (e) => {
-    const { minRows, maxRows } = this.state;
-    const textareaLineHeight = 16;
-    const previousRows = e.target.rows;
-    e.target.rows = minRows; // reset number of rows in textarea
-    e.target.style.overflow = 'hidden'; //overflow because scrollbar affects e.target.scrollHeight
-    const currentRows = ~~(e.target.scrollHeight / textareaLineHeight);
-    if (currentRows === previousRows) {
-      e.target.rows = currentRows;
-    }
-    if (currentRows >= maxRows) {
-      e.target.rows = maxRows;
-      e.target.style.overflow = 'auto';
-      e.target.scrollTop = e.target.scrollHeight;
-    }
-
     this.setState({
       title: e.target.value,
-      rows: currentRows < maxRows ? currentRows : maxRows,
     });
   };
 
@@ -85,12 +65,11 @@ class CardAdder extends Component {
     });
     this.setState({
       title: '',
-      rows: 3,
     }, () => this.textarea.focus())
   };
 
   render = () => {
-    const { isOpened, title, rows } = this.state;
+    const { isOpened, title } = this.state;
     return isOpened ? (
       <ClickOutside action={'mousedown'} toggleOpened={this.toggleOpened}>
         <Wrapper>
@@ -100,7 +79,7 @@ class CardAdder extends Component {
               value={title}
               size=".875rem;"
               padding=".5rem"
-              rows={rows}
+              rows={3}
               placeholder="Enter a card title..."
               ref={(e) => { this.textarea = e }}
               onKeyDown={this.handleKeyDown}

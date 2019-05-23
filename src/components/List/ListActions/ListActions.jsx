@@ -27,7 +27,6 @@ const Header = styled.div`
 const Title = styled.h3`
   font-size: 1em;
   color: #6b778c;
-  font-weight: normal;
 `;
 
 const Button = styled.button`

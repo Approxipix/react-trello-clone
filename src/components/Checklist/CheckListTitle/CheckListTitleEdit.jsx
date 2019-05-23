@@ -1,25 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { editCheckListTitle } from '../../redux/rootReducer/actions';
-import ClickOutside from "../ClickOutside";
+import { editCheckListTitle } from '../../../redux/checkListReducer/actions';
+import ClickOutside from "../../ClickOutside";
+import { Input, } from '../../BaseComponent';
 
-const Form = styled.form`
-  width: 90%;
-`;
-
-const Input = styled.input`
-  padding: .6rem .5rem .5rem;
-  width: 100%;
-  border: none;
-  font-weight: bold;
-  box-shadow: none;
-  font-size: 1rem;
-  color: #40424b;
-`;
-
-class EditCheckListTitle extends Component {
+class CheckListTitleEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,11 +13,16 @@ class EditCheckListTitle extends Component {
     };
   }
 
-  handleChange = (key, value) => {
+  handleChange = (value) => {
     this.setState({
-      ...this.state,
-      [key]: value,
+      title: value,
     });
+  };
+
+  handleKeyDown = (e) => {
+    if (e.keyCode === 27) {
+      this.props.toggleEditing()
+    }
   };
 
   handleSubmit = event => {
@@ -50,16 +41,22 @@ class EditCheckListTitle extends Component {
     const { title } = this.state;
     return (
       <ClickOutside toggleOpened={this.props.toggleEditing}>
-        <Form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <Input
-            autoFocus
             type="text"
-            placeholder="Enter list title..."
+            padding=".3rem .5rem"
+            margin="0"
+            size="1.2rem"
+            weight="600"
             value={title}
-            onChange={(e) => this.handleChange('title', e.target.value)}
+            placeholder="Enter list title..."
+            onKeyDown={this.handleKeyDown}
+            onChange={(e) => this.handleChange(e.target.value)}
+            onBlur={this.handleSubmit}
             spellCheck={false}
+            autoFocus
           />
-        </Form>
+        </form>
       </ClickOutside>
     );
   };
@@ -73,5 +70,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-
-export default connect(null, mapDispatchToProps)(EditCheckListTitle);
+export default connect(null, mapDispatchToProps)(CheckListTitleEdit);

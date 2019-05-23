@@ -24,6 +24,19 @@ const AddDescription = styled.a`
   }
 `;
 
+const Button = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: .5rem 1rem;
+  background-color: rgba(9, 30, 66, .08);
+  border-radius: 3px;
+  transition: background-color .2s ease-in;
+  &:hover {
+    background-color: rgba(9,30,66,.13);
+  }
+`;
+
 class CardDescription extends Component {
   constructor(props) {
     super(props);
@@ -50,8 +63,11 @@ class CardDescription extends Component {
     }
     return (
       !editDescription ? (
-        <Description onClick={() => this.toggleEditDescription()}>
+        <Description>
           {cardDescription}
+          <Button onClick={() => this.toggleEditDescription()}>
+            Edit
+          </Button>
         </Description>
       ) : (
         <CardDescriptionEdit

@@ -84,7 +84,7 @@ class ListAdd extends Component {
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Wrapper>
-          <Form id="column-add-form" onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
             <Input
               type="text"
               value={title}

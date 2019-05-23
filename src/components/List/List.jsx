@@ -25,7 +25,6 @@ class List extends Component {
       <Draggable
         index={index}
         draggableId={`${list._listId}`}
-        disableInteractiveElementBlocking
       >
         {(provided) => (
           <>

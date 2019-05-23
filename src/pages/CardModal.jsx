@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CardActionsMenu from "../components/CardModal/CardActions";
-import CheckList from "../components/CheckList/CheckList";
+import CardActions from "../components/CardModal/CardActions";
+import CheckList from "../components/Checklist/CheckList";
 import CardTitle from "../components/CardModal/CardTitle/CardTitle";
 import CardDescription from "../components/CardModal/CardDescription/CardDescription";
-import CardLabel from "../components/CardModal/CardLabel";
+import Label from "../components/Label/Label";
 import { history } from "../redux/store";
+import { Redirect } from "react-router";
 
 const Backdrop = styled.div`
   position: fixed;
@@ -60,11 +61,14 @@ const CloseButton = styled.button`
 
 const Container = styled.div`
   position: relative;
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }  
 `;
 
 const Header = styled.div`
   position: relative;
-  margin-bottom: .5rem;
+  margin-bottom: .3rem;
   padding-left: calc(2rem - .5rem);
 `;
 
@@ -139,10 +143,53 @@ class DescriptionContainer extends Component {
   }
 }
 
+class LabelContainer extends Component {
+  render() {
+    const { card } = this.props;
+    if (card.cardLabels.length === 0) return null;
+    return (
+      <Container>
+        <Header>
+          <Icon>
+            <FontAwesomeIcon icon="tag" />
+          </Icon>
+          <Title>
+            Labels
+          </Title>
+        </Header>
+        <Body>
+          <Label
+            cardId={card._cardId}
+            cardLabels={card.cardLabels}
+          />
+        </Body>
+      </Container>
+    )
+  }
+}
+
+class ChecklistContainer extends Component {
+  render() {
+    const { card } = this.props;
+    if (card.checkLists.length === 0) return null;
+    return (
+      card.checkLists.map((checklist, index) => (
+        <Container key={index}>
+          <CheckList
+            cardId={card._cardId}
+            chekListId={checklist}
+          />
+        </Container>
+      ))
+    )
+  }
+}
+
 class CardModal extends Component {
   render() {
     const { card } = this.props;
     const boardUrl = `/b/${this.props.match.params}`;
+    if (!card) return <Redirect to='/boards' />;
     return (
       <Backdrop>
         <CloseBackdrop onClick={() => history.push(boardUrl)} />
@@ -154,30 +201,11 @@ class CardModal extends Component {
           <Row>
             <Col>
               <DescriptionContainer card={card}/>
-              {/*{card.cardLabels.length !== 0 && (*/}
-              {/*  <Container>*/}
-              {/*    <Title>*/}
-              {/*      Label*/}
-              {/*    </Title>*/}
-              {/*    <CardLabel  cardId={card._cardId} cardLabels={card.cardLabels}/>*/}
-              {/*    <Icon>*/}
-              {/*      <FontAwesomeIcon icon="tag" />*/}
-              {/*    </Icon>*/}
-              {/*  </Container>*/}
-              {/*)}*/}
-              {/*{card.checkLists.length !== 0 && (*/}
-              {/*  <Container>*/}
-              {/*    <Icon>*/}
-              {/*      <FontAwesomeIcon icon="tag" />*/}
-              {/*    </Icon>*/}
-              {/*    {card.checkLists.map((chekList, index) => (*/}
-              {/*      <CheckList key={index} cardId={card._cardId} chekListId={chekList}/>*/}
-              {/*    ))}*/}
-              {/*  </Container>*/}
-              {/*)}*/}
+              <LabelContainer card={card}/>
+              <ChecklistContainer card={card} />
             </Col>
             <Col>
-              <CardActionsMenu card={card} />
+              <CardActions card={card} />
             </Col>
           </Row>
         </Wrapper>

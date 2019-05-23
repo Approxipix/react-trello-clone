@@ -5,6 +5,7 @@ import { setCurrentBoardID } from "../redux/rootReducer/actions";
 import { moveList } from "../redux/boardReducer/actions";
 import { moveCard } from "../redux/listReducer/actions";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { Redirect } from "react-router";
 import Sidebar from '../components/Sidebar/Sidebar'
 import BoardHeader from '../components/Board/BoardHeader'
 import ListAdd from '../components/List/ListAdd';
@@ -82,8 +83,9 @@ class Board extends Component {
   };
 
   render() {
-    const { board } = this.props;
-    if (!board) return null;
+    const { board, currentBoardId } = this.props;
+    if (!currentBoardId) return null;
+    if (!board) return <Redirect to='/boards' />;
     return (
       <BoardWrapper color={board.color}>
         <BoardHeader boardId={board._boardId} />
@@ -114,6 +116,7 @@ class Board extends Component {
 function mapStateToProps(state) {
   return {
     board: state.boardReducer[state.rootReducer.currentBoardID],
+    currentBoardId: state.rootReducer.currentBoardID,
     isSidebarOpened: state.rootReducer.isSidebarOpened,
   }
 }

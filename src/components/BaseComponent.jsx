@@ -85,20 +85,6 @@ export const CancelButton = styled.button`
   }
 `;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const wave = keyframes`
   50% {
     transform: scale(0.9);
@@ -106,7 +92,7 @@ const wave = keyframes`
 `;
 
 export const CheckBox = styled.div`
- margin-right: .5rem;
+  margin-right: .5rem;
   user-select: none;
   cursor: pointer;
   -webkit-tap-highlight-color:transparent;
@@ -114,7 +100,6 @@ export const CheckBox = styled.div`
     display: inline-block;
     vertical-align: middle;
     transform: translate3d(0, 0, 0);
-
     &:first-child {
       position: relative;
       width: 1.125rem;
@@ -122,36 +107,28 @@ export const CheckBox = styled.div`
       border-radius: .2rem;
       transform: scale(1);
       vertical-align: middle;
-      border: 1px solid ${props => props.status ? 'blue' : '#eee'};
+      box-shadow: ${props => props.status ? 'none' : 'inset 0 0 0 2px #dfe1e6'};
       transition: ${props => props.status ? 'all 0.2s ease' : 'none'};
+      background: ${props => props.status ? 'rgba(9, 30, 66, .04)' : '#fafbfc'};
       animation: ${wave} 0.4s ease;
-      background: ${props => props.status ? 'lightblue' : '#ccc'};
   
-      
       svg {
         position: absolute;
-        top: 3px;
-        left: 2px;
+        top: 4px;
+        left: 4px;
         fill: none;
-        stroke: #fff;
+        stroke: #42526e;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-dasharray: 1rem;
-        transition: ${props => props.status ? 'all 0.3s ease' : 'none'};
+        transition: all 0.3s ease;
         transition-delay: 0.1s;
         transform: translate3d(0, 0, 0);
-        
+       
         stroke-dashoffset: ${props => props.status ? '0' : '1rem'};
       }
     }
-
-    &:last-child {
-      padding-left: 8px;
-    }
-  }
-  &:hover span:first-child {
-    border-color: blue;
   }
 `;
 

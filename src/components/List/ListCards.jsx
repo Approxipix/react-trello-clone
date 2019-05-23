@@ -4,9 +4,9 @@ import { Droppable } from 'react-beautiful-dnd';
 import Card from '../Card/Card'
 
 const CardLIst = styled.div`
-  min-height: 4rem;
+  min-height: 2rem;
   position: relative;
-  padding: .5rem .5rem 0;
+  padding: .25rem .5rem;
   flex-grow: 1;
   overflow: auto;
 `;
@@ -29,6 +29,20 @@ class InnerList extends Component {
 }
 
 class ListCards extends Component {
+  componentDidUpdate = prevProps => {
+    const { cardsId } = this.props;
+    if (
+      cardsId[cardsId.length - 2] ===
+      prevProps.cardsId[prevProps.cardsId.length - 1]
+    ) {
+      this.scrollToBottom();
+    }
+  };
+
+  scrollToBottom = () => {
+    this.listEnd.scrollIntoView();
+  };
+
   render() {
     const { listId, cardsId } = this.props;
     return (
@@ -48,6 +62,7 @@ class ListCards extends Component {
               cardsId={cardsId}
             />
             {provided.placeholder}
+            <div ref={el => this.listEnd = el}/>
           </CardLIst>
         )}
       </Droppable>

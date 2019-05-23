@@ -6,16 +6,15 @@ const LabelList = styled.ul`
 `;
 
 const LabelItem = styled.li`
-  height: 2rem;
   width: 2rem;
+  height: 2rem;
   margin-right: .5rem;
   background-color: ${props => props.value};
-  cursor: pointer;
   border-radius: .2rem;
 `;
 
 
-class CardLabel extends Component {
+class Label extends Component {
   render() {
     const { cardLabels } = this.props;
     return (
@@ -28,6 +27,4 @@ class CardLabel extends Component {
   }
 }
 
-
-
-export default CardLabel;
+export default Label;

@@ -6,24 +6,19 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  padding: .3rem .5rem;
-  color: #40424b;
-  transition: all .2s ease-in;
   cursor: pointer;
+`;
+
+const Link = styled.a`
+  display: block;
+  padding: .3rem .75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all .2s ease-in;
   &:hover {
     color: #fff;
     background-color: #2E7EAF;
   }
-  &:not(:last-child) {
-     margin-bottom: .5rem;
-  }
-`;
-
-const Link = styled.a`
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 700;
 `;
 
 class ListActionsNavigation extends Component {
