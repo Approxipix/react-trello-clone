@@ -47,8 +47,8 @@ const Button = styled.button`
   &:hover {
     background-color: rgba(9,30,66,.13);
   }
-  &:not(:last-child) {
-    margin-right: .5rem;
+  &:not(:first-child) {
+    margin-left: .5rem;
   }
 `;
 
@@ -87,19 +87,9 @@ class CheckList extends Component {
             checkListTitle={checkList.title}
             checkListId={checkList._checkListId}
           />
-          <Actions>
-            {!!doneItems && (
-              <Button onClick={() => this.toggleHideCompletedItems()}>
-                {!hideCompletedItems
-                  ? 'Hide completed items'
-                  : `Show checked items (${doneItems})`
-                }
-              </Button>
-            )}
-            <Button onClick={() => this.deleteCheckList()}>
-              Delete
-            </Button>
-          </Actions>
+          <Button onClick={() => this.deleteCheckList()}>
+            Delete
+          </Button>
         </Header>
         <CheckListProgress items={checkList.items} />
         <CheckListContainer>
@@ -114,7 +104,17 @@ class CheckList extends Component {
             />
           ))}
         </CheckListContainer>
-        <CheckListItemAdd checkListId={checkList._checkListId}/>
+        <Actions>
+          <CheckListItemAdd checkListId={checkList._checkListId}/>
+          {!!doneItems && (
+            <Button onClick={() => this.toggleHideCompletedItems()}>
+              {!hideCompletedItems
+                ? 'Hide completed items'
+                : `Show checked items (${doneItems})`
+              }
+            </Button>
+          )}
+        </Actions>
       </Container>
     );
   }

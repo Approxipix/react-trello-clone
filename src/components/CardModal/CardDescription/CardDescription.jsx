@@ -5,6 +5,7 @@ import CardDescriptionEdit from './CardDescriptionEdit';
 const Description = styled.p`
   font-size: .875rem;
   word-break: break-word;
+  white-space: pre-line;
   cursor: pointer;
 `;
 
