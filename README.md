@@ -1,6 +1,6 @@
 ## React Trello Clone
 
-A simple [Trello](https://trello.com/) clone based on React, Redux, React-dnd.
+A simple [Trello](https://trello.com/) clone based on React/Redux.
 
 ![example](https://github.com/Approxipix/react-kanban/blob/master/example.gif?raw=true)
 
