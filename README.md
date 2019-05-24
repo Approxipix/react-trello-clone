@@ -1,10 +1,10 @@
-## React Trello Clone
+# React Trello Clone
 
 A simple [Trello](https://trello.com/) clone based on React/Redux.
 
 ![example](https://github.com/Approxipix/react-kanban/blob/master/example.gif?raw=true)
 
-### Tech stack
+## Tech stack
 
 * [React](https://github.com/facebook/react)
 * [Redux](https://github.com/reactjs/redux)
@@ -12,7 +12,7 @@ A simple [Trello](https://trello.com/) clone based on React/Redux.
 * [React-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
 * [Styled Components](https://github.com/styled-components/styled-components)
 
-#### Setup
+## Setup
 
 ```shell
 # Clone project
