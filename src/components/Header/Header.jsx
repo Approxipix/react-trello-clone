@@ -43,7 +43,7 @@ const NavIcon = styled.i`
   font-size: 1rem;
 `;
 
-const NavTitle = styled.div`
+const NavTitle = styled.h3`
   font-size: 1rem;
   line-height: 1.5;
 `;
@@ -57,7 +57,7 @@ const Actions = styled.div``;
 
 class Header extends Component {
   render() {
-    const { boardColor, location } = this.props;
+    const { location, boardColor } = this.props;
     return (
       <Wrapper color={boardColor}>
         <Nav>

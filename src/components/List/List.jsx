@@ -20,7 +20,7 @@ const Container = styled.div`
 
 class List extends Component {
   render() {
-    const {  list, boardId, index } = this.props;
+    const {  boardId, list, index } = this.props;
     return (
       <Draggable
         index={index}
@@ -38,8 +38,11 @@ class List extends Component {
                 listId={list._listId}
                 listTitle={list.title}
               />
-              <ListCards listId={list._listId} cardsId={list.cards} />
-              <CardAdd listId={list._listId} />
+              <ListCards
+                listId={list._listId}
+                cardsId={list.cards}
+              />
+              <CardAdd listId={list._listId}/>
             </Container>
             {provided.placeholder}
           </>

@@ -23,17 +23,6 @@ class Board {
     }
   }
 
-  static deleteListFromBoard(state, payload) {
-    const { boardId, listId: deleteListId } = payload;
-    return {
-      ...state,
-      [boardId]: {
-        ...state[boardId],
-        lists: state[boardId].lists.filter(listId => listId !== deleteListId)
-      },
-    };
-  }
-
   static editBoardTitle(state, payload) {
     const { boardId, boardTitle } = payload;
     return {
@@ -54,12 +43,6 @@ class Board {
         color: boardColor
       }
     };
-  }
-
-  static deleteBoard(state, payload) {
-    const { boardId } = payload;
-    const { [boardId]: deletedBoard, ...restOfBoards } = state;
-    return restOfBoards;
   }
 
   static moveList(state, payload) {
@@ -92,6 +75,23 @@ class Board {
         ...state[newBoardId],
         lists: newBoardList
       }
+    };
+  }
+
+  static deleteBoard(state, payload) {
+    const { boardId } = payload;
+    const { [boardId]: deletedBoard, ...restOfBoards } = state;
+    return restOfBoards;
+  }
+
+  static deleteListFromBoard(state, payload) {
+    const { boardId, listId: deleteListId } = payload;
+    return {
+      ...state,
+      [boardId]: {
+        ...state[boardId],
+        lists: state[boardId].lists.filter(listId => listId !== deleteListId)
+      },
     };
   }
 }

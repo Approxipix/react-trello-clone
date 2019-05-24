@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editCardTitle } from '../../../redux/cardReducer/actions';
 import ClickOutside from '../../ClickOutside';
-import { Input, TextArea, } from '../../BaseComponent';
+import { Input, } from '../../BaseComponent';
 import styled from 'styled-components'
 
 const Form = styled.form`
@@ -18,16 +18,16 @@ class CardTitleEdit extends Component {
     };
   }
 
-  handleChange = (value) => {
-    this.setState({
-      title: value,
-    });
-  };
-
   handleKeyDown = (e) => {
     if (e.keyCode === 27) {
       this.props.toggleEditTitle();
     }
+  };
+
+  handleChange = (value) => {
+    this.setState({
+      title: value,
+    });
   };
 
   handleSubmit = (e) => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClickOutside from "../ClickOutside";
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -12,6 +12,10 @@ const Wrapper = styled.div`
   border-radius: .2rem;
   box-shadow: rgba(0, 0, 0, 0.3) .125rem .125rem .5rem;
   z-index: 10;
+  @media (max-width: 910px) {
+    right: 0;
+    left: auto;
+  }
 `;
 
 const Header = styled.div`

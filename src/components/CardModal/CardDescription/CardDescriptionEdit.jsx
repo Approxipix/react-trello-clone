@@ -76,11 +76,11 @@ class CardDescriptionEdit extends Component {
             spellCheck={false}
           />
           <Actions>
-            <SubmitButton onMouseDown={(e) => this.handleSubmit(e)} >
+            <SubmitButton onMouseDown={(e) => this.handleSubmit(e)}>
               Save
             </SubmitButton>
             <CancelButton onClick={() => this.props.toggleEditDescription()}>
-              <FontAwesomeIcon icon="times" />
+              <FontAwesomeIcon icon="times"/>
             </CancelButton>
           </Actions>
         </form>

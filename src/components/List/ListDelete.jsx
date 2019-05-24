@@ -20,10 +20,7 @@ class ListDelete extends Component {
           All actions will be removed from the activity feed and you won’t be able to re-open the list.
           There is no undo.
         </Text>
-        <SubmitButton
-          color={'danger'}
-          onClick={() => this.deleteList()}
-        >
+        <SubmitButton color={'danger'} onClick={() => this.deleteList()}>
           Delete list
         </SubmitButton>
       </>

@@ -51,18 +51,17 @@ class ListAdd extends Component {
     })
   };
 
-  handleChange = (e) => {
-    this.setState({
-      title: e.target.value
-    });
-  };
-
   handleKeyDown = (e) => {
     if (e.keyCode === 27) {
       this.toggleOpened();
     }
   };
 
+  handleChange = (e) => {
+    this.setState({
+      title: e.target.value
+    });
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -100,7 +99,7 @@ class ListAdd extends Component {
                 Add list
               </SubmitButton>
               <CancelButton onClick={() => this.toggleOpened()}>
-                <FontAwesomeIcon icon="times" />
+                <FontAwesomeIcon icon="times"/>
               </CancelButton>
             </Actions>
           </Form>

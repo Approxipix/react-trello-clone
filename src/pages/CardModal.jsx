@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { connect } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { history } from "../redux/store";
+import { Redirect } from "react-router";
 import CardActions from "../components/CardModal/CardActions";
 import CheckList from "../components/Checklist/CheckList";
 import CardTitle from "../components/CardModal/CardTitle/CardTitle";
 import CardDescription from "../components/CardModal/CardDescription/CardDescription";
 import Label from "../components/Label/Label";
-import { history } from "../redux/store";
-import { Redirect } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from 'styled-components';
 
 const Backdrop = styled.div`
   position: fixed;
@@ -44,6 +44,12 @@ const Wrapper = styled.div`
   border-radius: .2rem;
   background-color: #f4f5f7;
   transform: translateX(-50%);
+  @media (max-width: 770px) {
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    transform: translateX(0);
+  }
 `;
 
 const CloseButton = styled.button`
@@ -94,10 +100,12 @@ const Row = styled.div`
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-gap: 1rem;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Col = styled.div`
-
 `;
 
 class TitleContainer extends Component {

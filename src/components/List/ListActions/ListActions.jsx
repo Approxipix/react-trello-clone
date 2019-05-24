@@ -19,12 +19,20 @@ const Wrapper = styled.div`
   z-index: 10;
 `;
 
+const Container = styled.div`
+  padding: 0 .5rem;
+`;
+
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: .4rem;
   border-bottom: 1px solid rgba(9,30,66,.13);
+`;
+
+const Body = styled.div`
+   padding: .5rem 0;
 `;
 
 const Title = styled.h3`
@@ -39,14 +47,6 @@ const Button = styled.button`
   &:hover {
     color: #42526e;
   }
-`;
-
-const Body = styled.div`
-   padding: .5rem 0;
-`;
-
-const Container = styled.div`
-  padding: 0 .5rem;
 `;
 
 class ListActions extends Component {

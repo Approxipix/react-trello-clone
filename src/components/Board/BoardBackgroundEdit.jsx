@@ -51,10 +51,7 @@ class BoardBackgroundEdit extends Component {
         <List>
           {colors.map((color, index) => (
             <Item key={index}>
-              <Button
-                value={color}
-                onClick={() => this.editBoardColor(color)}
-              >
+              <Button value={color} onClick={() => this.editBoardColor(color)}>
                 {boardColor === color && <FontAwesomeIcon icon="check" />}
               </Button>
             </Item>

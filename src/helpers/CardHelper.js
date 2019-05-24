@@ -24,23 +24,11 @@ class Card {
     }
   }
 
-  static deleteCheckListFromCard(state, payload) {
-    const { cardId, checkListId } = payload;
-    return {
-      ...state,
-      [cardId]: {
-        ...state[cardId],
-        checkLists: state[cardId].checkLists.filter(listId => listId !== checkListId),
-      }
-    }
-  }
-
-
   static addLabelToCard(state, payload) {
     const { cardId, cardLabel} = payload;
-    const isLabelExist = state[cardId].cardLabels.some(label => {
-      return label._labelId === cardLabel._labelId
-    });
+    const isLabelExist = state[cardId].cardLabels.some(label => (
+      label._labelId === cardLabel._labelId
+    ));
     let newCardLabel = [...state[cardId].cardLabels];
     if (isLabelExist) {
       newCardLabel = newCardLabel.filter(label => label._labelId !== cardLabel._labelId);
@@ -82,6 +70,17 @@ class Card {
     const { cardId } = payload;
     const { [cardId]: deletedCard, ...restOfCards } = state;
     return restOfCards;
+  }
+
+  static deleteCheckListFromCard(state, payload) {
+    const { cardId, checkListId: deleteCheckListId } = payload;
+    return {
+      ...state,
+      [cardId]: {
+        ...state[cardId],
+        checkLists: state[cardId].checkLists.filter(checkListId => checkListId !== deleteCheckListId),
+      }
+    }
   }
 }
 

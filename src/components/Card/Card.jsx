@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Draggable } from 'react-beautiful-dnd';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from 'styled-components';
 
 const Container = styled.div`
   position: relative; 
@@ -76,19 +76,19 @@ class CardBadges extends Component {
     let allCheckListItems = 0;
     let doneCheckListItems = 0;
     card.checkLists.forEach(checklist => {
-      allCheckListItems = allCheckListItems + checkLists[checklist].items.length;
-      doneCheckListItems = doneCheckListItems + checkLists[checklist].items.filter(item => !!item.status).length
+      allCheckListItems += checkLists[checklist].items.length;
+      doneCheckListItems += checkLists[checklist].items.filter(item => !!item.status).length
     });
     return (
       <BadgeList>
         {!!card.description && (
           <BadgeItem>
-            <FontAwesomeIcon icon="align-left" />
+            <FontAwesomeIcon icon="align-left"/>
           </BadgeItem>
         )}
         {!!allCheckListItems && (
           <BadgeItem done={allCheckListItems === doneCheckListItems}>
-            <FontAwesomeIcon icon="check-square" /> {doneCheckListItems}/{allCheckListItems}
+            <FontAwesomeIcon icon="check-square"/> {doneCheckListItems}/{allCheckListItems}
           </BadgeItem>
         )}
       </BadgeList>
@@ -98,7 +98,13 @@ class CardBadges extends Component {
 
 class Card extends Component {
   render() {
-    const { currentBoardID, card, checkLists, index, isDraggingOver} = this.props;
+    const {
+      currentBoardID,
+      card,
+      index,
+      isDraggingOver,
+      checkLists,
+    } = this.props;
     return (
       <Draggable
         index={index}
@@ -117,8 +123,10 @@ class Card extends Component {
             >
               <CardWrapper isDragging={snapshot.isDragging}>
                 <NavLink to={`/b/${currentBoardID}/c/${card._cardId}`}>
-                  <CardLabels cardLabels={card.cardLabels} />
-                  <Title>{card.title}</Title>
+                  <CardLabels cardLabels={card.cardLabels}/>
+                  <Title>
+                    {card.title}
+                  </Title>
                   <CardBadges
                     card={card}
                     checkLists={checkLists}

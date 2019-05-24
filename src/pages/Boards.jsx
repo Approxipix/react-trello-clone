@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import styled from 'styled-components'
 import { NavLink } from 'react-router-dom';
 import BoardAdd from '../components/Board/BoardAdd';
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   height: 100%;

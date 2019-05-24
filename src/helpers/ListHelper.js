@@ -11,28 +11,6 @@ class List {
     }
   }
 
-  static editListTitle(state, payload) {
-    const { listTitle, listId } = payload;
-    return {
-      ...state,
-      [listId]: {
-        ...state[listId],
-        title: listTitle,
-      }
-    };
-  }
-
-  static deleteAllCards(state, payload) {
-    const { listId } = payload;
-    return {
-      ...state,
-      [listId]: {
-        ...state[listId],
-        cards: []
-      },
-    };
-  }
-
   static addCardToList(state, payload) {
     const { listId, newCardId } = payload;
     return {
@@ -44,35 +22,14 @@ class List {
     }
   }
 
-  static deleteList(state, payload) {
-    const { listId } = payload;
-    const { [listId]: deletedList, ...restOfLists } = state;
-    return restOfLists;
-  }
-
-  static moveAllCards(state, payload) {
-    const { listId, newListId } = payload;
+  static editListTitle(state, payload) {
+    const { listTitle, listId } = payload;
     return {
       ...state,
       [listId]: {
         ...state[listId],
-        cards: [],
-      },
-      [newListId]: {
-        ...state[newListId],
-        cards: state[newListId].cards.concat(state[listId].cards)
+        title: listTitle,
       }
-    }
-  }
-
-  static deleteCardFromList(state, payload) {
-    const { listId, cardId } = payload;
-    return {
-      ...state,
-      [listId]: {
-        ...state[listId],
-        cards: state[listId].cards.filter(listId => listId !== cardId)
-      },
     };
   }
 
@@ -104,6 +61,51 @@ class List {
       [destinationListIndex]: { ...state[destinationListIndex], cards: destinationCards }
     };
   }
+
+  static moveAllCards(state, payload) {
+    const { listId, newListId } = payload;
+    return {
+      ...state,
+      [listId]: {
+        ...state[listId],
+        cards: [],
+      },
+      [newListId]: {
+        ...state[newListId],
+        cards: state[newListId].cards.concat(state[listId].cards)
+      }
+    }
+  }
+
+  static deleteList(state, payload) {
+    const { listId } = payload;
+    const { [listId]: deletedList, ...restOfLists } = state;
+    return restOfLists;
+  }
+
+  static deleteCardFromList(state, payload) {
+    const { listId, cardId: deleteCardId } = payload;
+    return {
+      ...state,
+      [listId]: {
+        ...state[listId],
+        cards: state[listId].cards.filter(cardId => cardId !== deleteCardId)
+      },
+    };
+  }
+
+  static deleteAllCards(state, payload) {
+    const { listId } = payload;
+    return {
+      ...state,
+      [listId]: {
+        ...state[listId],
+        cards: []
+      },
+    };
+  }
+
+
 }
 
 export default List;

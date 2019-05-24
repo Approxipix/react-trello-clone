@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { store, history } from './redux/store/index';
+import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import { ConnectedRouter } from 'connected-react-router'
 import { createGlobalStyle } from 'styled-components';
 import Routes from './routes/Routes'
 import './helpers/fontawesome';
-
-import { ConnectedRouter } from 'connected-react-router'
-import { Provider } from 'react-redux';
-import { store, history } from './redux/store/index';
 
 const GlobalStyle = createGlobalStyle`
   body {

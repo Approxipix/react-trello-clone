@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { history } from "../../redux/store";
 import { bindActionCreators } from 'redux';
 import { addBoard } from '../../redux/boardReducer/actions';
-import uuid from "uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Actions, Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import uuid from "uuid";
 import styled from 'styled-components'
 
 const AddButton = styled.button`
@@ -64,19 +64,19 @@ class BoardAdd extends Component {
     };
   }
 
-  handleChange = (key, value) => {
-    this.setState({
-      ...this.state,
-      [key]: value,
-    });
-  };
-
   handleKeyDown = (e) => {
     if (e.keyCode === 27) {
       this.setState({
         isOpened: false
       });
     }
+  };
+
+  handleChange = (key, value) => {
+    this.setState({
+      ...this.state,
+      [key]: value,
+    });
   };
 
   toggleOpened = () => {
@@ -86,7 +86,7 @@ class BoardAdd extends Component {
     })
   };
 
-  handleSubmit = (e) => {
+  addBoard = (e) => {
     e.preventDefault();
     const { boardTitle } = this.state;
     if (!boardTitle) return;
@@ -105,15 +105,15 @@ class BoardAdd extends Component {
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Container color={boardColor}>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.addBoard}>
             <Input
-              autoFocus
               type="text"
               placeholder="Add board title"
               value={boardTitle}
               onKeyDown={this.handleKeyDown}
               onChange={(e) => this.handleChange('boardTitle', e.target.value)}
               spellCheck={false}
+              autoFocus
             />
             <ColorPicker>
               {colors.map((color, index) => (
@@ -131,7 +131,7 @@ class BoardAdd extends Component {
                 Create board
               </SubmitButton>
               <CancelButton onClick={() => this.toggleOpened()}>
-                <FontAwesomeIcon icon="times" />
+                <FontAwesomeIcon icon="times"/>
               </CancelButton>
             </Actions>
           </form>

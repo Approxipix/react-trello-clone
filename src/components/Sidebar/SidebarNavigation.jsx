@@ -34,14 +34,6 @@ const Icon = styled.i`
 `;
 
 class SidebarNavigation extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      component: null,
-      editTitle: false,
-    }
-  }
-
   changeView = (e, item) => {
     e.preventDefault();
     this.props.changeView(item.component, item.title)

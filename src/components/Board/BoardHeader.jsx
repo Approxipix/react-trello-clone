@@ -35,7 +35,7 @@ class BoardHeader extends Component {
   render() {
     return (
       <Header>
-        <BoardTitle />
+        <BoardTitle/>
         <Button onClick={() => this.toggleSidebar()}>
           Show menu
         </Button>

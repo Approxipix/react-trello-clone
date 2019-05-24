@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import styled from 'styled-components'
 import { Route } from 'react-router-dom'
 import Header from '../components/Header/Header'
 import Boards from '../pages/Boards'
 import Board from '../pages/Board'
 import CardModal from '../pages/CardModal';
+import styled from 'styled-components'
 
 const MainWrapper = styled.div` 
   display: grid;

@@ -13,7 +13,6 @@ const LabelItem = styled.li`
   border-radius: .2rem;
 `;
 
-
 class Label extends Component {
   render() {
     const { cardLabels } = this.props;

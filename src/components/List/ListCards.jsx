@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import styled from 'styled-components'
 import { Droppable } from 'react-beautiful-dnd';
 import Card from '../Card/Card'
@@ -11,9 +11,9 @@ const CardLIst = styled.div`
   overflow: auto;
 `;
 
-class InnerList extends Component {
+class InnerList extends PureComponent {
   render() {
-    const { cardsId, listId } = this.props;
+    const { listId, cardsId, } = this.props;
     return (
       cardsId.map((cardId, index) =>
         <Card

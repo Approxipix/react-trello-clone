@@ -2,9 +2,9 @@ import {
   ADD_BOARD,
   EDIT_BOARD_TITLE,
   EDIT_BOARD_COLOR,
-  DELETE_BOARD,
   MOVE_LIST,
   MOVE_LIST_TO_ANOTHER_BOARD,
+  DELETE_BOARD,
 } from "./constants";
 
 export const addBoard = (fields) => ({
@@ -22,11 +22,6 @@ export const editBoardTitle = (fields) => ({
   payload: fields
 });
 
-export const deleteBoard = (fields) => ({
-  type: DELETE_BOARD,
-  payload: fields
-});
-
 export const moveList = (fields) => ({
   type: MOVE_LIST,
   payload: fields
@@ -34,5 +29,10 @@ export const moveList = (fields) => ({
 
 export const moveListToAnotherBoard = (fields) => ({
   type: MOVE_LIST_TO_ANOTHER_BOARD,
+  payload: fields
+});
+
+export const deleteBoard = (fields) => ({
+  type: DELETE_BOARD,
   payload: fields
 });

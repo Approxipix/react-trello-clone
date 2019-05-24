@@ -1,9 +1,9 @@
 import {
   ADD_CHECKLIST,
   ADD_CHECKLIST_ITEM,
+  EDIT_CHECKLIST_TITLE,
   UPDATE_CHECKLIST_ITEM,
   DELETE_CHECKLIST,
-  UPDATE_CHECKLIST_TITLE,
   DELETE_CHECKLIST_ITEM,
 } from "./constants";
 
@@ -14,6 +14,11 @@ export const addCheckList = (fields) => ({
 
 export const addCheckListItem = (fields) => ({
   type: ADD_CHECKLIST_ITEM,
+  payload: fields
+});
+
+export const editCheckListTitle = (fields) => ({
+  type: EDIT_CHECKLIST_TITLE,
   payload: fields
 });
 
@@ -31,10 +36,4 @@ export const deleteCheckListItem = (fields) => ({
   type: DELETE_CHECKLIST_ITEM,
   payload: fields
 });
-
-export const editCheckListTitle = (fields) => ({
-  type: UPDATE_CHECKLIST_TITLE,
-  payload: fields
-});
-
 

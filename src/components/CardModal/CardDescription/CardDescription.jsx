@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import CardDescriptionEdit from './CardDescriptionEdit';
+import styled from 'styled-components';
 
 const Description = styled.p`
   font-size: .875rem;

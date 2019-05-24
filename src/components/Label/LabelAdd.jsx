@@ -49,7 +49,7 @@ const LabelIcon = styled.div`
 `;
 
 class LabelAdd extends Component {
-  handelAddLabel = (label) => {
+  addLabel = (label) => {
     this.props.actions.addLabelToCard({
       cardId: this.props.cardId,
       cardLabel: label
@@ -57,11 +57,15 @@ class LabelAdd extends Component {
   };
 
   render() {
-    const { labels, cardLabels } = this.props;
+    const { cardLabels, labels } = this.props;
     return (
       <LabelList>
         {labels.map((label, index) => (
-          <LabelItem key={index} value={label.color} onClick={() => this.handelAddLabel(label)}>
+          <LabelItem
+            key={index}
+            value={label.color}
+            onClick={() => this.addLabel(label)}
+          >
             {cardLabels.some(cardLabel => cardLabel._labelId === label._labelId) && (
               <LabelIcon>
                 <FontAwesomeIcon icon="check" />

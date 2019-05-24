@@ -18,16 +18,16 @@ class BoardTitleEdit extends Component {
     };
   }
 
-  handleChange = (value) => {
-    this.setState({
-      title: value,
-    });
-  };
-
   handleKeyDown = (e) => {
     if (e.keyCode === 27) {
       this.props.toggleEditTitle()
     }
+  };
+
+  handleChange = (value) => {
+    this.setState({
+      title: value,
+    });
   };
 
   handleSubmit = (e) => {
@@ -75,6 +75,5 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
   };
 }
-
 
 export default connect(null, mapDispatchToProps)(BoardTitleEdit);

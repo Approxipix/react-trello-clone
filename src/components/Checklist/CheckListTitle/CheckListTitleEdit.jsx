@@ -13,20 +13,21 @@ class CheckListTitleEdit extends Component {
     };
   }
 
-  handleChange = (value) => {
-    this.setState({
-      title: value,
-    });
-  };
-
   handleKeyDown = (e) => {
     if (e.keyCode === 27) {
       this.props.toggleEditing()
     }
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
+  handleChange = (value) => {
+    this.setState({
+      title: value,
+    });
+  };
+
+
+  handleSubmit = (e) => {
+    e.preventDefault();
     const { title } = this.state;
     const { actions } = this.props;
     if (!title)  return;

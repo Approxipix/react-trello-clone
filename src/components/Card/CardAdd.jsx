@@ -92,7 +92,7 @@ class CardAdder extends Component {
                 Create card
               </SubmitButton>
               <CancelButton onClick={() => this.toggleOpened()}>
-                <FontAwesomeIcon icon="times" />
+                <FontAwesomeIcon icon="times"/>
               </CancelButton>
             </Actions>
           </form>

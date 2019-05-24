@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Title = styled.h3`
+const Title = styled.h4`
   margin-bottom: .5rem;
   font-size: .75rem;
   color: #6b778c;
@@ -57,7 +57,6 @@ const Icon = styled.div`
   margin-right: .5rem;
 `;
 
-
 class CardActions extends Component {
   constructor(props) {
     super(props);
@@ -73,8 +72,8 @@ class CardActions extends Component {
   };
 
   render() {
+    const { listId, card, title, actions, } = this.props;
     const { isOpened } = this.state;
-    const { title, actions, card, listId } = this.props;
     let actionItems = [
       {
         title: 'Label',
@@ -108,9 +107,8 @@ class CardActions extends Component {
         )
       },
     ];
-    actionItems = actionItems.filter(item =>{
-      return  actions.some(title => title === item.title)
-    });
+    actionItems = actionItems.filter(item => actions.some(title => title === item.title));
+
     return (
       <Wrapper>
         <Title>

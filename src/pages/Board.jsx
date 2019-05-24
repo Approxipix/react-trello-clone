@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setCurrentBoardID } from "../redux/rootReducer/actions";
@@ -6,13 +6,13 @@ import { moveList } from "../redux/boardReducer/actions";
 import { moveCard } from "../redux/listReducer/actions";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { Redirect } from "react-router";
-import Sidebar from '../components/Sidebar/Sidebar'
 import BoardHeader from '../components/Board/BoardHeader'
+import Sidebar from '../components/Sidebar/Sidebar'
 import ListAdd from '../components/List/ListAdd';
 import List from '../components/List/List'
 import styled from 'styled-components';
 
-const BoardWrapper = styled.div`
+const Wrapper = styled.div`
   position: relative;
   height: 100%;
   padding-top: .5rem;
@@ -30,9 +30,9 @@ const Container = styled.div`
   overflow: auto;
 `;
 
-class InnerList extends Component {
+class InnerList extends PureComponent {
   render() {
-    const { listsId, boardId } = this.props;
+    const { boardId, listsId, } = this.props;
     return (
       listsId.map((listId, index) => (
         <List
@@ -85,10 +85,10 @@ class Board extends Component {
   render() {
     const { board, currentBoardId } = this.props;
     if (!currentBoardId) return null;
-    if (!board) return <Redirect to='/boards' />;
+    if (!board) return <Redirect to='/boards'/>;
     return (
-      <BoardWrapper color={board.color}>
-        <BoardHeader boardId={board._boardId} />
+      <Wrapper color={board.color}>
+        <BoardHeader boardId={board._boardId}/>
         <DragDropContext onDragEnd={this.handleDragEnd}>
           <Droppable
             type='column'
@@ -100,24 +100,24 @@ class Board extends Component {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                <InnerList boardId={board._boardId} listsId={board.lists} />
+                <InnerList boardId={board._boardId} listsId={board.lists}/>
                 {provided.placeholder}
-                <ListAdd boardId={board._boardId} />
+                <ListAdd boardId={board._boardId}/>
               </Container>
             )}
           </Droppable>
         </DragDropContext>
         <Sidebar />
-      </BoardWrapper>
+      </Wrapper>
     )
   }
 }
 
 function mapStateToProps(state) {
   return {
-    board: state.boardReducer[state.rootReducer.currentBoardID],
-    currentBoardId: state.rootReducer.currentBoardID,
     isSidebarOpened: state.rootReducer.isSidebarOpened,
+    currentBoardId: state.rootReducer.currentBoardID,
+    board: state.boardReducer[state.rootReducer.currentBoardID],
   }
 }
 

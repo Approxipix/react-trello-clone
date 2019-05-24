@@ -11,24 +11,6 @@ class CheckList {
     }
   }
 
-  static editCheckListTitle(state, payload) {
-    const {checkListId, checkListTitle} = payload;
-    return {
-      ...state,
-      [checkListId]: {
-        ...state[checkListId],
-        title: checkListTitle,
-      }
-    }
-  }
-
-  static deleteCheckList(state, payload) {
-    const { checkListId } = payload;
-    const { [checkListId]: deletedList, ...restOfLists } = state;
-    return restOfLists;
-  }
-
-
   static addCheckListItem(state, payload) {
     const { checkListTitle, checkListId} = payload;
     return {
@@ -41,6 +23,17 @@ class CheckList {
         })],
       }
     };
+  }
+
+  static editCheckListTitle(state, payload) {
+    const {checkListId, checkListTitle} = payload;
+    return {
+      ...state,
+      [checkListId]: {
+        ...state[checkListId],
+        title: checkListTitle,
+      }
+    }
   }
 
   static updateCheckListItem(state, payload) {
@@ -61,6 +54,12 @@ class CheckList {
         })
       }
     };
+  }
+
+  static deleteCheckList(state, payload) {
+    const { checkListId } = payload;
+    const { [checkListId]: deletedList, ...restOfLists } = state;
+    return restOfLists;
   }
 
   static deleteCheckListItem(state, payload) {
