@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CardChecklistAdd from '../Checklist/CheckListAdd';
+import CardDelete from '../Card/CardDelete';
 import LabelAdd from '../Label/LabelAdd';
 import CardTooltip from './CardTooltip';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +9,9 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   position: relative;
   padding: .5rem 0;
+  :not(:last-child) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const Title = styled.h3`
@@ -70,8 +74,8 @@ class CardActions extends Component {
 
   render() {
     const { isOpened } = this.state;
-    const { card } = this.props;
-    const actionItems = [
+    const { title, actions, card, listId } = this.props;
+    let actionItems = [
       {
         title: 'Label',
         icon: 'tag',
@@ -92,11 +96,25 @@ class CardActions extends Component {
           />
         )
       },
+      {
+        title: 'Delete',
+        icon: 'trash',
+        component: (
+          <CardDelete
+            cardId={card._cardId}
+            listId={listId}
+            toggleTooltip={() => this.toggleIsOpened('Delete')}
+          />
+        )
+      },
     ];
+    actionItems = actionItems.filter(item =>{
+      return  actions.some(title => title === item.title)
+    });
     return (
       <Wrapper>
         <Title>
-          Add to cards
+          {title}
         </Title>
         <ActionList>
           {actionItems.map((action, index) => (

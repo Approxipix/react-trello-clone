@@ -27,8 +27,6 @@ const cardReducer = (state = initialState, action) => {
       return Ch.editCardTitle(state, action.payload);
     case EDIT_CARD_DESC:
       return Ch.editCardDesc(state, action.payload);
-
-
     case DELETE_CARD:
       return Ch.deleteCard(state, action.payload);
     default:

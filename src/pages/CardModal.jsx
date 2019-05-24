@@ -187,7 +187,7 @@ class ChecklistContainer extends Component {
 
 class CardModal extends Component {
   render() {
-    const { card } = this.props;
+    const { card, listId } = this.props;
     const boardUrl = `/b/${this.props.match.params}`;
     if (!card) return <Redirect to='/boards' />;
     return (
@@ -205,7 +205,18 @@ class CardModal extends Component {
               <ChecklistContainer card={card} />
             </Col>
             <Col>
-              <CardActions card={card} />
+              <CardActions
+                card={card}
+                title="Add to card"
+                actions={["Label", "CheckList"]}
+                listId={listId}
+              />
+              <CardActions
+                card={card}
+                title="Actions"
+                actions={["Delete"]}
+                listId={listId}
+              />
             </Col>
           </Row>
         </Wrapper>
@@ -215,7 +226,16 @@ class CardModal extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
+  let listId = null;
+  Object.keys(state.listReducer).forEach(list => {
+    state.listReducer[list].cards.forEach(card => {
+      if (card === ownProps.match.params.cardId) {
+        listId = list;
+      }
+    })
+  });
   return {
+    listId: listId,
     card: state.cardReducer[ownProps.match.params.cardId],
   }
 }

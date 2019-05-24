@@ -65,6 +65,17 @@ class List {
     }
   }
 
+  static deleteCardFromList(state, payload) {
+    const { listId, cardId } = payload;
+    return {
+      ...state,
+      [listId]: {
+        ...state[listId],
+        cards: state[listId].cards.filter(listId => listId !== cardId)
+      },
+    };
+  }
+
   static moveCard(state, payload) {
     const {
       sourceIndex,

@@ -9,7 +9,7 @@ import {
 } from "./constants";
 
 import Lh from '../../helpers/ListHelper'
-import { ADD_CARD } from "../cardReducer/constants";
+import { ADD_CARD, DELETE_CARD } from "../cardReducer/constants";
 
 const initialState = fetchBoardData(boards).lists;
 
@@ -29,6 +29,8 @@ const listReducer = (state = initialState, action) => {
       return Lh.moveAllCards(state, action.payload);
     case DELETE_ALL_CARDS:
       return Lh.deleteAllCards(state, action.payload);
+    case DELETE_CARD:
+      return Lh.deleteCardFromList(state, action.payload);
     default:
       return state;
   }

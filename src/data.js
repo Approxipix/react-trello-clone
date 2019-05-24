@@ -2,7 +2,7 @@ import uuid from "uuid";
 
 const boards = [
   {
-    _boardId: uuid.v4(),
+    _boardId: '1',
     title: 'Board - 1',
     color: '#2E7EAF',
     lists: [

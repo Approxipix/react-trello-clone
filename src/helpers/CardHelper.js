@@ -79,9 +79,9 @@ class Card {
   }
 
   static deleteCard(state, payload) {
-    return {
-
-    };
+    const { cardId } = payload;
+    const { [cardId]: deletedCard, ...restOfCards } = state;
+    return restOfCards;
   }
 }
 
