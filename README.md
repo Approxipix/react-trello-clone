@@ -1,28 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## React Trello Clone
 
-## Available Scripts
+A simple [Trello](https://trello.com/) clone based on React, Redux, React-dnd.
 
-In the project directory, you can run:
+![example](https://github.com/Approxipix/react-kanban/blob/master/example.gif?raw=true)
 
-### `npm start`
+### Tech stack
 
-Runs the app in the development mode.<br>
+* [React](https://github.com/facebook/react)
+* [Redux](https://github.com/reactjs/redux)
+* [React Router](https://github.com/ReactTraining/react-router)
+* [React-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
+* [Styled Components](https://github.com/styled-components/styled-components)
+
+#### Setup
+
+```shell
+# Clone project
+git clone https://github.com/Approxipix/react-kanban.git
+
+# Then change into that folder
+cd react-kanban
+
+# Install dependencies
+npm install
+
+# Build for production 
+npm run build
+
+# Start up a local server
+npm start
+```
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
