@@ -12,6 +12,13 @@ A simple [Trello](https://trello.com/) clone based on React/Redux.
 * [React-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
 * [Styled Components](https://github.com/styled-components/styled-components)
 
+## Features
+
+* responsive
+* drag-and-drop on cards and lanes (compatible with touch devices)
+* edit board functionality
+* labels/checklists
+
 ## Setup
 
 ```shell
