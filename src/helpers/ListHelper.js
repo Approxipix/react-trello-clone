@@ -22,6 +22,17 @@ class List {
     };
   }
 
+  static deleteAllCards(state, payload) {
+    const { listId } = payload;
+    return {
+      ...state,
+      [listId]: {
+        ...state[listId],
+        cards: []
+      },
+    };
+  }
+
   static addCardToList(state, payload) {
     const { listId, newCardId } = payload;
     return {
@@ -33,12 +44,25 @@ class List {
     }
   }
 
-
-
   static deleteList(state, payload) {
     const { listId } = payload;
     const { [listId]: deletedList, ...restOfLists } = state;
     return restOfLists;
+  }
+
+  static moveAllCards(state, payload) {
+    const { listId, newListId } = payload;
+    return {
+      ...state,
+      [listId]: {
+        ...state[listId],
+        cards: [],
+      },
+      [newListId]: {
+        ...state[newListId],
+        cards: state[newListId].cards.concat(state[listId].cards)
+      }
+    }
   }
 
   static moveCard(state, payload) {

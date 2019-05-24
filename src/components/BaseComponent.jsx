@@ -6,6 +6,13 @@ export const Text = styled.p`
   color: #40424b;
 `;
 
+export const Label = styled.label`
+  font-size: .75rem;
+  line-height: 1.3rem;
+  color: #6b778c;
+  font-weight: 600;
+`;
+
 export const Input = styled.input`
   max-width: 100%;
   width: ${props => props.width ? props.width : '100%'};

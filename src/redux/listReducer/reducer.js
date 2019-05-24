@@ -5,6 +5,7 @@ import {
   EDIT_LIST_TITLE,
   DELETE_LIST,
   MOVE_CARD,
+  MOVE_ALL_CARDS, DELETE_ALL_CARDS,
 } from "./constants";
 
 import Lh from '../../helpers/ListHelper'
@@ -24,6 +25,10 @@ const listReducer = (state = initialState, action) => {
       return Lh.deleteList(state, action.payload);
     case MOVE_CARD:
       return Lh.moveCard(state, action.payload);
+    case MOVE_ALL_CARDS:
+      return Lh.moveAllCards(state, action.payload);
+    case DELETE_ALL_CARDS:
+      return Lh.deleteAllCards(state, action.payload);
     default:
       return state;
   }

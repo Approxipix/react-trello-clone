@@ -75,6 +75,25 @@ class Board {
       }
     };
   }
+
+  static moveListToAnotherBoard(state, payload) {
+    const { boardId, newBoardId, listId, newListPosition } = payload;
+    const oldBoardLists = Array.from(state[boardId].lists);
+    const [removedList] = oldBoardLists.splice(oldBoardLists.indexOf(listId), 1);
+    const newBoardList = Array.from(state[newBoardId].lists);
+    newBoardList.splice(newListPosition, 0, removedList);
+    return {
+      ...state,
+      [boardId]: {
+        ...state[boardId],
+        lists: oldBoardLists
+      },
+      [newBoardId]: {
+        ...state[newBoardId],
+        lists: newBoardList
+      }
+    };
+  }
 }
 
 export default Board;

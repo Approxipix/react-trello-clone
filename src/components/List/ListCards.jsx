@@ -6,7 +6,7 @@ import Card from '../Card/Card'
 const CardLIst = styled.div`
   min-height: 2rem;
   position: relative;
-  padding: .25rem .5rem;
+  padding: .5rem;
   flex-grow: 1;
   overflow: auto;
 `;

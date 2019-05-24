@@ -12,7 +12,6 @@ const Item = styled.li`
 const Link = styled.a`
   display: block;
   padding: .3rem .75rem;
-  font-size: 1rem;
   font-weight: 700;
   transition: all .2s ease-in;
   &:hover {

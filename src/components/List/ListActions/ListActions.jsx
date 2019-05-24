@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClickOutside from "../../ClickOutside";
 import ListActionsNavigation from './ListActionsNavigation'
+import ListDeleteAllCards from '../ListDeleteAllCards'
+import ListMoveAllCards from '../ListMoveAllCards'
 import ListDelete from '../ListDelete'
+import ListMove from '../ListMove'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -66,6 +69,35 @@ class ListActions extends Component {
     const { boardId, listId } = this.props;
     const { actionView } = this.state;
     switch (actionView) {
+      case ('ListMove'):
+        return (
+          <Container>
+            <ListMove
+              boardId={boardId}
+              listId={listId}
+              toggleOpened={this.props.toggleOpened}
+            />
+          </Container>
+        );
+      case ('ListMoveAllCards'):
+        return (
+          <Container>
+            <ListMoveAllCards
+              boardId={boardId}
+              listId={listId}
+              toggleOpened={this.props.toggleOpened}
+            />
+          </Container>
+        );
+      case ('ListDeleteAllCards'):
+        return (
+          <Container>
+            <ListDeleteAllCards
+              listId={listId}
+              toggleOpened={this.props.toggleOpened}
+            />
+          </Container>
+        );
       case ('ListDelete'):
         return (
           <Container>

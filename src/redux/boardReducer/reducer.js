@@ -7,12 +7,12 @@ import {
   EDIT_BOARD_COLOR,
   DELETE_BOARD,
   MOVE_LIST,
+  MOVE_LIST_TO_ANOTHER_BOARD,
 } from "./constants";
 import {
   ADD_LIST,
   DELETE_LIST,
 } from "../listReducer/constants";
-
 
 const initialState = fetchBoardData(boards).boards;
 
@@ -32,6 +32,8 @@ const boardReducer = (state = initialState, action) => {
       return Bh.deleteListFromBoard(state, action.payload);
     case MOVE_LIST:
       return Bh.moveList(state, action.payload);
+    case MOVE_LIST_TO_ANOTHER_BOARD:
+      return Bh.moveListToAnotherBoard(state, action.payload);
     default:
       return state;
   }

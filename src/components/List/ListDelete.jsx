@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteList } from '../../redux/listReducer/actions';
 import { Text, SubmitButton } from '../BaseComponent';
-import styled from 'styled-components'
-
-const Container = styled.div`
-  position: relative;
-`;
 
 class ListDelete extends Component {
   deleteList = () => {
@@ -20,7 +15,7 @@ class ListDelete extends Component {
 
   render() {
     return (
-      <Container>
+      <>
         <Text>
           All actions will be removed from the activity feed and you won’t be able to re-open the list.
           There is no undo.
@@ -31,7 +26,7 @@ class ListDelete extends Component {
         >
           Delete list
         </SubmitButton>
-      </Container>
+      </>
     );
   }
 }
