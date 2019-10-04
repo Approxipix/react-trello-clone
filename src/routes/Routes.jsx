@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import Header from '../components/Header/Header'
 import Boards from '../pages/Boards'
 import Board from '../pages/Board'
@@ -31,7 +31,8 @@ class Routes extends Component {
           <Header />
         </HeaderWrapper>
         <ContentWrapper>
-          <Route exact path="/boards" component={Boards}/>
+          <Route path='*' exact render={() => (<Redirect to="/" />)} />
+          <Route exact path="/" component={Boards}/>
           <Route path="/b/:boardId" component={Board}/>
           <Route exact path={`/b/:boardId/c/:cardId`} component={CardModal}/>
         </ContentWrapper>

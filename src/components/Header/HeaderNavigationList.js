@@ -1,7 +1,7 @@
 const HeaderNavigationList = [
   {
     title: 'Boards',
-    path: '/boards',
+    path: '/',
     faIcon: 'columns',
   },
 ];
