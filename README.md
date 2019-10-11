@@ -2,7 +2,7 @@
 
 A simple [Trello](https://trello.com/) clone based on React/Redux.
 
-![example](https://github.com/Approxipix/react-kanban/blob/master/example.gif?raw=true)
+![example](https://github.com/Approxipix/react-trello-clon/blob/master/example.gif?raw=true)
 
 ## Tech stack
 
@@ -23,10 +23,10 @@ A simple [Trello](https://trello.com/) clone based on React/Redux.
 
 ```shell
 # Clone project
-git clone https://github.com/Approxipix/react-kanban.git
+git clone https://github.com/Approxipix/react-trello-clone.git
 
 # Then change into that folder
-cd react-kanban
+cd react-trello-clon
 
 # Install dependencies
 npm install
