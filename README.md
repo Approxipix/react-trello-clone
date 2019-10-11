@@ -2,7 +2,7 @@
 
 A simple [Trello](https://trello.com/) clone based on React/Redux.
 
-![example](https://github.com/Approxipix/react-trello-clon/blob/master/example.gif?raw=true)
+![example](https://github.com/Approxipix/react-trello-clone/blob/master/example.gif?raw=true)
 
 ## Tech stack
 
