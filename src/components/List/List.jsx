@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux/es/alternate-renderers";
+import { connect } from "react-redux";
 import { Draggable } from 'react-beautiful-dnd';
 import ListHeader from './ListHeader'
 import CardAdd from '../Card/CardAdd';
