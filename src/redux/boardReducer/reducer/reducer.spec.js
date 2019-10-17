@@ -21,6 +21,35 @@ describe('boardReducer', () => {
     expect(boardReducer(undefined, {})).toStrictEqual({})
   });
 
+  it('should handle ADD_ENTITIES action', () => {
+    const fetchBoards = {
+      boards: {
+        Board1: {
+          _boardId: 'Board1',
+          title: 'Board 1 title',
+          color: '#af2232',
+          lists: [],
+        },
+        Board2: {
+          _boardId: 'Board2',
+          title: 'Board 2 title',
+          color: '#af2232',
+          lists: [],
+        }
+      }
+    };
+    const action = {
+      type: 'ADD_ENTITIES',
+      payload: fetchBoards
+    };
+    const expectedState = {
+      ...initialState,
+      ...fetchBoards.boards,
+    };
+
+    expect(boardReducer(initialState, action)).toEqual(expectedState)
+  });
+
   it('should handle ADD_BOARD action', () => {
     const mockBoardId = 'New Board ID';
     const action = {
