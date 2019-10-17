@@ -2,6 +2,7 @@ import * as t from "../constants/constants";
 
 export const initialState = {
   currentBoardID: null,
+  isLoading: false,
   isSidebarOpened: false,
   colors: ['#2E7EAF', '#00603d', '#D29034', '#89609D', '#CD5A91'],
   labels: [
@@ -34,6 +35,16 @@ export const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case t.REQUEST_BOARDS:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case t.RESPONSE_BOARDS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+      };
     case t.SET_CURRENT_BOARD_ID:
       return {
         ...state,

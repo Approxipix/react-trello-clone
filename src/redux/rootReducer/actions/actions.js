@@ -1,7 +1,12 @@
 import * as t from "../constants/constants";
 
-export const addEntities = (fields) => ({
-  type: t.ADD_ENTITIES,
+export const requestBoards = (fields) => ({
+  type: t.REQUEST_BOARDS,
+  payload: fields
+});
+
+export const responseBoardsSuccess = (fields) => ({
+  type: t.RESPONSE_BOARDS_SUCCESS,
   payload: fields
 });
 

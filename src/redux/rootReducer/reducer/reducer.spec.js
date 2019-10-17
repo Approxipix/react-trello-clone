@@ -6,6 +6,32 @@ describe('rootReducer', () => {
     expect(rootReducer(undefined, {})).toBe(initialState)
   });
 
+  it('should handle REQUEST_BOARDS action', () => {
+    const action = {
+      type: t.REQUEST_BOARDS,
+      payload: {}
+    };
+    const expectedState = {
+      ...initialState,
+      isLoading: true
+    };
+
+    expect(rootReducer(initialState, action)).toEqual(expectedState)
+  });
+
+  it('should handle RESPONSE_BOARDS_SUCCESS action', () => {
+    const action = {
+      type: t.RESPONSE_BOARDS_SUCCESS,
+      payload: {}
+    };
+    const expectedState = {
+      ...initialState,
+      isLoading: false
+    };
+
+    expect(rootReducer(initialState, action)).toEqual(expectedState)
+  });
+
   it('should handle SET_CURRENT_BOARD_ID action', () => {
     const action = {
       type: t.SET_CURRENT_BOARD_ID,

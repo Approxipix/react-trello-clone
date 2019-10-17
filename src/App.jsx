@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addEntities } from "./redux/rootReducer/actions/actions";
+import { requestBoards, responseBoardsSuccess } from "./redux/rootReducer/actions/actions";
 import Routes from './routes/Routes';
 import normalizeBoards from './helpers/normalizeBoards'
 import boards from './data';
@@ -9,10 +9,15 @@ import boards from './data';
 class App extends Component {
   componentDidMount() {
     //simulate request to db
-    setTimeout(() => {
+    new Promise((resolve, reject) => {
+      this.props.actions.requestBoards();
       const normalizeBoardsData = normalizeBoards(boards);
-      this.props.actions.addEntities(normalizeBoardsData)
-    }, 2000)
+      setTimeout(() => {
+        resolve(normalizeBoardsData);
+      }, 2000)
+    }).then(response => {
+      this.props.actions.responseBoardsSuccess(response)
+    });
   }
 
   render() {
@@ -25,7 +30,8 @@ class App extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      addEntities,
+      requestBoards,
+      responseBoardsSuccess,
     }, dispatch)
   };
 }

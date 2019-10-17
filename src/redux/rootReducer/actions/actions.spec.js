@@ -2,19 +2,24 @@ import * as actions from './actions';
 import * as t from '../constants/constants';
 
 describe('rootReducer actions', () => {
-  it('creates ADD_ENTITIES when boards data has benn successfully loaded', () => {
-    const payload = {
-      boards: {},
-      lists: {},
-      cards: {},
-      checkLists: {},
-    };
+  it('creates REQUEST_BOARDS when a random fact fetch has started', () => {
+    const payload = {};
     const expectedAction = {
-      type: t.ADD_ENTITIES,
+      type: t.REQUEST_BOARDS,
       payload,
     };
 
-    expect(actions.addEntities(payload)).toEqual(expectedAction)
+    expect(actions.requestBoards(payload)).toEqual(expectedAction)
+  });
+
+  it('creates RESPONSE_BOARDS_SUCCESS for a successful fetch of a boards', () => {
+    const payload = {};
+    const expectedAction = {
+      type: t.RESPONSE_BOARDS_SUCCESS,
+      payload,
+    };
+
+    expect(actions.responseBoardsSuccess(payload)).toEqual(expectedAction)
   });
 
   it('creates SET_CURRENT_BOARD_ID when user moved to the board page', () => {
