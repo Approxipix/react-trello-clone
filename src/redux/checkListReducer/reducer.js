@@ -1,6 +1,6 @@
 import boards from "../../data";
 import fetchBoardData from "../../helpers/fetchBoardData";
-import CLh from '../../helpers/CheckListHelper'
+import CLh from '../../services/CheckListHelper'
 import {
   ADD_CHECKLIST,
   ADD_CHECKLIST_ITEM,
@@ -10,7 +10,7 @@ import {
   DELETE_CHECKLIST_ITEM,
 } from "./constants";
 
-const initialState = fetchBoardData(boards).checkLists;
+const initialState = fetchBoardData(boards).checkLists || {};
 
 const checkListReducer = (state = initialState, action) => {
   switch (action.type) {

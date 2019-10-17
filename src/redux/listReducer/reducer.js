@@ -1,6 +1,6 @@
 import boards from '../../data'
 import fetchBoardData from '../../helpers/fetchBoardData'
-import Lh from '../../helpers/ListHelper'
+import Lh from '../../services/ListHelper'
 import {
   ADD_LIST,
   EDIT_LIST_TITLE,
@@ -14,7 +14,7 @@ import {
   DELETE_CARD
 } from "../cardReducer/constants";
 
-const initialState = fetchBoardData(boards).lists;
+const initialState = fetchBoardData(boards).lists || {};
 
 const listReducer = (state = initialState, action) => {
   switch (action.type) {

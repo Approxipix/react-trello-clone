@@ -1,6 +1,6 @@
 import boards from '../../data'
 import fetchBoardData from '../../helpers/fetchBoardData'
-import Ch from '../../helpers/CardHelper'
+import Ch from '../../services/CardHelper'
 import {
   ADD_CARD,
   ADD_LABEL_TO_CARD,
@@ -13,7 +13,7 @@ import {
   DELETE_CHECKLIST
 } from "../checkListReducer/constants";
 
-const initialState = fetchBoardData(boards).cards;
+const initialState = fetchBoardData(boards).cards || {};
 
 const cardReducer = (state = initialState, action) => {
   switch (action.type) {
