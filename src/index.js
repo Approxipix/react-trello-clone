@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { store, history } from './redux/store/index';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { ConnectedRouter } from 'connected-react-router'
 import { createGlobalStyle } from 'styled-components';
-import Routes from './routes/Routes'
+import App from './App';
 import './helpers/fontawesome';
 
 const GlobalStyle = createGlobalStyle`
@@ -70,18 +70,14 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <GlobalStyle />
-          <Routes />
-        </ConnectedRouter>
-      </Provider>
-    )
-  }
-}
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App />
+      <GlobalStyle />
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('root')
+);
 
-ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();

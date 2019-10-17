@@ -1,11 +1,9 @@
-import {
-  SET_CURRENT_BOARD_ID,
-  TOGGLE_SIDEBAR,
-} from "../constants/constants";
+import * as t from "../constants/constants";
 
-const initialState = {
+export const initialState = {
   currentBoardID: null,
   isSidebarOpened: false,
+  colors: ['#2E7EAF', '#00603d', '#D29034', '#89609D', '#CD5A91'],
   labels: [
     {
       _labelId: 0,
@@ -32,17 +30,16 @@ const initialState = {
       color: '#0078BF',
     }
   ],
-  colors: ['#2E7EAF', '#00603d', '#D29034', '#89609D', '#CD5A91'],
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_CURRENT_BOARD_ID:
+    case t.SET_CURRENT_BOARD_ID:
       return {
         ...state,
         currentBoardID: action.payload
       };
-    case TOGGLE_SIDEBAR:
+    case t.TOGGLE_SIDEBAR:
       return {
         ...state,
         isSidebarOpened: action.payload !== undefined

@@ -1,3 +1,4 @@
+export const ADD_ENTITIES = 'ADD_ENTITIES';
 export const SET_CURRENT_BOARD_ID = 'SET_CURRENT_BOARD_ID';
 export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";
 

@@ -1,14 +1,16 @@
-import {
-  SET_CURRENT_BOARD_ID,
-  TOGGLE_SIDEBAR,
-} from "../constants/constants";
+import * as t from "../constants/constants";
+
+export const addEntities = (fields) => ({
+  type: t.ADD_ENTITIES,
+  payload: fields
+});
 
 export const setCurrentBoardID = (fields) => ({
-  type: SET_CURRENT_BOARD_ID,
+  type: t.SET_CURRENT_BOARD_ID,
   payload: fields
 });
 
 export const toggleSidebar = (fields) => ({
-  type: TOGGLE_SIDEBAR,
+  type: t.TOGGLE_SIDEBAR,
   payload: fields
 });

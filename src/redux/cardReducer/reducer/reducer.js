@@ -1,34 +1,29 @@
-import boards from '../../../data'
-import fetchBoardData from '../../../helpers/fetchBoardData'
+import * as t from "../constants/constants";
+import { ADD_ENTITIES } from "../../rootReducer/constants/constants";
+import { ADD_CHECKLIST, DELETE_CHECKLIST } from "../../checkListReducer/constants/constants";
 import Ch from '../../../services/CardHelper'
-import {
-  ADD_CARD,
-  ADD_LABEL_TO_CARD,
-  EDIT_CARD_TITLE,
-  EDIT_CARD_DESC,
-  DELETE_CARD,
-} from "../constants/constants";
-import {
-  ADD_CHECKLIST,
-  DELETE_CHECKLIST
-} from "../../checkListReducer/constants/constants";
 
-const initialState = fetchBoardData(boards).cards || {};
-
-const cardReducer = (state = initialState, action) => {
+const cardReducer = (state = {}, action) => {
   switch (action.type) {
-    case ADD_CARD:
+    case ADD_ENTITIES:
+      return {
+        ...state,
+        ...action.payload.cards
+      };
+
+    case t.ADD_CARD:
       return Ch.addCard(state, action.payload);
+    case t.ADD_LABEL_TO_CARD:
+      return Ch.addLabelToCard(state, action.payload);
+    case t.EDIT_CARD_TITLE:
+      return Ch.editCardTitle(state, action.payload);
+    case t.EDIT_CARD_DESC:
+      return Ch.editCardDesc(state, action.payload);
+    case t.DELETE_CARD:
+      return Ch.deleteCard(state, action.payload);
+
     case ADD_CHECKLIST:
       return Ch.addCheckListToCard(state, action.payload);
-    case ADD_LABEL_TO_CARD:
-      return Ch.addLabelToCard(state, action.payload);
-    case EDIT_CARD_TITLE:
-      return Ch.editCardTitle(state, action.payload);
-    case EDIT_CARD_DESC:
-      return Ch.editCardDesc(state, action.payload);
-    case DELETE_CARD:
-      return Ch.deleteCard(state, action.payload);
     case DELETE_CHECKLIST:
       return Ch.deleteCheckListFromCard(state, action.payload);
     default:

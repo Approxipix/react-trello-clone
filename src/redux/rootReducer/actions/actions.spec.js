@@ -1,11 +1,26 @@
 import * as actions from './actions';
-import * as constants from '../constants/constants';
+import * as t from '../constants/constants';
 
 describe('rootReducer actions', () => {
+  it('creates ADD_ENTITIES when boards data has benn successfully loaded', () => {
+    const payload = {
+      boards: {},
+      lists: {},
+      cards: {},
+      checkLists: {},
+    };
+    const expectedAction = {
+      type: t.ADD_ENTITIES,
+      payload,
+    };
+
+    expect(actions.addEntities(payload)).toEqual(expectedAction)
+  });
+
   it('creates SET_CURRENT_BOARD_ID when user moved to the board page', () => {
     const boardId = 'Board ID';
     const expectedAction = {
-      type: constants.SET_CURRENT_BOARD_ID,
+      type: t.SET_CURRENT_BOARD_ID,
       payload: boardId,
     };
 
@@ -15,7 +30,7 @@ describe('rootReducer actions', () => {
   it('creates TOGGLE_SIDEBAR when sidebar has been toggled', () => {
     const payload = false;
     const expectedAction = {
-      type: constants.TOGGLE_SIDEBAR,
+      type: t.TOGGLE_SIDEBAR,
       payload: payload,
     };
 
