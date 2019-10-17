@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { history } from "../../redux/store";
 import { bindActionCreators } from 'redux';
-import { deleteBoard } from '../../redux/boardReducer/actions';
+import { deleteBoard } from '../../redux/boardReducer/actions/actions';
 import { Text, SubmitButton } from '../BaseComponent';
 
 class BoardDelete extends Component {

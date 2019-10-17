@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { moveAllCards } from '../../redux/listReducer/actions';
+import { moveAllCards } from '../../redux/listReducer/actions/actions';
 import { SubmitButton } from '../BaseComponent';
 import Select from '../Select'
 import styled from 'styled-components'

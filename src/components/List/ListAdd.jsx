@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
-import { addList } from '../../redux/listReducer/actions';
+import { addList } from '../../redux/listReducer/actions/actions';
 import { Actions, Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside";
 import uuid from "uuid";
@@ -69,9 +69,8 @@ class ListAdd extends Component {
     if (!title) return;
     this.props.actions.addList({
       boardId: this.props.boardId,
-      listId: this.props.listId,
       listTitle: title,
-      newListId: uuid.v4(),
+      listId: uuid.v4(),
     });
     this.setState({
       title: ''

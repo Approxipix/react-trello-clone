@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { addCard } from '../../redux/cardReducer/actions';
+import { addCard } from '../../redux/cardReducer/actions/actions';
 import { TextArea, Actions, SubmitButton, CancelButton } from '../BaseComponent';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClickOutside from "../ClickOutside";

@@ -5,7 +5,7 @@ import {
   MOVE_ALL_CARDS,
   DELETE_LIST,
   DELETE_ALL_CARDS,
-} from "./constants";
+} from "../constants/constants";
 
 export const addList = (fields) => ({
   type: ADD_LIST,

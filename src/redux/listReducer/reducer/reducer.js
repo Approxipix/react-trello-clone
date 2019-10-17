@@ -1,6 +1,6 @@
-import boards from '../../data'
-import fetchBoardData from '../../helpers/fetchBoardData'
-import Lh from '../../services/ListHelper'
+import boards from '../../../data'
+import fetchBoardData from '../../../helpers/fetchBoardData'
+import Lh from '../../../services/ListHelper'
 import {
   ADD_LIST,
   EDIT_LIST_TITLE,
@@ -8,11 +8,11 @@ import {
   MOVE_ALL_CARDS,
   DELETE_LIST,
   DELETE_ALL_CARDS,
-} from "./constants";
+} from "../constants/constants";
 import {
   ADD_CARD,
   DELETE_CARD
-} from "../cardReducer/constants";
+} from "../../cardReducer/constants/constants";
 
 const initialState = fetchBoardData(boards).lists || {};
 

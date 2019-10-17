@@ -1,17 +1,17 @@
-import boards from '../../data'
-import fetchBoardData from '../../helpers/fetchBoardData'
-import Ch from '../../services/CardHelper'
+import boards from '../../../data'
+import fetchBoardData from '../../../helpers/fetchBoardData'
+import Ch from '../../../services/CardHelper'
 import {
   ADD_CARD,
   ADD_LABEL_TO_CARD,
   EDIT_CARD_TITLE,
   EDIT_CARD_DESC,
   DELETE_CARD,
-} from "./constants";
+} from "../constants/constants";
 import {
   ADD_CHECKLIST,
   DELETE_CHECKLIST
-} from "../checkListReducer/constants";
+} from "../../checkListReducer/constants/constants";
 
 const initialState = fetchBoardData(boards).cards || {};
 

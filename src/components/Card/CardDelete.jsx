@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { deleteCard } from '../../redux/cardReducer/actions';
+import { deleteCard } from '../../redux/cardReducer/actions/actions';
 import { Text, SubmitButton } from '../BaseComponent';
 import { history } from "../../redux/store";
 

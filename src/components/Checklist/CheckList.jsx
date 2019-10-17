@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { deleteCheckList } from '../../redux/checkListReducer/actions';
+import { deleteCheckList } from '../../redux/checkListReducer/actions/actions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CheckListProgress from './CheckListProgress'
 import CheckListItemAdd from './CheckListItem/CheckListItemAdd'

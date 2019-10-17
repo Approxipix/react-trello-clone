@@ -1,7 +1,7 @@
 import {
   SET_CURRENT_BOARD_ID,
   TOGGLE_SIDEBAR,
-} from "./constants";
+} from "../constants/constants";
 
 export const setCurrentBoardID = (fields) => ({
   type: SET_CURRENT_BOARD_ID,

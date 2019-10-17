@@ -1,9 +1,9 @@
 import React, { Component, PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setCurrentBoardID } from "../redux/rootReducer/actions";
-import { moveList } from "../redux/boardReducer/actions";
-import { moveCard } from "../redux/listReducer/actions";
+import { setCurrentBoardID } from "../redux/rootReducer/actions/actions";
+import { moveList } from "../redux/boardReducer/actions/actions";
+import { moveCard } from "../redux/listReducer/actions/actions";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { Redirect } from "react-router";
 import BoardHeader from '../components/Board/BoardHeader'

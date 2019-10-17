@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { addLabelToCard } from "../../redux/cardReducer/actions";
+import { addLabelToCard } from "../../redux/cardReducer/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from 'styled-components'
 

@@ -1,6 +1,6 @@
-import boards from "../../data";
-import fetchBoardData from "../../helpers/fetchBoardData";
-import CLh from '../../services/CheckListHelper'
+import boards from "../../../data";
+import fetchBoardData from "../../../helpers/fetchBoardData";
+import CLh from '../../../services/CheckListHelper'
 import {
   ADD_CHECKLIST,
   ADD_CHECKLIST_ITEM,
@@ -8,7 +8,7 @@ import {
   UPDATE_CHECKLIST_ITEM,
   DELETE_CHECKLIST,
   DELETE_CHECKLIST_ITEM,
-} from "./constants";
+} from "../constants/constants";
 
 const initialState = fetchBoardData(boards).checkLists || {};
 

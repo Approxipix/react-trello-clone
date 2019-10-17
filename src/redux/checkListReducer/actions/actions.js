@@ -5,7 +5,7 @@ import {
   UPDATE_CHECKLIST_ITEM,
   DELETE_CHECKLIST,
   DELETE_CHECKLIST_ITEM,
-} from "./constants";
+} from "../constants/constants";
 
 export const addCheckList = (fields) => ({
   type: ADD_CHECKLIST,

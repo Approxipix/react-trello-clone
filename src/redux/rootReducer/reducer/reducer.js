@@ -1,7 +1,7 @@
 import {
   SET_CURRENT_BOARD_ID,
   TOGGLE_SIDEBAR,
-} from "./constants";
+} from "../constants/constants";
 
 const initialState = {
   currentBoardID: null,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { deleteList } from '../../redux/listReducer/actions';
+import { deleteList } from '../../redux/listReducer/actions/actions';
 import { Text, SubmitButton } from '../BaseComponent';
 
 class ListDelete extends Component {

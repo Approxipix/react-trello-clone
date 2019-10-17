@@ -4,7 +4,7 @@ import {
   EDIT_CARD_TITLE,
   EDIT_CARD_DESC,
   DELETE_CARD,
-} from "./constants";
+} from "../constants/constants";
 
 export const addCard = (fields) => ({
   type: ADD_CARD,

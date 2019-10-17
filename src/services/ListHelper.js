@@ -1,10 +1,10 @@
 class List {
   static addList(state, payload) {
-    const { listTitle, newListId } = payload;
+    const { listTitle, listId } = payload;
     return {
       ...state,
-      [newListId]: {
-        _listId: newListId,
+      [listId]: {
+        _listId: listId,
         title: listTitle,
         cards: []
       }

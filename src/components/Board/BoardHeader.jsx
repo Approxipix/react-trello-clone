@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { toggleSidebar } from '../../redux/rootReducer/actions';
+import { toggleSidebar } from '../../redux/rootReducer/actions/actions';
 import BoardTitle from './BoardTitle/BoardTitle';
 import styled from "styled-components";
 

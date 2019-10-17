@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { moveList, moveListToAnotherBoard } from '../../redux/boardReducer/actions';
+import { moveList, moveListToAnotherBoard } from '../../redux/boardReducer/actions/actions';
 import { SubmitButton } from '../BaseComponent';
 import Select from '../Select'
 import styled from 'styled-components'

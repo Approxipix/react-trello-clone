@@ -13,12 +13,12 @@ class Board {
   }
 
   static addListToBoard(state, payload) {
-    const { boardId, newListId } = payload;
+    const { boardId, listId } = payload;
     return {
       ...state,
       [boardId]: {
         ...state[boardId],
-        lists: state[boardId].lists.concat(newListId)
+        lists: state[boardId].lists.concat(listId)
       }
     }
   }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addCheckList } from "../../redux/checkListReducer/actions";
+import { addCheckList } from "../../redux/checkListReducer/actions/actions";
 import { Input, SubmitButton } from "../BaseComponent";
 import uuid from "uuid";
 

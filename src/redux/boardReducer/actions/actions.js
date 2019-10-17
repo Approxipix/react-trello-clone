@@ -5,7 +5,7 @@ import {
   MOVE_LIST,
   MOVE_LIST_TO_ANOTHER_BOARD,
   DELETE_BOARD,
-} from "./constants";
+} from "../constants/constants";
 
 export const addBoard = (fields) => ({
   type: ADD_BOARD,

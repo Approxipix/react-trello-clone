@@ -1,6 +1,6 @@
-import boards from '../../data'
-import fetchBoardData from '../../helpers/fetchBoardData'
-import Bh from '../../services/BoardHelper'
+import boards from '../../../data'
+import fetchBoardData from '../../../helpers/fetchBoardData'
+import Bh from '../../../services/BoardHelper'
 import {
   ADD_BOARD,
   EDIT_BOARD_TITLE,
@@ -8,11 +8,11 @@ import {
   MOVE_LIST,
   MOVE_LIST_TO_ANOTHER_BOARD,
   DELETE_BOARD,
-} from "./constants";
+} from "../constants/constants";
 import {
   ADD_LIST,
   DELETE_LIST,
-} from "../listReducer/constants";
+} from "../../listReducer/constants/constants";
 
 const initialState = fetchBoardData(boards).boards || {};
 

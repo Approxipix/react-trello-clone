@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { history } from "../../redux/store";
 import { bindActionCreators } from 'redux';
-import { addBoard } from '../../redux/boardReducer/actions';
+import { addBoard } from '../../redux/boardReducer/actions/actions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Actions, Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside";
