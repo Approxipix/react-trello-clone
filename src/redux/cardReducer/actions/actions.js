@@ -2,7 +2,7 @@ import {
   ADD_CARD,
   ADD_LABEL_TO_CARD,
   EDIT_CARD_TITLE,
-  EDIT_CARD_DESC,
+  EDIT_CARD_DESCRIPTION,
   DELETE_CARD,
 } from "../constants/constants";
 
@@ -22,7 +22,7 @@ export const editCardTitle = (fields) => ({
 });
 
 export const editCardDesc = (fields) => ({
-  type: EDIT_CARD_DESC,
+  type: EDIT_CARD_DESCRIPTION,
   payload: fields
 });
 

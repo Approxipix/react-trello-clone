@@ -17,7 +17,7 @@ const cardReducer = (state = {}, action) => {
       return Ch.addLabelToCard(state, action.payload);
     case t.EDIT_CARD_TITLE:
       return Ch.editCardTitle(state, action.payload);
-    case t.EDIT_CARD_DESC:
+    case t.EDIT_CARD_DESCRIPTION:
       return Ch.editCardDesc(state, action.payload);
     case t.DELETE_CARD:
       return Ch.deleteCard(state, action.payload);

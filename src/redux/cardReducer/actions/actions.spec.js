@@ -45,13 +45,13 @@ describe('cardReducer actions', () => {
     expect(actions.editCardTitle(payload)).toEqual(expectedAction)
   });
 
-  it('creates EDIT_CARD_DESC when card description has been changed', () => {
+  it('creates EDIT_CARD_DESCRIPTION when card description has been changed', () => {
     const payload = {
       cardId: 'Card ID',
       cardDescription: 'New card description',
     };
     const expectedAction = {
-      type: constants.EDIT_CARD_DESC,
+      type: constants.EDIT_CARD_DESCRIPTION,
       payload: payload,
     };
 
