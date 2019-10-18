@@ -1,33 +1,27 @@
-import {
-  ADD_CARD,
-  ADD_LABEL_TO_CARD,
-  EDIT_CARD_TITLE,
-  EDIT_CARD_DESCRIPTION,
-  DELETE_CARD,
-} from "../constants/constants";
+import * as t from '../../constants';
 
 export const addCard = (fields) => ({
-  type: ADD_CARD,
+  type: t.ADD_CARD,
   payload: fields
 });
 
 export const addLabelToCard = (fields) => ({
-  type: ADD_LABEL_TO_CARD,
+  type: t.ADD_LABEL_TO_CARD,
   payload: fields
 });
 
 export const editCardTitle = (fields) => ({
-  type: EDIT_CARD_TITLE,
+  type: t.EDIT_CARD_TITLE,
   payload: fields
 });
 
 export const editCardDesc = (fields) => ({
-  type: EDIT_CARD_DESCRIPTION,
+  type: t.EDIT_CARD_DESCRIPTION,
   payload: fields
 });
 
 export const deleteCard = (fields) => ({
-  type: DELETE_CARD,
+  type: t.DELETE_CARD,
   payload: fields
 });
 

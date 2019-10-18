@@ -1,11 +1,9 @@
-import * as t from "../constants/constants";
-import { ADD_ENTITIES } from "../../rootReducer/constants/constants";
-import { ADD_CHECKLIST, DELETE_CHECKLIST } from "../../checkListReducer/constants/constants";
+import * as t from '../../constants';
 import Ch from '../../../services/CardHelper'
 
 const cardReducer = (state = {}, action) => {
   switch (action.type) {
-    case ADD_ENTITIES:
+    case t.RESPONSE_BOARDS_SUCCESS:
       return {
         ...state,
         ...action.payload.cards
@@ -22,9 +20,9 @@ const cardReducer = (state = {}, action) => {
     case t.DELETE_CARD:
       return Ch.deleteCard(state, action.payload);
 
-    case ADD_CHECKLIST:
+    case t.ADD_CHECKLIST:
       return Ch.addCheckListToCard(state, action.payload);
-    case DELETE_CHECKLIST:
+    case t.DELETE_CHECKLIST:
       return Ch.deleteCheckListFromCard(state, action.payload);
     default:
       return state;
