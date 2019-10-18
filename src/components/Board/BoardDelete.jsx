@@ -10,7 +10,7 @@ class BoardDelete extends Component {
     this.props.actions.deleteBoard({
       boardId: this.props.boardId
     });
-    history.push('/boards')
+    history.push('/')
   };
 
   render() {

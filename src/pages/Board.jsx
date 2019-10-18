@@ -49,7 +49,7 @@ class InnerList extends PureComponent {
 class Board extends Component {
   componentDidMount() {
     const boardId = this.props.match.params.boardId;
-    this.props.actions.setCurrentBoardID(boardId)
+    this.props.actions.setCurrentBoardID(boardId);
   }
 
   componentWillUnmount() {
@@ -85,7 +85,7 @@ class Board extends Component {
   render() {
     const { board, currentBoardId } = this.props;
     if (!currentBoardId) return null;
-    if (!board) return <Redirect to='/boards'/>;
+    if (!board) return <Redirect to='/'/>;
     return (
       <Wrapper color={board.color}>
         <BoardHeader boardId={board._boardId}/>

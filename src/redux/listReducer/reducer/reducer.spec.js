@@ -1,22 +1,7 @@
 import listReducer from './reducer'
 import * as t from '../../constants';
-import uuid from "uuid";
 
 describe('listReducer', () => {
-  let initialState;
-  let mockListId;
-
-  beforeEach(() => {
-    mockListId = 'CardId';
-    initialState = {
-      [mockListId]: {
-        _listId: mockListId,
-        title: 'List Title',
-        cards: ['Card1Id', 'Card2Id', 'Card3Id']
-      }
-    };
-  });
-
   it('should return the initial state', () => {
     expect(listReducer(undefined, {})).toStrictEqual({})
   });

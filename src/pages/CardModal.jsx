@@ -195,9 +195,10 @@ class ChecklistContainer extends Component {
 
 class CardModal extends Component {
   render() {
-    const { card, listId } = this.props;
-    const boardUrl = `/b/${this.props.match.params}`;
-    if (!card) return <Redirect to='/boards' />;
+    const { card, listId, currentBoardId } = this.props;
+    if (!currentBoardId) return null;
+    const boardUrl = `/b/${currentBoardId}`;
+    if (!card) return <Redirect to={boardUrl} />;
     return (
       <Backdrop>
         <CloseBackdrop onClick={() => history.push(boardUrl)} />
@@ -244,6 +245,7 @@ function mapStateToProps(state, ownProps) {
   });
   return {
     listId: listId,
+    currentBoardId: state.rootReducer.currentBoardID,
     card: state.cardReducer[ownProps.match.params.cardId],
   }
 }

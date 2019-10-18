@@ -6,7 +6,6 @@ import { TextArea, Actions, SubmitButton, CancelButton } from '../BaseComponent'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClickOutside from "../ClickOutside";
 import styled from 'styled-components'
-import uuid from "uuid";
 
 const Wrapper = styled.div`
   padding: .5rem;
@@ -61,7 +60,7 @@ class CardAdder extends Component {
     this.props.actions.addCard({
       listId: this.props.listId,
       cardTitle: title,
-      newCardId: uuid.v4(),
+      newCardId: Date.now(),
     });
     this.setState({
       title: '',

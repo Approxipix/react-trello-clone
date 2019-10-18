@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { addList } from '../../redux/listReducer/actions/actions';
 import { Actions, Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside";
-import uuid from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Wrapper = styled.div`
@@ -70,7 +69,7 @@ class ListAdd extends Component {
     this.props.actions.addList({
       boardId: this.props.boardId,
       listTitle: title,
-      listId: uuid.v4(),
+      listId: Date.now(),
     });
     this.setState({
       title: ''

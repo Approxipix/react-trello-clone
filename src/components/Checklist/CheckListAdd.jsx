@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addCheckList } from "../../redux/checkListReducer/actions/actions";
 import { Input, SubmitButton } from "../BaseComponent";
-import uuid from "uuid";
 
 class CheckListAdd extends Component {
   constructor(props) {
@@ -26,7 +25,7 @@ class CheckListAdd extends Component {
     this.props.actions.addCheckList({
       checkListTitle: title,
       cardId: this.props.cardId,
-      checkListId: uuid.v4()
+      checkListId: Date.now()
     });
     this.props.toggleTooltip()
   };

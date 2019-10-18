@@ -6,7 +6,6 @@ import { addBoard } from '../../redux/boardReducer/actions/actions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Actions, Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside";
-import uuid from "uuid";
 import styled from 'styled-components'
 
 const AddButton = styled.button`
@@ -90,7 +89,7 @@ class BoardAdd extends Component {
     e.preventDefault();
     const { boardTitle } = this.state;
     if (!boardTitle) return;
-    const boardId = uuid.v4();
+    const boardId = Date.now();
     this.props.actions.addBoard({
       boardTitle: boardTitle,
       boardColor: this.state.boardColor,
