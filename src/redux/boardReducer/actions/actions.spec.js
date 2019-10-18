@@ -4,9 +4,9 @@ import * as constants from '../constants/constants';
 describe('boardReducer actions', () => {
   it('creates ADD_BOARD when board is successfully added', () => {
     const payload = {
-      boardTitle: 'Board title',
+      boardTitle: 'New Board Title',
       boardColor: '#af2232',
-      boardId: 'Board ID',
+      boardId: 'New BoardID',
     };
     const expectedAction = {
       type: constants.ADD_BOARD,
@@ -18,7 +18,7 @@ describe('boardReducer actions', () => {
 
   it('creates EDIT_BOARD_COLOR when board color has been changed', () => {
     const payload = {
-      boardId: 'Board ID',
+      boardId: 'BoardID',
       boardColor: '#2dff92'
     };
     const expectedAction = {
@@ -31,8 +31,8 @@ describe('boardReducer actions', () => {
 
   it('creates EDIT_BOARD_TITLE when board title has been changed', () => {
     const payload = {
-      boardId: 'Board ID',
-      boardTitle: 'New board title'
+      boardId: 'BoardID',
+      boardTitle: 'New Board Title'
     };
     const expectedAction = {
       type: constants.EDIT_BOARD_TITLE,
@@ -44,7 +44,7 @@ describe('boardReducer actions', () => {
 
   it('creates DELETE_BOARD when board is successfully deleted', () => {
     const payload = {
-      boardId: 'Board ID',
+      boardId: 'BoardID',
     };
     const expectedAction = {
       type: constants.DELETE_BOARD,
@@ -56,7 +56,7 @@ describe('boardReducer actions', () => {
 
   it('creates MOVE_LIST when list is successfully moved', () => {
     const payload = {
-      boardId: 'Board ID',
+      boardId: 'BoardID',
       sourceIndex: 0,
       destinationIndex: 1,
     };
@@ -70,9 +70,9 @@ describe('boardReducer actions', () => {
 
   it('creates MOVE_LIST_TO_ANOTHER_BOARD when list moved to another board', () => {
     const payload = {
-      boardId: 'Board ID',
-      newBoardId: 'New board ID',
-      listId: 'List ID',
+      boardId: 'BoardID',
+      newBoardId: 'New BoardID',
+      listId: 'ListID',
       newListPosition: 0,
     };
     const expectedAction = {

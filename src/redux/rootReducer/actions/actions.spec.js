@@ -3,13 +3,11 @@ import * as t from '../constants/constants';
 
 describe('rootReducer actions', () => {
   it('creates REQUEST_BOARDS when a random fact fetch has started', () => {
-    const payload = {};
     const expectedAction = {
       type: t.REQUEST_BOARDS,
-      payload,
     };
 
-    expect(actions.requestBoards(payload)).toEqual(expectedAction)
+    expect(actions.requestBoards()).toEqual(expectedAction)
   });
 
   it('creates RESPONSE_BOARDS_SUCCESS for a successful fetch of a boards', () => {
@@ -33,7 +31,7 @@ describe('rootReducer actions', () => {
   });
 
   it('creates TOGGLE_SIDEBAR when sidebar has been toggled', () => {
-    const payload = false;
+    const payload = true;
     const expectedAction = {
       type: t.TOGGLE_SIDEBAR,
       payload: payload,

@@ -2,90 +2,75 @@ import boardReducer from './reducer'
 import * as t from '../constants/constants';
 
 describe('boardReducer', () => {
-  let initialState;
-  let mockBoardId;
-
-  beforeEach(() => {
-    mockBoardId = 'BoardId';
-    initialState = {
-      [mockBoardId]: {
-        _boardId: mockBoardId,
-        title: 'Board title',
-        color: '#af2232',
-        lists: ['List 1 ID', 'List 2 ID', 'List 3 ID'],
-      }
-    };
-  });
-
   it('should return the initial state', () => {
     expect(boardReducer(undefined, {})).toStrictEqual({})
   });
 
-  it('should handle ADD_ENTITIES action', () => {
+  it('should handle RESPONSE_BOARDS_SUCCESS action', () => {
     const fetchBoards = {
       boards: {
-        Board1: {
-          _boardId: 'Board1',
-          title: 'Board 1 title',
+        Board1ID: {
+          _boardId: 'Board1ID',
+          title: 'Board1 Title',
           color: '#af2232',
           lists: [],
         },
-        Board2: {
-          _boardId: 'Board2',
-          title: 'Board 2 title',
+        Board2ID: {
+          _boardId: 'Board2ID',
+          title: 'Board2 Title',
           color: '#af2232',
           lists: [],
         }
       }
     };
     const action = {
-      type: 'ADD_ENTITIES',
+      type: 'RESPONSE_BOARDS_SUCCESS',
       payload: fetchBoards
     };
-    const expectedState = {
-      ...initialState,
-      ...fetchBoards.boards,
-    };
+    const expectedState = fetchBoards.boards;
 
-    expect(boardReducer(initialState, action)).toEqual(expectedState)
+    expect(boardReducer(undefined, action)).toEqual(expectedState)
   });
 
   it('should handle ADD_BOARD action', () => {
-    const mockBoardId = 'New Board ID';
     const action = {
       type: t.ADD_BOARD,
       payload: {
-        boardId: mockBoardId,
-        boardTitle: 'New Board title',
+        boardId: 'BoardID',
+        boardTitle: 'New Board Title',
         boardColor: '#af2232',
       }
     };
     const expectedState = {
-      ...initialState,
-      [mockBoardId]: {
-        _boardId: mockBoardId,
-        title: 'New Board title',
+      BoardID: {
+        _boardId: 'BoardID',
+        title: 'New Board Title',
         color: '#af2232',
         lists: [],
       }
     };
 
-    expect(boardReducer(initialState, action)).toEqual(expectedState)
+    expect(boardReducer(undefined, action)).toEqual(expectedState)
   });
 
   it('should handle EDIT_BOARD_COLOR action', () => {
+    const initialState = {
+      BoardID: {
+        _boardId: 'BoardID',
+        color: '#fff',
+      }
+    };
     const action = {
       type: t.EDIT_BOARD_COLOR,
       payload: {
-        boardId: mockBoardId,
-        boardColor: '#2dff92'
+        boardId: 'BoardID',
+        boardColor: '#000'
       }
     };
     const expectedState = {
-      ...initialState,
-      [mockBoardId]: {
-        ...initialState[mockBoardId],
-        color: '#2dff92',
+      BoardID: {
+        _boardId: 'BoardID',
+        color: '#000',
       }
     };
 
@@ -93,18 +78,23 @@ describe('boardReducer', () => {
   });
 
   it('should handle EDIT_BOARD_TITLE action', () => {
+    const initialState = {
+      BoardID: {
+        _boardId: 'BoardID',
+        title: 'Board Title',
+      }
+    };
     const action = {
       type: t.EDIT_BOARD_TITLE,
       payload: {
-        boardId: mockBoardId,
-        boardTitle: 'New board title'
+        boardId: 'BoardID',
+        boardTitle: 'New Board Title'
       }
     };
     const expectedState = {
-      ...initialState,
-      [mockBoardId]: {
-        ...initialState[mockBoardId],
-        title: 'New board title',
+      BoardID: {
+        _boardId: 'BoardID',
+        title: 'New Board Title',
       }
     };
 
@@ -112,31 +102,48 @@ describe('boardReducer', () => {
   });
 
   it('should handle DELETE_BOARD action', () => {
+    const initialState = {
+      Board1ID: {
+        _boardId: 'Board1ID',
+      },
+      Board2ID: {
+        _boardId: 'Board2ID',
+      }
+    };
     const action = {
       type: t.DELETE_BOARD,
       payload: {
-        boardId: mockBoardId
+        boardId: 'Board1ID'
       }
     };
-    const expectedState = {};
+    const expectedState = {
+      Board2ID: {
+        _boardId: 'Board2ID',
+      }
+    };
 
     expect(boardReducer(initialState, action)).toEqual(expectedState)
   });
 
   it('should handle MOVE_LIST action', () => {
+    const initialState = {
+      Board1ID: {
+        _boardId: 'Board1ID',
+        lists: ['List1ID', 'List2ID', 'List3ID'],
+      },
+    };
     const action = {
       type: t.MOVE_LIST,
       payload: {
-        boardId: mockBoardId,
-        sourceIndex: initialState[mockBoardId].lists.length - 1,
+        boardId: 'Board1ID',
+        sourceIndex: 2,
         destinationIndex: 0,
       }
     };
     const expectedState = {
-      ...initialState,
-      [mockBoardId]: {
-        ...initialState[mockBoardId],
-        lists: ['List 3 ID', 'List 1 ID', 'List 2 ID'],
+      Board1ID: {
+        _boardId: 'Board1ID',
+        lists: ['List3ID', 'List1ID', 'List2ID'],
       },
     };
 
@@ -147,18 +154,18 @@ describe('boardReducer', () => {
     const initialState = {
       Board1ID: {
         _boardId: 'Board1ID',
-        lists: ['Board1List1', 'Board1List2'],
+        lists: ['Board1List1ID', 'Board1List2ID'],
       },
       Board2ID: {
         _boardId: 'Board2ID',
-        lists: ['Board2List1', 'Board2List2ID', 'Board2List3'],
+        lists: ['Board2List1ID', 'Board2List2ID', 'Board2List3ID'],
       },
     };
     const action = {
       type: t.MOVE_LIST_TO_ANOTHER_BOARD,
       payload: {
-        boardId: initialState.Board2ID._boardId,
-        newBoardId: initialState.Board1ID._boardId,
+        boardId: 'Board2ID',
+        newBoardId: 'Board1ID',
         listId: 'Board2List2ID',
         newListPosition: 0,
       }
@@ -166,12 +173,60 @@ describe('boardReducer', () => {
     const expectedState = {
       'Board1ID': {
         _boardId: 'Board1ID',
-        lists: ['Board2List2ID', 'Board1List1', 'Board1List2'],
+        lists: ['Board2List2ID', 'Board1List1ID', 'Board1List2ID'],
       },
       'Board2ID': {
         _boardId: 'Board2ID',
-        lists: ['Board2List1', 'Board2List3'],
+        lists: ['Board2List1ID', 'Board2List3ID'],
       },
+    };
+
+    expect(boardReducer(initialState, action)).toEqual(expectedState)
+  });
+
+  it('should handle ADD_LIST action', () => {
+    const initialState = {
+      BoardID: {
+        _boardId: 'BoardID',
+        lists: ['List1ID', 'List2ID'],
+      }
+    };
+    const action = {
+      type: 'ADD_LIST',
+      payload: {
+        boardId: 'BoardID',
+        listId: 'New ListID',
+      }
+    };
+    const expectedState = {
+      BoardID: {
+        _boardId: 'BoardID',
+        lists: ['List1ID', 'List2ID', 'New ListID'],
+      }
+    };
+
+    expect(boardReducer(initialState, action)).toEqual(expectedState)
+  });
+
+  it('should handle DELETE_LIST action', () => {
+    const initialState = {
+      BoardID: {
+        _boardId: 'BoardID',
+        lists: ['List1ID', 'List2ID', 'List3ID'],
+      }
+    };
+    const action = {
+      type: 'DELETE_LIST',
+      payload: {
+        boardId: 'BoardID',
+        listId: 'List2ID',
+      }
+    };
+    const expectedState = {
+      BoardID: {
+        _boardId: 'BoardID',
+        lists: ['List1ID', 'List3ID'],
+      }
     };
 
     expect(boardReducer(initialState, action)).toEqual(expectedState)

@@ -9,7 +9,6 @@ describe('rootReducer', () => {
   it('should handle REQUEST_BOARDS action', () => {
     const action = {
       type: t.REQUEST_BOARDS,
-      payload: {}
     };
     const expectedState = {
       ...initialState,

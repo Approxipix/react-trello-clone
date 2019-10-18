@@ -1,12 +1,12 @@
 import * as t from "../constants/constants";
-import { ADD_ENTITIES } from "../../rootReducer/constants/constants";
+import { RESPONSE_BOARDS_SUCCESS } from "../../rootReducer/constants/constants";
 import { ADD_LIST, DELETE_LIST } from "../../listReducer/constants/constants";
 import Bh from '../../../services/BoardHelper'
 
 
 const boardReducer = (state = {}, action) => {
   switch (action.type) {
-    case ADD_ENTITIES:
+    case RESPONSE_BOARDS_SUCCESS:
       return {
         ...state,
         ...action.payload.boards

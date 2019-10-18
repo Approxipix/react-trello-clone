@@ -1,8 +1,7 @@
 import * as t from "../constants/constants";
 
-export const requestBoards = (fields) => ({
+export const requestBoards = () => ({
   type: t.REQUEST_BOARDS,
-  payload: fields
 });
 
 export const responseBoardsSuccess = (fields) => ({
