@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Label> should renders correctly without props 1`] = `""`;
+
+exports[`<Label> should renders without crashing given the required props 1`] = `
+<styled.ul>
+  <styled.li
+    key="0"
+    value="#fff"
+  />
+  <styled.li
+    key="1"
+    value="#ccc"
+  />
+  <styled.li
+    key="2"
+    value="#000"
+  />
+</styled.ul>
+`;

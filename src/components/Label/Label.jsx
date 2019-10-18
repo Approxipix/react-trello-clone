@@ -16,6 +16,7 @@ const LabelItem = styled.li`
 
 const Label = (props) => {
   const { cardLabels } = props;
+  if (!cardLabels) return null;
   return (
     <LabelList>
       {cardLabels.map((label, index) => (

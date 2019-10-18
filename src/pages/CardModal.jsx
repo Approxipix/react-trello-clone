@@ -161,10 +161,7 @@ const LabelContainer = (props) => {
         </Title>
       </Header>
       <Body>
-        <Label
-          cardId={card._cardId}
-          cardLabels={card.cardLabels}
-        />
+        <Label cardLabels={card.cardLabels}/>
       </Body>
     </Container>
   )
