@@ -13,7 +13,6 @@ const LabelItem = styled.li`
   border-radius: .2rem;
 `;
 
-
 const Label = (props) => {
   const { cardLabels } = props;
   if (!cardLabels) return null;
