@@ -1,16 +1,15 @@
 import * as actions from './actions';
-import * as constants from '../constants/constants';
-import uuid from "uuid";
+import * as t from '../../constants';
 
 describe('checkListReducer actions', () => {
   it('creates ADD_CHECKLIST when checklist is successfully added', () => {
     const payload = {
-      cardId: 'Card ID',
-      checkListId: 'Checklist ID',
-      checkListTitle: 'Checklist title'
+      cardId: 'CardID',
+      checkListId: 'CheckListID',
+      checkListTitle: 'CheckList Title'
     };
     const expectedAction = {
-      type: constants.ADD_CHECKLIST,
+      type: t.ADD_CHECKLIST,
       payload,
     };
 
@@ -19,11 +18,11 @@ describe('checkListReducer actions', () => {
 
   it('creates ADD_CHECKLIST_ITEM when item is successfully added to a checklist', () => {
     const payload = {
-      checkListId: 'Checklist item ID',
-      checkListTitle: 'Checklist item title',
+      checkListId: 'CheckList ItemID',
+      checkListTitle: 'CheckList Item Title',
     };
     const expectedAction = {
-      type: constants.ADD_CHECKLIST_ITEM,
+      type: t.ADD_CHECKLIST_ITEM,
       payload,
     };
 
@@ -32,11 +31,11 @@ describe('checkListReducer actions', () => {
 
   it('creates EDIT_CHECKLIST_TITLE when checklist title has been changed', () => {
     const payload = {
-      listId: 'Checklist ID',
-      listTitle: 'New checklist title'
+      checkListId: 'CheckListID',
+      checkListTitle: 'New CheckList Title'
     };
     const expectedAction = {
-      type: constants.EDIT_CHECKLIST_TITLE,
+      type: t.EDIT_CHECKLIST_TITLE,
       payload: payload,
     };
 
@@ -45,12 +44,12 @@ describe('checkListReducer actions', () => {
 
   it('creates UPDATE_CHECKLIST_ITEM when checklist item changed its status', () => {
     const payload = {
-      checkListId: 'Checklist ID',
+      checkListId: 'CheckListID',
       checkListItemIndex: 0,
       status: true,
     };
     const expectedAction = {
-      type: constants.UPDATE_CHECKLIST_ITEM,
+      type: t.UPDATE_CHECKLIST_ITEM,
       payload: payload,
     };
 
@@ -59,11 +58,10 @@ describe('checkListReducer actions', () => {
 
   it('creates DELETE_CHECKLIST when checklist is successfully deleted', () => {
     const payload = {
-      cardId: 'Card ID',
-      checkListId: 'Checklist ID',
+      checkListId: 'CheckListID',
     };
     const expectedAction = {
-      type: constants.DELETE_CHECKLIST,
+      type: t.DELETE_CHECKLIST,
       payload: payload,
     };
 
@@ -72,11 +70,11 @@ describe('checkListReducer actions', () => {
 
   it('creates DELETE_CHECKLIST_ITEM when checklist item is successfully deleted', () => {
     const payload = {
-      checkListId: 'Checklist ID',
+      checkListId: 'CheckListID',
       checkListItemIndex: 0,
     };
     const expectedAction = {
-      type: constants.DELETE_CHECKLIST_ITEM,
+      type: t.DELETE_CHECKLIST_ITEM,
       payload: payload,
     };
 

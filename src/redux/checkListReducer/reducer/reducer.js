@@ -1,10 +1,9 @@
-import * as t from "../constants/constants";
-import { ADD_ENTITIES } from "../../rootReducer/constants/constants";
+import * as t from '../../constants';
 import CLh from '../../../services/CheckListHelper'
 
 const checkListReducer = (state = {}, action) => {
   switch (action.type) {
-    case ADD_ENTITIES:
+    case t.RESPONSE_BOARDS_SUCCESS:
       return {
         ...state,
         ...action.payload.checkLists
