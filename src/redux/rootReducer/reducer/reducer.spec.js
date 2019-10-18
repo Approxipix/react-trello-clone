@@ -1,5 +1,5 @@
 import rootReducer, { initialState } from './reducer'
-import * as t from '../constants/constants';
+import * as t from '../../constants';
 
 describe('rootReducer', () => {
   it('should return the initial state', () => {

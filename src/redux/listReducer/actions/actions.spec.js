@@ -1,15 +1,15 @@
 import * as actions from './actions';
-import * as constants from '../constants/constants';
+import * as t from '../../constants';
 
 describe('listReducer actions', () => {
   it('creates ADD_LIST when list is successfully added', () => {
     const payload = {
-      boardId: 'Board ID',
-      listId: 'List ID',
-      listTitle: 'List title',
+      boardId: 'BoardID',
+      listId: 'ListID',
+      listTitle: 'List Title',
     };
     const expectedAction = {
-      type: constants.ADD_LIST,
+      type: t.ADD_LIST,
       payload,
     };
 
@@ -18,11 +18,11 @@ describe('listReducer actions', () => {
 
   it('creates EDIT_LIST_TITLE when list title has been changed', () => {
     const payload = {
-      listTitle: 'Test list',
-      listId: 'Test list ID'
+      listTitle: 'List Title',
+      listId: 'ListID'
     };
     const expectedAction = {
-      type: constants.EDIT_LIST_TITLE,
+      type: t.EDIT_LIST_TITLE,
       payload: payload,
     };
 
@@ -31,11 +31,11 @@ describe('listReducer actions', () => {
 
   it('creates DELETE_LIST when list is successfully deleted', () => {
     const payload = {
-      listId: 'Test list ID',
-      cardId: 'Test card ID',
+      listId: 'ListID',
+      cardId: 'CardId',
     };
     const expectedAction = {
-      type: constants.DELETE_LIST,
+      type: t.DELETE_LIST,
       payload: payload,
     };
 
@@ -44,10 +44,10 @@ describe('listReducer actions', () => {
 
   it('creates DELETE_ALL_CARDS when all cards are successfully deleted', () => {
     const payload = {
-      listId: 'Test list ID',
+      listId: 'ListId',
     };
     const expectedAction = {
-      type: constants.DELETE_ALL_CARDS,
+      type: t.DELETE_ALL_CARDS,
       payload: payload,
     };
 
@@ -62,7 +62,7 @@ describe('listReducer actions', () => {
       destinationListIndex: 1,
     };
     const expectedAction = {
-      type: constants.MOVE_CARD,
+      type: t.MOVE_CARD,
       payload: payload,
     };
 
@@ -71,11 +71,11 @@ describe('listReducer actions', () => {
 
   it('creates MOVE_ALL_CARDS when all cards moved to another list', () => {
     const payload = {
-      listId: 'Test list ID',
-      newListId: 'New list ID',
+      listId: 'ListID',
+      newListId: 'New ListID',
     };
     const expectedAction = {
-      type: constants.MOVE_ALL_CARDS,
+      type: t.MOVE_ALL_CARDS,
       payload: payload,
     };
 

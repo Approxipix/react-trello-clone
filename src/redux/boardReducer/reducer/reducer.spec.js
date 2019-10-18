@@ -1,5 +1,5 @@
 import boardReducer from './reducer'
-import * as t from '../constants/constants';
+import * as t from '../../constants';
 
 describe('boardReducer', () => {
   it('should return the initial state', () => {
@@ -24,7 +24,7 @@ describe('boardReducer', () => {
       }
     };
     const action = {
-      type: 'RESPONSE_BOARDS_SUCCESS',
+      type: t.RESPONSE_BOARDS_SUCCESS,
       payload: fetchBoards
     };
     const expectedState = fetchBoards.boards;
@@ -37,14 +37,14 @@ describe('boardReducer', () => {
       type: t.ADD_BOARD,
       payload: {
         boardId: 'BoardID',
-        boardTitle: 'New Board Title',
+        boardTitle: 'Board Title',
         boardColor: '#af2232',
       }
     };
     const expectedState = {
       BoardID: {
         _boardId: 'BoardID',
-        title: 'New Board Title',
+        title: 'Board Title',
         color: '#af2232',
         lists: [],
       }
@@ -192,7 +192,7 @@ describe('boardReducer', () => {
       }
     };
     const action = {
-      type: 'ADD_LIST',
+      type: t.ADD_LIST,
       payload: {
         boardId: 'BoardID',
         listId: 'New ListID',
@@ -216,7 +216,7 @@ describe('boardReducer', () => {
       }
     };
     const action = {
-      type: 'DELETE_LIST',
+      type: t.DELETE_LIST,
       payload: {
         boardId: 'BoardID',
         listId: 'List2ID',

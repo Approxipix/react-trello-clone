@@ -1,11 +1,9 @@
-import * as t from "../constants/constants";
-import { ADD_ENTITIES } from "../../rootReducer/constants/constants";
-import { ADD_CARD, DELETE_CARD } from "../../cardReducer/constants/constants";
+import * as t from '../../constants';
 import Lh from '../../../services/ListHelper'
 
 const listReducer = (state = {}, action) => {
   switch (action.type) {
-    case ADD_ENTITIES:
+    case t.RESPONSE_BOARDS_SUCCESS:
       return {
         ...state,
         ...action.payload.lists
@@ -24,9 +22,9 @@ const listReducer = (state = {}, action) => {
     case t.DELETE_ALL_CARDS:
       return Lh.deleteAllCards(state, action.payload);
 
-    case ADD_CARD:
+    case t.ADD_CARD:
       return Lh.addCardToList(state, action.payload);
-    case DELETE_CARD:
+    case t.DELETE_CARD:
       return Lh.deleteCardFromList(state, action.payload);
     default:
       return state;

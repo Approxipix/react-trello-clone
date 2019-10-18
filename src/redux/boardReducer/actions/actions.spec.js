@@ -1,5 +1,5 @@
 import * as actions from './actions';
-import * as constants from '../constants/constants';
+import * as t from '../../constants';
 
 describe('boardReducer actions', () => {
   it('creates ADD_BOARD when board is successfully added', () => {
@@ -9,7 +9,7 @@ describe('boardReducer actions', () => {
       boardId: 'New BoardID',
     };
     const expectedAction = {
-      type: constants.ADD_BOARD,
+      type: t.ADD_BOARD,
       payload,
     };
 
@@ -22,7 +22,7 @@ describe('boardReducer actions', () => {
       boardColor: '#2dff92'
     };
     const expectedAction = {
-      type: constants.EDIT_BOARD_COLOR,
+      type: t.EDIT_BOARD_COLOR,
       payload: payload,
     };
 
@@ -35,7 +35,7 @@ describe('boardReducer actions', () => {
       boardTitle: 'New Board Title'
     };
     const expectedAction = {
-      type: constants.EDIT_BOARD_TITLE,
+      type: t.EDIT_BOARD_TITLE,
       payload: payload,
     };
 
@@ -47,7 +47,7 @@ describe('boardReducer actions', () => {
       boardId: 'BoardID',
     };
     const expectedAction = {
-      type: constants.DELETE_BOARD,
+      type: t.DELETE_BOARD,
       payload: payload,
     };
 
@@ -61,7 +61,7 @@ describe('boardReducer actions', () => {
       destinationIndex: 1,
     };
     const expectedAction = {
-      type: constants.MOVE_LIST,
+      type: t.MOVE_LIST,
       payload: payload,
     };
 
@@ -76,7 +76,7 @@ describe('boardReducer actions', () => {
       newListPosition: 0,
     };
     const expectedAction = {
-      type: constants.MOVE_LIST_TO_ANOTHER_BOARD,
+      type: t.MOVE_LIST_TO_ANOTHER_BOARD,
       payload: payload,
     };
 

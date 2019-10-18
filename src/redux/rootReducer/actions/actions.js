@@ -1,4 +1,4 @@
-import * as t from "../constants/constants";
+import * as t from '../../constants';
 
 export const requestBoards = () => ({
   type: t.REQUEST_BOARDS,

@@ -1,5 +1,5 @@
 import * as actions from './actions';
-import * as t from '../constants/constants';
+import * as t from '../../constants';
 
 describe('rootReducer actions', () => {
   it('creates REQUEST_BOARDS when a random fact fetch has started', () => {

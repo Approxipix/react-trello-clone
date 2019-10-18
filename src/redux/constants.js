@@ -1,0 +1,36 @@
+//rootReducer
+export const REQUEST_BOARDS = 'REQUEST_BOARDS';
+export const RESPONSE_BOARDS_SUCCESS = 'RESPONSE_BOARDS_SUCCESS';
+export const SET_CURRENT_BOARD_ID = 'SET_CURRENT_BOARD_ID';
+export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";
+
+//boardReducer
+export const ADD_BOARD = 'ADD_BOARD';
+export const EDIT_BOARD_TITLE = 'EDIT_BOARD_TITLE';
+export const EDIT_BOARD_COLOR = 'EDIT_BOARD_COLOR';
+export const MOVE_LIST = 'MOVE_LIST';
+export const MOVE_LIST_TO_ANOTHER_BOARD = 'MOVE_LIST_TO_ANOTHER_BOARD';
+export const DELETE_BOARD = 'DELETE_BOARD';
+
+//listReducer
+export const ADD_LIST = 'ADD_LIST';
+export const EDIT_LIST_TITLE = 'EDIT_LIST_TITLE';
+export const MOVE_CARD = 'MOVE_CARD';
+export const MOVE_ALL_CARDS = 'MOVE_ALL_CARDS';
+export const DELETE_LIST = 'DELETE_LIST';
+export const DELETE_ALL_CARDS = 'DELETE_ALL_CARDS';
+
+//cardReducer
+export const ADD_CARD = 'ADD_CARD';
+export const ADD_LABEL_TO_CARD = 'ADD_LABEL_TO_CARD';
+export const EDIT_CARD_TITLE = 'EDIT_CARD_TITLE';
+export const EDIT_CARD_DESCRIPTION = 'EDIT_CARD_DESCRIPTION';
+export const DELETE_CARD = 'DELETE_CARD';
+
+//checkListReducer
+export const ADD_CHECKLIST = 'ADD_CHECKLIST';
+export const ADD_CHECKLIST_ITEM = 'ADD_CHECKLIST_ITEM';
+export const EDIT_CHECKLIST_TITLE = 'EDIT_CHECKLIST_TITLE';
+export const UPDATE_CHECKLIST_ITEM = 'UPDATE_CHECKLIST_ITEM';
+export const DELETE_CHECKLIST = 'DELETE_CHECKLIST';
+export const DELETE_CHECKLIST_ITEM = 'DELETE_CHECKLIST_ITEM';
