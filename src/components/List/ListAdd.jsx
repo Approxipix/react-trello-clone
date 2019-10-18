@@ -69,7 +69,7 @@ class ListAdd extends Component {
     this.props.actions.addList({
       boardId: this.props.boardId,
       listTitle: title,
-      listId: Date.now(),
+      listId: Date.now().toString(),
     });
     this.setState({
       title: ''

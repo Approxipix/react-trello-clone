@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import { Draggable } from 'react-beautiful-dnd';
 import { NavLink } from 'react-router-dom';
@@ -56,91 +56,84 @@ const BadgeItem = styled.div`
   background-color: ${props => props.done && '#61bd4f'}
 `;
 
-class CardLabels extends Component {
-  render() {
-    const { cardLabels } = this.props;
-    if (cardLabels.length === 0) return null;
-    return  (
-      <LabelList>
-        {cardLabels.map(((label, index) => (
-          <LabelItem key={index} value={label.color}/>
-        )))}
-      </LabelList>
-    )
-  }
-}
+const CardLabels = (props) => {
+  const { cardLabels } = props;
+  if (cardLabels.length === 0) return null;
+  return  (
+    <LabelList>
+      {cardLabels.map(((label, index) => (
+        <LabelItem key={index} value={label.color}/>
+      )))}
+    </LabelList>
+  )
+};
 
-class CardBadges extends Component {
-  render() {
-    const { card, checkLists } = this.props;
-    let allCheckListItems = 0;
-    let doneCheckListItems = 0;
-    card.checkLists.forEach(checklist => {
-      allCheckListItems += checkLists[checklist].items.length;
-      doneCheckListItems += checkLists[checklist].items.filter(item => !!item.status).length
-    });
-    return (
-      <BadgeList>
-        {!!card.description && (
-          <BadgeItem>
-            <FontAwesomeIcon icon="align-left"/>
-          </BadgeItem>
-        )}
-        {!!allCheckListItems && (
-          <BadgeItem done={allCheckListItems === doneCheckListItems}>
-            <FontAwesomeIcon icon="check-square"/> {doneCheckListItems}/{allCheckListItems}
-          </BadgeItem>
-        )}
-      </BadgeList>
-    )
-  }
-}
+const CardBadges = (props) => {
+  const { card, checkLists } = props;
+  let allCheckListItems = 0, doneCheckListItems = 0;
+  card.checkLists.forEach(checklist => {
+    allCheckListItems += checkLists[checklist].items.length;
+    doneCheckListItems += checkLists[checklist].items.filter(item => !!item.status).length
+  });
+  return (
+    <BadgeList>
+      {!!card.description && (
+        <BadgeItem>
+          <FontAwesomeIcon icon="align-left"/>
+        </BadgeItem>
+      )}
+      {!!allCheckListItems && (
+        <BadgeItem done={allCheckListItems === doneCheckListItems}>
+          <FontAwesomeIcon icon="check-square"/> {doneCheckListItems}/{allCheckListItems}
+        </BadgeItem>
+      )}
+    </BadgeList>
+  )
+};
 
-class Card extends Component {
-  render() {
-    const {
-      currentBoardID,
-      card,
-      index,
-      isDraggingOver,
-      checkLists,
-    } = this.props;
-    return (
-      <Draggable
-        index={index}
-        draggableId={`${card._cardId}`}
-      >
-        {(provided, snapshot) => (
-          <>
-            <Container
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-              ref={provided.innerRef}
-              style={{
-                ...provided.draggableProps.style,
-                background: card.color
-              }}
-            >
-              <CardWrapper isDragging={snapshot.isDragging}>
-                <NavLink to={`/b/${currentBoardID}/c/${card._cardId}`}>
-                  <CardLabels cardLabels={card.cardLabels}/>
-                  <Title>
-                    {card.title}
-                  </Title>
-                  <CardBadges
-                    card={card}
-                    checkLists={checkLists}
-                  />
-                </NavLink>
-              </CardWrapper>
-            </Container>
-            {isDraggingOver && provided.placeholder}
-          </>
-        )}
-      </Draggable>
-    )
-  }
-}
+const Card = (props) => {
+  const {
+    currentBoardID,
+    card,
+    index,
+    isDraggingOver,
+    checkLists,
+  } = props;
+  return (
+    <Draggable
+      index={index}
+      draggableId={`${card._cardId}`}
+    >
+      {(provided, snapshot) => (
+        <>
+          <Container
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+            style={{
+              ...provided.draggableProps.style,
+              background: card.color
+            }}
+          >
+            <CardWrapper isDragging={snapshot.isDragging}>
+              <NavLink to={`/b/${currentBoardID}/c/${card._cardId}`}>
+                <CardLabels cardLabels={card.cardLabels}/>
+                <Title>
+                  {card.title}
+                </Title>
+                <CardBadges
+                  card={card}
+                  checkLists={checkLists}
+                />
+              </NavLink>
+            </CardWrapper>
+          </Container>
+          {isDraggingOver && provided.placeholder}
+        </>
+      )}
+    </Draggable>
+  )
+};
 
 function mapStateToProps(state, ownProps) {
   return {

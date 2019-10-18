@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -35,24 +35,23 @@ const Label = styled.div`
   white-space: nowrap;
 `;
 
-class CheckListProgress extends Component {
-  render() {
-    const { items } = this.props;
-    const allItems = items.length;
-    const doneItems = items.filter(item => !!item.status).length;
-    let width = 0;
-    let color;
-    if (!!allItems) width = (doneItems * 100) / allItems;
-    if (allItems === doneItems) color = '#61bd4f';
-    return (
-      <Wrapper>
-        <ProgressBar>
-          <Progress width={width} color={color}/>
-        </ProgressBar>
-        <Label>{width.toFixed()} %</Label>
-      </Wrapper>
-    );
-  }
-}
+const CheckListProgress = (props) => {
+  let color, width = 0;
+  const
+    { items } = props,
+    allItems = items.length,
+    doneItems = items.filter(item => !!item.status).length;
+
+  if (!!allItems) width = (doneItems * 100) / allItems;
+  if (allItems === doneItems) color = '#61bd4f';
+  return (
+    <Wrapper>
+      <ProgressBar>
+        <Progress width={width} color={color}/>
+      </ProgressBar>
+      <Label>{width.toFixed()} %</Label>
+    </Wrapper>
+  );
+};
 
 export default CheckListProgress;

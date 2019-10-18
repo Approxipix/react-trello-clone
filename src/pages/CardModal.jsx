@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import { history } from "../redux/store";
 import { Redirect } from "react-router";
@@ -108,131 +108,121 @@ const Row = styled.div`
 const Col = styled.div`
 `;
 
-class TitleContainer extends Component {
-  render() {
-    const { card } = this.props;
-    return (
-      <Container>
-        <Header>
-          <Icon>
-            <FontAwesomeIcon icon="window-maximize" />
-          </Icon>
-          <CardTitle
-            cardId={card._cardId}
-            cardTitle={card.title}
-          />
-        </Header>
+const TitleContainer = (props) => {
+  const { card } = props;
+  return (
+    <Container>
+      <Header>
+        <Icon>
+          <FontAwesomeIcon icon="window-maximize" />
+        </Icon>
+        <CardTitle
+          cardId={card._cardId}
+          cardTitle={card.title}
+        />
+      </Header>
+    </Container>
+  )
+};
+
+const DescriptionContainer = (props) => {
+  const { card } = props;
+  return (
+    <Container>
+      <Header>
+        <Icon>
+          <FontAwesomeIcon icon="align-left" />
+        </Icon>
+        <Title>
+          Description
+        </Title>
+      </Header>
+      <Body>
+        <CardDescription
+          cardId={card._cardId}
+          cardDescription={card.description}
+        />
+      </Body>
+    </Container>
+  )
+};
+
+const LabelContainer = (props) => {
+  const { card } = props;
+  if (card.cardLabels.length === 0) return null;
+  return (
+    <Container>
+      <Header>
+        <Icon>
+          <FontAwesomeIcon icon="tag" />
+        </Icon>
+        <Title>
+          Labels
+        </Title>
+      </Header>
+      <Body>
+        <Label
+          cardId={card._cardId}
+          cardLabels={card.cardLabels}
+        />
+      </Body>
+    </Container>
+  )
+};
+
+const ChecklistContainer = (props) => {
+  const { card } = props;
+  if (card.checkLists.length === 0) return null;
+  return (
+    card.checkLists.map((checklist, index) => (
+      <Container key={index}>
+        <CheckList
+          cardId={card._cardId}
+          chekListId={checklist}
+        />
       </Container>
-    )
-  }
-}
+    ))
+  )
+};
 
-class DescriptionContainer extends Component {
-  render() {
-    const { card } = this.props;
-    return (
-      <Container>
-        <Header>
-          <Icon>
-            <FontAwesomeIcon icon="align-left" />
-          </Icon>
-          <Title>
-            Description
-          </Title>
-        </Header>
-        <Body>
-          <CardDescription
-            cardId={card._cardId}
-            cardDescription={card.description}
-          />
-        </Body>
-      </Container>
-    )
-  }
-}
-
-class LabelContainer extends Component {
-  render() {
-    const { card } = this.props;
-    if (card.cardLabels.length === 0) return null;
-    return (
-      <Container>
-        <Header>
-          <Icon>
-            <FontAwesomeIcon icon="tag" />
-          </Icon>
-          <Title>
-            Labels
-          </Title>
-        </Header>
-        <Body>
-          <Label
-            cardId={card._cardId}
-            cardLabels={card.cardLabels}
-          />
-        </Body>
-      </Container>
-    )
-  }
-}
-
-class ChecklistContainer extends Component {
-  render() {
-    const { card } = this.props;
-    if (card.checkLists.length === 0) return null;
-    return (
-      card.checkLists.map((checklist, index) => (
-        <Container key={index}>
-          <CheckList
-            cardId={card._cardId}
-            chekListId={checklist}
-          />
-        </Container>
-      ))
-    )
-  }
-}
-
-class CardModal extends Component {
-  render() {
-    const { card, listId, currentBoardId } = this.props;
-    if (!currentBoardId) return null;
-    const boardUrl = `/b/${currentBoardId}`;
-    if (!card) return <Redirect to={boardUrl} />;
-    return (
-      <Backdrop>
-        <CloseBackdrop onClick={() => history.push(boardUrl)} />
-        <Wrapper onClick={(e) => e.preventDefault()}>
-          <CloseButton onClick={() => history.push(boardUrl)}>
-            <FontAwesomeIcon icon="times" />
-          </CloseButton>
-          <TitleContainer card={card}/>
-          <Row>
-            <Col>
-              <DescriptionContainer card={card}/>
-              <LabelContainer card={card}/>
-              <ChecklistContainer card={card} />
-            </Col>
-            <Col>
-              <CardActions
-                card={card}
-                title="Add to card"
-                actions={["Label", "CheckList"]}
-                listId={listId}
-              />
-              <CardActions
-                card={card}
-                title="Actions"
-                actions={["Delete"]}
-                listId={listId}
-              />
-            </Col>
-          </Row>
-        </Wrapper>
-      </Backdrop>
-    )
-  }
-}
+const CardModal = (props) => {
+  const { card, listId, currentBoardId } = props;
+  if (!currentBoardId) return null;
+  const boardUrl = `/b/${currentBoardId}`;
+  if (!card) return <Redirect to={boardUrl} />;
+  return (
+    <Backdrop>
+      <CloseBackdrop onClick={() => history.push(boardUrl)} />
+      <Wrapper onClick={(e) => e.preventDefault()}>
+        <CloseButton onClick={() => history.push(boardUrl)}>
+          <FontAwesomeIcon icon="times" />
+        </CloseButton>
+        <TitleContainer card={card}/>
+        <Row>
+          <Col>
+            <DescriptionContainer card={card}/>
+            <LabelContainer card={card}/>
+            <ChecklistContainer card={card} />
+          </Col>
+          <Col>
+            <CardActions
+              card={card}
+              title="Add to card"
+              actions={["Label", "CheckList"]}
+              listId={listId}
+            />
+            <CardActions
+              card={card}
+              title="Actions"
+              actions={["Delete"]}
+              listId={listId}
+            />
+          </Col>
+        </Row>
+      </Wrapper>
+    </Backdrop>
+  )
+};
 
 function mapStateToProps(state, ownProps) {
   let listId = null;

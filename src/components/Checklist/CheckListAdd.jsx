@@ -25,7 +25,7 @@ class CheckListAdd extends Component {
     this.props.actions.addCheckList({
       checkListTitle: title,
       cardId: this.props.cardId,
-      checkListId: Date.now()
+      checkListId: Date.now().toString()
     });
     this.props.toggleTooltip()
   };

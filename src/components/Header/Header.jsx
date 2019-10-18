@@ -59,7 +59,7 @@ const Actions = styled.div``;
 const Header = ({ boards, currentBoardID }) => {
   const currentPath = window.location.pathname;
   let headerBackground = "#2E7EAF";
-  if (currentBoardID) {
+  if (boards[currentBoardID]) {
     headerBackground = boards[currentBoardID].color
   }
   return (

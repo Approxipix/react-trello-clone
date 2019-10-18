@@ -18,7 +18,7 @@ const Title = styled.h1`
 const BoardList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  grid-auto-rows: 1fr;
+  grid-auto-rows: minmax(10rem, 1fr);
   grid-gap: 1rem;
 `;
 
@@ -58,48 +58,46 @@ const BoardSchemeList = styled.div`
   background: rgba(255, 255, 255, 0.25);
 `;
 
-class Boards extends Component {
-  render() {
-    const { boards, lists } = this.props;
-    return (
-      <Wrapper>
-        <Title>
-          My Boards
-        </Title>
-        <BoardList>
-          {boards.map((board, index) => (
-            <NavLink key={index} to={`/b/${board._boardId}`}>
-              <BoardItem color={board.color}>
-                <BoardTitle>
-                  {board.title}
-                </BoardTitle>
-                <BoardScheme>
-                  {board.lists.map((listId, index) => {
-                    const list = lists.find(list => list._listId === listId);
-                    return (
-                      <BoardSchemeList
-                        key={index}
-                        height={Math.min((list.cards.length + 1) * 10, 100)}
-                      />
-                    )
-                  })}
-                </BoardScheme>
-              </BoardItem>
-            </NavLink>
-          ))}
-          <BoardAdd />
-        </BoardList>
-      </Wrapper>
-    )
-  }
-}
+const Boards = (props) => {
+  const { boards, lists } = props;
+  let boardsItems = Object.keys(boards).map(key => boards[key]);
+  let listItems = Object.keys(lists).map(key => lists[key]);
+  return (
+    <Wrapper>
+      <Title>
+        My Boards
+      </Title>
+      <BoardList>
+        {boardsItems.map((board, index) => (
+          <NavLink key={index} to={`/b/${board._boardId}`}>
+            <BoardItem color={board.color}>
+              <BoardTitle>
+                {board.title}
+              </BoardTitle>
+              <BoardScheme>
+                {board.lists.map((listId, index) => {
+                  const list = listItems.find(list => list._listId === listId);
+                  return (
+                    <BoardSchemeList
+                      key={index}
+                      height={Math.min((list.cards.length + 1) * 10, 100)}
+                    />
+                  )
+                })}
+              </BoardScheme>
+            </BoardItem>
+          </NavLink>
+        ))}
+        <BoardAdd />
+      </BoardList>
+    </Wrapper>
+  )
+};
 
 function mapStateToProps(state) {
-  const boardsObject = state.boardReducer;
-  const listsObject = state.listReducer;
   return {
-    boards: Object.keys(boardsObject).map(key => boardsObject[key]),
-    lists: Object.keys(listsObject).map(key => listsObject[key])
+    boards: state.boardReducer,
+    lists: state.listReducer
   }
 }
 

@@ -20,7 +20,7 @@ class BoardDelete extends Component {
           All actions will be removed from the activity feed and you won’t be able to re-open the board.
           There is no undo.
         </Text>
-        <SubmitButton color={'danger'} onClick={() => this.deleteBoard()}>
+        <SubmitButton color='danger' onClick={() => this.deleteBoard()}>
           Delete board
         </SubmitButton>
       </>

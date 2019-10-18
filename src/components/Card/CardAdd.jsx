@@ -60,7 +60,7 @@ class CardAdder extends Component {
     this.props.actions.addCard({
       listId: this.props.listId,
       cardTitle: title,
-      newCardId: Date.now(),
+      newCardId: Date.now().toString(),
     });
     this.setState({
       title: '',

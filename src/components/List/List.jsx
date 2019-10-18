@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import { Draggable } from 'react-beautiful-dnd';
 import ListHeader from './ListHeader'
@@ -18,39 +18,37 @@ const Container = styled.div`
   border-radius: .2rem;
 `;
 
-class List extends Component {
-  render() {
-    const {  boardId, list, index } = this.props;
-    return (
-      <Draggable
-        index={index}
-        draggableId={`${list._listId}`}
-      >
-        {(provided) => (
-          <>
-            <Container
-              {...provided.draggableProps}
-              ref={provided.innerRef}
-            >
-              <ListHeader
-                dragHandleProps={provided.dragHandleProps}
-                boardId={boardId}
-                listId={list._listId}
-                listTitle={list.title}
-              />
-              <ListCards
-                listId={list._listId}
-                cardsId={list.cards}
-              />
-              <CardAdd listId={list._listId}/>
-            </Container>
-            {provided.placeholder}
-          </>
-        )}
-      </Draggable>
-    )
-  }
-}
+const List = (props) => {
+  const {  boardId, list, index } = props;
+  return (
+    <Draggable
+      index={index}
+      draggableId={`${list._listId}`}
+    >
+      {(provided) => (
+        <>
+          <Container
+            {...provided.draggableProps}
+            ref={provided.innerRef}
+          >
+            <ListHeader
+              dragHandleProps={provided.dragHandleProps}
+              boardId={boardId}
+              listId={list._listId}
+              listTitle={list.title}
+            />
+            <ListCards
+              listId={list._listId}
+              cardsId={list.cards}
+            />
+            <CardAdd listId={list._listId}/>
+          </Container>
+          {provided.placeholder}
+        </>
+      )}
+    </Draggable>
+  )
+};
 
 function mapStateToProps(state, ownProps) {
   return {

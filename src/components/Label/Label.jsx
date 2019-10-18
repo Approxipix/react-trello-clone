@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const LabelList = styled.ul`
@@ -13,17 +13,16 @@ const LabelItem = styled.li`
   border-radius: .2rem;
 `;
 
-class Label extends Component {
-  render() {
-    const { cardLabels } = this.props;
-    return (
-      <LabelList>
-        {cardLabels.map((label, index) => (
-          <LabelItem key={index} value={label.color}/>
-        ))}
-      </LabelList>
-    )
-  }
-}
+
+const Label = (props) => {
+  const { cardLabels } = props;
+  return (
+    <LabelList>
+      {cardLabels.map((label, index) => (
+        <LabelItem key={index} value={label.color}/>
+      ))}
+    </LabelList>
+  )
+};
 
 export default Label;

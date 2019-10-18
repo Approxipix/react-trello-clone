@@ -30,21 +30,19 @@ const Container = styled.div`
   overflow: auto;
 `;
 
-class InnerList extends PureComponent {
-  render() {
-    const { boardId, listsId, } = this.props;
-    return (
-      listsId.map((listId, index) => (
-        <List
-          key={index}
-          index={index}
-          boardId={boardId}
-          listId={listId}
-        />
-      ))
-    )
-  }
-}
+const InnerList = (props) => {
+  const { boardId, listsId, } = props;
+  return (
+    listsId.map((listId, index) => (
+      <List
+        key={index}
+        index={index}
+        boardId={boardId}
+        listId={listId}
+      />
+    ))
+  )
+};
 
 class Board extends Component {
   componentDidMount() {

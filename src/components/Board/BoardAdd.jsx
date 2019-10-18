@@ -89,7 +89,7 @@ class BoardAdd extends Component {
     e.preventDefault();
     const { boardTitle } = this.state;
     if (!boardTitle) return;
-    const boardId = Date.now();
+    const boardId = Date.now().toString();
     this.props.actions.addBoard({
       boardTitle: boardTitle,
       boardColor: this.state.boardColor,

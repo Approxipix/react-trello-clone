@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { toggleSidebar } from '../../redux/rootReducer/actions/actions';
@@ -27,22 +27,17 @@ const Button = styled.button`
   }
 `;
 
-class BoardHeader extends Component {
-  toggleSidebar = () => {
-    this.props.actions.toggleSidebar()
-  };
-
-  render() {
-    return (
-      <Header>
-        <BoardTitle/>
-        <Button onClick={() => this.toggleSidebar()}>
-          Show menu
-        </Button>
-      </Header>
-    )
-  }
-}
+const BoardHeader = (props) => {
+  const { toggleSidebar } = props.actions;
+  return (
+    <Header>
+      <BoardTitle/>
+      <Button onClick={() => toggleSidebar()}>
+        Show menu
+      </Button>
+    </Header>
+  )
+};
 
 function mapDispatchToProps(dispatch) {
   return {

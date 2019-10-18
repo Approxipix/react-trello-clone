@@ -49,14 +49,10 @@ class CheckListItem extends Component {
     super(props);
     this.state = {
       status: props.status || '',
-      description: props.description || '',
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.description !== this.props.description) {
-      this.setState({ desc: nextProps.description });
-    }
     if (nextProps.status !== this.props.status) {
       this.setState({ status: nextProps.status });
     }
@@ -82,8 +78,8 @@ class CheckListItem extends Component {
   };
 
   render() {
-    const { hideCompletedItems } = this.props;
-    const { description, status } = this.state;
+    const { description, hideCompletedItems } = this.props;
+    const { status } = this.state;
     if (hideCompletedItems && status) return null;
     return (
       <Wrapper onClick={(e) => e.stopPropagation()}>

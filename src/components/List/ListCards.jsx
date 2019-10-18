@@ -11,22 +11,20 @@ const CardLIst = styled.div`
   overflow: auto;
 `;
 
-class InnerList extends PureComponent {
-  render() {
-    const { listId, cardsId, } = this.props;
-    return (
-      cardsId.map((cardId, index) =>
-        <Card
-          isDraggingOver={this.props.isDraggingOver}
-          key={index}
-          index={index}
-          listId={listId}
-          cardId={cardId}
-        />
-      )
+const InnerList = (props) => {
+  const { listId, cardsId, isDraggingOver } = props;
+  return (
+    cardsId.map((cardId, index) =>
+      <Card
+        isDraggingOver={isDraggingOver}
+        key={index}
+        index={index}
+        listId={listId}
+        cardId={cardId}
+      />
     )
-  }
-}
+  )
+};
 
 class ListCards extends Component {
   componentDidUpdate = prevProps => {
