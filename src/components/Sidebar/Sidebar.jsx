@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { toggleSidebar } from '../../redux/rootReducer/actions/actions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SidebarNavigation from './SidebarNavigation'
-import BoardBackgroundEdit from '../Board/BoardBackgroundEdit'
-import BoardDelete from '../Board/BoardDelete'
-import styled from 'styled-components'
+import SidebarNavigation from './SidebarNavigation';
+import BoardBackgroundEdit from '../Board/BoardBackgroundEdit';
+import BoardDelete from '../Board/BoardDelete';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -41,6 +42,7 @@ const Button = styled.button`
     color: #42526e;
   }
 `;
+Button.displayName = 'Button';
 
 const Body = styled.div`
    padding: .75rem 1rem;
@@ -67,8 +69,14 @@ class Sidebar extends Component {
   };
 
   sidebarView = () => {
-    const { board } = this.props;
+    const { boards, currentBoardID } = this.props;
     const { sidebarView } = this.state;
+
+    let board;
+    if (boards[currentBoardID]) {
+      board = boards[currentBoardID]
+    }
+
     switch (sidebarView) {
       case ('BoardBackgroundEdit'):
         return <BoardBackgroundEdit boardId={board._boardId} boardColor={board.color}/>;
@@ -106,10 +114,30 @@ class Sidebar extends Component {
   }
 }
 
+Sidebar.defaultProps = {
+  currentBoardID: null,
+  isSidebarOpened: false,
+  boards: {},
+};
+
+Sidebar.propTypes = {
+  currentBoardID: PropTypes.string,
+  isSidebarOpened: PropTypes.bool,
+  boards: PropTypes.objectOf(
+    PropTypes.shape({
+      _boardId: PropTypes.string,
+      title: PropTypes.string,
+      color: PropTypes.string.isRequired,
+      lists: PropTypes.arrayOf(PropTypes.string)
+    })
+  ),
+};
+
+
 function mapStateToProps(state) {
   return {
-    board: state.boardReducer[state.rootReducer.currentBoardID],
-    colors: state.rootReducer.colors,
+    boards: state.boardReducer,
+    currentBoardID: state.rootReducer.currentBoardID,
     isSidebarOpened: state.rootReducer.isSidebarOpened,
   }
 }

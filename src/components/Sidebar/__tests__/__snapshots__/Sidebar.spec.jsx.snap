@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sidebar> it should render fontawesome icon if sidebarView was selected 1`] = `
+<styled.div
+  isOpened={false}
+>
+  <styled.div>
+    <Button
+      disabled={false}
+      onClick={[Function]}
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="chevron-left"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </Button>
+    <styled.h3>
+      Test Component
+    </styled.h3>
+    <Button
+      onClick={[Function]}
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="times"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </Button>
+  </styled.div>
+  <styled.div>
+    <SidebarNavigation
+      changeView={[Function]}
+    />
+  </styled.div>
+</styled.div>
+`;
+
+exports[`<Sidebar> should render with given state from Redux store 1`] = `
+<styled.div
+  isOpened={false}
+>
+  <styled.div>
+    <Button
+      disabled={true}
+      onClick={[Function]}
+    />
+    <styled.h3>
+      Menu
+    </styled.h3>
+    <Button
+      onClick={[Function]}
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="times"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </Button>
+  </styled.div>
+  <styled.div>
+    <SidebarNavigation
+      changeView={[Function]}
+    />
+  </styled.div>
+</styled.div>
+`;

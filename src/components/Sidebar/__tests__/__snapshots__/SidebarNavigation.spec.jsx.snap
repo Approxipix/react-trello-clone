@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SidebarNavigation> should renders without crashing 1`] = `
+<List>
+  <styled.li
+    key="0"
+  >
+    <Link
+      onClick={[Function]}
+    >
+      <styled.i>
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon="fill-drip"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </styled.i>
+      <styled.h3>
+        Change Background
+      </styled.h3>
+    </Link>
+  </styled.li>
+  <styled.li
+    key="1"
+  >
+    <Link
+      onClick={[Function]}
+    >
+      <styled.i>
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon="trash"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </styled.i>
+      <styled.h3>
+        Delete Board
+      </styled.h3>
+    </Link>
+  </styled.li>
+</List>
+`;

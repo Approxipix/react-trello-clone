@@ -55,7 +55,7 @@ describe('<Select>', () => {
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
-  it('checks if isOpened sets toggleDropdown correctly', () => {
+  it('checks if toggleDropdown sets isOpened correctly', () => {
     component.instance().toggleDropdown();
     expect(component.instance().state.isOpened).toEqual(true);
 

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SidebarNavigationList from './SidebarNavigationList'
-import styled from 'styled-components'
+import SidebarNavigationList from './SidebarNavigationList';
+import styled from 'styled-components';
 
 const Title = styled.h3`
   font-weight: 600;
 `;
 
-const List = styled.ul`
-`;
+const List = styled.ul``;
+List.displayName = 'List';
 
 const Item = styled.li`
   margin-bottom: .5rem;
@@ -27,6 +28,7 @@ const Link = styled.a`
   font-size: .875rem;
   font-weight: 700;
 `;
+Link.displayName = 'Link';
 
 const Icon = styled.i`
   margin-right: .75rem;
@@ -34,15 +36,23 @@ const Icon = styled.i`
 `;
 
 class SidebarNavigation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      navigation: SidebarNavigationList,
+    }
+  }
+
   changeView = (e, item) => {
     e.preventDefault();
     this.props.changeView(item.component, item.title)
   };
 
   render() {
+    const { navigation } = this.state;
     return (
       <List>
-        {SidebarNavigationList.map((item, index) => (
+        {navigation.map((item, index) => (
           <Item key={index} >
             <Link onClick={(e) => this.changeView(e, item)}>
               <Icon>
@@ -58,5 +68,13 @@ class SidebarNavigation extends Component {
     );
   }
 }
+
+SidebarNavigation.defaultProps = {
+  changeView: () => {},
+};
+
+SidebarNavigation.propTypes = {
+  changeView: PropTypes.func.isRequired,
+};
 
 export default SidebarNavigation;
