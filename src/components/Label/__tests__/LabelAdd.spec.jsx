@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import configureStore from 'redux-mock-store';
-import { shallow } from 'enzyme'
+import { shallow } from 'enzyme';
 import toJson from "enzyme-to-json";
-import LabelAdd from '../LabelAdd'
+import LabelAdd from '../LabelAdd';
 
 const mockStore = configureStore([]);
 

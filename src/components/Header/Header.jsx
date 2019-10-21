@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
@@ -23,6 +23,7 @@ const Nav = styled.nav``;
 const NavList = styled.ul`
   display: flex;
 `;
+NavList.displayName = 'NavList';
 
 const NavItem = styled.li`
   display: flex;
@@ -56,54 +57,65 @@ const Logo = styled.img`
 
 const Actions = styled.div``;
 
-const Header = ({ boards, currentBoardID }) => {
-  const currentPath = window.location.pathname;
-  let headerBackground = "#2E7EAF";
-  if (boards[currentBoardID]) {
-    headerBackground = boards[currentBoardID].color
+class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      navigation: HeaderNavigationList || []
+    }
   }
-  return (
-    <Wrapper color={headerBackground}>
-      <Nav>
-        {HeaderNavigationList.map((item, index) => {
-          if (currentPath === item.path) return null;
-          return (
-            <NavList key={index}>
-              <NavLink to={item.path}>
-                <NavItem>
-                  <NavIcon>
-                    <FontAwesomeIcon icon={item.faIcon} />
-                  </NavIcon>
-                  <NavTitle>
-                    {item.title}
-                  </NavTitle>
-                </NavItem>
-              </NavLink>
-            </NavList>
-          )
-        })}
-      </Nav>
-      <Logo src={logo} />
-      <Actions />
-    </Wrapper>
-  )
-};
+
+  render() {
+    const { boards, currentBoardID } = this.props;
+    const { navigation } = this.state;
+    const currentPath = window.location.pathname;
+    let headerBackground = "#2E7EAF";
+    if (boards[currentBoardID]) {
+      headerBackground = boards[currentBoardID].color
+    }
+    return (
+      <Wrapper color={headerBackground}>
+        <Nav>
+          {navigation.map((item, index) => {
+            if (currentPath === item.path) return null;
+            return (
+              <NavList key={index}>
+                <NavLink to={item.path}>
+                  <NavItem>
+                    <NavIcon>
+                      <FontAwesomeIcon icon={item.faIcon} />
+                    </NavIcon>
+                    <NavTitle>
+                      {item.title}
+                    </NavTitle>
+                  </NavItem>
+                </NavLink>
+              </NavList>
+            )
+          })}
+        </Nav>
+        <Logo src={logo} />
+        <Actions />
+      </Wrapper>
+    )
+  }
+}
 
 Header.defaultProps = {
-  boards: [],
   currentBoardID: null,
+  boards: [],
 };
 
 Header.propTypes = {
+  currentBoardID: PropTypes.string,
   boards: PropTypes.objectOf(
     PropTypes.shape({
-      _boardId: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
+      _boardId: PropTypes.string,
+      title: PropTypes.string,
       color: PropTypes.string.isRequired,
-      lists: PropTypes.arrayOf(PropTypes.string).isRequired
+      lists: PropTypes.arrayOf(PropTypes.string)
     })
   ),
-  currentBoardID: PropTypes.string,
 };
 
 function mapStateToProps(state) {

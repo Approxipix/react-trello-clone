@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header> should render with given state from Redux store 1`] = `
+<styled.div
+  color="FF9F1A"
+>
+  <styled.nav>
+    <NavList
+      key="0"
+    >
+      <NavLink
+        to="/home"
+      >
+        <styled.li>
+          <styled.i>
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={false}
+              flip={null}
+              icon="times"
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
+            />
+          </styled.i>
+          <styled.h3>
+            Home
+          </styled.h3>
+        </styled.li>
+      </NavLink>
+    </NavList>
+    <NavList
+      key="1"
+    >
+      <NavLink
+        to="/boards"
+      >
+        <styled.li>
+          <styled.i>
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={false}
+              flip={null}
+              icon="columns"
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
+            />
+          </styled.i>
+          <styled.h3>
+            Boards
+          </styled.h3>
+        </styled.li>
+      </NavLink>
+    </NavList>
+  </styled.nav>
+  <styled.img
+    src="logo.svg"
+  />
+  <styled.div />
+</styled.div>
+`;
