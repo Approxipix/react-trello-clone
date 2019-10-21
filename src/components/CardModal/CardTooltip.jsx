@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ClickOutside from "../ClickOutside";
+import ClickOutside from "../ClickOutside/ClickOutside";
 import styled from 'styled-components';
 
 const Wrapper = styled.div`

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ClickOutside from "../../ClickOutside";
+import ClickOutside from "../../ClickOutside/ClickOutside";
 import ListActionsNavigation from './ListActionsNavigation'
 import ListDeleteAllCards from '../ListDeleteAllCards'
 import ListMoveAllCards from '../ListMoveAllCards'

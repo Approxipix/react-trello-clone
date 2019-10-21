@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
 import { addList } from '../../redux/listReducer/actions/actions';
 import { Actions, Input, SubmitButton, CancelButton } from '../BaseComponent';
-import ClickOutside from "../ClickOutside";
+import ClickOutside from "../ClickOutside/ClickOutside";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   flex-shrink:0;

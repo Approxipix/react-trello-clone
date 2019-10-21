@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
 import { addCheckListItem } from '../../../redux/checkListReducer/actions/actions';
 import { Actions, Input, SubmitButton, CancelButton } from '../../BaseComponent';
-import ClickOutside from "../../ClickOutside";
+import ClickOutside from "../../ClickOutside/ClickOutside";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Wrapper = styled.div`

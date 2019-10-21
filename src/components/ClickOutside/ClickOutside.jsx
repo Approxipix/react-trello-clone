@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
 const Wrapper = styled.div``;
+Wrapper.displayName = 'Wrapper';
 
 class ClickOutside extends Component {
   componentDidMount() {
@@ -30,5 +32,13 @@ class ClickOutside extends Component {
     )
   };
 }
+
+ClickOutside.defaultProps = {
+  toggleOpened: () => {}
+};
+
+ClickOutside.propTypes = {
+  toggleOpened: PropTypes.func.isRequired
+};
 
 export default ClickOutside;

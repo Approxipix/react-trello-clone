@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editCardDesc } from '../../../redux/cardReducer/actions/actions';
 import { Actions, CancelButton, SubmitButton, TextArea } from '../../BaseComponent';
-import ClickOutside from '../../ClickOutside';
+import ClickOutside from '../../ClickOutside/ClickOutside';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const textareaLineHeight = 16;

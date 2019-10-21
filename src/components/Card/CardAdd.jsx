@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { addCard } from '../../redux/cardReducer/actions/actions';
 import { TextArea, Actions, SubmitButton, CancelButton } from '../BaseComponent';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ClickOutside from "../ClickOutside";
+import ClickOutside from "../ClickOutside/ClickOutside";
 import styled from 'styled-components'
 
 const Wrapper = styled.div`

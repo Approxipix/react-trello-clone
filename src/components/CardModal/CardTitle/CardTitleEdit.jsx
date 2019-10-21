@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editCardTitle } from '../../../redux/cardReducer/actions/actions';
-import ClickOutside from '../../ClickOutside';
+import ClickOutside from '../../ClickOutside/ClickOutside';
 import { Input, } from '../../BaseComponent';
 import styled from 'styled-components'
 

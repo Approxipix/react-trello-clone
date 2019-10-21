@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ClickOutside> should renders correctly 1`] = `
+<Wrapper
+  className="click-outside-wrapper"
+>
+  <p>
+    Test Component
+  </p>
+</Wrapper>
+`;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { editCheckListTitle } from '../../../redux/checkListReducer/actions/actions';
-import ClickOutside from "../../ClickOutside";
+import ClickOutside from "../../ClickOutside/ClickOutside";
 import { Input, } from '../../BaseComponent';
 
 class CheckListTitleEdit extends Component {

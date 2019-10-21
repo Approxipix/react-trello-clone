@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from 'styled-components'
 import { bindActionCreators } from 'redux';
 import { editListTitle } from '../../../redux/listReducer/actions/actions';
-import { Input, } from '../../BaseComponent';
-import ClickOutside from "../../ClickOutside";
+import ClickOutside from "../../ClickOutside/ClickOutside";
+import { Input } from '../../BaseComponent';
+import styled from 'styled-components'
 
 const Form = styled.form`
   width: 90%;
