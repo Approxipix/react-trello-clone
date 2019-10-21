@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { addLabelToCard } from "../../redux/cardReducer/actions/actions";
@@ -78,6 +79,21 @@ class LabelAdd extends Component {
     )
   };
 }
+
+LabelAdd.propTypes = {
+  labels: PropTypes.arrayOf(
+    PropTypes.shape({
+      _labelId: PropTypes.number.isRequired,
+      color: PropTypes.string.isRequired
+    })
+  ),
+  cardLabels: PropTypes.arrayOf(
+    PropTypes.shape({
+      _labelId: PropTypes.number.isRequired,
+      color: PropTypes.string
+    })
+  ),
+};
 
 function mapStateToProps(state) {
   return {

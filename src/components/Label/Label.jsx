@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const LabelList = styled.ul`
@@ -23,6 +24,15 @@ const Label = (props) => {
       ))}
     </LabelList>
   )
+};
+
+Label.propTypes = {
+  cardLabels: PropTypes.arrayOf(
+    PropTypes.shape({
+      _labelId: PropTypes.number,
+      color: PropTypes.string.isRequired
+    })
+  ),
 };
 
 export default Label;
