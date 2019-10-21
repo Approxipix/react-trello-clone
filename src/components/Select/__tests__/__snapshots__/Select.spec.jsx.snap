@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Select> should renders correctly without props 1`] = `
+<styled.div
+  onBlur={[Function]}
+>
+  <styled.label>
+    <Input
+      name=""
+      onChange={[Function]}
+      onClick={[Function]}
+      placeholder=""
+      readOnly={true}
+      type="text"
+      value=""
+    />
+  </styled.label>
+  <Dropdown
+    isOpened={false}
+  />
+</styled.div>
+`;
+
+exports[`<Select> should renders without crashing given the required props 1`] = `
+<styled.div
+  onBlur={[Function]}
+>
+  <styled.label>
+    Test label
+    <Input
+      name="Test label"
+      onChange={[Function]}
+      onClick={[Function]}
+      placeholder="Test placeholder"
+      readOnly={true}
+      type="text"
+      value="Test value"
+    />
+  </styled.label>
+  <Dropdown
+    isOpened={false}
+  >
+    <styled.button
+      key="Option1Value-0"
+      onMouseDown={[Function]}
+      tabIndex={-1}
+      type="button"
+    >
+      <styled.p>
+        Option 1
+      </styled.p>
+    </styled.button>
+    <styled.button
+      key="Option2Value-1"
+      onMouseDown={[Function]}
+      tabIndex={-1}
+      type="button"
+    >
+      <styled.p>
+        Option 2
+      </styled.p>
+    </styled.button>
+    <styled.button
+      key="3-2"
+      onMouseDown={[Function]}
+      tabIndex={-1}
+      type="button"
+    >
+      <styled.p>
+        Option 3
+      </styled.p>
+    </styled.button>
+  </Dropdown>
+</styled.div>
+`;

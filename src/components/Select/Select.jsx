@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Label } from './BaseComponent';
+import PropTypes from 'prop-types';
+import { Label } from '../BaseComponent';
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -21,8 +22,8 @@ const Dropdown = styled.div`
   transition: .2s all ease-in-out;
   will-change: transform;
   z-index: 20;
-  
 `;
+Dropdown.displayName = 'Dropdown';
 
 const DropdownItem = styled.button`
   width: 100%;
@@ -59,6 +60,7 @@ const Input = styled.input`
     background-color: #dfe1e6;
   }
 `;
+Input.displayName = 'Input';
 
 const DropdownTitle = styled.p``;
 
@@ -93,7 +95,8 @@ class Select extends Component {
           {label}
           <Input
             type="text"
-            value={value || ''}
+            name={label}
+            value={value}
             readOnly={true}
             placeholder={placeholder}
             onClick={() => this.toggleDropdown()}
@@ -101,7 +104,7 @@ class Select extends Component {
           />
         </Label>
         <Dropdown isOpened={isOpened}>
-          {options.map((option, i) => (
+          {options && options.map((option, i) => (
             <DropdownItem
               key={`${option.value}-${i}`}
               type="button"
@@ -121,4 +124,28 @@ class Select extends Component {
     );
   }
 }
+
+Select.defaultProps = {
+  value: '',
+  label: '',
+  options: [],
+  onChange: () => {},
+  placeholder: '',
+};
+
+Select.propTypes = {
+  value: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType(
+        [PropTypes.string, PropTypes.number]
+      ).isRequired,
+    })
+  ).isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+};
+
 export default Select;

@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { moveList, moveListToAnotherBoard } from '../../redux/boardReducer/actions/actions';
 import { SubmitButton } from '../BaseComponent';
-import Select from '../Select'
-import styled from 'styled-components'
+import Select from '../Select/Select';
+import styled from 'styled-components';
 
 const Container = styled.div`
   margin-bottom: 1rem;
@@ -90,7 +90,7 @@ class ListDelete extends Component {
       {
         title: currentListPosition === position && boardId === newBoardId
           ? `${++position} (current)`
-          : ++position,
+          : `${++position}`,
         value: position,
       }
     ));
@@ -98,7 +98,7 @@ class ListDelete extends Component {
       <Select
         label="Position"
         placeholder="Select position"
-        value={newListPosition}
+        value={newListPosition.toString()}
         options={positionOptions}
         onChange={(position) => this.setState({
           newListPosition: position,

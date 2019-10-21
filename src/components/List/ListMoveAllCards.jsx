@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { moveAllCards } from '../../redux/listReducer/actions/actions';
 import { SubmitButton } from '../BaseComponent';
-import Select from '../Select'
-import styled from 'styled-components'
+import Select from '../Select/Select';
+import styled from 'styled-components';
 
 const Container = styled.div`
   margin-bottom: 1rem;
