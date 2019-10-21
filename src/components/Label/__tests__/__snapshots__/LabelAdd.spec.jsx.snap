@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LabelAdd> should render with given state from Redux store 1`] = `
+<styled.ul>
+  <styled.li
+    key="0"
+    onClick={[Function]}
+    value="#61BC4F"
+  />
+  <styled.li
+    key="1"
+    onClick={[Function]}
+    value="#F2D600"
+  />
+  <styled.li
+    key="2"
+    onClick={[Function]}
+    value="#FF9F1A"
+  />
+</styled.ul>
+`;
+
+exports[`<LabelAdd> should renders fontawesome icon for label with same labelID 1`] = `
+<styled.ul>
+  <styled.li
+    key="0"
+    onClick={[Function]}
+    value="#61BC4F"
+  />
+  <styled.li
+    key="1"
+    onClick={[Function]}
+    value="#F2D600"
+  >
+    <styled.div>
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="check"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </styled.div>
+  </styled.li>
+  <styled.li
+    key="2"
+    onClick={[Function]}
+    value="#FF9F1A"
+  />
+</styled.ul>
+`;

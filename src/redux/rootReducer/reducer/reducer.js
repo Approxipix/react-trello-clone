@@ -6,30 +6,12 @@ export const initialState = {
   isSidebarOpened: false,
   colors: ['#2E7EAF', '#00603d', '#D29034', '#89609D', '#CD5A91'],
   labels: [
-    {
-      _labelId: 0,
-      color: '#61BC4F',
-    },
-    {
-      _labelId: 1,
-      color: '#F2D600',
-    },
-    {
-      _labelId: 2,
-      color: '#FF9F1A',
-    },
-    {
-      _labelId: 3,
-      color: '#EB5A46',
-    },
-    {
-      _labelId: 4,
-      color: '#C376E0',
-    },
-    {
-      _labelId: 5,
-      color: '#0078BF',
-    }
+    { _labelId: 0, color: '#61BC4F' },
+    { _labelId: 1, color: '#F2D600' },
+    { _labelId: 2, color: '#FF9F1A' },
+    { _labelId: 3, color: '#EB5A46' },
+    { _labelId: 4, color: '#C376E0' },
+    { _labelId: 5, color: '#0078BF' }
   ],
 };
 

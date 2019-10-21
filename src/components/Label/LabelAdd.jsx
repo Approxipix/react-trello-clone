@@ -58,6 +58,7 @@ class LabelAdd extends Component {
 
   render() {
     const { cardLabels, labels } = this.props;
+    if (!labels) return null;
     return (
       <LabelList>
         {labels.map((label, index) => (
@@ -66,7 +67,7 @@ class LabelAdd extends Component {
             value={label.color}
             onClick={() => this.addLabel(label)}
           >
-            {cardLabels.some(cardLabel => cardLabel._labelId === label._labelId) && (
+            {cardLabels && cardLabels.some(cardLabel => cardLabel._labelId === label._labelId) && (
               <LabelIcon>
                 <FontAwesomeIcon icon="check" />
               </LabelIcon>
