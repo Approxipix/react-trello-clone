@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardDelete> should render with given state from Redux store 1`] = `
+<Fragment>
+  <styled.p>
+    All actions will be removed from the activity feed and you won’t be able to re-open the card. There is no undo.
+  </styled.p>
+  <SubmitButton
+    color="danger"
+    onClick={[Function]}
+  >
+    Delete card
+  </SubmitButton>
+</Fragment>
+`;

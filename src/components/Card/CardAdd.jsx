@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { addCard } from '../../redux/cardReducer/actions/actions';
 import { TextArea, Actions, SubmitButton, CancelButton } from '../BaseComponent';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClickOutside from "../ClickOutside/ClickOutside";
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   padding: .5rem;
@@ -24,14 +25,16 @@ const AddButton = styled.button`
     background-color: rgba(9,30,66,.13);
   }
 `;
+AddButton.displayName = 'AddButton';
 
-class CardAdder extends Component {
+class CardAdd extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpened: false,
       title: '',
     };
+    this.textarea = React.createRef();
   }
 
   toggleOpened = () => {
@@ -62,9 +65,10 @@ class CardAdder extends Component {
       cardTitle: title,
       newCardId: Date.now().toString(),
     });
-    this.setState({
-      title: '',
-    }, () => this.textarea.focus())
+    this.setState({ title: '' }, () => {
+      if (!this.textarea.focus) return;
+      this.textarea.focus()
+    })
   };
 
   render = () => {
@@ -75,6 +79,7 @@ class CardAdder extends Component {
           <form onSubmit={this.handleSubmit}>
             <TextArea
               type="text"
+              name="title"
               value={title}
               size=".875rem;"
               padding=".5rem"
@@ -105,6 +110,10 @@ class CardAdder extends Component {
   };
 }
 
+CardAdd.propTypes = {
+  listId: PropTypes.string.isRequired,
+};
+
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
@@ -113,4 +122,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(CardAdder);
+export default connect(null, mapDispatchToProps)(CardAdd);

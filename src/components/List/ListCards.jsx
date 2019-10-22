@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components'
 import { Droppable } from 'react-beautiful-dnd';
 import Card from '../Card/Card'
@@ -12,17 +12,14 @@ const CardLIst = styled.div`
 `;
 
 const InnerList = (props) => {
-  const { listId, cardsId, isDraggingOver } = props;
-  return (
-    cardsId.map((cardId, index) =>
-      <Card
-        isDraggingOver={isDraggingOver}
-        key={index}
-        index={index}
-        listId={listId}
-        cardId={cardId}
-      />
-    )
+  const { cardsId, isDraggingOver } = props;
+  return cardsId.map((cardId, index) =>
+    <Card
+      isDraggingOver={isDraggingOver}
+      key={index}
+      index={index}
+      cardId={cardId}
+    />
   )
 };
 
@@ -56,7 +53,6 @@ class ListCards extends Component {
           >
             <InnerList
               isDraggingOver={isDraggingOver}
-              listId={listId}
               cardsId={cardsId}
             />
             {provided.placeholder}

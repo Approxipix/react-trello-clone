@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteCard } from '../../redux/cardReducer/actions/actions';
@@ -6,7 +7,7 @@ import { Text, SubmitButton } from '../BaseComponent';
 import { history } from "../../redux/store";
 
 class CardDelete extends Component {
-  deleteList = () => {
+  deleteCard = () => {
     const { listId, cardId, currentBoardID } = this.props;
     this.props.actions.deleteCard({
       listId: listId,
@@ -22,13 +23,17 @@ class CardDelete extends Component {
           All actions will be removed from the activity feed and you won’t be able to re-open the card.
           There is no undo.
         </Text>
-        <SubmitButton color={'danger'} onClick={() => this.deleteList()}>
+        <SubmitButton color='danger' onClick={() => this.deleteCard()}>
           Delete card
         </SubmitButton>
       </>
     );
   }
 }
+
+CardDelete.propTypes = {
+  currentBoardID: PropTypes.string,
+};
 
 function mapStateToProps(state) {
   return {

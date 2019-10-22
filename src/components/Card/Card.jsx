@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Draggable } from 'react-beautiful-dnd';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Label from "../Label/Label";
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -31,21 +33,22 @@ const Title = styled.h3`
 `;
 
 const LabelList = styled.div`
-  display: flex;
-  margin-bottom: .3rem;
-`;
-
-const LabelItem = styled.div`
-  height: .5rem;
-  width: 2.5rem;
-  border-radius: 1rem;
-  margin-right: .2rem;
-  background-color: ${props => props.value};
+  .label-list {
+    margin-bottom: .3rem;
+  }
+  li {
+    height: .5rem;
+    width: 2.5rem;
+    border-radius: 1rem;
+    margin-right: .2rem;
+  }
 `;
 
 const BadgeList = styled.div`
   display: flex;
+ 
 `;
+BadgeList.displayName = 'BadgeList';
 
 const BadgeItem = styled.div`
   margin: .3rem 1rem 0 0;
@@ -56,19 +59,7 @@ const BadgeItem = styled.div`
   background-color: ${props => props.done && '#61bd4f'}
 `;
 
-const CardLabels = (props) => {
-  const { cardLabels } = props;
-  if (cardLabels.length === 0) return null;
-  return  (
-    <LabelList>
-      {cardLabels.map(((label, index) => (
-        <LabelItem key={index} value={label.color}/>
-      )))}
-    </LabelList>
-  )
-};
-
-const CardBadges = (props) => {
+export const CardBadges = (props) => {
   const { card, checkLists } = props;
   let allCheckListItems = 0, doneCheckListItems = 0;
   card.checkLists.forEach(checklist => {
@@ -99,6 +90,7 @@ const Card = (props) => {
     isDraggingOver,
     checkLists,
   } = props;
+  if (!card) return null;
   return (
     <Draggable
       index={index}
@@ -117,7 +109,9 @@ const Card = (props) => {
           >
             <CardWrapper isDragging={snapshot.isDragging}>
               <NavLink to={`/b/${currentBoardID}/c/${card._cardId}`}>
-                <CardLabels cardLabels={card.cardLabels}/>
+                <LabelList>
+                  <Label cardLabels={card.cardLabels} />
+                </LabelList>
                 <Title>
                   {card.title}
                 </Title>
@@ -133,6 +127,39 @@ const Card = (props) => {
       )}
     </Draggable>
   )
+};
+
+Card.defaultProps = {
+  card: null,
+  currentBoardID: null,
+  cardId: null,
+  checkLists: []
+};
+
+Card.propTypes = {
+  index: PropTypes.number,
+  isDraggingOver: PropTypes.bool,
+  currentBoardID: PropTypes.string.isRequired,
+  cardId: PropTypes.string.isRequired,
+  card: PropTypes.shape({
+    _cardId: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    checkLists: PropTypes.arrayOf(PropTypes.string),
+    cardLabels: PropTypes.array,
+  }).isRequired,
+  checkLists: PropTypes.objectOf(
+    PropTypes.shape({
+      _checkListId: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          status: PropTypes.bool.isRequired,
+          description: PropTypes.string,
+        })
+      )
+    })
+  ),
 };
 
 function mapStateToProps(state, ownProps) {

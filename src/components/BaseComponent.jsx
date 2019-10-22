@@ -29,6 +29,7 @@ export const Input = styled.input`
   border-radius: .2rem;
   box-shadow: 0 1px 0 rgba(9,30,66,.25);
 `;
+Input.displayName = 'Input';
 
 export const TextArea = styled.textarea`
   max-width: 100%;
@@ -46,6 +47,7 @@ export const TextArea = styled.textarea`
   box-shadow: 0 1px 0 rgba(9,30,66,.25);
   resize: none;
 `;
+TextArea.displayName = 'TextArea';
 
 export const Actions = styled.div`
   display: flex;
@@ -80,6 +82,7 @@ export const SubmitButton = styled.button`
     };
   }
 `;
+SubmitButton.displayName = 'SubmitButton';
 
 export const CancelButton = styled.button`
   padding: .5rem;
@@ -91,6 +94,7 @@ export const CancelButton = styled.button`
     color: #42526e;
   }
 `;
+CancelButton.displayName = 'CancelButton';
 
 const wave = keyframes`
   50% {

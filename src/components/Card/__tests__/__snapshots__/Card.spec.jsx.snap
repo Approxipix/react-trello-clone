@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Card> should render with given state from Redux store 1`] = `
+<Fragment>
+  <styled.div
+    style={
+      Object {
+        "background": undefined,
+      }
+    }
+  >
+    <styled.div>
+      <NavLink
+        to="/b/BoardID/c/CardID"
+      >
+        <styled.div>
+          <Label
+            cardLabels={Array []}
+          />
+        </styled.div>
+        <styled.h3>
+          Test Card
+        </styled.h3>
+        <CardBadges
+          card={
+            Object {
+              "_cardId": "CardID",
+              "cardLabels": Array [],
+              "checkLists": Array [],
+              "description": "",
+              "title": "Test Card",
+            }
+          }
+          checkLists={Object {}}
+        />
+      </NavLink>
+    </styled.div>
+  </styled.div>
+</Fragment>
+`;
+
+exports[`<CardBadges> should render checkList badge icon if description props is exist 1`] = `
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bZQynM",
+        "isStatic": false,
+        "rules": Array [
+          "
+  display: flex;
+ 
+",
+        ],
+      },
+      "displayName": "BadgeList",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-bZQynM",
+      "target": "div",
+      "toString": [Function],
+      "usesTheme": false,
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+>
+  <styled.div
+    done={false}
+  >
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon="check-square"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      swapOpacity={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+     
+    1
+    /
+    2
+  </styled.div>
+</StyledComponent>
+`;
+
+exports[`<CardBadges> should render description badge icon if description props is exist 1`] = `
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bZQynM",
+        "isStatic": false,
+        "rules": Array [
+          "
+  display: flex;
+ 
+",
+        ],
+      },
+      "displayName": "BadgeList",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-bZQynM",
+      "target": "div",
+      "toString": [Function],
+      "usesTheme": false,
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+>
+  <styled.div>
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon="align-left"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      swapOpacity={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+  </styled.div>
+</StyledComponent>
+`;

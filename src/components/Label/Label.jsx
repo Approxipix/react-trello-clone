@@ -18,7 +18,7 @@ const Label = (props) => {
   const { cardLabels } = props;
   if (!cardLabels) return null;
   return (
-    <LabelList>
+    <LabelList className="label-list">
       {cardLabels.map((label, index) => (
         <LabelItem key={index} value={label.color}/>
       ))}

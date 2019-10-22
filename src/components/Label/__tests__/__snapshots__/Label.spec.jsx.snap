@@ -3,7 +3,9 @@
 exports[`<Label> should renders correctly without props 1`] = `""`;
 
 exports[`<Label> should renders without crashing given the required props 1`] = `
-<styled.ul>
+<styled.ul
+  className="label-list"
+>
   <styled.li
     key="0"
     value="#fff"

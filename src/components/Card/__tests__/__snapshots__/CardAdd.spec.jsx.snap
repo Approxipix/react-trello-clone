@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardAdd> should render AddButton if isOpened is false 1`] = `
+<AddButton
+  onClick={[Function]}
+>
+  + Add another card
+</AddButton>
+`;
+
+exports[`<CardAdd> should render form if isOpened is true 1`] = `
+<ClickOutside
+  action="mousedown"
+  toggleOpened={[Function]}
+>
+  <styled.div>
+    <form
+      onSubmit={[Function]}
+    >
+      <TextArea
+        autoFocus={true}
+        name="title"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        padding=".5rem"
+        placeholder="Enter a card title..."
+        rows={3}
+        size=".875rem;"
+        spellCheck={false}
+        type="text"
+        value=""
+      />
+      <styled.div>
+        <SubmitButton
+          disabled={true}
+          type="submit"
+        >
+          Create card
+        </SubmitButton>
+        <CancelButton
+          onClick={[Function]}
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={false}
+            flip={null}
+            icon="times"
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+        </CancelButton>
+      </styled.div>
+    </form>
+  </styled.div>
+</ClickOutside>
+`;
