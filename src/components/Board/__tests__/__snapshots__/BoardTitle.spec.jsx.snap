@@ -2,7 +2,6 @@
 
 exports[`<BoardTitle> should render BoardTitleEdit component if editTitle is true 1`] = `
 <Connect(BoardTitleEdit)
-  boardTitle="Board Title"
   toggleEditTitle={[Function]}
 />
 `;
@@ -10,7 +9,5 @@ exports[`<BoardTitle> should render BoardTitleEdit component if editTitle is tru
 exports[`<BoardTitle> should render title if editTitle is false 1`] = `
 <Title
   onClick={[Function]}
->
-  Board Title
-</Title>
+/>
 `;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import BoardTitleEdit from "./BoardTitleEdit";
 import styled from "styled-components";
@@ -16,7 +17,7 @@ const Title = styled.h1`
 `;
 Title.displayName = 'Title';
 
-export class BoardTitle extends Component {
+class BoardTitle extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,9 +50,27 @@ export class BoardTitle extends Component {
   }
 }
 
+BoardTitle.defaultProps = {
+  currentBoardID: null,
+  board: {},
+};
+
+BoardTitle.propTypes = {
+  currentBoardID: PropTypes.string.isRequired,
+  boards: PropTypes.objectOf(
+    PropTypes.shape({
+      _boardId: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      color: PropTypes.string.isRequired,
+      lists: PropTypes.arrayOf(PropTypes.string).isRequired,
+    })
+  ).isRequired,
+};
+
 function mapStateToProps(state) {
   return {
-    board: state.boardReducer[state.rootReducer.currentBoardID],
+    boards: state.boardReducer,
+    currentBoardID: state.rootReducer.currentBoardID,
   }
 }
 

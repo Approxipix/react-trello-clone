@@ -6,7 +6,7 @@ import { addBoard } from '../../redux/boardReducer/actions/actions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Actions, Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside/ClickOutside";
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const AddButton = styled.button`
   font-size: 1rem; 

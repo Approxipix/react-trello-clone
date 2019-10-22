@@ -1,9 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from "enzyme-to-json";
-import { BoardTitle } from '../BoardTitle/BoardTitle';
+import BoardTitle from '../BoardTitle/BoardTitle';
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
 
 describe('<BoardTitle>', () => {
+  let store;
   let state;
   let component;
 
@@ -11,14 +15,23 @@ describe('<BoardTitle>', () => {
     state = {
       editTitle: false,
     };
-    const props = {
-      board: {
-        title: 'Board Title'
+    store = mockStore({
+      rootReducer: {
+        currentBoardID: 'BoardID',
       },
-    };
+      boardReducer: {
+        BoardID: {
+          _boardId: 'BoardID',
+          title: 'Board Title',
+          color: '',
+          lists: [],
+        },
+      }
+    });
 
-    component = shallow(<BoardTitle {...props} />);
-    component.setState({...state});
+    const wrapper = shallow(<BoardTitle store={store} />);
+    component = wrapper.find('BoardTitle').dive();
+    component.setState({...state})
   });
 
   it('should render title if editTitle is false', () => {

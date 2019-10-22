@@ -3,7 +3,6 @@ import configureStore from 'redux-mock-store';
 import { shallow } from 'enzyme';
 import toJson from "enzyme-to-json";
 import BoardAdd from '../BoardAdd';
-import BoardBackgroundEdit from "../BoardBackgroundEdit";
 
 const mockStore = configureStore([]);
 

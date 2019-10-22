@@ -12,7 +12,10 @@ describe('<BoardBackgroundEdit>', () => {
   let mockToggleSidebar = jest.fn();
 
   beforeEach(() => {
-    const props = { boardId: 'BoardID' };
+    const props = {
+      boardId: 'BoardID',
+      boardColor: ''
+    };
     store = mockStore({
       rootReducer: {
         colors: ['#2E7EAF', '#00603d', '#D29034'],

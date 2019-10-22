@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editBoardColor } from '../../redux/boardReducer/actions/actions';
@@ -63,6 +64,11 @@ class BoardBackgroundEdit extends Component {
     );
   }
 }
+
+BoardBackgroundEdit.propTypes = {
+  boardId: PropTypes.string.isRequired,
+  boardColor: PropTypes.string.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

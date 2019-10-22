@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editBoardTitle } from '../../../redux/boardReducer/actions/actions';
@@ -67,6 +68,18 @@ class BoardTitleEdit extends Component {
     );
   };
 }
+
+BoardTitleEdit.defaultProps = {
+  boardId: '',
+  boardTitle: '',
+  toggleEditTitle: () => {},
+};
+
+BoardTitleEdit.propTypes = {
+  boardId: PropTypes.string.isRequired,
+  boardTitle: PropTypes.string.isRequired,
+  toggleEditTitle: PropTypes.func.isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
   return {

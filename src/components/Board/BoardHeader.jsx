@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { toggleSidebar } from '../../redux/rootReducer/actions/actions';
@@ -38,6 +39,14 @@ const BoardHeader = (props) => {
       </Button>
     </Header>
   )
+};
+
+BoardHeader.defaultProps = {
+  toggleSidebar: () => {},
+};
+
+BoardHeader.propTypes = {
+  toggleSidebar: PropTypes.func.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {

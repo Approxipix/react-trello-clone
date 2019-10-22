@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { history } from "../../redux/store";
 import { bindActionCreators } from 'redux';
@@ -27,6 +28,10 @@ class BoardDelete extends Component {
     );
   }
 }
+
+BoardDelete.propTypes = {
+  boardId: PropTypes.string.isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
   return {
