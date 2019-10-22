@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BoardHeader> should render correctly 1`] = `
+<styled.div>
+  <Connect(BoardTitle) />
+  <Button
+    onClick={[Function]}
+  >
+    Show menu
+  </Button>
+</styled.div>
+`;

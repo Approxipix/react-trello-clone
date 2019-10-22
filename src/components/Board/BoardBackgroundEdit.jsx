@@ -17,6 +17,7 @@ const List = styled.ul`
   grid-gap: .75rem;
   width: 100%;
 `;
+List.displayName = 'List';
 
 const Item = styled.li`
 `;
@@ -35,6 +36,7 @@ const Button = styled.button`
     box-shadow: inset 0 0 0 10rem rgba(0, 0, 0, .1)
   }
 `;
+Button.displayName = 'Button';
 
 class BoardBackgroundEdit extends Component {
   editBoardColor = (color) => {

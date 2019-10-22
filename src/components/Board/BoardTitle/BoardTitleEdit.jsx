@@ -24,9 +24,9 @@ class BoardTitleEdit extends Component {
     }
   };
 
-  handleChange = (value) => {
+  handleChange = (e) => {
     this.setState({
-      title: value,
+      title: e.target.value,
     });
   };
 
@@ -56,7 +56,7 @@ class BoardTitleEdit extends Component {
             value={title}
             placeholder="Edit board title"
             onKeyDown={this.handleKeyDown}
-            onChange={(e) => this.handleChange(e.target.value)}
+            onChange={(e) => this.handleChange(e)}
             onBlur={this.handleSubmit}
             onKeyPress={(e) => inputWidth = ((e.target.value.length + 1) * 13)}
             autoFocus

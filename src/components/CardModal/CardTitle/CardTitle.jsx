@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import CardTitleEdit from './CardTitleEdit';
 import styled from 'styled-components';
-import PropTypes from "prop-types";
 
 const Title = styled.h2`
   margin-bottom: .5rem;

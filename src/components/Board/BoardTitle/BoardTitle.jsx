@@ -14,8 +14,9 @@ const Title = styled.h1`
   text-overflow: ellipsis;
   overflow: hidden;
 `;
+Title.displayName = 'Title';
 
-class BoardHeader extends Component {
+export class BoardTitle extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,4 +55,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(BoardHeader);
+export default connect(mapStateToProps)(BoardTitle);

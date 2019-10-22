@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BoardAdd> add board form should render fontawesome icon if boardColor and color are the same 1`] = `
+<ClickOutside
+  toggleOpened={[Function]}
+>
+  <styled.div
+    color="#D29034"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <Input
+        autoFocus={true}
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="Add board title"
+        spellCheck={false}
+        type="text"
+        value="Test Title"
+      />
+      <ColorPicker>
+        <styled.div
+          color="#2E7EAF"
+          key="0"
+          onClick={[Function]}
+        />
+        <styled.div
+          color="#00603d"
+          key="1"
+          onClick={[Function]}
+        />
+        <styled.div
+          color="#D29034"
+          key="2"
+          onClick={[Function]}
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={false}
+            flip={null}
+            icon="check"
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+        </styled.div>
+      </ColorPicker>
+      <styled.div>
+        <SubmitButton
+          disabled={false}
+          type="submit"
+        >
+          Create board
+        </SubmitButton>
+        <CancelButton
+          onClick={[Function]}
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={false}
+            flip={null}
+            icon="times"
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+        </CancelButton>
+      </styled.div>
+    </form>
+  </styled.div>
+</ClickOutside>
+`;
+
+exports[`<BoardAdd> should render AddButton if isOpened is false 1`] = `
+<AddButton
+  onClick={[Function]}
+>
+  Create new board...
+</AddButton>
+`;
+
+exports[`<BoardAdd> should render form if isOpened is true 1`] = `
+<ClickOutside
+  toggleOpened={[Function]}
+>
+  <styled.div
+    color=""
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <Input
+        autoFocus={true}
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="Add board title"
+        spellCheck={false}
+        type="text"
+        value=""
+      />
+      <ColorPicker>
+        <styled.div
+          color="#2E7EAF"
+          key="0"
+          onClick={[Function]}
+        />
+        <styled.div
+          color="#00603d"
+          key="1"
+          onClick={[Function]}
+        />
+        <styled.div
+          color="#D29034"
+          key="2"
+          onClick={[Function]}
+        />
+      </ColorPicker>
+      <styled.div>
+        <SubmitButton
+          disabled={true}
+          type="submit"
+        >
+          Create board
+        </SubmitButton>
+        <CancelButton
+          onClick={[Function]}
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={false}
+            flip={null}
+            icon="times"
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+        </CancelButton>
+      </styled.div>
+    </form>
+  </styled.div>
+</ClickOutside>
+`;

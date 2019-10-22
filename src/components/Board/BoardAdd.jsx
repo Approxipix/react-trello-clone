@@ -20,6 +20,7 @@ const AddButton = styled.button`
     background-color: #c8cace;
   }
 `;
+AddButton.displayName = 'AddButton';
 
 const Container = styled.div`
   height: 100%;
@@ -33,6 +34,7 @@ const ColorPicker = styled.div`
   padding: .25rem 0;
   margin-bottom: .5rem;
 `;
+ColorPicker.displayName = 'ColorPicker';
 
 const ColorPickerItem = styled.div`
   display: flex;
@@ -65,16 +67,14 @@ class BoardAdd extends Component {
 
   handleKeyDown = (e) => {
     if (e.keyCode === 27) {
-      this.setState({
-        isOpened: false
-      });
+      this.toggleOpened();
     }
   };
 
-  handleChange = (key, value) => {
+  handleChange = (key, event) => {
     this.setState({
       ...this.state,
-      [key]: value,
+      [key]: event,
     });
   };
 
@@ -85,7 +85,7 @@ class BoardAdd extends Component {
     })
   };
 
-  addBoard = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { boardTitle } = this.state;
     if (!boardTitle) return;
@@ -104,7 +104,7 @@ class BoardAdd extends Component {
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Container color={boardColor}>
-          <form onSubmit={this.addBoard}>
+          <form onSubmit={this.handleSubmit}>
             <Input
               type="text"
               placeholder="Add board title"

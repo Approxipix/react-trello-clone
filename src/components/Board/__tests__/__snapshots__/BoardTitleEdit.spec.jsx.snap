@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BoardTitleEdit> should render with given state from Redux store 1`] = `
+<ClickOutside
+  toggleOpened={[MockFunction]}
+>
+  <styled.form
+    onSubmit={[Function]}
+  >
+    <Input
+      autoFocus={true}
+      margin="0"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Edit board title"
+      size="1.3rem"
+      spellCheck={false}
+      type="text"
+      value="Board Title"
+      weight="600"
+      width="156px"
+    />
+  </styled.form>
+</ClickOutside>
+`;

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BoardDelete> should render correctly 1`] = `
+<Fragment>
+  <styled.p>
+    All actions will be removed from the activity feed and you won’t be able to re-open the board. There is no undo.
+  </styled.p>
+  <SubmitButton
+    color="danger"
+    onClick={[Function]}
+  >
+    Delete board
+  </SubmitButton>
+</Fragment>
+`;

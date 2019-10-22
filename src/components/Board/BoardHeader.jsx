@@ -26,6 +26,7 @@ const Button = styled.button`
     background-color: rgba(0, 0, 0, 0.2);
   }
 `;
+Button.displayName = 'Button';
 
 const BoardHeader = (props) => {
   const { toggleSidebar } = props.actions;

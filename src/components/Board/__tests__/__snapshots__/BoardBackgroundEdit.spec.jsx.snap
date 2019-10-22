@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BoardBackgroundEdit> should render fontawesome icon if boardColor and color are the same 1`] = `
+<styled.div>
+  <List>
+    <styled.li
+      key="0"
+    >
+      <Button
+        onClick={[Function]}
+        value="#2E7EAF"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon="check"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </Button>
+    </styled.li>
+    <styled.li
+      key="1"
+    >
+      <Button
+        onClick={[Function]}
+        value="#00603d"
+      />
+    </styled.li>
+    <styled.li
+      key="2"
+    >
+      <Button
+        onClick={[Function]}
+        value="#D29034"
+      />
+    </styled.li>
+  </List>
+</styled.div>
+`;
+
+exports[`<BoardBackgroundEdit> should renders without crashing 1`] = `
+<styled.div>
+  <List>
+    <styled.li
+      key="0"
+    >
+      <Button
+        onClick={[Function]}
+        value="#2E7EAF"
+      />
+    </styled.li>
+    <styled.li
+      key="1"
+    >
+      <Button
+        onClick={[Function]}
+        value="#00603d"
+      />
+    </styled.li>
+    <styled.li
+      key="2"
+    >
+      <Button
+        onClick={[Function]}
+        value="#D29034"
+      />
+    </styled.li>
+  </List>
+</styled.div>
+`;
