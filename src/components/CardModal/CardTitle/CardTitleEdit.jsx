@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editCardTitle } from '../../../redux/cardReducer/actions/actions';
@@ -24,9 +25,9 @@ class CardTitleEdit extends Component {
     }
   };
 
-  handleChange = (value) => {
+  handleChange = (e) => {
     this.setState({
-      title: value,
+      title: e.target.value,
     });
   };
 
@@ -56,7 +57,7 @@ class CardTitleEdit extends Component {
             value={title}
             placeholder="Edit card title"
             onKeyDown={this.handleKeyDown}
-            onChange={(e) => this.handleChange(e.target.value)}
+            onChange={(e) => this.handleChange(e)}
             onBlur={this.handleSubmit}
             spellCheck={false}
             autoFocus
@@ -66,6 +67,18 @@ class CardTitleEdit extends Component {
     );
   };
 }
+
+CardTitleEdit.defaultProps = {
+  cardId: '',
+  cardTitle: '',
+  toggleEditTitle: () => {},
+};
+
+CardTitleEdit.propTypes = {
+  cardId: PropTypes.string.isRequired,
+  cardTitle: PropTypes.string.isRequired,
+  toggleEditTitle: PropTypes.func.isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
   return {

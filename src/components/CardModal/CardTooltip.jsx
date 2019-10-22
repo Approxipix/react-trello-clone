@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClickOutside from "../ClickOutside/ClickOutside";
 import styled from 'styled-components';
@@ -41,6 +42,7 @@ const Button = styled.button`
     color: #42526e;
   }
 `;
+Button.displayName = 'Button';
 
 const Body = styled.div`
    padding: .5rem;
@@ -86,5 +88,18 @@ class CardTooltip extends Component {
     )
   }
 }
+
+CardTooltip.defaultProps = {
+  isOpened: false,
+  title: '',
+  toggleTooltip: () => {},
+};
+
+CardTooltip.propTypes = {
+  isOpened: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  toggleTooltip: PropTypes.func.isRequired,
+  body: PropTypes.element.isRequired,
+};
 
 export default CardTooltip;

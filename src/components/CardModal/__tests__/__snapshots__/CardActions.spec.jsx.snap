@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardActions> should renders without crashing given the required props 1`] = `
+<styled.div>
+  <styled.h4>
+    Test Title
+  </styled.h4>
+  <ActionList>
+    <styled.li
+      key="0"
+    >
+      <Link
+        onClick={[Function]}
+      >
+        <styled.div>
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={false}
+            flip={null}
+            icon="tag"
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+        </styled.div>
+        Label
+      </Link>
+      <CardTooltip
+        body={
+          <Memo(Connect(LabelAdd))
+            cardId="CardID"
+            cardLabels={Array []}
+          />
+        }
+        isOpened={true}
+        title="Label"
+        toggleTooltip={[Function]}
+      />
+    </styled.li>
+    <styled.li
+      key="1"
+    >
+      <Link
+        onClick={[Function]}
+      >
+        <styled.div>
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={false}
+            flip={null}
+            icon="check-square"
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+        </styled.div>
+        CheckList
+      </Link>
+      <CardTooltip
+        body={
+          <Memo(Connect(CheckListAdd))
+            cardId="CardID"
+            toggleTooltip={[Function]}
+          />
+        }
+        isOpened={false}
+        title="CheckList"
+        toggleTooltip={[Function]}
+      />
+    </styled.li>
+  </ActionList>
+</styled.div>
+`;

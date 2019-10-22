@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CardTitleEdit from './CardTitleEdit';
 import styled from 'styled-components';
+import PropTypes from "prop-types";
 
 const Title = styled.h2`
   margin-bottom: .5rem;
@@ -11,6 +12,7 @@ const Title = styled.h2`
   text-overflow: ellipsis;
   overflow: hidden;
 `;
+Title.displayName = 'Title';
 
 class CardTitle extends Component {
   constructor(props) {
@@ -44,5 +46,15 @@ class CardTitle extends Component {
     )
   }
 }
+
+CardTitle.defaultProps = {
+  cardId: '',
+  cardTitle: '',
+};
+
+CardTitle.propTypes = {
+  cardId: PropTypes.string.isRequired,
+  cardTitle: PropTypes.string.isRequired,
+};
 
 export default CardTitle;

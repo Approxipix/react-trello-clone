@@ -5,6 +5,7 @@ import LabelAdd from '../Label/LabelAdd';
 import CardTooltip from './CardTooltip';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from 'styled-components';
+import PropTypes from "prop-types";
 
 const Wrapper = styled.div`
   position: relative;
@@ -26,6 +27,7 @@ const ActionList = styled.ul`
   display: flex;
   flex-direction: column;
 `;
+ActionList.displayName = 'ActionList';
 
 const ActionItem = styled.li`
   position: relative;
@@ -52,6 +54,7 @@ const Link = styled.a`
     box-shadow: 0 1px 0 0 rgba(9, 30, 66, .25);
   }
 `;
+Link.displayName = 'Link';
 
 const Icon = styled.div`
   margin-right: .5rem;
@@ -72,7 +75,7 @@ class CardActions extends Component {
   };
 
   render() {
-    const { listId, card, title, actions, } = this.props;
+    const { listId, card, title, actions } = this.props;
     const { isOpened } = this.state;
     let actionItems = [
       {
@@ -136,5 +139,25 @@ class CardActions extends Component {
     )
   }
 }
+
+CardActions.defaultProps = {
+  card: {},
+  listId: '',
+  title: '',
+  actions: [],
+};
+
+CardActions.propTypes = {
+  card: PropTypes.shape({
+    _cardId: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    checkLists: PropTypes.arrayOf(PropTypes.string),
+    cardLabels: PropTypes.array,
+  }).isRequired,
+  listId: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  actions: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default CardActions;

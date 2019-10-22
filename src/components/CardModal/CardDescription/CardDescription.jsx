@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import CardDescriptionEdit from './CardDescriptionEdit';
 import styled from 'styled-components';
 
@@ -24,6 +25,7 @@ const AddDescription = styled.a`
     background-color: rgba(9,30,66,.13);
   }
 `;
+AddDescription.displayName = 'AddDescription';
 
 const Button = styled.button`
   position: absolute;
@@ -80,5 +82,15 @@ class CardDescription extends Component {
     )
   }
 }
+
+CardDescription.defaultProps = {
+  cardId: '',
+  cardDescription: '',
+};
+
+CardDescription.propTypes = {
+  cardId: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string.isRequired,
+};
 
 export default CardDescription;

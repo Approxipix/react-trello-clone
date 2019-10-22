@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardDescriptionEdit> should render with given state from Redux store 1`] = `
+<ClickOutside
+  toggleOpened={[MockFunction]}
+>
+  <form>
+    <TextArea
+      autoFocus={true}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      padding=".5rem"
+      placeholder="Edit card description"
+      rows={2}
+      size=".875rem;"
+      spellCheck={false}
+      type="text"
+      value="Card Description"
+    />
+    <styled.div>
+      <SubmitButton
+        onMouseDown={[Function]}
+      >
+        Save
+      </SubmitButton>
+      <CancelButton
+        onClick={[Function]}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon="times"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </CancelButton>
+    </styled.div>
+  </form>
+</ClickOutside>
+`;

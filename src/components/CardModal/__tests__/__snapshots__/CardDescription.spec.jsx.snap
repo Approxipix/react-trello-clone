@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardDescription> when cardDescription prop does not exist should render AddDescription if editDescription is false 1`] = `
+<AddDescription
+  onClick={[Function]}
+>
+  Add a more detailed description...
+</AddDescription>
+`;
+
+exports[`<CardDescription> when cardDescription prop does not exist should render CardDescriptionEdit if editDescription is true 1`] = `
+<Connect(CardDescriptionEdit)
+  cardDescription=""
+  cardId=""
+  toggleEditDescription={[Function]}
+/>
+`;
+
+exports[`<CardDescription> when cardDescription prop is exist should render Edit button if editDescription is false 1`] = `
+<styled.p>
+  Card Description
+  <styled.button
+    onClick={[Function]}
+  >
+    Edit
+  </styled.button>
+</styled.p>
+`;

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardTooltip> should renders without crashing given the required props 1`] = `
+<ClickOutside
+  toggleOpened={[MockFunction]}
+>
+  <styled.div>
+    <styled.div>
+      <styled.h4 />
+      <Button
+        onClick={[Function]}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon="times"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </Button>
+    </styled.div>
+    <styled.div>
+      <p>
+        Test component
+      </p>
+    </styled.div>
+  </styled.div>
+</ClickOutside>
+`;
+
+exports[`<CardTooltip> should return if isOpened false 1`] = `""`;

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardTitleEdit> should render with given state from Redux store 1`] = `
+<ClickOutside
+  toggleOpened={[MockFunction]}
+>
+  <styled.form
+    onSubmit={[Function]}
+  >
+    <Input
+      autoFocus={true}
+      margin="0"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      padding=".3rem .5rem"
+      placeholder="Edit card title"
+      size="1.4rem"
+      spellCheck={false}
+      type="text"
+      value=""
+      weight="600"
+    />
+  </styled.form>
+</ClickOutside>
+`;
