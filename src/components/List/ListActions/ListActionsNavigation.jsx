@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import ListActionsNavigationList from "./ListActionsNavigationList";
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const List = styled.ul`
 `;
@@ -49,5 +50,13 @@ class ListActionsNavigation extends Component {
     );
   }
 }
+
+ListActionsNavigation.defaultProps = {
+  changeView: () => {},
+};
+
+ListActionsNavigation.propTypes = {
+  changeView: PropTypes.func.isRequired,
+};
 
 export default ListActionsNavigation;

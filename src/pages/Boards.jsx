@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import BoardAdd from '../components/Board/BoardAdd';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -92,6 +93,29 @@ const Boards = (props) => {
       </BoardList>
     </Wrapper>
   )
+};
+
+Boards.defaultProps = {
+  boards: {},
+  lists: {},
+};
+
+Boards.propTypes = {
+  boards: PropTypes.objectOf(
+    PropTypes.shape({
+      _boardId: PropTypes.string.isRequired,
+      title: PropTypes.string,
+      color: PropTypes.string.isRequired,
+      lists: PropTypes.arrayOf(PropTypes.string).isRequired,
+    })
+  ).isRequired,
+  lists: PropTypes.objectOf(
+    PropTypes.shape({
+      _listId: PropTypes.string.isRequired,
+      title: PropTypes.string,
+      cards: PropTypes.arrayOf(PropTypes.string).isRequired
+    })
+  ).isRequired,
 };
 
 function mapStateToProps(state) {

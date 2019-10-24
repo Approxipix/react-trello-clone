@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { moveAllCards } from '../../redux/listReducer/actions/actions';
@@ -69,6 +70,33 @@ class ListMoveAllCards extends Component {
     );
   }
 }
+
+ListMoveAllCards.defaultProps = {
+  boardId: '',
+  listId: '',
+  boards: {},
+  lists: {},
+};
+
+ListMoveAllCards.propTypes = {
+  boardId: PropTypes.string.isRequired,
+  listId: PropTypes.string.isRequired,
+  boards: PropTypes.objectOf(
+    PropTypes.shape({
+      _boardId: PropTypes.string,
+      title: PropTypes.string,
+      color: PropTypes.string,
+      lists: PropTypes.arrayOf(PropTypes.string).isRequired,
+    })
+  ).isRequired,
+  lists: PropTypes.objectOf(
+    PropTypes.shape({
+      _listId: PropTypes.string,
+      title: PropTypes.string.isRequired,
+      cards: PropTypes.arrayOf(PropTypes.string)
+    })
+  ).isRequired,
+};
 
 function mapStateToProps(state) {
   return {

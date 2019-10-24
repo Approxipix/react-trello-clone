@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { editCheckListTitle } from '../../../redux/checkListReducer/actions/actions';
@@ -62,6 +63,17 @@ class CheckListTitleEdit extends Component {
     );
   };
 }
+
+CheckListTitleEdit.defaultProps = {
+  checkListId: '',
+  toggleEditTitle: () => {},
+};
+
+CheckListTitleEdit.propTypes = {
+  checkListId: PropTypes.string.isRequired,
+  checkListTitle: PropTypes.string,
+  toggleEditTitle: PropTypes.func.isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
   return {

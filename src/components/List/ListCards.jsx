@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'styled-components'
+import PropTypes from "prop-types";
 import { Droppable } from 'react-beautiful-dnd';
-import Card from '../Card/Card'
+import Card from '../Card/Card';
+import styled from 'styled-components';
 
 const CardLIst = styled.div`
   min-height: 2rem;
@@ -63,5 +64,15 @@ class ListCards extends Component {
     )
   }
 }
+
+ListCards.defaultProps = {
+  listId: '',
+  cardsId: [],
+};
+
+ListCards.propTypes = {
+  listId: PropTypes.string.isRequired,
+  cardsId: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default ListCards;

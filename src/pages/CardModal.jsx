@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { history } from "../redux/store";
 import { Redirect } from "react-router";
@@ -219,6 +220,24 @@ const CardModal = (props) => {
       </Wrapper>
     </Backdrop>
   )
+};
+
+CardModal.defaultProps = {
+  listId: '',
+  currentBoardId: null,
+  card: {},
+};
+
+CardModal.propTypes = {
+  listId: PropTypes.string.isRequired,
+  currentBoardId: PropTypes.string.isRequired,
+  card: PropTypes.shape({
+    _cardId: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    checkLists: PropTypes.arrayOf(PropTypes.string).isRequired,
+    cardLabels: PropTypes.array.isRequired,
+  }).isRequired,
 };
 
 function mapStateToProps(state, ownProps) {

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { editListTitle } from '../../../redux/listReducer/actions/actions';
 import ClickOutside from "../../ClickOutside/ClickOutside";
 import { Input } from '../../BaseComponent';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Form = styled.form`
   width: 90%;
@@ -65,6 +66,18 @@ class ListTitleEdit extends Component {
     );
   };
 }
+
+ListTitleEdit.defaultProps = {
+  listId: '',
+  listTitle: '',
+  toggleEditTitle: () => {},
+};
+
+ListTitleEdit.propTypes = {
+  listId: PropTypes.string.isRequired,
+  listTitle: PropTypes.string.isRequired,
+  toggleEditTitle: PropTypes.func.isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
   return {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteAllCards } from '../../redux/listReducer/actions/actions';
@@ -25,6 +26,16 @@ class ListDeleteAllCards extends Component {
     );
   }
 }
+
+ListDeleteAllCards.defaultProps = {
+  listId: '',
+  toggleOpened: () => {},
+};
+
+ListDeleteAllCards.propTypes = {
+  listId: PropTypes.string.isRequired,
+  toggleOpened: PropTypes.func.isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
   return {

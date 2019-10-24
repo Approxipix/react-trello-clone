@@ -3,7 +3,7 @@
 exports[`<ListDelete> should render ListActions if isOpened is true 1`] = `
 <Fragment>
   <styled.div>
-    <ListHeader
+    <ListTitle
       listId="ListID"
       listTitle="List Title"
     />
@@ -42,7 +42,7 @@ exports[`<ListDelete> should render ListActions if isOpened is true 1`] = `
 exports[`<ListDelete> should render with given state from Redux store 1`] = `
 <Fragment>
   <styled.div>
-    <ListHeader
+    <ListTitle
       listId="ListID"
       listTitle="List Title"
     />

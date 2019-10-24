@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setCurrentBoardID } from "../redux/rootReducer/actions/actions";
@@ -6,8 +7,8 @@ import { moveList } from "../redux/boardReducer/actions/actions";
 import { moveCard } from "../redux/listReducer/actions/actions";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { Redirect } from "react-router";
-import BoardHeader from '../components/Board/BoardHeader'
-import Sidebar from '../components/Sidebar/Sidebar'
+import BoardHeader from '../components/Board/BoardHeader';
+import Sidebar from '../components/Sidebar/Sidebar';
 import ListAdd from '../components/List/ListAdd';
 import List from '../components/List/List'
 import styled from 'styled-components';
@@ -110,6 +111,23 @@ class Board extends Component {
     )
   }
 }
+
+Board.defaultProps = {
+  isSidebarOpened: false,
+  currentBoardId: null,
+  board: {},
+};
+
+Board.propTypes = {
+  isSidebarOpened: PropTypes.bool.isRequired,
+  currentBoardId: PropTypes.string.isRequired,
+  board: PropTypes.shape({
+    _boardId: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    color: PropTypes.string,
+    lists: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+};
 
 function mapStateToProps(state) {
   return {

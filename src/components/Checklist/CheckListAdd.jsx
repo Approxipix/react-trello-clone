@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addCheckList } from "../../redux/checkListReducer/actions/actions";
@@ -49,6 +50,16 @@ class CheckListAdd extends Component {
     )
   };
 }
+
+CheckListAdd.defaultProps = {
+  cardId: '',
+  toggleTooltip: () => {}
+};
+
+CheckListAdd.propTypes = {
+  cardId: PropTypes.string.isRequired,
+  toggleTooltip: PropTypes.func.isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
   return {

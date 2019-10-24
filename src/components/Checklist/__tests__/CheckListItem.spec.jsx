@@ -39,6 +39,8 @@ describe('<CheckListItem>', () => {
 
   it('should return if hideCompletedItems and status equals true', () => {
     const props = {
+      index: 0,
+      checkListId: 'CheckListID',
       hideCompletedItems: true,
     };
     const state = {

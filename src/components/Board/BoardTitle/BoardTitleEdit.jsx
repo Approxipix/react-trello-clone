@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editBoardTitle } from '../../../redux/boardReducer/actions/actions';
 import ClickOutside from '../../ClickOutside/ClickOutside';
-import { Input, } from '../../BaseComponent';
-import styled from 'styled-components'
+import { Input } from '../../BaseComponent';
+import styled from 'styled-components';
 
 const Form = styled.form`
   max-width: calc(100vw - 12rem);
@@ -71,13 +71,12 @@ class BoardTitleEdit extends Component {
 
 BoardTitleEdit.defaultProps = {
   boardId: '',
-  boardTitle: '',
   toggleEditTitle: () => {},
 };
 
 BoardTitleEdit.propTypes = {
   boardId: PropTypes.string.isRequired,
-  boardTitle: PropTypes.string.isRequired,
+  boardTitle: PropTypes.string,
   toggleEditTitle: PropTypes.func.isRequired,
 };
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome/index";
 import ListActions from './ListActions/ListActions';
 import ListTitle from './ListTitle/ListTitle';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Header = styled.div`
   padding: .5rem .7rem 0rem .5rem;
@@ -58,5 +59,17 @@ class ListHeader extends Component {
     )
   }
 }
+
+ListHeader.defaultProps = {
+  boardId: '',
+  listId: '',
+  listTitle: '',
+};
+
+ListHeader.propTypes = {
+  boardId: PropTypes.string.isRequired,
+  listId: PropTypes.string.isRequired,
+  listTitle: PropTypes.string.isRequired,
+};
 
 export default ListHeader;

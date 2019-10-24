@@ -6,6 +6,7 @@ exports[`<List> should render with given state from Redux store 1`] = `
     style={Object {}}
   >
     <ListHeader
+      boardId=""
       listId="ListID"
       listTitle="List Title"
     />

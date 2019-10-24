@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import ListTitleEdit from './ListTitleEdit';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Title = styled.h2`
   width: 100%;
@@ -14,7 +15,7 @@ const Title = styled.h2`
 Title.displayName = 'Title';
 
 
-class ListHeader extends Component {
+class ListTitle extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,4 +51,14 @@ class ListHeader extends Component {
   }
 }
 
-export default ListHeader;
+ListTitle.defaultProps = {
+  listId: '',
+  listTitle: '',
+};
+
+ListTitle.propTypes = {
+  listId: PropTypes.string.isRequired,
+  listTitle: PropTypes.string.isRequired,
+};
+
+export default ListTitle;

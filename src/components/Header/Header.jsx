@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
 import HeaderNavigationList from './HeaderNavigationList';
-import logo from '../../images/logo.svg'
+import styled from 'styled-components';
+import logo from '../../images/logo.svg';
 
 const Wrapper = styled.div`
   display: grid;

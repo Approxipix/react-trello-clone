@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { moveList, moveListToAnotherBoard } from '../../redux/boardReducer/actions/actions';
@@ -121,6 +122,25 @@ class ListMove extends Component {
     );
   }
 }
+
+ListMove.defaultProps = {
+  boardId: '',
+  listId: '',
+  boards: {},
+};
+
+ListMove.propTypes = {
+  boardId: PropTypes.string.isRequired,
+  listId: PropTypes.string.isRequired,
+  boards: PropTypes.objectOf(
+    PropTypes.shape({
+      _boardId: PropTypes.string,
+      title: PropTypes.string.isRequired,
+      color: PropTypes.string,
+      lists: PropTypes.arrayOf(PropTypes.string).isRequired,
+    })
+  ).isRequired,
+};
 
 function mapStateToProps(state) {
   return {

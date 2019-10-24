@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ClickOutside from "../../ClickOutside/ClickOutside";
-import ListActionsNavigation from './ListActionsNavigation'
-import ListDeleteAllCards from '../ListDeleteAllCards'
-import ListMoveAllCards from '../ListMoveAllCards'
-import ListDelete from '../ListDelete'
-import ListMove from '../ListMove'
-import styled from 'styled-components'
+import ListActionsNavigation from './ListActionsNavigation';
+import ListDeleteAllCards from '../ListDeleteAllCards';
+import ListMoveAllCards from '../ListMoveAllCards';
+import ListDelete from '../ListDelete';
+import ListMove from '../ListMove';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -136,5 +137,17 @@ class ListActions extends Component {
     )
   };
 }
+
+ListActions.defaultProps = {
+  boardId: '',
+  listId: '',
+  toggleOpened: () => {},
+};
+
+ListActions.propTypes = {
+  boardId: PropTypes.string.isRequired,
+  listId: PropTypes.string.isRequired,
+  toggleOpened: PropTypes.func.isRequired,
+};
 
 export default ListActions;

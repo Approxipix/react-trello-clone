@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateCheckListItem, deleteCheckListItem } from '../../../redux/checkListReducer/actions/actions';
 import { CheckBox } from '../../BaseComponent';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const HideCheckBox = styled.input`
   display: none;
@@ -49,7 +50,7 @@ class CheckListItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: props.status || '',
+      status: props.status || false,
     };
   }
 
@@ -106,6 +107,20 @@ class CheckListItem extends Component {
     );
   }
 }
+
+CheckListItem.defaultProps = {
+  status: false,
+  description: '',
+  hideCompletedItems: false,
+};
+
+CheckListItem.propTypes = {
+  index: PropTypes.number.isRequired,
+  checkListId: PropTypes.string.isRequired,
+  status: PropTypes.bool.isRequired,
+  description: PropTypes.string.isRequired,
+  hideCompletedItems: PropTypes.bool.isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
   return {

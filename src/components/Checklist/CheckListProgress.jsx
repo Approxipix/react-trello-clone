@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components'
+import PropTypes from "prop-types";
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: relative;
@@ -54,6 +55,19 @@ const CheckListProgress = (props) => {
       <Label>{width.toFixed()} %</Label>
     </Wrapper>
   );
+};
+
+CheckListProgress.defaultProps = {
+  items: null
+};
+
+CheckListProgress.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      status: PropTypes.bool.isRequired,
+      description: PropTypes.string,
+    })
+  )
 };
 
 export default CheckListProgress;

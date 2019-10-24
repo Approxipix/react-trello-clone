@@ -2,6 +2,8 @@
 
 exports[`<ListTitle> should render ListTitleEdit component if editTitle is true 1`] = `
 <Connect(ListTitleEdit)
+  listId=""
+  listTitle=""
   toggleEditTitle={[Function]}
 />
 `;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import CheckListTitleEdit from './CheckListTitleEdit'
-import styled from 'styled-components'
+import PropTypes from "prop-types";
+import CheckListTitleEdit from './CheckListTitleEdit';
+import styled from 'styled-components';
 
 const Title = styled.h3`
   padding: .3rem .5rem;
@@ -41,5 +42,15 @@ class CheckListTitle extends Component {
     );
   }
 }
+
+CheckListTitle.defaultProps = {
+  checkListId: '',
+  checkListTitle: '',
+};
+
+CheckListTitle.propTypes = {
+  checkListId: PropTypes.string.isRequired,
+  checkListTitle: PropTypes.string.isRequired,
+};
 
 export default CheckListTitle;

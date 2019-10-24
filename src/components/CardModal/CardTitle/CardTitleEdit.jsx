@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { editCardTitle } from '../../../redux/cardReducer/actions/actions';
 import ClickOutside from '../../ClickOutside/ClickOutside';
 import { Input, } from '../../BaseComponent';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Form = styled.form`
   width: calc(100% - 2rem);
@@ -70,13 +70,12 @@ class CardTitleEdit extends Component {
 
 CardTitleEdit.defaultProps = {
   cardId: '',
-  cardTitle: '',
   toggleEditTitle: () => {},
 };
 
 CardTitleEdit.propTypes = {
   cardId: PropTypes.string.isRequired,
-  cardTitle: PropTypes.string.isRequired,
+  cardTitle: PropTypes.string,
   toggleEditTitle: PropTypes.func.isRequired,
 };
 

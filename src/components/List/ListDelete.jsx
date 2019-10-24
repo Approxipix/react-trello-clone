@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteList } from '../../redux/listReducer/actions/actions';
@@ -27,6 +28,16 @@ class ListDelete extends Component {
     );
   }
 }
+
+ListDelete.defaultProps = {
+  boardId: '',
+  listId: '',
+};
+
+ListDelete.propTypes = {
+  boardId: PropTypes.string.isRequired,
+  listId: PropTypes.string.isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
   return {

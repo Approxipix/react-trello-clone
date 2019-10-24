@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { addLabelToCard } from "../../redux/cardReducer/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const LabelList = styled.ul`
   display: flex;

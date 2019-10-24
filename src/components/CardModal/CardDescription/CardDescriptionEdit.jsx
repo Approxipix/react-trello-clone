@@ -91,13 +91,12 @@ class CardDescriptionEdit extends Component {
 
 CardDescriptionEdit.defaultProps = {
   cardId: '',
-  cardDescription: '',
   toggleEditDescription: () => {},
 };
 
 CardDescriptionEdit.propTypes = {
   cardId: PropTypes.string.isRequired,
-  cardDescription: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string,
   toggleEditDescription: PropTypes.func.isRequired,
 };
 

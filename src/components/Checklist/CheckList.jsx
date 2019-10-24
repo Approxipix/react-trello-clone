@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteCheckList } from '../../redux/checkListReducer/actions/actions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CheckListProgress from './CheckListProgress'
-import CheckListItemAdd from './CheckListItem/CheckListItemAdd'
-import CheckListTitle from './CheckListTitle/CheckListTitle'
-import CheckListItem from './CheckListItem/CheckListItem'
-import styled from 'styled-components'
+import CheckListProgress from './CheckListProgress';
+import CheckListItemAdd from './CheckListItem/CheckListItemAdd';
+import CheckListTitle from './CheckListTitle/CheckListTitle';
+import CheckListItem from './CheckListItem/CheckListItem';
+import styled from 'styled-components';
 
 const Container = styled.div`
   position: relative;
@@ -122,6 +123,28 @@ class CheckList extends Component {
     );
   }
 }
+
+CheckList.defaultProps = {
+  checkListId: '',
+  checkLists: {}
+};
+
+CheckList.propTypes = {
+  cardId: PropTypes.string.isRequired,
+  checkListId: PropTypes.string.isRequired,
+  checkLists: PropTypes.objectOf(
+    PropTypes.shape({
+      _checkListId: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          status: PropTypes.bool.isRequired,
+          description: PropTypes.string,
+        })
+      )
+    })
+  ),
+};
 
 function mapStateToProps(state, ownProps) {
   return {
