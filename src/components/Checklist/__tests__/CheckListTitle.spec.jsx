@@ -4,17 +4,15 @@ import toJson from "enzyme-to-json";
 import CheckListTitle from '../CheckListTitle/CheckListTitle';
 
 describe('<CheckListTitle>', () => {
-  let state;
-  let props;
   let component;
 
   beforeEach(() => {
-    state = {
-      editTitle: false,
-    };
-    props = {
+    const props = {
       checkListId: 'CheckListID',
       checkListTitle: 'CheckList Title',
+    };
+    const state = {
+      editTitle: false,
     };
 
     component = shallow(<CheckListTitle {...props} />);

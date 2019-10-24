@@ -8,7 +8,6 @@ const mockStore = configureStore([]);
 
 describe('<Header>', () => {
   let store;
-  let state;
   let wrapper;
   let component;
 
@@ -22,7 +21,7 @@ describe('<Header>', () => {
         Board2ID: { _boardId: "Board2ID", color: "FF9F1A" }
       }
     });
-    state = {
+    const state = {
       navigation: [
         { title: 'Home', path: '/home', faIcon: 'times', },
         { title: 'Boards', path: '/boards', faIcon: 'columns', },

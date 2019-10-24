@@ -8,7 +8,6 @@ const mockStore = configureStore([]);
 
 describe('<CardTitleEdit>', () => {
   let store;
-  let props;
   let component;
   let mockEditCardTitle = jest.fn();
   let mockToggleEditTitle = jest.fn();
@@ -18,7 +17,7 @@ describe('<CardTitleEdit>', () => {
 
     store = mockStore({});
     store.dispatch = mockEditCardTitle;
-    props = {
+    const props = {
       cardId: 'CardID',
       title: 'Card Title',
       toggleEditTitle: mockToggleEditTitle

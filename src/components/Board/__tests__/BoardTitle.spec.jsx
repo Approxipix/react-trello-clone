@@ -8,11 +8,10 @@ const mockStore = configureStore([]);
 
 describe('<BoardTitle>', () => {
   let store;
-  let state;
   let component;
 
   beforeEach(() => {
-    state = {
+    const state = {
       editTitle: false,
     };
     store = mockStore({

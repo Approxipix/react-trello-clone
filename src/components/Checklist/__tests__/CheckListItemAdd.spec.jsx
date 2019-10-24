@@ -8,18 +8,16 @@ const mockStore = configureStore([]);
 
 describe('<CheckListItemAdd>', () => {
   let store;
-  let props;
-  let state;
   let component;
   let mockAddCheckListItem = jest.fn();
 
   beforeEach(() => {
     store = mockStore({});
     store.dispatch = mockAddCheckListItem;
-    props = {
+    const props = {
       checkListId: 'CheckListID',
     };
-    state = {
+    const state = {
       isOpened: false,
       title: '',
     };

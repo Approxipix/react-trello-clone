@@ -5,6 +5,7 @@ import Label from '../Label';
 
 describe('<Label>', () => {
   let component;
+
   beforeEach(() => {
     const props = {
       cardLabels: [{color: '#fff'}, {color: '#ccc'}, {color: '#000'}]

@@ -3,13 +3,11 @@ import { shallow } from 'enzyme';
 import toJson from "enzyme-to-json";
 import CardDescriptionEdit from '../CardDescription/CardDescriptionEdit';
 import configureStore from "redux-mock-store";
-import { number, string } from "prop-types";
 
 const mockStore = configureStore([]);
 
 describe('<CardDescriptionEdit>', () => {
   let store;
-  let props;
   let component;
   let mockEditCardDescription = jest.fn();
   let mockToggleEditDescription = jest.fn();
@@ -19,7 +17,7 @@ describe('<CardDescriptionEdit>', () => {
 
     store = mockStore({});
     store.dispatch = mockEditCardDescription;
-    props = {
+    const props = {
       cardId: 'CardID',
       cardDescription: 'Card Description',
       toggleEditDescription: mockToggleEditDescription

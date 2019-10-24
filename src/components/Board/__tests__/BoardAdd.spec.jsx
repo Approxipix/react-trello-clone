@@ -8,7 +8,6 @@ const mockStore = configureStore([]);
 
 describe('<BoardAdd>', () => {
   let store;
-  let state;
   let component;
   let mockAddBoard = jest.fn();
 
@@ -19,7 +18,7 @@ describe('<BoardAdd>', () => {
       }
     });
     store.dispatch = mockAddBoard;
-    state = {
+    const state = {
       isOpened: false,
       boardTitle: '',
       boardColor: '',

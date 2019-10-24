@@ -8,18 +8,16 @@ const mockStore = configureStore([]);
 
 describe('<CardAdd>', () => {
   let store;
-  let props;
-  let state;
   let component;
   let mockAddCard = jest.fn();
 
   beforeEach(() => {
     store = mockStore({});
     store.dispatch = mockAddCard;
-    props = {
+    const props = {
       listId: 'ListID',
     };
-    state = {
+    const state = {
       isOpened: false,
       title: '',
     };

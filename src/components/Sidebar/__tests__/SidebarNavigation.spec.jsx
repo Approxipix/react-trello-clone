@@ -3,14 +3,12 @@ import { shallow } from 'enzyme';
 import toJson from "enzyme-to-json";
 import SidebarNavigation from '../SidebarNavigation';
 
-
 describe('<SidebarNavigation>', () => {
-  let state;
   let component;
   let mockChangeView = jest.fn();
 
   beforeEach(() => {
-    state = {
+    const state = {
       navigation: [
         { title: 'Change Background', component: 'BoardBackgroundEdit', icon: 'fill-drip' },
         { title: 'Delete Board', component: 'BoardDelete', icon: 'trash' },

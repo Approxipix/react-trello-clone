@@ -8,7 +8,6 @@ const mockStore = configureStore([]);
 
 describe('<Sidebar>', () => {
   let store;
-  let state;
   let component;
 
   beforeEach(() => {
@@ -18,7 +17,7 @@ describe('<Sidebar>', () => {
       }
     });
     store.dispatch = jest.fn();
-    state = {
+    const state = {
       sidebarView: null,
       sidebarTitle: 'Menu',
     };

@@ -8,8 +8,6 @@ const mockStore = configureStore([]);
 
 describe('<CheckList>', () => {
   let store;
-  let props;
-  let state;
   let component;
 
   beforeEach(() => {
@@ -26,11 +24,11 @@ describe('<CheckList>', () => {
       }
     });
     store.dispatch = jest.fn();
-    props = {
+    const props = {
       cardId: 'CardID',
       checkListId: 'CheckListID',
     };
-    state = {
+    const state = {
       hideCompletedItems: false,
     };
 

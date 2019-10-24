@@ -8,7 +8,6 @@ const mockStore = configureStore([]);
 
 describe('<CheckListTitleEdit>', () => {
   let store;
-  let props;
   let component;
   let mockEditCheckListTitle = jest.fn();
   let mockToggleEditTitle = jest.fn();
@@ -18,7 +17,7 @@ describe('<CheckListTitleEdit>', () => {
 
     store = mockStore({});
     store.dispatch = mockEditCheckListTitle;
-    props = {
+    const props = {
       checkListId: 'CheckListID',
       checkListTitle: 'CheckList Title',
       toggleEditTitle: mockToggleEditTitle

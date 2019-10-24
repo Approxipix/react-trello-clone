@@ -4,11 +4,10 @@ import toJson from "enzyme-to-json";
 import CardTitle from '../CardTitle/CardTitle';
 
 describe('<CardTitle>', () => {
-  let state;
   let component;
 
   beforeEach(() => {
-    state = {
+    const state = {
       editTitle: false,
     };
 

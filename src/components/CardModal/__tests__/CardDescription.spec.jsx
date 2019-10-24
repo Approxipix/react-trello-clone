@@ -4,14 +4,12 @@ import toJson from "enzyme-to-json";
 import CardDescription from '../CardDescription/CardDescription';
 
 describe('<CardDescription>', () => {
-  let props;
-  let state;
   let component;
 
   describe('when cardDescription prop is exist', () => {
     beforeEach(() => {
-      props = { cardDescription: 'Card Description' };
-      state = { editDescription: false };
+      const props = { cardDescription: 'Card Description' };
+      const state = { editDescription: false };
 
       component = shallow(<CardDescription {...props} />);
       component.setState({...state});
@@ -25,8 +23,8 @@ describe('<CardDescription>', () => {
 
   describe('when cardDescription prop does not exist', () => {
     beforeEach(() => {
-      props = { cardDescription: '' };
-      state = { editDescription: false };
+      const props = { cardDescription: '' };
+      const state = { editDescription: false };
 
       component = shallow(<CardDescription {...props} />);
       component.setState({...state});

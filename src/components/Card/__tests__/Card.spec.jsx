@@ -16,7 +16,6 @@ jest.mock('react-beautiful-dnd', () => ({
 
 describe('<Card>', () => {
   let store;
-  let props;
   let component;
 
   beforeEach(() => {
@@ -35,7 +34,7 @@ describe('<Card>', () => {
       },
       checkListReducer: {}
     });
-    props = {
+    const props = {
       cardId: 'CardID',
     };
 
