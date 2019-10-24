@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListDelete> should render ListActions if isOpened is true 1`] = `
+<Fragment>
+  <styled.div>
+    <ListHeader
+      listId="ListID"
+      listTitle="List Title"
+    />
+    <Icon
+      onClick={[Function]}
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="ellipsis-h"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </Icon>
+  </styled.div>
+  <ListActions
+    boardId="BoardID"
+    listId="ListID"
+    toggleOpened={[Function]}
+  />
+</Fragment>
+`;
+
+exports[`<ListDelete> should render with given state from Redux store 1`] = `
+<Fragment>
+  <styled.div>
+    <ListHeader
+      listId="ListID"
+      listTitle="List Title"
+    />
+    <Icon
+      onClick={[Function]}
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="ellipsis-h"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </Icon>
+  </styled.div>
+</Fragment>
+`;

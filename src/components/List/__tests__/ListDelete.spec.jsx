@@ -2,29 +2,25 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import { shallow } from 'enzyme';
 import toJson from "enzyme-to-json";
-import CardDelete from '../CardDelete';
+import ListDelete from '../ListDelete';
 
 const mockStore = configureStore([]);
 
-describe('<CardDelete>', () => {
+describe('<ListDelete>', () => {
   let store;
   let component;
-  let mockDeleteCard = jest.fn();
+  let mockDeleteList = jest.fn();
 
   beforeEach(() => {
-    store = mockStore({
-      rootReducer: {
-        currentBoardID: 'BoardID'
-      }
-    });
-    store.dispatch = mockDeleteCard;
+    store = mockStore();
+    store.dispatch = mockDeleteList;
     const props = {
+      boardId: 'BoardID',
       listId: 'ListID',
-      cardId: 'CardID',
     };
 
-    const wrapper = shallow(<CardDelete store={store} {...props} />);
-    component = wrapper.find('CardDelete').dive();
+    const wrapper = shallow(<ListDelete store={store} {...props} />);
+    component = wrapper.find('ListDelete').dive();
   });
 
   it('should render with given state from Redux store', () => {
@@ -33,15 +29,15 @@ describe('<CardDelete>', () => {
 
   it("should dispatch an action after click on button", () => {
     const expectedAction = {
-      type: 'DELETE_CARD',
+      type: 'DELETE_LIST',
       payload: {
+        boardId: 'BoardID',
         listId: 'ListID',
-        cardId: 'CardID',
       }
     };
 
     component.find('SubmitButton').simulate('click');
-    expect(mockDeleteCard).toHaveBeenCalledTimes(1);
-    expect(mockDeleteCard).toHaveBeenCalledWith(expectedAction);
+    expect(mockDeleteList).toHaveBeenCalledTimes(1);
+    expect(mockDeleteList).toHaveBeenCalledWith(expectedAction);
   });
 });

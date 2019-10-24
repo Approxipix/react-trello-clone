@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ListActionsNavigationList from './ListActionsNavigationList'
+import ListActionsNavigationList from "./ListActionsNavigationList";
 import styled from 'styled-components'
 
 const List = styled.ul`
@@ -19,13 +19,13 @@ const Link = styled.a`
     background-color: #2E7EAF;
   }
 `;
+Link.displayName = 'Link';
 
 class ListActionsNavigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      component: null,
-      editTitle: false,
+      navigation: ListActionsNavigationList,
     }
   }
 
@@ -35,9 +35,10 @@ class ListActionsNavigation extends Component {
   };
 
   render() {
+    const { navigation } = this.state;
     return (
       <List>
-        {ListActionsNavigationList.map((item, index) => (
+        {navigation.map((item, index) => (
           <Item key={index} >
             <Link onClick={(e) => this.changeView(e, item)}>
               {item.title}

@@ -11,6 +11,8 @@ const Title = styled.h2`
   text-overflow: ellipsis;
   overflow: hidden;
 `;
+Title.displayName = 'Title';
+
 
 class ListHeader extends Component {
   constructor(props) {

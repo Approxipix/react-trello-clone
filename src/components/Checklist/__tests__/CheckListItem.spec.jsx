@@ -8,6 +8,7 @@ const mockStore = configureStore([]);
 
 describe('<CheckListItem>', () => {
   let store;
+  let props;
   let component;
   let mockUpdateCheckListItem = jest.fn();
   let mockDeleteCheckListItem = jest.fn();
@@ -15,7 +16,7 @@ describe('<CheckListItem>', () => {
   beforeEach(() => {
     jest.resetAllMocks();
 
-    const props = {
+    props = {
       index: 0,
       checkListId: 'CheckListID',
       description: 'Description',
@@ -25,7 +26,6 @@ describe('<CheckListItem>', () => {
       status: false,
     };
     store = mockStore({});
-    store.dispatch = mockUpdateCheckListItem;
     store.dispatch = mockDeleteCheckListItem;
 
     const wrapper = shallow(<CheckListItem store={store} {...props} />);
@@ -94,10 +94,13 @@ describe('<CheckListItem>', () => {
         status: true,
       }
     };
+    store.dispatch = mockUpdateCheckListItem;
+    const wrapper = shallow(<CheckListItem store={store} {...props} />);
+    component = wrapper.find('CheckListItem').dive();
 
     component.instance().handleStatus();
 
-    expect(mockDeleteCheckListItem).toHaveBeenCalledTimes(1);
-    expect(mockDeleteCheckListItem).toHaveBeenCalledWith(expectedAction);
+    expect(mockUpdateCheckListItem).toHaveBeenCalledTimes(1);
+    expect(mockUpdateCheckListItem).toHaveBeenCalledWith(expectedAction);
   });
 });

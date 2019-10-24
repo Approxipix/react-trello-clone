@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<List> should render with given state from Redux store 1`] = `
+<Fragment>
+  <styled.div
+    style={Object {}}
+  >
+    <ListHeader
+      listId="ListID"
+      listTitle="List Title"
+    />
+    <ListCards
+      cardsId={Array []}
+      listId="ListID"
+    />
+    <Connect(CardAdd)
+      listId="ListID"
+    />
+  </styled.div>
+</Fragment>
+`;

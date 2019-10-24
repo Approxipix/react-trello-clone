@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListAdd> should render AddButton if isOpened is false 1`] = `
+<styled.div>
+  <AddButton
+    onClick={[Function]}
+  >
+    + Add another list
+  </AddButton>
+</styled.div>
+`;
+
+exports[`<ListAdd> should render form if isOpened is true 1`] = `
+<ClickOutside
+  toggleOpened={[Function]}
+>
+  <styled.div>
+    <styled.form
+      onSubmit={[Function]}
+    >
+      <Input
+        autoFocus={true}
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="Enter a list title..."
+        spellCheck={false}
+        type="text"
+        value=""
+      />
+      <styled.div>
+        <SubmitButton
+          disabled={true}
+          type="submit"
+        >
+          Add list
+        </SubmitButton>
+        <CancelButton
+          onClick={[Function]}
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={false}
+            flip={null}
+            icon="times"
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+        </CancelButton>
+      </styled.div>
+    </styled.form>
+  </styled.div>
+</ClickOutside>
+`;

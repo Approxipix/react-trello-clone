@@ -33,6 +33,7 @@ const AddButton = styled.button`
     background: rgba(0, 0, 0, 0.2);
   }
 `;
+AddButton.displayName = 'AddButton';
 
 class ListAdd extends Component {
   constructor(props) {
@@ -56,9 +57,9 @@ class ListAdd extends Component {
     }
   };
 
-  handleChange = (e) => {
+  handleChange = (event) => {
     this.setState({
-      title: e.target.value
+      title: event.target.value
     });
   };
 
@@ -73,7 +74,10 @@ class ListAdd extends Component {
     });
     this.setState({
       title: ''
-    }, () => this.input.focus())
+    }, () => {
+      if (!this.input) return null;
+      this.input.focus()
+    })
   };
 
   render = () => {
@@ -88,7 +92,7 @@ class ListAdd extends Component {
               placeholder="Enter a list title..."
               ref={(e) => { this.input = e }}
               onKeyDown={this.handleKeyDown}
-              onChange={this.handleChange}
+              onChange={(e) => this.handleChange(e)}
               spellCheck={false}
               autoFocus
             />

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListActionsNavigation> should renders without crashing 1`] = `
+<styled.ul>
+  <styled.li
+    key="0"
+  >
+    <Link
+      onClick={[Function]}
+    >
+      Move List
+    </Link>
+  </styled.li>
+  <styled.li
+    key="1"
+  >
+    <Link
+      onClick={[Function]}
+    >
+      Move All Cards
+    </Link>
+  </styled.li>
+  <styled.li
+    key="2"
+  >
+    <Link
+      onClick={[Function]}
+    >
+      Delete List
+    </Link>
+  </styled.li>
+</styled.ul>
+`;

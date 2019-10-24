@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListMoveAllCards> should render with given state from Redux store and correct props 1`] = `
+<Fragment>
+  <styled.div>
+    <Select
+      label="Board"
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "title": "List1 Title (current)",
+            "value": "List1ID",
+          },
+          Object {
+            "title": "List2 Title",
+            "value": "List2ID",
+          },
+        ]
+      }
+      placeholder="Select board"
+      value="List2 Title"
+    />
+  </styled.div>
+  <SubmitButton
+    onClick={[Function]}
+  >
+    Move
+  </SubmitButton>
+</Fragment>
+`;

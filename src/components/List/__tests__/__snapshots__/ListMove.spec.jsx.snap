@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListMove> should render with given state from Redux store and correct props 1`] = `
+<Fragment>
+  <styled.div>
+    <Select
+      label="Board"
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "title": "Board 1 (current)",
+            "value": "Board1ID",
+          },
+          Object {
+            "title": "Board 2",
+            "value": "Board2ID",
+          },
+        ]
+      }
+      placeholder="Select board"
+      value="Board 1"
+    />
+    <Select
+      label="Position"
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "title": "1 (current)",
+            "value": 1,
+          },
+          Object {
+            "title": "2",
+            "value": 2,
+          },
+          Object {
+            "title": "3",
+            "value": 3,
+          },
+        ]
+      }
+      placeholder="Select position"
+      value="0"
+    />
+  </styled.div>
+  <SubmitButton
+    onClick={[Function]}
+  >
+    Move
+  </SubmitButton>
+</Fragment>
+`;

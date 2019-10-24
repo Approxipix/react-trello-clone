@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListDeleteAllCards> should render with given state from Redux store 1`] = `
+<Fragment>
+  <styled.p>
+    This will remove all the cards in this list from the board.
+  </styled.p>
+  <SubmitButton
+    color="danger"
+    onClick={[Function]}
+  >
+    Delete all
+  </SubmitButton>
+</Fragment>
+`;

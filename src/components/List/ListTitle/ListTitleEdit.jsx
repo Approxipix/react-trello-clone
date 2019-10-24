@@ -18,9 +18,9 @@ class ListTitleEdit extends Component {
     };
   }
 
-  handleChange = ( value) => {
+  handleChange = (event) => {
     this.setState({
-      title: value,
+      title: event.target.value,
     });
   };
 
@@ -55,7 +55,7 @@ class ListTitleEdit extends Component {
             value={title}
             placeholder="Enter list title..."
             onKeyDown={this.handleKeyDown}
-            onChange={(e) => this.handleChange(e.target.value)}
+            onChange={(e) => this.handleChange(e)}
             onBlur={this.handleSubmit}
             spellCheck={false}
             autoFocus

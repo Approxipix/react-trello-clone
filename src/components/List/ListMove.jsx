@@ -10,7 +10,7 @@ const Container = styled.div`
   margin-bottom: 1rem;
 `;
 
-class ListDelete extends Component {
+class ListMove extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -72,7 +72,7 @@ class ListDelete extends Component {
       <Select
         label="Board"
         placeholder="Select board"
-        value={boards[newBoardId].title}
+        value={boards[newBoardId] ? boards[newBoardId].title : ''}
         options={boardsOptions}
         onChange={(id) => this.setNewBoardId(id)}
       />
@@ -137,4 +137,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListDelete);
+export default connect(mapStateToProps, mapDispatchToProps)(ListMove);

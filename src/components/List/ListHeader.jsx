@@ -12,9 +12,10 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
-const Actions = styled.div`
+const Icon = styled.div`
   cursor: pointer;
 `;
+Icon.displayName = 'Icon';
 
 
 class ListHeader extends Component {
@@ -42,9 +43,9 @@ class ListHeader extends Component {
             listId={listId}
             listTitle={listTitle}
           />
-          <Actions onClick={() => this.toggleOpened()}>
+          <Icon onClick={() => this.toggleOpened()}>
             <FontAwesomeIcon icon="ellipsis-h" />
-          </Actions>
+          </Icon>
         </Header>
         {isOpened && (
           <ListActions

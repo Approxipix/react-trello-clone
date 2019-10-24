@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListActions> it should render fontawesome icon if sidebarView was selected 1`] = `
+<ClickOutside
+  action="mousedown"
+  toggleOpened={[Function]}
+>
+  <styled.div>
+    <styled.div>
+      <styled.button
+        disabled={false}
+        onClick={[Function]}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon="chevron-left"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </styled.button>
+      <styled.h3>
+        Test Component
+      </styled.h3>
+      <styled.button
+        onClick={[Function]}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon="times"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </styled.button>
+    </styled.div>
+    <styled.div>
+      <ListActionsNavigation
+        changeView={[Function]}
+      />
+    </styled.div>
+  </styled.div>
+</ClickOutside>
+`;
+
+exports[`<ListActions> should render with given state from Redux store 1`] = `
+<ClickOutside
+  action="mousedown"
+  toggleOpened={[Function]}
+>
+  <styled.div>
+    <styled.div>
+      <styled.button
+        disabled={true}
+        onClick={[Function]}
+      />
+      <styled.h3>
+        List Actions
+      </styled.h3>
+      <styled.button
+        onClick={[Function]}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon="times"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </styled.button>
+    </styled.div>
+    <styled.div>
+      <ListActionsNavigation
+        changeView={[Function]}
+      />
+    </styled.div>
+  </styled.div>
+</ClickOutside>
+`;
