@@ -37,6 +37,7 @@ CheckListContainer.displayName = 'CheckListContainer';
 
 const Actions = styled.div`
   display: flex;
+  align-items: flex-start;
 `;
 
 const Button = styled.button`

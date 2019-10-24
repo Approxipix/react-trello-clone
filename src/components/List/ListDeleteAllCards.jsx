@@ -18,7 +18,7 @@ class ListDeleteAllCards extends Component {
         <Text>
           This will remove all the cards in this list from the board.
         </Text>
-        <SubmitButton color={'danger'} onClick={() => this.deleteAllCards()}>
+        <SubmitButton color='danger' onClick={() => this.deleteAllCards()}>
           Delete all
         </SubmitButton>
       </>

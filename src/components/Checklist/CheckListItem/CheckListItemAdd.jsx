@@ -68,7 +68,7 @@ class CheckListItemAdd extends Component {
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Wrapper>
-          <form onSubmit={this.handleSubmit}>
+          <form>
             <Input
               type="text"
               size=".875rem"
@@ -81,7 +81,7 @@ class CheckListItemAdd extends Component {
               autoFocus
             />
             <Actions>
-              <SubmitButton type="submit" disabled={!title}>
+              <SubmitButton onClick={(e) => this.handleSubmit(e)} disabled={!title}>
                 Save
               </SubmitButton>
               <CancelButton onClick={() => this.toggleOpened()}>

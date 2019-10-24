@@ -12,6 +12,8 @@ describe('<CheckListAdd>', () => {
   let mockAddCheckList = jest.fn();
 
   beforeEach(() => {
+    jest.clearAllMocks();
+
     store = mockStore({});
     store.dispatch = mockAddCheckList;
     const props = {
@@ -94,7 +96,9 @@ describe('<CheckListAdd>', () => {
     };
 
     component.setState({ title: "Test Title" });
-    component.find('SubmitButton').simulate('click');
+    component.find('SubmitButton').simulate('click', {
+      preventDefault: () => {}
+    });
 
     expect(mockAddCheckList).toHaveBeenCalledTimes(1);
     expect(mockAddCheckList).toHaveBeenCalledWith(expectedAction);

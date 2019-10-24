@@ -15,9 +15,7 @@ exports[`<CheckListItemAdd> should render form if isOpened is true 1`] = `
   toggleOpened={[Function]}
 >
   <styled.div>
-    <form
-      onSubmit={[Function]}
-    >
+    <form>
       <Input
         autoFocus={true}
         onChange={[Function]}
@@ -32,7 +30,7 @@ exports[`<CheckListItemAdd> should render form if isOpened is true 1`] = `
       <styled.div>
         <SubmitButton
           disabled={true}
-          type="submit"
+          onClick={[Function]}
         >
           Save
         </SubmitButton>

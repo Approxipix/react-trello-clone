@@ -97,7 +97,7 @@ class ListAdd extends Component {
               autoFocus
             />
             <Actions>
-              <SubmitButton type="submit" disabled={title === ""}>
+              <SubmitButton type="submit" disabled={!title}>
                 Add list
               </SubmitButton>
               <CancelButton onClick={() => this.toggleOpened()}>

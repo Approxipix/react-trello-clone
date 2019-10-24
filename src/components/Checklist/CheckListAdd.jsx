@@ -12,16 +12,16 @@ class CheckListAdd extends Component {
     };
   }
 
-  handleChange = (e) => {
+  handleChange = (event) => {
     this.setState({
-      title: e.target.value
+      title: event.target.value
     });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
     const { title } = this.state;
-    if (!title)  return;
+    if (!title) return;
     this.props.actions.addCheckList({
       checkListTitle: title,
       cardId: this.props.cardId,
@@ -33,7 +33,7 @@ class CheckListAdd extends Component {
   render() {
     const { title } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form>
         <Input
           autoFocus
           type="text"
@@ -42,7 +42,7 @@ class CheckListAdd extends Component {
           onChange={(e) => this.handleChange(e)}
           spellCheck={false}
         />
-        <SubmitButton type="submit" disabled={title === ""}>
+        <SubmitButton onClick={(e) => this.handleSubmit(e)} disabled={!title}>
           Add
         </SubmitButton>
       </form>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import CardChecklistAdd from '../Checklist/CheckListAdd';
 import CardDelete from '../Card/CardDelete';
 import LabelAdd from '../Label/LabelAdd';
 import CardTooltip from './CardTooltip';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from 'styled-components';
-import PropTypes from "prop-types";
 
 const Wrapper = styled.div`
   position: relative;

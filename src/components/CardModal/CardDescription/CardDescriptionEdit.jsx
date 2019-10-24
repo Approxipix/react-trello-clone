@@ -72,12 +72,11 @@ class CardDescriptionEdit extends Component {
             ref={(e) => { this.textarea = e }}
             onKeyDown={this.handleKeyDown}
             onChange={(e) => this.handleChange(e)}
-            onBlur={() => this.props.toggleEditDescription()}
             autoFocus
             spellCheck={false}
           />
           <Actions>
-            <SubmitButton onMouseDown={(e) => this.handleSubmit(e)}>
+            <SubmitButton onClick={(e) => this.handleSubmit(e)}>
               Save
             </SubmitButton>
             <CancelButton onClick={() => this.props.toggleEditDescription()}>

@@ -63,6 +63,7 @@ describe('<CheckListItemAdd>', () => {
 
   describe('add checklist item form', () => {
     beforeEach(() => {
+      jest.clearAllMocks();
       component.setState({ isOpened: true });
     });
 
@@ -139,7 +140,9 @@ describe('<CheckListItemAdd>', () => {
       };
 
       component.setState({ title: 'Test Title' });
-      component.find('SubmitButton').simulate('click');
+      component.find('SubmitButton').simulate('click', {
+        preventDefault: () => {}
+      });
 
       expect(mockAddCheckListItem).toHaveBeenCalledTimes(1);
       expect(mockAddCheckListItem).toHaveBeenCalledWith(expectedAction);

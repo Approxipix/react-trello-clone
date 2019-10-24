@@ -126,7 +126,7 @@ class BoardAdd extends Component {
               ))}
             </ColorPicker>
             <Actions>
-              <SubmitButton type={'submit'} disabled={boardTitle === ""}>
+              <SubmitButton type='submit' disabled={!boardTitle}>
                 Create board
               </SubmitButton>
               <CancelButton onClick={() => this.toggleOpened()}>
