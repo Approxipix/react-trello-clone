@@ -33,6 +33,7 @@ const Icon = styled.div`
 const CheckListContainer = styled.div`
   margin-bottom: .5rem;
 `;
+CheckListContainer.displayName = 'CheckListContainer';
 
 const Actions = styled.div`
   display: flex;
@@ -51,6 +52,7 @@ const Button = styled.button`
     margin-left: .5rem;
   }
 `;
+Button.displayName = 'Button';
 
 class CheckList extends Component {
   constructor(props) {
@@ -122,7 +124,7 @@ class CheckList extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    checkList: state.checkListReducer[ownProps.chekListId],
+    checkList: state.checkListReducer[ownProps.checkListId],
   }
 }
 

@@ -2,31 +2,30 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import { shallow } from 'enzyme';
 import toJson from "enzyme-to-json";
-import BoardAdd from '../BoardAdd';
+import CheckListItemAdd from '../CheckListItem/CheckListItemAdd';
 
 const mockStore = configureStore([]);
 
-describe('<BoardAdd>', () => {
+describe('<CheckListItemAdd>', () => {
   let store;
+  let props;
   let state;
   let component;
-  let mockAddBoard = jest.fn();
+  let mockAddCheckListItem = jest.fn();
 
   beforeEach(() => {
-    store = mockStore({
-      rootReducer: {
-        colors: ['#2E7EAF', '#00603d', '#D29034'],
-      }
-    });
-    store.dispatch = mockAddBoard;
+    store = mockStore({});
+    store.dispatch = mockAddCheckListItem;
+    props = {
+      checkListId: 'CheckListID',
+    };
     state = {
       isOpened: false,
-      boardTitle: '',
-      boardColor: '',
+      title: '',
     };
 
-    const wrapper = shallow(<BoardAdd store={store} />);
-    component = wrapper.find('BoardAdd').dive();
+    const wrapper = shallow(<CheckListItemAdd store={store} {...props} />);
+    component = wrapper.find('CheckListItemAdd').dive();
     component.setState({...state})
   });
 
@@ -64,7 +63,7 @@ describe('<BoardAdd>', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  describe('add board form', () => {
+  describe('add checklist item form', () => {
     beforeEach(() => {
       component.setState({ isOpened: true });
     });
@@ -82,58 +81,31 @@ describe('<BoardAdd>', () => {
       const mockEvent = {
         target: {
           name: "title",
-          value: "Test Title"
+          value: "Test title"
         }
       };
 
       component.find("Input").simulate("change", mockEvent);
 
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenCalledWith("boardTitle", "Test Title");
+      expect(spy).toHaveBeenCalledWith(mockEvent);
     });
 
-    it('should call handleChange on boardColor after click on color item', () => {
-      const spy = jest.spyOn(component.instance(), "handleChange");
-
-      component.find('ColorPicker').childAt(0).simulate('click');
-
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenCalledWith("boardColor", "#2E7EAF");
-
-      component.find('ColorPicker').childAt(1).simulate('click');
-
-      expect(spy).toHaveBeenCalledTimes(2);
-      expect(spy).toHaveBeenCalledWith("boardColor", "#00603d");
-    });
-
-    it('should call setState on boardTitle', () => {
+    it('should call setState on title', () => {
+      const mockEvent = {
+        target: {
+          name: "title",
+          value: "Test Title"
+        }
+      };
       const expectedState = {
-        boardTitle: "Test Title",
-        boardColor: "",
+        title: "Test Title",
         isOpened: true
       };
 
-      component.instance().handleChange("boardTitle", "Test Title");
+      component.instance().handleChange(mockEvent);
 
       expect(component.state()).toEqual(expectedState)
-    });
-
-    it('should call setState on boardColor', () => {
-      const expectedState = {
-        boardTitle: "",
-        boardColor: "#D29034",
-        isOpened: true
-      };
-
-      component.instance().handleChange("boardColor", "#D29034");
-
-      expect(component.state()).toEqual(expectedState)
-    });
-
-    it('should render fontawesome icon if boardColor and color are the same', () => {
-      component.setState({ boardTitle: 'Test Title', boardColor: '#D29034' });
-
-      expect(toJson(component)).toMatchSnapshot();
     });
 
     it("should call handleSubmit with the correct params", () => {
@@ -142,7 +114,7 @@ describe('<BoardAdd>', () => {
         preventDefault: jest.fn()
       };
 
-      component.setState({ boardTitle: 'Test Title', boardColor: '#D29034' });
+      component.setState({ title: 'Test Title' });
       component.instance().handleSubmit(mockEvent);
 
       expect(spy).toHaveBeenCalledTimes(1);
@@ -161,19 +133,18 @@ describe('<BoardAdd>', () => {
 
     it("should dispatch an action after handleSubmit", () => {
       const expectedAction = {
-        type: 'ADD_BOARD',
+        type: 'ADD_CHECKLIST_ITEM',
         payload: {
-          boardTitle: 'Test Title',
-          boardColor: '#D29034',
-          boardId: expect.any(String),
+          checkListId: 'CheckListID',
+          checkListTitle: 'Test Title',
         }
       };
 
-      component.setState({ boardTitle: 'Test Title', boardColor: '#D29034' });
+      component.setState({ title: 'Test Title' });
       component.find('SubmitButton').simulate('click');
 
-      expect(mockAddBoard).toHaveBeenCalledTimes(1);
-      expect(mockAddBoard).toHaveBeenCalledWith(expectedAction);
+      expect(mockAddCheckListItem).toHaveBeenCalledTimes(1);
+      expect(mockAddCheckListItem).toHaveBeenCalledWith(expectedAction);
     });
   })
 });

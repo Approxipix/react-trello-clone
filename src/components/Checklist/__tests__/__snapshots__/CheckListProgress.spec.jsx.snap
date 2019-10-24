@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CheckListProgress> should renders correctly without props 1`] = `""`;
+
+exports[`<CheckListProgress> should renders without crashing given the required props 1`] = `
+<styled.div>
+  <styled.div>
+    <Progress
+      width={60}
+    />
+  </styled.div>
+  <styled.div>
+    60
+     %
+  </styled.div>
+</styled.div>
+`;

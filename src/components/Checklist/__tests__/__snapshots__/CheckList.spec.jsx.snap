@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CheckList> should render with given state from Redux store and correct props 1`] = `
+<styled.div>
+  <styled.div>
+    <styled.div>
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="check-square"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </styled.div>
+    <CheckListTitle
+      checkListId="CheckListID"
+      checkListTitle="CheckList Title"
+    />
+    <Button
+      onClick={[Function]}
+    >
+      Delete
+    </Button>
+  </styled.div>
+  <CheckListProgress
+    items={
+      Array [
+        Object {
+          "description": "CheckList Item1 Title",
+          "status": false,
+        },
+        Object {
+          "description": "CheckList Item2 Title",
+          "status": true,
+        },
+      ]
+    }
+  />
+  <CheckListContainer>
+    <Connect(CheckListItem)
+      checkListId="CheckListID"
+      description="CheckList Item1 Title"
+      hideCompletedItems={false}
+      index={0}
+      key="0"
+      status={false}
+    />
+    <Connect(CheckListItem)
+      checkListId="CheckListID"
+      description="CheckList Item2 Title"
+      hideCompletedItems={false}
+      index={1}
+      key="1"
+      status={true}
+    />
+  </CheckListContainer>
+  <styled.div>
+    <Connect(CheckListItemAdd)
+      checkListId="CheckListID"
+    />
+    <Button
+      onClick={[Function]}
+    >
+      Hide completed items
+    </Button>
+  </styled.div>
+</styled.div>
+`;

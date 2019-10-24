@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CheckListTitle> should render CheckListTitleEdit component if editTitle is true 1`] = `
+<Connect(CheckListTitleEdit)
+  checkListId="CheckListID"
+  checkListTitle="CheckList Title"
+  toggleEditTitle={[Function]}
+/>
+`;
+
+exports[`<CheckListTitle> should render title if editTitle is false 1`] = `
+<Title
+  onClick={[Function]}
+>
+  CheckList Title
+</Title>
+`;

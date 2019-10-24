@@ -171,11 +171,11 @@ const ChecklistContainer = (props) => {
   const { card } = props;
   if (card.checkLists.length === 0) return null;
   return (
-    card.checkLists.map((checklist, index) => (
+    card.checkLists.map((checkListId, index) => (
       <Container key={index}>
         <CheckList
           cardId={card._cardId}
-          chekListId={checklist}
+          checkListId={checkListId}
         />
       </Container>
     ))

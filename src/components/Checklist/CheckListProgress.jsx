@@ -25,6 +25,7 @@ const Progress = styled.div`
   width: ${props => props.width}%;
   transition: width 0.2s ease-in-out;
 `;
+Progress.displayName = 'Progress';
 
 const Label = styled.div`
   position: absolute;
@@ -37,11 +38,12 @@ const Label = styled.div`
 
 const CheckListProgress = (props) => {
   let color, width = 0;
+  const { items } = props;
+  if (!items) return null;
+
   const
-    { items } = props,
     allItems = items.length,
     doneItems = items.filter(item => !!item.status).length;
-
   if (!!allItems) width = (doneItems * 100) / allItems;
   if (allItems === doneItems) color = '#61bd4f';
   return (

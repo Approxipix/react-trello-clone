@@ -15,13 +15,13 @@ class CheckListTitleEdit extends Component {
 
   handleKeyDown = (e) => {
     if (e.keyCode === 27) {
-      this.props.toggleEditing()
+      this.props.toggleEditTitle()
     }
   };
 
-  handleChange = (value) => {
+  handleChange = (event) => {
     this.setState({
-      title: value,
+      title: event.target.value,
     });
   };
 
@@ -35,13 +35,13 @@ class CheckListTitleEdit extends Component {
       checkListId: this.props.checkListId,
       checkListTitle: title,
     });
-    this.props.toggleEditing()
+    this.props.toggleEditTitle()
   };
 
   render = () => {
     const { title } = this.state;
     return (
-      <ClickOutside toggleOpened={this.props.toggleEditing}>
+      <ClickOutside toggleOpened={this.props.toggleEditTitle}>
         <form onSubmit={this.handleSubmit}>
           <Input
             type="text"
@@ -52,7 +52,7 @@ class CheckListTitleEdit extends Component {
             value={title}
             placeholder="Enter list title..."
             onKeyDown={this.handleKeyDown}
-            onChange={(e) => this.handleChange(e.target.value)}
+            onChange={(e) => this.handleChange(e)}
             onBlur={this.handleSubmit}
             spellCheck={false}
             autoFocus

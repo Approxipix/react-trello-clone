@@ -22,6 +22,7 @@ const AddButton = styled.button`
     background-color: rgba(9,30,66,.13);
   }
 `;
+AddButton.displayName = 'AddButton';
 
 class CheckListItemAdd extends Component {
   constructor(props) {
@@ -39,9 +40,9 @@ class CheckListItemAdd extends Component {
     })
   };
 
-  handleChange = (value) => {
+  handleChange = (event) => {
     this.setState({
-      title: value,
+      title: event.target.value,
     });
   };
 
@@ -67,7 +68,7 @@ class CheckListItemAdd extends Component {
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Wrapper>
-          <form >
+          <form onSubmit={this.handleSubmit}>
             <Input
               type="text"
               size=".875rem"
@@ -75,12 +76,12 @@ class CheckListItemAdd extends Component {
               placeholder="Enter a card title..."
               value={title}
               onKeyDown={this.handleKeyDown}
-              onChange={(e) => this.handleChange(e.target.value)}
+              onChange={(e) => this.handleChange(e)}
               spellCheck={false}
               autoFocus
             />
             <Actions>
-              <SubmitButton disabled={!title} onClick={(e) => this.handleSubmit(e)}>
+              <SubmitButton type="submit" disabled={!title}>
                 Save
               </SubmitButton>
               <CancelButton onClick={() => this.toggleOpened()}>

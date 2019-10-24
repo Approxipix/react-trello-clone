@@ -27,6 +27,7 @@ const Button = styled.button`
   transition: all 0.2s ease-in;
   transform: translate(0, -50%);
 `;
+Button.displayName = 'Button';
 
 const Wrapper = styled.label`
   position: relative;

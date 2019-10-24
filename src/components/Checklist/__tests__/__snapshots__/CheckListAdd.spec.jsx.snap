@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CheckListAdd> should renders without crashing 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <Input
+    autoFocus={true}
+    onChange={[Function]}
+    placeholder="Add checklist title"
+    spellCheck={false}
+    type="text"
+    value=""
+  />
+  <SubmitButton
+    disabled={true}
+    type="submit"
+  >
+    Add
+  </SubmitButton>
+</form>
+`;

@@ -7,6 +7,7 @@ const Title = styled.h3`
   font-size: 1.2rem;
   font-weight: 600;
 `;
+Title.displayName = 'Title';
 
 class CheckListTitle extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class CheckListTitle extends Component {
           </Title>
         ) : (
           <CheckListTitleEdit
-            toggleEditing={this.toggleEditTitle}
+            toggleEditTitle={this.toggleEditTitle}
             checkListTitle={checkListTitle}
             checkListId={checkListId}
           />

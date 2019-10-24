@@ -71,10 +71,10 @@ class BoardAdd extends Component {
     }
   };
 
-  handleChange = (key, event) => {
+  handleChange = (key, value) => {
     this.setState({
       ...this.state,
-      [key]: event,
+      [key]: value,
     });
   };
 

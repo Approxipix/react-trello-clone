@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CheckListTitleEdit> should render with given state from Redux store 1`] = `
+<ClickOutside
+  toggleOpened={[MockFunction]}
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <Input
+      autoFocus={true}
+      margin="0"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      padding=".3rem .5rem"
+      placeholder="Enter list title..."
+      size="1.2rem"
+      spellCheck={false}
+      type="text"
+      value="CheckList Title"
+      weight="600"
+    />
+  </form>
+</ClickOutside>
+`;

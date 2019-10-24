@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CheckListItem> should renders without crashing given the required props 1`] = `
+<styled.label
+  onClick={[Function]}
+>
+  <styled.div
+    status={false}
+  >
+    <span>
+      <svg
+        height="8px"
+        viewBox="0 0 12 10"
+        width="10px"
+      >
+        <polyline
+          points="1.5 6 4.5 9 10.5 1"
+        />
+      </svg>
+    </span>
+  </styled.div>
+  <styled.input
+    checked={false}
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <styled.div
+    status={false}
+  >
+    Description
+  </styled.div>
+  <Button
+    onClick={[Function]}
+    type="button"
+  >
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon="times"
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      swapOpacity={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+  </Button>
+</styled.label>
+`;
+
+exports[`<CheckListItem> should return if hideCompletedItems and status equals true 1`] = `""`;

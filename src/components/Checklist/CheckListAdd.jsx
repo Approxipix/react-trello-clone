@@ -33,16 +33,16 @@ class CheckListAdd extends Component {
   render() {
     const { title } = this.state;
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <Input
           autoFocus
           type="text"
           placeholder="Add checklist title"
           value={title}
-          onChange={this.handleChange}
+          onChange={(e) => this.handleChange(e)}
           spellCheck={false}
         />
-        <SubmitButton onClick={(e) => this.handleSubmit(e)} disabled={title === ""}>
+        <SubmitButton type="submit" disabled={title === ""}>
           Add
         </SubmitButton>
       </form>
