@@ -66,7 +66,6 @@ class ListCards extends Component {
 }
 
 ListCards.defaultProps = {
-  listId: '',
   cardsId: [],
 };
 

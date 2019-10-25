@@ -80,6 +80,9 @@ class CheckList extends Component {
   render() {
     const { checkList } = this.props;
     const { hideCompletedItems } = this.state;
+
+    if (!checkList) return null;
+
     const doneItems = checkList.items.filter(items => !!items.status).length;
     return (
       <Container>
@@ -125,25 +128,22 @@ class CheckList extends Component {
 }
 
 CheckList.defaultProps = {
-  checkListId: '',
-  checkLists: {}
+  checkLists: null,
 };
 
 CheckList.propTypes = {
   cardId: PropTypes.string.isRequired,
   checkListId: PropTypes.string.isRequired,
-  checkLists: PropTypes.objectOf(
-    PropTypes.shape({
-      _checkListId: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      items: PropTypes.arrayOf(
-        PropTypes.shape({
-          status: PropTypes.bool.isRequired,
-          description: PropTypes.string,
-        })
-      )
-    })
-  ),
+  checkList: PropTypes.shape({
+    _checkListId: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        status: PropTypes.bool.isRequired,
+        description: PropTypes.string,
+      })
+    ).isRequired
+  })
 };
 
 function mapStateToProps(state, ownProps) {

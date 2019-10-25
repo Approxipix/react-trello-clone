@@ -65,9 +65,14 @@ class BoardBackgroundEdit extends Component {
   }
 }
 
+BoardBackgroundEdit.defaultProps = {
+  colors: [],
+};
+
 BoardBackgroundEdit.propTypes = {
   boardId: PropTypes.string.isRequired,
   boardColor: PropTypes.string.isRequired,
+  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 function mapStateToProps(state) {

@@ -28,7 +28,6 @@ class ListDeleteAllCards extends Component {
 }
 
 ListDeleteAllCards.defaultProps = {
-  listId: '',
   toggleOpened: () => {},
 };
 

@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { addLabelToCard } from "../../redux/cardReducer/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from 'styled-components';
+import Label from "./Label";
 
 const LabelList = styled.ul`
   display: flex;

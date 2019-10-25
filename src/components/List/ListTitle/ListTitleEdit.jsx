@@ -69,13 +69,12 @@ class ListTitleEdit extends Component {
 
 ListTitleEdit.defaultProps = {
   listId: '',
-  listTitle: '',
   toggleEditTitle: () => {},
 };
 
 ListTitleEdit.propTypes = {
   listId: PropTypes.string.isRequired,
-  listTitle: PropTypes.string.isRequired,
+  listTitle: PropTypes.string,
   toggleEditTitle: PropTypes.func.isRequired,
 };
 

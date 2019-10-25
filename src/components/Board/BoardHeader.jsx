@@ -33,7 +33,7 @@ const BoardHeader = (props) => {
   const { toggleSidebar } = props.actions;
   return (
     <Header>
-      <BoardTitle/>
+      <BoardTitle />
       <Button onClick={() => toggleSidebar()}>
         Show menu
       </Button>

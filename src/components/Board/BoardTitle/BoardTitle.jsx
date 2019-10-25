@@ -32,8 +32,11 @@ class BoardTitle extends Component {
   };
 
   render() {
-    const { board } = this.props;
+    const { boards, currentBoardID } = this.props;
     const { editTitle } = this.state;
+
+    const board = boards[currentBoardID];
+    if (!board) return;
     return (
       !editTitle ? (
         <Title onClick={() => this.toggleEditTitle()}>
@@ -50,19 +53,14 @@ class BoardTitle extends Component {
   }
 }
 
-BoardTitle.defaultProps = {
-  currentBoardID: null,
-  board: {},
-};
-
 BoardTitle.propTypes = {
   currentBoardID: PropTypes.string.isRequired,
   boards: PropTypes.objectOf(
     PropTypes.shape({
       _boardId: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      color: PropTypes.string.isRequired,
-      lists: PropTypes.arrayOf(PropTypes.string).isRequired,
+      color: PropTypes.string,
+      lists: PropTypes.arrayOf(PropTypes.string),
     })
   ).isRequired,
 };

@@ -52,7 +52,6 @@ class CheckListAdd extends Component {
 }
 
 CheckListAdd.defaultProps = {
-  cardId: '',
   toggleTooltip: () => {}
 };
 

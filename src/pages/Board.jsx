@@ -112,10 +112,6 @@ class Board extends Component {
   }
 }
 
-Board.defaultProps = {
-  currentBoardId: null,
-};
-
 Board.propTypes = {
   isSidebarOpened: PropTypes.bool,
   currentBoardId: PropTypes.string,

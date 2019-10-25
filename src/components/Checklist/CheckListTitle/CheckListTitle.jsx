@@ -44,7 +44,6 @@ class CheckListTitle extends Component {
 }
 
 CheckListTitle.defaultProps = {
-  checkListId: '',
   checkListTitle: '',
 };
 

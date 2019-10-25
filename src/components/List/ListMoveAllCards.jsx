@@ -72,10 +72,8 @@ class ListMoveAllCards extends Component {
 }
 
 ListMoveAllCards.defaultProps = {
-  boardId: '',
-  listId: '',
-  boards: {},
-  lists: {},
+  boards: null,
+  lists: null,
 };
 
 ListMoveAllCards.propTypes = {

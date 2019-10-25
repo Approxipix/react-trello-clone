@@ -19,7 +19,7 @@ const Title = styled.h1`
 const BoardList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  grid-auto-rows: minmax(10rem, 1fr);
+  grid-auto-rows: minmax(9rem, 1fr);
   grid-gap: 1rem;
 `;
 
@@ -63,6 +63,7 @@ BoardSchemeBar.displayName = 'BoardSchemeBar';
 
 const Boards = (props) => {
   const { boards, lists } = props;
+  if (!boards) return;
   let boardsItems = Object.keys(boards).map(key => boards[key]);
   let listItems = Object.keys(lists).map(key => lists[key]);
   return (
@@ -98,8 +99,7 @@ const Boards = (props) => {
 };
 
 Boards.defaultProps = {
-  boards: {},
-  lists: {},
+  boards: null,
 };
 
 Boards.propTypes = {
@@ -117,7 +117,7 @@ Boards.propTypes = {
       title: PropTypes.string,
       cards: PropTypes.arrayOf(PropTypes.string).isRequired
     })
-  ).isRequired,
+  ),
 };
 
 function mapStateToProps(state) {

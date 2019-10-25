@@ -77,6 +77,7 @@ class CardActions extends Component {
   render() {
     const { listId, card, title, actions } = this.props;
     const { isOpened } = this.state;
+    if (!card) return null;
     let actionItems = [
       {
         title: 'Label',
@@ -141,8 +142,7 @@ class CardActions extends Component {
 }
 
 CardActions.defaultProps = {
-  card: {},
-  listId: '',
+  card: null,
   title: '',
   actions: [],
 };
@@ -155,7 +155,7 @@ CardActions.propTypes = {
     checkLists: PropTypes.arrayOf(PropTypes.string),
     cardLabels: PropTypes.array,
   }).isRequired,
-  listId: PropTypes.string.isRequired,
+  listId: PropTypes.string,
   title: PropTypes.string.isRequired,
   actions: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

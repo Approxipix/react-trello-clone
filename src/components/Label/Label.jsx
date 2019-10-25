@@ -26,6 +26,10 @@ const Label = (props) => {
   )
 };
 
+Label.defaultProps = {
+  cardLabels: null
+};
+
 Label.propTypes = {
   cardLabels: PropTypes.arrayOf(
     PropTypes.shape({

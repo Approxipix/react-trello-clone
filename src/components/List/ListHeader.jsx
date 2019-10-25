@@ -61,14 +61,12 @@ class ListHeader extends Component {
 }
 
 ListHeader.defaultProps = {
-  boardId: '',
-  listId: '',
   listTitle: '',
 };
 
 ListHeader.propTypes = {
-  boardId: PropTypes.string.isRequired,
-  listId: PropTypes.string.isRequired,
+  boardId: PropTypes.string,
+  listId: PropTypes.string,
   listTitle: PropTypes.string.isRequired,
 };
 

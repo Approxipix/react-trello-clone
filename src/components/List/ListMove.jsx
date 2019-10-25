@@ -124,9 +124,7 @@ class ListMove extends Component {
 }
 
 ListMove.defaultProps = {
-  boardId: '',
-  listId: '',
-  boards: {},
+  boards: null,
 };
 
 ListMove.propTypes = {

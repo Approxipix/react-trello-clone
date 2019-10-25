@@ -189,7 +189,7 @@ const CardModal = (props) => {
   const boardUrl = `/b/${currentBoardId}`;
   if (!card) return <Redirect to={boardUrl} />;
 
-  let listId;
+  let listId = '';
   Object.keys(lists).forEach(list => {
     lists[list].cards.forEach(item => {
       if (item === card._cardId) {

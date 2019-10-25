@@ -65,7 +65,6 @@ class CheckListTitleEdit extends Component {
 }
 
 CheckListTitleEdit.defaultProps = {
-  checkListId: '',
   toggleEditTitle: () => {},
 };
 

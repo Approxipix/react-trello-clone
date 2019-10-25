@@ -70,7 +70,6 @@ class BoardTitleEdit extends Component {
 }
 
 BoardTitleEdit.defaultProps = {
-  boardId: '',
   toggleEditTitle: () => {},
 };
 

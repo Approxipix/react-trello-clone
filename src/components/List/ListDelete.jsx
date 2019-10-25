@@ -29,11 +29,6 @@ class ListDelete extends Component {
   }
 }
 
-ListDelete.defaultProps = {
-  boardId: '',
-  listId: '',
-};
-
 ListDelete.propTypes = {
   boardId: PropTypes.string.isRequired,
   listId: PropTypes.string.isRequired,

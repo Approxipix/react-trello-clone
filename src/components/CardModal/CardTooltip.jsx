@@ -90,8 +90,8 @@ class CardTooltip extends Component {
 }
 
 CardTooltip.defaultProps = {
-  isOpened: false,
   title: '',
+  isOpened: false,
   toggleTooltip: () => {},
 };
 

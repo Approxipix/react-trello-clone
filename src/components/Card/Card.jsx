@@ -84,11 +84,11 @@ export const CardBadges = (props) => {
 
 const Card = (props) => {
   const {
-    currentBoardID,
-    card,
     index,
-    isDraggingOver,
+    card,
     checkLists,
+    currentBoardID,
+    isDraggingOver,
   } = props;
   if (!card) return null;
   return (
@@ -131,22 +131,20 @@ const Card = (props) => {
 
 Card.defaultProps = {
   card: null,
-  currentBoardID: null,
-  cardId: null,
   checkLists: []
 };
 
 Card.propTypes = {
-  index: PropTypes.number,
-  isDraggingOver: PropTypes.bool,
   currentBoardID: PropTypes.string.isRequired,
   cardId: PropTypes.string.isRequired,
+  index: PropTypes.number,
+  isDraggingOver: PropTypes.bool,
   card: PropTypes.shape({
     _cardId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    description: PropTypes.string,
-    checkLists: PropTypes.arrayOf(PropTypes.string),
-    cardLabels: PropTypes.array,
+    description: PropTypes.string.isRequired,
+    checkLists: PropTypes.arrayOf(PropTypes.string).isRequired,
+    cardLabels: PropTypes.array.isRequired,
   }).isRequired,
   checkLists: PropTypes.objectOf(
     PropTypes.shape({

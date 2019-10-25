@@ -115,7 +115,6 @@ class Sidebar extends Component {
 }
 
 Sidebar.defaultProps = {
-  currentBoardID: null,
   isSidebarOpened: false,
   boards: {},
 };

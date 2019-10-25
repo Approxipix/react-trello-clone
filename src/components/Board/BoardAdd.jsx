@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Actions, Input, SubmitButton, CancelButton } from '../BaseComponent';
 import ClickOutside from "../ClickOutside/ClickOutside";
 import styled from 'styled-components';
+import PropTypes from "prop-types";
 
 const AddButton = styled.button`
   font-size: 1rem; 
@@ -143,6 +144,14 @@ class BoardAdd extends Component {
     );
   };
 }
+
+BoardAdd.defaultProps = {
+  colors: [],
+};
+
+BoardAdd.propTypes = {
+  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 function mapStateToProps(state) {
   return {

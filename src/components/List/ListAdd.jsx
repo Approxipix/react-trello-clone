@@ -118,10 +118,6 @@ class ListAdd extends Component {
   };
 }
 
-ListAdd.defaultProps = {
-  boardId: '',
-};
-
 ListAdd.propTypes = {
   boardId: PropTypes.string.isRequired,
 };

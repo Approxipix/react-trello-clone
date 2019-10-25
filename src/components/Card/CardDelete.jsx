@@ -32,7 +32,9 @@ class CardDelete extends Component {
 }
 
 CardDelete.propTypes = {
-  currentBoardID: PropTypes.string,
+  currentBoardID: PropTypes.string.isRequired,
+  listId: PropTypes.string.isRequired,
+  cardId: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {

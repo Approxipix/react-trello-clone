@@ -21,6 +21,7 @@ const Container = styled.div`
 
 const List = (props) => {
   const {  boardId, list, index } = props;
+  if (!list) return null;
   return (
     <Draggable
       index={index}
@@ -54,7 +55,7 @@ const List = (props) => {
 List.defaultProps = {
   boardId: '',
   listId: '',
-  list: {}
+  list: null
 };
 
 List.propTypes = {
