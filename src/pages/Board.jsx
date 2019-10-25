@@ -31,7 +31,7 @@ const Container = styled.div`
   overflow: auto;
 `;
 
-const InnerList = (props) => {
+export const InnerList = (props) => {
   const { boardId, listsId, } = props;
   return (
     listsId.map((listId, index) => (
@@ -113,20 +113,18 @@ class Board extends Component {
 }
 
 Board.defaultProps = {
-  isSidebarOpened: false,
   currentBoardId: null,
-  board: {},
 };
 
 Board.propTypes = {
-  isSidebarOpened: PropTypes.bool.isRequired,
-  currentBoardId: PropTypes.string.isRequired,
+  isSidebarOpened: PropTypes.bool,
+  currentBoardId: PropTypes.string,
   board: PropTypes.shape({
-    _boardId: PropTypes.string.isRequired,
+    _boardId: PropTypes.string,
     title: PropTypes.string,
     color: PropTypes.string,
     lists: PropTypes.arrayOf(PropTypes.string),
-  }).isRequired,
+  }),
 };
 
 function mapStateToProps(state) {

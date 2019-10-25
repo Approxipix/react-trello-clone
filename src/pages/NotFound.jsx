@@ -27,7 +27,9 @@ class NotFound extends Component {
   }
 
   lineDraw(){
-    const path = this.svg.current.firstChild;
+    const svg = this.svg.current;
+    if (!svg) return;
+    const path = svg.firstChild;
     const length = path.getTotalLength();
     path.style.transition = path.style.WebkitTransition = 'none';
     path.style.strokeDasharray = length + ' ' + length;

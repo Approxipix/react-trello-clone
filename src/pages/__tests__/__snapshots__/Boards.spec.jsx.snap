@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Boards> should render with given state from Redux store and correct props 1`] = `
+<styled.div>
+  <styled.h1>
+    My Boards
+  </styled.h1>
+  <styled.ul>
+    <NavLink
+      key="0"
+      to="/b/Board1ID"
+    >
+      <BoardItem
+        color="#af2232"
+      >
+        <styled.h2>
+          Board1 Title
+        </styled.h2>
+        <styled.div>
+          <BoardSchemeBar
+            height={10}
+            key="0"
+          />
+          <BoardSchemeBar
+            height={10}
+            key="1"
+          />
+          <BoardSchemeBar
+            height={10}
+            key="2"
+          />
+        </styled.div>
+      </BoardItem>
+    </NavLink>
+    <NavLink
+      key="1"
+      to="/b/Board2ID"
+    >
+      <BoardItem
+        color="#af2232"
+      >
+        <styled.h2>
+          Board2 Title
+        </styled.h2>
+        <styled.div>
+          <BoardSchemeBar
+            height={10}
+            key="0"
+          />
+        </styled.div>
+      </BoardItem>
+    </NavLink>
+    <Connect(BoardAdd) />
+  </styled.ul>
+</styled.div>
+`;

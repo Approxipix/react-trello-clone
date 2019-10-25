@@ -11,8 +11,6 @@ describe('<ListMove>', () => {
   let props;
   let component;
   let mockToggleOpened= jest.fn();
-  let mockMoveList = jest.fn();
-  let mockMoveListToAnotherBoard = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -31,7 +29,7 @@ describe('<ListMove>', () => {
         }
       }
     });
-    store.dispatch = mockMoveList;
+    store.dispatch = jest.fn();
     props = {
       boardId: 'Board1ID',
       listId: 'List11',
@@ -84,8 +82,8 @@ describe('<ListMove>', () => {
       component.setState({ newListPosition: 2 });
       component.find('SubmitButton').simulate('click');
 
-      expect(mockMoveList).toHaveBeenCalledTimes(1);
-      expect(mockMoveList).toHaveBeenCalledWith(expectedAction);
+      expect(store.dispatch).toHaveBeenCalledTimes(1);
+      expect(store.dispatch).toHaveBeenCalledWith(expectedAction);
     });
 
     it("should dispatch an action if boardId/newBoardId are different", () => {
@@ -98,15 +96,12 @@ describe('<ListMove>', () => {
           newListPosition: 0,
         }
       };
-      store.dispatch = mockMoveListToAnotherBoard;
-      const wrapper = shallow(<ListMove store={store} {...props} />);
-      const component = wrapper.find('ListMove').dive();
 
       component.setState({ newBoardId: 'Board2ID', newListPosition: 1 });
       component.find('SubmitButton').simulate('click');
 
-      expect(mockMoveListToAnotherBoard).toHaveBeenCalledTimes(1);
-      expect(mockMoveListToAnotherBoard).toHaveBeenCalledWith(expectedAction);
+      expect(store.dispatch).toHaveBeenCalledTimes(1);
+      expect(store.dispatch).toHaveBeenCalledWith(expectedAction);
     });
   })
 });

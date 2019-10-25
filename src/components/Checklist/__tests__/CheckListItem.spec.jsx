@@ -10,8 +10,6 @@ describe('<CheckListItem>', () => {
   let store;
   let props;
   let component;
-  let mockUpdateCheckListItem = jest.fn();
-  let mockDeleteCheckListItem = jest.fn();
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -26,7 +24,7 @@ describe('<CheckListItem>', () => {
       status: false,
     };
     store = mockStore({});
-    store.dispatch = mockDeleteCheckListItem;
+    store.dispatch = jest.fn();
 
     const wrapper = shallow(<CheckListItem store={store} {...props} />);
     component = wrapper.find('CheckListItem').dive();
@@ -83,8 +81,8 @@ describe('<CheckListItem>', () => {
 
     component.find('Button').simulate('click');
 
-    expect(mockDeleteCheckListItem).toHaveBeenCalledTimes(1);
-    expect(mockDeleteCheckListItem).toHaveBeenCalledWith(expectedAction);
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
+    expect(store.dispatch).toHaveBeenCalledWith(expectedAction);
   });
 
   it('should dispatch an action on handleStatus ', () => {
@@ -96,13 +94,10 @@ describe('<CheckListItem>', () => {
         status: true,
       }
     };
-    store.dispatch = mockUpdateCheckListItem;
-    const wrapper = shallow(<CheckListItem store={store} {...props} />);
-    component = wrapper.find('CheckListItem').dive();
 
     component.instance().handleStatus();
 
-    expect(mockUpdateCheckListItem).toHaveBeenCalledTimes(1);
-    expect(mockUpdateCheckListItem).toHaveBeenCalledWith(expectedAction);
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
+    expect(store.dispatch).toHaveBeenCalledWith(expectedAction);
   });
 });

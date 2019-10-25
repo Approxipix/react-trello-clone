@@ -184,10 +184,19 @@ const ChecklistContainer = (props) => {
 };
 
 const CardModal = (props) => {
-  const { card, listId, currentBoardId } = props;
+  const { card, lists, currentBoardId } = props;
   if (!currentBoardId) return null;
   const boardUrl = `/b/${currentBoardId}`;
   if (!card) return <Redirect to={boardUrl} />;
+
+  let listId;
+  Object.keys(lists).forEach(list => {
+    lists[list].cards.forEach(item => {
+      if (item === card._cardId) {
+        listId = list;
+      }
+    })
+  });
   return (
     <Backdrop>
       <CloseBackdrop onClick={() => history.push(boardUrl)} />
@@ -222,37 +231,29 @@ const CardModal = (props) => {
   )
 };
 
-CardModal.defaultProps = {
-  listId: '',
-  currentBoardId: null,
-  card: {},
-};
-
 CardModal.propTypes = {
-  listId: PropTypes.string.isRequired,
-  currentBoardId: PropTypes.string.isRequired,
+  currentBoardId: PropTypes.string,
   card: PropTypes.shape({
     _cardId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
     checkLists: PropTypes.arrayOf(PropTypes.string).isRequired,
     cardLabels: PropTypes.array.isRequired,
-  }).isRequired,
+  }),
+  lists: PropTypes.objectOf(
+    PropTypes.shape({
+      _listId: PropTypes.string.isRequired,
+      title: PropTypes.string,
+      cards: PropTypes.arrayOf(PropTypes.string).isRequired
+    })
+  ).isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
-  let listId = null;
-  Object.keys(state.listReducer).forEach(list => {
-    state.listReducer[list].cards.forEach(card => {
-      if (card === ownProps.match.params.cardId) {
-        listId = list;
-      }
-    })
-  });
   return {
-    listId: listId,
     currentBoardId: state.rootReducer.currentBoardID,
     card: state.cardReducer[ownProps.match.params.cardId],
+    lists: state.listReducer,
   }
 }
 

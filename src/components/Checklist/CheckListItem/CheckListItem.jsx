@@ -54,9 +54,9 @@ class CheckListItem extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.status !== this.props.status) {
-      this.setState({ status: nextProps.status });
+  componentDidUpdate(prevProps) {
+    if (prevProps.status !== this.props.status) {
+      this.setState({ status: this.props.status });
     }
   }
 

@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardModal> should redirect to \`/b/BoardID\` if the card is not found 1`] = `
+<Redirect
+  to="/b/BoardID"
+/>
+`;
+
+exports[`<CardModal> should render with given state from Redux store and correct props 1`] = `
+<styled.div>
+  <styled.button
+    onClick={[Function]}
+  />
+  <styled.div
+    onClick={[Function]}
+  >
+    <styled.button
+      onClick={[Function]}
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="times"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </styled.button>
+    <TitleContainer
+      card={
+        Object {
+          "_cardId": "Card1ID",
+          "cardLabels": Array [
+            "CardLabel1",
+            "CardLabel2",
+          ],
+          "checkLists": Array [
+            "CheckList1",
+            "CheckList2",
+            "CheckList3",
+          ],
+          "description": "Card1 Description",
+          "title": "Card1 Title",
+        }
+      }
+    />
+    <styled.div>
+      <styled.div>
+        <DescriptionContainer
+          card={
+            Object {
+              "_cardId": "Card1ID",
+              "cardLabels": Array [
+                "CardLabel1",
+                "CardLabel2",
+              ],
+              "checkLists": Array [
+                "CheckList1",
+                "CheckList2",
+                "CheckList3",
+              ],
+              "description": "Card1 Description",
+              "title": "Card1 Title",
+            }
+          }
+        />
+        <LabelContainer
+          card={
+            Object {
+              "_cardId": "Card1ID",
+              "cardLabels": Array [
+                "CardLabel1",
+                "CardLabel2",
+              ],
+              "checkLists": Array [
+                "CheckList1",
+                "CheckList2",
+                "CheckList3",
+              ],
+              "description": "Card1 Description",
+              "title": "Card1 Title",
+            }
+          }
+        />
+        <ChecklistContainer
+          card={
+            Object {
+              "_cardId": "Card1ID",
+              "cardLabels": Array [
+                "CardLabel1",
+                "CardLabel2",
+              ],
+              "checkLists": Array [
+                "CheckList1",
+                "CheckList2",
+                "CheckList3",
+              ],
+              "description": "Card1 Description",
+              "title": "Card1 Title",
+            }
+          }
+        />
+      </styled.div>
+      <styled.div>
+        <CardActions
+          actions={
+            Array [
+              "Label",
+              "CheckList",
+            ]
+          }
+          card={
+            Object {
+              "_cardId": "Card1ID",
+              "cardLabels": Array [
+                "CardLabel1",
+                "CardLabel2",
+              ],
+              "checkLists": Array [
+                "CheckList1",
+                "CheckList2",
+                "CheckList3",
+              ],
+              "description": "Card1 Description",
+              "title": "Card1 Title",
+            }
+          }
+          listId=""
+          title="Add to card"
+        />
+        <CardActions
+          actions={
+            Array [
+              "Delete",
+            ]
+          }
+          card={
+            Object {
+              "_cardId": "Card1ID",
+              "cardLabels": Array [
+                "CardLabel1",
+                "CardLabel2",
+              ],
+              "checkLists": Array [
+                "CheckList1",
+                "CheckList2",
+                "CheckList3",
+              ],
+              "description": "Card1 Description",
+              "title": "Card1 Title",
+            }
+          }
+          listId=""
+          title="Actions"
+        />
+      </styled.div>
+    </styled.div>
+  </styled.div>
+</styled.div>
+`;

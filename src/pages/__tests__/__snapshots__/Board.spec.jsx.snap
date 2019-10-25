@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Board> <InnerList> should render correctly 1`] = `
+Array [
+  <Connect(List)
+    boardId="BoardID"
+    index={0}
+    key="0"
+    listId="List1ID"
+  />,
+  <Connect(List)
+    boardId="BoardID"
+    index={1}
+    key="1"
+    listId="List2ID"
+  />,
+  <Connect(List)
+    boardId="BoardID"
+    index={2}
+    key="2"
+    listId="List3ID"
+  />,
+]
+`;
+
+exports[`<Board> should render with given state from Redux store 1`] = `
+<styled.div
+  color="#b1b1b1"
+>
+  <Connect(BoardHeader)
+    boardId="BoardID"
+  />
+  <DragDropContext
+    onDragEnd={[Function]}
+  >
+    <Droppable
+      direction="horizontal"
+      droppableId="BoardID"
+      type="column"
+    >
+      <Component />
+    </Droppable>
+  </DragDropContext>
+  <Connect(Sidebar) />
+</styled.div>
+`;

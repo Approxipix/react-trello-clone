@@ -31,6 +31,7 @@ const BoardItem = styled.li`
     box-shadow: inset 0 0 0 10rem rgba(0, 0, 0, .1);
   }
 `;
+BoardItem.displayName = 'BoardItem';
 
 const BoardTitle = styled.h2`
   margin-bottom: .5rem;
@@ -49,7 +50,7 @@ const BoardScheme = styled.div`
   overflow: hidden;
 `;
 
-const BoardSchemeList = styled.div`
+const BoardSchemeBar = styled.div`
   display: inline-block;
   flex-shrink: 0;
   width: 1.5rem;
@@ -58,6 +59,7 @@ const BoardSchemeList = styled.div`
   border-radius: .2rem;
   background: rgba(255, 255, 255, 0.25);
 `;
+BoardSchemeBar.displayName = 'BoardSchemeBar';
 
 const Boards = (props) => {
   const { boards, lists } = props;
@@ -79,7 +81,7 @@ const Boards = (props) => {
                 {board.lists.map((listId, index) => {
                   const list = listItems.find(list => list._listId === listId);
                   return (
-                    <BoardSchemeList
+                    <BoardSchemeBar
                       key={index}
                       height={Math.min((list.cards.length + 1) * 10, 100)}
                     />
