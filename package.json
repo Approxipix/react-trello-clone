@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A simple Trello clone based on React, Redux, React-dnd",
   "author": "Yaroslav Afanasiev <yaroslav.afanassiev@gmail.com>",
-  "homepage": "https://approxipix.github.io/eact-trello-clone/",
+  "homepage": "https://approxipix.github.io/react-trello-clone/",
   "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
