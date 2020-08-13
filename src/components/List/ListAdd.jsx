@@ -58,10 +58,8 @@ class ListAdd extends Component {
     }
   };
 
-  handleChange = (event) => {
-    this.setState({
-      title: event.target.value
-    });
+  handleChange = (e) => {
+    this.setState({ title: e.target.value });
   };
 
   handleSubmit = (e) => {
@@ -83,6 +81,7 @@ class ListAdd extends Component {
 
   render = () => {
     const { isOpened, title } = this.state;
+
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Wrapper>
@@ -93,7 +92,7 @@ class ListAdd extends Component {
               placeholder="Enter a list title..."
               ref={(e) => { this.input = e }}
               onKeyDown={this.handleKeyDown}
-              onChange={(e) => this.handleChange(e)}
+              onChange={this.handleChange}
               spellCheck={false}
               autoFocus
             />
@@ -102,7 +101,7 @@ class ListAdd extends Component {
                 Add list
               </SubmitButton>
               <CancelButton onClick={() => this.toggleOpened()}>
-                <FontAwesomeIcon icon="times"/>
+                <FontAwesomeIcon icon="times" />
               </CancelButton>
             </Actions>
           </Form>

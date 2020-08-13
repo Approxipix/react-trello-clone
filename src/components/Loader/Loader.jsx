@@ -56,14 +56,23 @@ const Spinner = styled.div`
   }
 `;
 
-const Loader = () => {
-  return (
-    <Wrapper>
-      <Spinner>
-        <div/><div/><div/><div/><div/><div/><div/><div/><div/><div/><div/><div/>
-      </Spinner>
-    </Wrapper>
-  )
-};
+const Loader = () => (
+  <Wrapper>
+    <Spinner>
+      <div/>
+      <div/>
+      <div/>
+      <div/>
+      <div/>
+      <div/>
+      <div/>
+      <div/>
+      <div/>
+      <div/>
+      <div/>
+      <div/>
+    </Spinner>
+  </Wrapper>
+);
 
 export default Loader;

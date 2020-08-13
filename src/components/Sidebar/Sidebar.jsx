@@ -79,11 +79,11 @@ class Sidebar extends Component {
 
     switch (sidebarView) {
       case ('BoardBackgroundEdit'):
-        return <BoardBackgroundEdit boardId={board._boardId} boardColor={board.color}/>;
+        return <BoardBackgroundEdit boardId={board._boardId} boardColor={board.color} />;
       case ('BoardDelete'):
-        return <BoardDelete boardId={board._boardId}/>;
+        return <BoardDelete boardId={board._boardId} />;
       default:
-        return <SidebarNavigation changeView={this.changeView}/>;
+        return <SidebarNavigation changeView={this.changeView} />;
     }
   };
 
@@ -97,13 +97,13 @@ class Sidebar extends Component {
             onClick={() => this.changeView(null, 'Menu')}
             disabled={!sidebarView}
           >
-            {!!sidebarView && <FontAwesomeIcon icon="chevron-left"/>}
+            {!!sidebarView && <FontAwesomeIcon icon="chevron-left" />}
           </Button>
           <Title>
             {sidebarTitle}
           </Title>
           <Button onClick={() => this.props.actions.toggleSidebar(false)}>
-            <FontAwesomeIcon icon="times"/>
+            <FontAwesomeIcon icon="times" />
           </Button>
         </Header>
         <Body>

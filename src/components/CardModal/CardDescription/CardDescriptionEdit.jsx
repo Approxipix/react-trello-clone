@@ -59,6 +59,7 @@ class CardDescriptionEdit extends Component {
 
   render() {
     const { description, rows } = this.state;
+
     return (
       <ClickOutside toggleOpened={this.props.toggleEditDescription}>
         <form>
@@ -71,16 +72,16 @@ class CardDescriptionEdit extends Component {
             placeholder="Edit card description"
             ref={(e) => { this.textarea = e }}
             onKeyDown={this.handleKeyDown}
-            onChange={(e) => this.handleChange(e)}
+            onChange={this.handleChange}
             autoFocus
             spellCheck={false}
           />
           <Actions>
-            <SubmitButton onClick={(e) => this.handleSubmit(e)}>
+            <SubmitButton onClick={this.handleSubmit}>
               Save
             </SubmitButton>
             <CancelButton onClick={() => this.props.toggleEditDescription()}>
-              <FontAwesomeIcon icon="times"/>
+              <FontAwesomeIcon icon="times" />
             </CancelButton>
           </Actions>
         </form>

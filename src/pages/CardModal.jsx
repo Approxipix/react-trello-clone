@@ -111,16 +111,14 @@ const Col = styled.div`
 
 const TitleContainer = (props) => {
   const { card } = props;
+
   return (
     <Container>
       <Header>
         <Icon>
           <FontAwesomeIcon icon="window-maximize" />
         </Icon>
-        <CardTitle
-          cardId={card._cardId}
-          cardTitle={card.title}
-        />
+        <CardTitle cardId={card._cardId} cardTitle={card.title} />
       </Header>
     </Container>
   )
@@ -128,6 +126,7 @@ const TitleContainer = (props) => {
 
 const DescriptionContainer = (props) => {
   const { card } = props;
+
   return (
     <Container>
       <Header>
@@ -139,10 +138,7 @@ const DescriptionContainer = (props) => {
         </Title>
       </Header>
       <Body>
-        <CardDescription
-          cardId={card._cardId}
-          cardDescription={card.description}
-        />
+        <CardDescription cardId={card._cardId} cardDescription={card.description} />
       </Body>
     </Container>
   )
@@ -151,6 +147,7 @@ const DescriptionContainer = (props) => {
 const LabelContainer = (props) => {
   const { card } = props;
   if (card.cardLabels.length === 0) return null;
+
   return (
     <Container>
       <Header>
@@ -174,10 +171,7 @@ const ChecklistContainer = (props) => {
   return (
     card.checkLists.map((checkListId, index) => (
       <Container key={index}>
-        <CheckList
-          cardId={card._cardId}
-          checkListId={checkListId}
-        />
+        <CheckList cardId={card._cardId} checkListId={checkListId} />
       </Container>
     ))
   )

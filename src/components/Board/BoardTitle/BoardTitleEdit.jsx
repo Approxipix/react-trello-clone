@@ -45,6 +45,7 @@ class BoardTitleEdit extends Component {
   render() {
     const { title } = this.state;
     let inputWidth = (title.length + 1) * 13;
+
     return (
       <ClickOutside toggleOpened={this.props.toggleEditTitle}>
         <Form onSubmit={this.handleSubmit}>
@@ -57,7 +58,7 @@ class BoardTitleEdit extends Component {
             value={title}
             placeholder="Edit board title"
             onKeyDown={this.handleKeyDown}
-            onChange={(e) => this.handleChange(e)}
+            onChange={this.handleChange}
             onBlur={this.handleSubmit}
             onKeyPress={(e) => inputWidth = ((e.target.value.length + 1) * 13)}
             autoFocus

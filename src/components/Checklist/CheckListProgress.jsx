@@ -15,6 +15,7 @@ const ProgressBar = styled.div`
   border-radius: .5rem;
   overflow: hidden;
 `;
+
 const Progress = styled.div`
   position: absolute;
   display: block;
@@ -42,15 +43,16 @@ const CheckListProgress = (props) => {
   const { items } = props;
   if (!items) return null;
 
-  const
-    allItems = items.length,
-    doneItems = items.filter(item => !!item.status).length;
+  const allItems = items.length;
+  const doneItems = items.filter(item => !!item.status).length;
+
   if (!!allItems) width = (doneItems * 100) / allItems;
   if (allItems === doneItems) color = '#61bd4f';
+
   return (
     <Wrapper>
       <ProgressBar>
-        <Progress width={width} color={color}/>
+        <Progress width={width} color={color} />
       </ProgressBar>
       <Label>{width.toFixed()} %</Label>
     </Wrapper>

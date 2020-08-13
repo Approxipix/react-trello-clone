@@ -74,21 +74,14 @@ class Select extends Component {
 
   toggleDropdown = (isOpened) => {
     this.setState({
-      isOpened: typeof isOpened !== 'undefined'
-        ? isOpened
-        : !this.state.isOpened,
+      isOpened: typeof isOpened !== 'undefined' ? isOpened : !this.state.isOpened,
     });
   };
 
   render() {
-    let {
-      value,
-      label,
-      options,
-      onChange,
-      placeholder,
-    }  = this.props;
+    let { value, label, options, onChange, placeholder }  = this.props;
     let { isOpened } = this.state;
+
     return (
       <Wrapper onBlur={() => this.toggleDropdown(false)}>
         <Label>

@@ -78,15 +78,13 @@ class CardActions extends Component {
     const { listId, card, title, actions } = this.props;
     const { isOpened } = this.state;
     if (!card) return null;
+
     let actionItems = [
       {
         title: 'Label',
         icon: 'tag',
         component: (
-          <LabelAdd
-            cardId={card._cardId}
-            cardLabels={card.cardLabels}
-          />
+          <LabelAdd cardId={card._cardId} cardLabels={card.cardLabels} />
         )
       },
       {
@@ -111,6 +109,7 @@ class CardActions extends Component {
         )
       },
     ];
+
     actionItems = actionItems.filter(item => actions.some(title => title === item.title));
 
     return (

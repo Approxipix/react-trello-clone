@@ -17,10 +17,11 @@ const LabelItem = styled.li`
 const Label = (props) => {
   const { cardLabels } = props;
   if (!cardLabels) return null;
+
   return (
     <LabelList className="label-list">
       {cardLabels.map((label, index) => (
-        <LabelItem key={index} value={label.color}/>
+        <LabelItem key={index} value={label.color} />
       ))}
     </LabelList>
   )

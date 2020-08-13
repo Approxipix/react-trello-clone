@@ -28,32 +28,23 @@ class ListHeader extends Component {
   }
 
   toggleOpened = () => {
-    this.setState({
-      isOpened: !this.state.isOpened
-    })
+    this.setState({ isOpened: !this.state.isOpened })
   };
 
   render() {
     const { dragHandleProps, listId, listTitle, boardId } = this.props;
     const { isOpened } = this.state;
+
     return (
       <>
         <Header>
-          <ListTitle
-            dragHandleProps={dragHandleProps}
-            listId={listId}
-            listTitle={listTitle}
-          />
+          <ListTitle dragHandleProps={dragHandleProps} listId={listId} listTitle={listTitle} />
           <Icon onClick={() => this.toggleOpened()}>
             <FontAwesomeIcon icon="ellipsis-h" />
           </Icon>
         </Header>
         {isOpened && (
-          <ListActions
-            toggleOpened={this.toggleOpened}
-            boardId={boardId}
-            listId={listId}
-          />
+          <ListActions toggleOpened={this.toggleOpened} boardId={boardId} listId={listId} />
         )}
       </>
     )

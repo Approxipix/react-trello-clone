@@ -73,30 +73,19 @@ class ListActions extends Component {
       case ('ListMove'):
         return (
           <Container>
-            <ListMove
-              boardId={boardId}
-              listId={listId}
-              toggleOpened={this.props.toggleOpened}
-            />
+            <ListMove boardId={boardId} listId={listId} toggleOpened={this.props.toggleOpened} />
           </Container>
         );
       case ('ListMoveAllCards'):
         return (
           <Container>
-            <ListMoveAllCards
-              boardId={boardId}
-              listId={listId}
-              toggleOpened={this.props.toggleOpened}
-            />
+            <ListMoveAllCards boardId={boardId} listId={listId} toggleOpened={this.props.toggleOpened} />
           </Container>
         );
       case ('ListDeleteAllCards'):
         return (
           <Container>
-            <ListDeleteAllCards
-              listId={listId}
-              toggleOpened={this.props.toggleOpened}
-            />
+            <ListDeleteAllCards listId={listId} toggleOpened={this.props.toggleOpened} />
           </Container>
         );
       case ('ListDelete'):
@@ -112,21 +101,19 @@ class ListActions extends Component {
 
   render = () => {
     const { actionView, actionTitle } = this.state;
+
     return (
       <ClickOutside action={'mousedown'} toggleOpened={this.props.toggleOpened}>
         <Wrapper>
           <Header>
-            <Button
-              onClick={() => this.changeView(null, 'List Actions')}
-              disabled={!actionView}
-            >
-              {!!actionView && <FontAwesomeIcon icon="chevron-left"/>}
+            <Button disabled={!actionView} onClick={() => this.changeView(null, 'List Actions')}>
+              {!!actionView && <FontAwesomeIcon icon="chevron-left" />}
             </Button>
             <Title>
               {actionTitle}
             </Title>
             <Button onClick={() => this.props.toggleOpened}>
-              <FontAwesomeIcon icon="times"/>
+              <FontAwesomeIcon icon="times" />
             </Button>
           </Header>
           <Body>

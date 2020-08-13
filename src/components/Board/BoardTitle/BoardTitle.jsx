@@ -36,7 +36,8 @@ class BoardTitle extends Component {
     const { editTitle } = this.state;
 
     const board = boards[currentBoardID];
-    if (!board) return;
+    if (!board) return null;
+
     return (
       !editTitle ? (
         <Title onClick={() => this.toggleEditTitle()}>

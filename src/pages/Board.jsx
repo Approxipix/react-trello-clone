@@ -35,12 +35,7 @@ export const InnerList = (props) => {
   const { boardId, listsId, } = props;
   return (
     listsId.map((listId, index) => (
-      <List
-        key={index}
-        index={index}
-        boardId={boardId}
-        listId={listId}
-      />
+      <List key={index} index={index} boardId={boardId} listId={listId} />
     ))
   )
 };
@@ -84,24 +79,18 @@ class Board extends Component {
   render() {
     const { board, currentBoardId } = this.props;
     if (!currentBoardId) return null;
-    if (!board) return <Redirect to='/'/>;
+    if (!board) return <Redirect to='/' />;
+
     return (
       <Wrapper color={board.color}>
-        <BoardHeader boardId={board._boardId}/>
+        <BoardHeader boardId={board._boardId} />
         <DragDropContext onDragEnd={this.handleDragEnd}>
-          <Droppable
-            type='column'
-            droppableId={board._boardId}
-            direction='horizontal'
-          >
+          <Droppable type='column' droppableId={board._boardId} direction='horizontal'>
             {(provided) => (
-              <Container
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                <InnerList boardId={board._boardId} listsId={board.lists}/>
+              <Container {...provided.droppableProps} ref={provided.innerRef}>
+                <InnerList boardId={board._boardId} listsId={board.lists} />
                 {provided.placeholder}
-                <ListAdd boardId={board._boardId}/>
+                <ListAdd boardId={board._boardId} />
               </Container>
             )}
           </Droppable>

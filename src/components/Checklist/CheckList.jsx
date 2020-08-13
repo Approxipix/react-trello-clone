@@ -84,16 +84,14 @@ class CheckList extends Component {
     if (!checkList) return null;
 
     const doneItems = checkList.items.filter(items => !!items.status).length;
+
     return (
       <Container>
         <Header>
           <Icon>
             <FontAwesomeIcon icon="check-square" />
           </Icon>
-          <CheckListTitle
-            checkListTitle={checkList.title}
-            checkListId={checkList._checkListId}
-          />
+          <CheckListTitle checkListTitle={checkList.title} checkListId={checkList._checkListId} />
           <Button onClick={() => this.deleteCheckList()}>
             Delete
           </Button>
@@ -112,7 +110,7 @@ class CheckList extends Component {
           ))}
         </CheckListContainer>
         <Actions>
-          <CheckListItemAdd checkListId={checkList._checkListId}/>
+          <CheckListItemAdd checkListId={checkList._checkListId} />
           {!!doneItems && (
             <Button onClick={() => this.toggleHideCompletedItems()}>
               {!hideCompletedItems

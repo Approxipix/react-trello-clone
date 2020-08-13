@@ -41,10 +41,8 @@ class CheckListItemAdd extends Component {
     })
   };
 
-  handleChange = (event) => {
-    this.setState({
-      title: event.target.value,
-    });
+  handleChange = (e) => {
+    this.setState({ title: e.target.value });
   };
 
   handleKeyDown = (e) => {
@@ -66,6 +64,7 @@ class CheckListItemAdd extends Component {
 
   render = () => {
     const { isOpened, title } = this.state;
+
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Wrapper>
@@ -77,7 +76,7 @@ class CheckListItemAdd extends Component {
               placeholder="Enter a card title..."
               value={title}
               onKeyDown={this.handleKeyDown}
-              onChange={(e) => this.handleChange(e)}
+              onChange={this.handleChange}
               spellCheck={false}
               autoFocus
             />

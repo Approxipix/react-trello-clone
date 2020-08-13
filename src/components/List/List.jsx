@@ -22,28 +22,20 @@ const Container = styled.div`
 const List = (props) => {
   const {  boardId, list, index } = props;
   if (!list) return null;
+
   return (
-    <Draggable
-      index={index}
-      draggableId={`${list._listId}`}
-    >
+    <Draggable index={index} draggableId={`${list._listId}`}>
       {(provided) => (
         <>
-          <Container
-            {...provided.draggableProps}
-            ref={provided.innerRef}
-          >
+          <Container {...provided.draggableProps} ref={provided.innerRef}>
             <ListHeader
               dragHandleProps={provided.dragHandleProps}
               boardId={boardId}
               listId={list._listId}
               listTitle={list.title}
             />
-            <ListCards
-              listId={list._listId}
-              cardsId={list.cards}
-            />
-            <CardAdd listId={list._listId}/>
+            <ListCards listId={list._listId} cardsId={list.cards} />
+            <CardAdd listId={list._listId} />
           </Container>
           {provided.placeholder}
         </>

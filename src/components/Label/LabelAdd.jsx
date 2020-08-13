@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { addLabelToCard } from "../../redux/cardReducer/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from 'styled-components';
-import Label from "./Label";
 
 const LabelList = styled.ul`
   display: flex;
@@ -61,14 +60,11 @@ class LabelAdd extends Component {
   render() {
     const { cardLabels, labels } = this.props;
     if (!labels) return null;
+
     return (
       <LabelList>
         {labels.map((label, index) => (
-          <LabelItem
-            key={index}
-            value={label.color}
-            onClick={() => this.addLabel(label)}
-          >
+          <LabelItem key={index} value={label.color} onClick={() => this.addLabel(label)}>
             {cardLabels && cardLabels.some(cardLabel => cardLabel._labelId === label._labelId) && (
               <LabelIcon>
                 <FontAwesomeIcon icon="check" />

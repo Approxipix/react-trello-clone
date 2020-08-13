@@ -49,6 +49,7 @@ class BoardBackgroundEdit extends Component {
 
   render() {
     const { boardColor, colors } = this.props;
+
     return (
       <Container>
         <List>

@@ -73,6 +73,7 @@ class Header extends Component {
     if (boards[currentBoardID]) {
       headerBackground = boards[currentBoardID].color
     }
+
     return (
       <Wrapper color={headerBackground}>
         <Nav>

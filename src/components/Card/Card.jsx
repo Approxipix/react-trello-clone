@@ -66,6 +66,7 @@ export const CardBadges = (props) => {
     allCheckListItems += checkLists[checklist].items.length;
     doneCheckListItems += checkLists[checklist].items.filter(item => !!item.status).length
   });
+
   return (
     <BadgeList>
       {!!card.description && (
@@ -83,19 +84,11 @@ export const CardBadges = (props) => {
 };
 
 const Card = (props) => {
-  const {
-    index,
-    card,
-    checkLists,
-    currentBoardID,
-    isDraggingOver,
-  } = props;
+  const { index, card, checkLists, currentBoardID, isDraggingOver } = props;
   if (!card) return null;
+
   return (
-    <Draggable
-      index={index}
-      draggableId={`${card._cardId}`}
-    >
+    <Draggable index={index} draggableId={`${card._cardId}`}>
       {(provided, snapshot) => (
         <>
           <Container
@@ -115,10 +108,7 @@ const Card = (props) => {
                 <Title>
                   {card.title}
                 </Title>
-                <CardBadges
-                  card={card}
-                  checkLists={checkLists}
-                />
+                <CardBadges card={card} checkLists={checkLists} />
               </NavLink>
             </CardWrapper>
           </Container>

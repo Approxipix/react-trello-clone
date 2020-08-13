@@ -57,6 +57,7 @@ class CardDescription extends Component {
   render() {
     const { cardId, cardDescription } = this.props;
     const { editDescription } = this.state;
+
     if (!cardDescription && !editDescription) {
       return (
         <AddDescription onClick={() => this.toggleEditDescription()}>
@@ -64,6 +65,7 @@ class CardDescription extends Component {
         </AddDescription>
       )
     }
+
     return (
       !editDescription ? (
         <Description>

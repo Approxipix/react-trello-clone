@@ -13,10 +13,8 @@ class CheckListAdd extends Component {
     };
   }
 
-  handleChange = (event) => {
-    this.setState({
-      title: event.target.value
-    });
+  handleChange = (e) => {
+    this.setState({ title: e.target.value });
   };
 
   handleSubmit = (e) => {
@@ -33,6 +31,7 @@ class CheckListAdd extends Component {
 
   render() {
     const { title } = this.state;
+
     return (
       <form>
         <Input
@@ -40,10 +39,10 @@ class CheckListAdd extends Component {
           type="text"
           placeholder="Add checklist title"
           value={title}
-          onChange={(e) => this.handleChange(e)}
+          onChange={this.handleChange}
           spellCheck={false}
         />
-        <SubmitButton onClick={(e) => this.handleSubmit(e)} disabled={!title}>
+        <SubmitButton onClick={this.handleSubmit} disabled={!title}>
           Add
         </SubmitButton>
       </form>

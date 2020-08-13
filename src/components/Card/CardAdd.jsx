@@ -73,6 +73,7 @@ class CardAdd extends Component {
 
   render = () => {
     const { isOpened, title } = this.state;
+
     return isOpened ? (
       <ClickOutside action={'mousedown'} toggleOpened={this.toggleOpened}>
         <Wrapper>

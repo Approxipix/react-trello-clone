@@ -66,6 +66,7 @@ const Boards = (props) => {
   if (!boards) return;
   let boardsItems = Object.keys(boards).map(key => boards[key]);
   let listItems = Object.keys(lists).map(key => lists[key]);
+
   return (
     <Wrapper>
       <Title>
@@ -82,10 +83,7 @@ const Boards = (props) => {
                 {board.lists.map((listId, index) => {
                   const list = listItems.find(list => list._listId === listId);
                   return (
-                    <BoardSchemeBar
-                      key={index}
-                      height={Math.min((list.cards.length + 1) * 10, 100)}
-                    />
+                    <BoardSchemeBar key={index} height={Math.min((list.cards.length + 1) * 10, 100)} />
                   )
                 })}
               </BoardScheme>

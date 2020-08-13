@@ -24,10 +24,12 @@ class ListMove extends Component {
     const { boards, boardId, listId } = this.props;
     const { newBoardId, newListPosition } = this.state;
     const currentListPosition = boards[boardId].lists.indexOf(listId);
+
     if (newBoardId === boardId && currentListPosition === newListPosition) {
       this.props.toggleOpened();
       return null;
     }
+
     if (boardId === newBoardId) {
       this.props.actions.moveList({
         boardId: boardId,
@@ -48,27 +50,22 @@ class ListMove extends Component {
     const { boards } = this.props;
     const { newListPosition } = this.state;
     const listLength = boards[id].lists.length;
+
     if (listLength < newListPosition) {
-      this.setState({
-        newListPosition: listLength || 1,
-      })
+      this.setState({ newListPosition: listLength || 1 })
     }
-    this.setState({
-      newBoardId: id,
-    });
+
+    this.setState({ newBoardId: id });
   };
 
   boardIdSelector = () => {
     const { newBoardId } = this.state;
     const { boards, boardId } = this.props;
-    const boardsOptions = Object.keys(boards).map((id) => (
-      {
-        title: boardId === id
-          ? `${boards[id].title} (current)`
-          : boards[id].title,
-        value: id,
-      }
-    ));
+    const boardsOptions = Object.keys(boards).map((id) => ({
+      title: boardId === id ? `${boards[id].title} (current)` : boards[id].title,
+      value: id,
+    }));
+
     return (
       <Select
         label="Board"
@@ -86,24 +83,22 @@ class ListMove extends Component {
     const currentListPosition = boards[boardId].lists.indexOf(listId);
     let listLength = boards[newBoardId].lists.length;
     if (boardId !== newBoardId) listLength = listLength + 1;
+
     let positionOptions = [...Array(listLength).keys()];
-    positionOptions = positionOptions.map(position => (
-      {
-        title: currentListPosition === position && boardId === newBoardId
-          ? `${++position} (current)`
-          : `${++position}`,
-        value: position,
-      }
-    ));
+    positionOptions = positionOptions.map(position => ({
+      title: currentListPosition === position && boardId === newBoardId
+        ? `${++position} (current)`
+        : `${++position}`,
+      value: position,
+    }));
+
     return (
       <Select
         label="Position"
         placeholder="Select position"
         value={newListPosition.toString()}
         options={positionOptions}
-        onChange={(position) => this.setState({
-          newListPosition: position,
-        })}
+        onChange={(position) => this.setState({ newListPosition: position })}
       />
     )
   };

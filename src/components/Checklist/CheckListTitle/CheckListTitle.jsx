@@ -27,6 +27,7 @@ class CheckListTitle extends Component {
   render() {
     const { checkListId, checkListTitle} = this.props;
     const { editTitle } = this.state;
+
     return (
       !editTitle ? (
           <Title onClick={() => this.toggleEditTitle()}>

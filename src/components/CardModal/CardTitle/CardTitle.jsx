@@ -31,6 +31,7 @@ class CardTitle extends Component {
   render() {
     const { cardId, cardTitle } = this.props;
     const { editTitle } = this.state;
+
     return (
       !editTitle ? (
         <Title onClick={() => this.toggleEditTitle()}>

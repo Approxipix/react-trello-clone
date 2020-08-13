@@ -83,6 +83,7 @@ class CheckListItem extends Component {
     const { description, hideCompletedItems } = this.props;
     const { status } = this.state;
     if (hideCompletedItems && status) return null;
+
     return (
       <Wrapper onClick={(e) => e.stopPropagation()}>
         <CheckBox status={status}>

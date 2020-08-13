@@ -20,12 +20,9 @@ class CheckListTitleEdit extends Component {
     }
   };
 
-  handleChange = (event) => {
-    this.setState({
-      title: event.target.value,
-    });
+  handleChange = (e) => {
+    this.setState({ title: e.target.value });
   };
-
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -41,6 +38,7 @@ class CheckListTitleEdit extends Component {
 
   render = () => {
     const { title } = this.state;
+
     return (
       <ClickOutside toggleOpened={this.props.toggleEditTitle}>
         <form onSubmit={this.handleSubmit}>
@@ -53,7 +51,7 @@ class CheckListTitleEdit extends Component {
             value={title}
             placeholder="Enter list title..."
             onKeyDown={this.handleKeyDown}
-            onChange={(e) => this.handleChange(e)}
+            onChange={this.handleChange}
             onBlur={this.handleSubmit}
             spellCheck={false}
             autoFocus

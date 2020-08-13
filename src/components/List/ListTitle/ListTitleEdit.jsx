@@ -19,10 +19,8 @@ class ListTitleEdit extends Component {
     };
   }
 
-  handleChange = (event) => {
-    this.setState({
-      title: event.target.value,
-    });
+  handleChange = (e) => {
+    this.setState({ title: e.target.value });
   };
 
   handleKeyDown = (e) => {
@@ -45,6 +43,7 @@ class ListTitleEdit extends Component {
 
   render = () => {
     const { title } = this.state;
+
     return (
       <ClickOutside toggleOpened={this.props.toggleEditTitle}>
         <Form onSubmit={this.handleSubmit}>
@@ -56,7 +55,7 @@ class ListTitleEdit extends Component {
             value={title}
             placeholder="Enter list title..."
             onKeyDown={this.handleKeyDown}
-            onChange={(e) => this.handleChange(e)}
+            onChange={this.handleChange}
             onBlur={this.handleSubmit}
             spellCheck={false}
             autoFocus

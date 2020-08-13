@@ -29,7 +29,7 @@ const ContentWrapper = styled.main`
 class App extends Component {
   componentDidMount() {
     //simulate request to db
-    new Promise((resolve, reject) => {
+    new Promise((resolve) => {
       this.props.actions.requestBoards();
       const normalizeBoardsData = normalizeBoards(boards);
       setTimeout(() => {
@@ -37,11 +37,12 @@ class App extends Component {
       }, 1000)
     }).then(response => {
       this.props.actions.responseBoardsSuccess(response)
-    });
+    }).catch(error => console.log(error));
   }
 
   render() {
     const { isLoading } = this.props;
+
     return (
       <MainWrapper>
         <HeaderWrapper>

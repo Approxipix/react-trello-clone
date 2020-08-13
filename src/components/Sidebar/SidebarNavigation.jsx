@@ -50,6 +50,7 @@ class SidebarNavigation extends Component {
 
   render() {
     const { navigation } = this.state;
+
     return (
       <List>
         {navigation.map((item, index) => (

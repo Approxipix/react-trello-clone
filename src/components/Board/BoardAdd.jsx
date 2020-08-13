@@ -102,6 +102,7 @@ class BoardAdd extends Component {
   render = () => {
     const { colors } = this.props;
     const { isOpened, boardTitle, boardColor } = this.state;
+
     return isOpened ? (
       <ClickOutside toggleOpened={this.toggleOpened}>
         <Container color={boardColor}>
@@ -122,7 +123,7 @@ class BoardAdd extends Component {
                   color={color}
                   onClick={() => this.handleChange('boardColor', color)}
                 >
-                  {boardColor === color && <FontAwesomeIcon icon="check"/>}
+                  {boardColor === color && <FontAwesomeIcon icon="check" />}
                 </ColorPickerItem>
               ))}
             </ColorPicker>
@@ -131,7 +132,7 @@ class BoardAdd extends Component {
                 Create board
               </SubmitButton>
               <CancelButton onClick={() => this.toggleOpened()}>
-                <FontAwesomeIcon icon="times"/>
+                <FontAwesomeIcon icon="times" />
               </CancelButton>
             </Actions>
           </form>

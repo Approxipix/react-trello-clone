@@ -31,6 +31,7 @@ Button.displayName = 'Button';
 
 const BoardHeader = (props) => {
   const { toggleSidebar } = props.actions;
+
   return (
     <Header>
       <BoardTitle />

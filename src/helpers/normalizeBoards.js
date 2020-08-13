@@ -3,6 +3,7 @@ import { normalize, schema } from "normalizr";
 // This function takes the tree shaped boards and returns a flat structure more suitable to a redux store.
 const normalizeBoards = (boards) => {
   if (!boards) return {};
+
   const checkListsById = new schema.Entity(
     'checkLists',
     {},
@@ -28,6 +29,7 @@ const normalizeBoards = (boards) => {
     );
 
   const { entities } = normalize(boards, [board]);
+
   return entities;
 };
 

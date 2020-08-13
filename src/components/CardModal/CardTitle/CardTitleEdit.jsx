@@ -45,6 +45,7 @@ class CardTitleEdit extends Component {
 
   render() {
     const { title } = this.state;
+
     return (
       <ClickOutside toggleOpened={this.props.toggleEditTitle}>
         <Form onSubmit={this.handleSubmit}>
@@ -57,7 +58,7 @@ class CardTitleEdit extends Component {
             value={title}
             placeholder="Edit card title"
             onKeyDown={this.handleKeyDown}
-            onChange={(e) => this.handleChange(e)}
+            onChange={this.handleChange}
             onBlur={this.handleSubmit}
             spellCheck={false}
             autoFocus

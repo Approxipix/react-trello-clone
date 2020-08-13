@@ -34,25 +34,18 @@ class ListMoveAllCards extends Component {
   listIdSelector = () => {
     const { newListId } = this.state;
     const { boards, boardId, lists, listId } = this.props;
-    const listsOptions = boards[boardId].lists.map((id) => (
-      {
-        title: listId === id
-          ? `${lists[id].title} (current)`
-          : lists[id].title,
-        value: id,
-      }
-    ));
+    const listsOptions = boards[boardId].lists.map((id) => ({
+      title: listId === id ? `${lists[id].title} (current)` : lists[id].title,
+      value: id,
+    }));
+
     return (
       <Select
         label="Board"
         placeholder="Select board"
         value={lists[newListId].title}
         options={listsOptions}
-        onChange={(id) => {
-          this.setState({
-            newListId: id,
-          })
-        }}
+        onChange={(id) => this.setState({ newListId: id })}
       />
     );
   };

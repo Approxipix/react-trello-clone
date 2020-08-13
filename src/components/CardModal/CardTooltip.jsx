@@ -69,6 +69,7 @@ class CardTooltip extends Component {
   render() {
     const { title, body, isOpened } = this.props;
     if (!isOpened) return null;
+
     return (
       <ClickOutside toggleOpened={this.props.toggleTooltip}>
         <Wrapper>
@@ -77,7 +78,7 @@ class CardTooltip extends Component {
               {title}
             </Title>
             <Button onClick={() => this.props.toggleTooltip()}>
-              <FontAwesomeIcon icon="times"/>
+              <FontAwesomeIcon icon="times" />
             </Button>
           </Header>
           <Body>

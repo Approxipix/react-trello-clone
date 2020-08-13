@@ -32,20 +32,14 @@ class ListTitle extends Component {
   render() {
     const { dragHandleProps, listId, listTitle } = this.props;
     const { editTitle } = this.state;
+
     return (
       !editTitle ? (
-        <Title
-          {...dragHandleProps}
-          onClick={() => this.toggleEditTitle()}
-        >
+        <Title {...dragHandleProps} onClick={() => this.toggleEditTitle()}>
           {listTitle}
         </Title>
       ) : (
-        <ListTitleEdit
-          toggleEditTitle={this.toggleEditTitle}
-          listId={listId}
-          listTitle={listTitle}
-        />
+        <ListTitleEdit toggleEditTitle={this.toggleEditTitle} listId={listId} listTitle={listTitle} />
       )
     )
   }
