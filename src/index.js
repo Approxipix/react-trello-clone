@@ -72,7 +72,7 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history} basename={process.env.PUBLIC_URL + "/"}>
+    <ConnectedRouter history={history}>
       <App />
       <GlobalStyle />
     </ConnectedRouter>

@@ -9,7 +9,7 @@ import cardReducer from '../cardReducer/reducer/reducer';
 import checkListReducer from '../checkListReducer/reducer/reducer';
 
 // Create a history of your choosing (we're using a browser history in this case)
-export const history = createBrowserHistory();
+export const history = createBrowserHistory({ basename: process.env.PUBLIC_URL + "/" });
 
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = routerMiddleware(history);
