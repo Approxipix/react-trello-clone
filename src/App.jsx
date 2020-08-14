@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { requestBoards, responseBoardsSuccess } from "./redux/rootReducer/actions/actions";
+import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './routes/Routes';
 import normalizeBoards from './helpers/normalizeBoards'
 import boards from './data';
@@ -44,18 +45,20 @@ class App extends Component {
     const { isLoading } = this.props;
 
     return (
-      <MainWrapper>
-        <HeaderWrapper>
-          <Header />
-        </HeaderWrapper>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <ContentWrapper>
-            <Routes />
-          </ContentWrapper>
-        )}
-      </MainWrapper>
+      <Router basename={process.env.PUBLIC_URL + "/"}>
+        <MainWrapper>
+          <HeaderWrapper>
+            <Header />
+          </HeaderWrapper>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <ContentWrapper>
+              <Routes />
+            </ContentWrapper>
+          )}
+        </MainWrapper>
+      </Router>
     )
   }
 }
