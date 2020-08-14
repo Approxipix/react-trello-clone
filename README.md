@@ -9,7 +9,7 @@ A simple [Trello](https://trello.com/) clone based on React/Redux.
 ## Live Demo
 Link: https://approxipix.github.io/react-trello-clone
 
-![example](https://github.com/Approxipix/react-trello-clone/blob/master/exampl.gif?raw=true)
+![example](https://github.com/Approxipix/react-trello-clone/blob/master/example.gif?raw=true)
 
 ## Tech stack
 * [React](https://github.com/facebook/react)
