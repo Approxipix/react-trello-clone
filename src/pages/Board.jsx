@@ -25,7 +25,6 @@ const Container = styled.div`
   display: flex;
   align-items: flex-start;
   flex-shrink: 0;
-  height: 92%;
   max-width: 100vw;
   padding: 0 1rem 1rem;
   overflow: auto;
