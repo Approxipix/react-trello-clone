@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { requestBoards, responseBoardsSuccess } from "./redux/rootReducer/actions/actions";
-import { BrowserRouter as Router } from 'react-router-dom';
-import Routes from './routes/Routes';
-import normalizeBoards from './helpers/normalizeBoards'
-import boards from './data';
-import Header from "./components/Header/Header";
 import styled from "styled-components";
+import { requestBoards, responseBoardsSuccess } from "./redux/rootReducer/actions/actions";
+import normalizeBoards from './helpers/normalizeBoards'
+import Routes from './routes/Routes';
+import Header from "./components/Header/Header";
 import Loader from "./components/Loader/Loader";
+import boards from './data';
 
 const MainWrapper = styled.div` 
   display: grid;
@@ -45,20 +44,18 @@ class App extends Component {
     const { isLoading } = this.props;
 
     return (
-      <Router basename={process.env.PUBLIC_URL + "/"}>
-        <MainWrapper>
-          <HeaderWrapper>
-            <Header />
-          </HeaderWrapper>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <ContentWrapper>
-              <Routes />
-            </ContentWrapper>
-          )}
-        </MainWrapper>
-      </Router>
+      <MainWrapper>
+        <HeaderWrapper>
+          <Header />
+        </HeaderWrapper>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <ContentWrapper>
+            <Routes />
+          </ContentWrapper>
+        )}
+      </MainWrapper>
     )
   }
 }

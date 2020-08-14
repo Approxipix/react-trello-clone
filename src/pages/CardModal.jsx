@@ -191,6 +191,7 @@ const CardModal = (props) => {
       }
     })
   });
+
   return (
     <Backdrop>
       <CloseBackdrop onClick={() => history.push(boardUrl)} />
