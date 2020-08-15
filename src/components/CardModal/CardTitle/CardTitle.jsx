@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const Title = styled.h2`
   margin-bottom: .5rem;
-  padding: .3rem .5rem;
+  padding: .3rem 1.75rem .3rem .5rem;
   font-size: 1.4rem;
   font-weight: 600;
   white-space: nowrap;

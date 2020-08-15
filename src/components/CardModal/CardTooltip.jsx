@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import media from '../../helpers/mediaQuery';
 import ClickOutside from "../ClickOutside/ClickOutside";
 import styled from 'styled-components';
 
@@ -13,10 +14,16 @@ const Wrapper = styled.div`
   border-radius: .2rem;
   box-shadow: rgba(0, 0, 0, 0.3) .125rem .125rem .5rem;
   z-index: 10;
-  @media (max-width: 910px) {
+  
+  ${media.lessThan("lg")`
     right: 0;
     left: auto;
-  }
+  `}
+  ${media.lessThan("sm")`
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  `}
 `;
 
 const Header = styled.div`

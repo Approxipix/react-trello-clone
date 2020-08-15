@@ -8,14 +8,13 @@ import styled from "styled-components";
 
 const Header = styled.div`
   margin-bottom: 1rem;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
 const Button = styled.button`
-  margin: 0.5rem;
   padding: .5rem .75rem;
   font-size: 1rem;
   color: #fff;

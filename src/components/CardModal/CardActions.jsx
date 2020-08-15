@@ -10,7 +10,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   position: relative;
   padding: .5rem 0;
-  :not(:last-child) {
+  &:not(:last-child) {
     margin-bottom: 1rem;
   }
 `;

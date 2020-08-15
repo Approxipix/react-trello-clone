@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import media from '../../../helpers/mediaQuery';
 import ClickOutside from "../../ClickOutside/ClickOutside";
 import ListActionsNavigation from './ListActionsNavigation';
 import ListDeleteAllCards from '../ListDeleteAllCards';
@@ -18,6 +19,10 @@ const Wrapper = styled.div`
   border-radius: .2rem;
   box-shadow: rgba(0, 0, 0, 0.3) .125rem .125rem .5rem;
   z-index: 10;
+  
+  ${media.lessThan("sm")`
+    left: 2rem;
+  `}
 `;
 
 const Container = styled.div`
@@ -112,7 +117,7 @@ class ListActions extends Component {
             <Title>
               {actionTitle}
             </Title>
-            <Button onClick={() => this.props.toggleOpened}>
+            <Button onClick={() => this.props.toggleOpened()}>
               <FontAwesomeIcon icon="times" />
             </Button>
           </Header>

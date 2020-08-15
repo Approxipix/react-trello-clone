@@ -5,7 +5,7 @@ import BoardTitleEdit from "./BoardTitleEdit";
 import styled from "styled-components";
 
 const Title = styled.h1`
-  max-width: calc(100vw - 12rem);
+  max-width: calc(100vw - 9rem);
   margin: 0;
   padding: .5rem;
   font-size: 1.3rem;

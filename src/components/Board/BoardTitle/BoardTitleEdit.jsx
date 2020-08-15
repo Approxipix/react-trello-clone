@@ -8,7 +8,7 @@ import { Input } from '../../BaseComponent';
 import styled from 'styled-components';
 
 const Form = styled.form`
-  max-width: calc(100vw - 12rem);
+  max-width: calc(100vw - 9rem);
 `;
 
 class BoardTitleEdit extends Component {

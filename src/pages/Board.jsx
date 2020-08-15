@@ -15,6 +15,8 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   padding-top: .5rem;
   background-color: ${props => props.color};
@@ -24,6 +26,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   display: flex;
   align-items: flex-start;
+  flex-grow: 1;
   flex-shrink: 0;
   max-width: 100vw;
   padding: 0 1rem 1rem;

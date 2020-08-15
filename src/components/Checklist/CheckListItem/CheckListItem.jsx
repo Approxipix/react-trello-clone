@@ -33,7 +33,8 @@ Button.displayName = 'Button';
 const Wrapper = styled.label`
   position: relative;
   display: flex;
-  padding: .5rem;
+  padding: .5rem 1.5rem .5rem;
+  word-break: break-all;
   border-radius: .2rem;
   transition: background-color .2s ease-in;
   cursor: pointer;

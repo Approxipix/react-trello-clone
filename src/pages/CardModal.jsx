@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { history } from "../redux/store";
 import { Redirect } from "react-router";
+import media from '../helpers/mediaQuery';
 import CardActions from "../components/CardModal/CardActions";
 import CheckList from "../components/Checklist/CheckList";
 import CardTitle from "../components/CardModal/CardTitle/CardTitle";
@@ -45,12 +46,21 @@ const Wrapper = styled.div`
   border-radius: .2rem;
   background-color: #f4f5f7;
   transform: translateX(-50%);
-  @media (max-width: 770px) {
+  
+  ${media.lessThan("md")`
     left: 1rem;
     right: 1rem;
     width: auto;
     transform: translateX(0);
-  }
+  `}
+  ${media.lessThan("sm")`
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: none;
+    overflow-y: scroll;
+  `}
 `;
 
 const CloseButton = styled.button`
@@ -101,9 +111,10 @@ const Row = styled.div`
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-gap: 1rem;
-  @media (max-width: 600px) {
+  
+  ${media.lessThan("sm")`
     grid-template-columns: 1fr;
-  }
+  `}
 `;
 
 const Col = styled.div`

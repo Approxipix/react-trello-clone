@@ -2,14 +2,21 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { addLabelToCard } from "../../redux/cardReducer/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { addLabelToCard } from "../../redux/cardReducer/actions/actions";
+import media from '../../helpers/mediaQuery';
 import styled from 'styled-components';
 
 const LabelList = styled.ul`
   display: flex;
   flex-direction: column;
   padding: 0 .5rem;
+  
+  ${media.lessThan("lg")`
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+  `}
 `;
 
 const LabelItem = styled.li`
