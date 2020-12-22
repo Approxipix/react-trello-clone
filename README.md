@@ -17,6 +17,8 @@ Link: https://approxipix.github.io/react-trello-clone
 * [React Router](https://github.com/ReactTraining/react-router)
 * [React-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
 * [Styled Components](https://github.com/styled-components/styled-components)
+* [Jest](https://github.com/facebook/jest)
+* [Enzyme](https://github.com/enzymejs/enzyme)
 
 ## Features
 - [x] Board
