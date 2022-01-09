@@ -2,8 +2,10 @@
 A simple [Trello](https://trello.com/) clone based on React/Redux.
 <div>
   <img alt="Last Commit" src="https://img.shields.io/github/last-commit/approxipix/react-trello-clone?color=2b9348">
-  <a href="https://david-dm.org/approxipix/react-trello-clone"><img src="https://david-dm.org/approxipix/react-trello-clone/status.svg" alt="Dependencies status" /></a>
-  <a href="https://github.com/approxipix/react-trello-clone/blob/master/LICENSE"><img src="https://img.shields.io/github/license/elangosundar/awesome-README-templates?color=2b9348" alt="License Badge"/></a>
+  <img src="https://img.shields.io/depfu/approxipix/react-trello-clone" alt="Dependencies status" />
+  <a href="https://github.com/approxipix/react-trello-clone/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/elangosundar/awesome-README-templates?color=2b9348" alt="License Badge"/>
+  </a>
 </div>
 
 ## Live Demo
